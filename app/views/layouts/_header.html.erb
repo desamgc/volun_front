@@ -1,0 +1,103 @@
+<header class="header" style='background-image: url("/assets/sede/cabeceraCiudadanos.jpg");'>
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-md-10">    
+            <div class="row visible-md-block visible-lg-block">
+                <div class=" col-md-10 pull-right">
+
+
+                
+                    
+              <div class="quick-links-header">
+                <ul>  
+                 
+                </ul>  
+
+              <ul>
+          
+
+              
+            <li><a class="qlh-item " href="#">Accesibilidad</a></li>
+              
+          <!--  <li><a class="qlh-item " href="#">Mis suscripciones</a></li> -->
+          <li><a class="qlh-item qlh-item-myfolder" href="02-tramites-micarpeta.html">Mi carpeta</a></li>
+
+            <li>
+                   <% if current_user %>
+                        
+                    <% else %>
+                        <%= link_to 'Entrar', new_user_session_path, :class => "qlh-item " %>
+                    <% end %>
+            </li>  
+            
+            
+
+
+              
+            
+                  </ul>
+            </div>
+            </div>
+           </div>
+         </div>  
+
+        <%= render 'shared/personal_area' %>
+
+
+        </div> 
+        <div class="navigation-bar" id="navbar">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1 class="header-logo">
+                        <a href="00-home.html">
+                          <span class="text-hide">Ayuntamiento de Madrid</span>
+                          
+                           <%= image_tag("logo-madrid.png") %>
+                        </a>
+                    </h1>
+                </div>
+                <div class="col-md-9">
+                    <div class="search-toggle-cont">
+                        <div class="visible-md-block visible-lg-block">
+                            <ul class="main-menu">
+    
+                              <li><a class="main-menu-item " href="01-tramites.html"><span>Trámites</span></a></li>
+                          
+                              <li><a class="main-menu-item " href="01-actualidad.html"><span>Actualidad</span></a></li>
+                          
+                              <li><a class="main-menu-item " href="01-ayuntamiento.html"><span>El Ayuntamiento</span></a></li>
+                          
+                              <li><a class="main-menu-item " href="01-contacto.html"><span>Contacto</span></a></li>
+    
+                             </ul>
+                         </div>
+                       
+                  </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+<div class="section-cont">
+    
+       <h2 class="section-name">
+            <span class="section-name-title">
+                VOLUNTARIADO
+            </span>
+        </h2>
+    
+</div>
+
+    <p class="section-subname visible-xs-block"><span class="section-subname-title">NxC</span></p>
+
+        
+<ul class="sub-menu visible-md-block visible-lg-block hidden-print">
+    
+    
+</ul>   
+        
+</div>
+</header>
+

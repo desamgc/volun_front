@@ -8,7 +8,54 @@
 </head>
 <body>
 
-<%= yield %>
+<div id="wrapper">
+      <%= render 'layouts/header' %>
+      <!--[if lt IE 9]>
+      <% if browser.ie? && cookies['ie_alert_closed'] != 'true' %>
+        <div data-alert class="alert-box info ie-alert-box">
+          <a href="#" class="close ie-alert-box-close-js">&times;</a>
+          <h2><%= t("layouts.application.ie_title") %></h2>
+          <p>
+            <%= t("layouts.application.ie",
+            chrome: link_to(
+                    t("layouts.application.chrome"), "https://www.google.com/chrome/browser/desktop/", target: "_blank"),
+            firefox: link_to(
+                     t("layouts.application.firefox"), "https://www.mozilla.org/firefox", target: "_blank")
+            ).html_safe %>
+          </p>
+        </div>
+      <% end %>
+      <![endif]-->
+
+      
+     <%= render 'layouts/migas' %>
+    
+
+
+
+  <div class="content">
+   <div class="bg-fluid0">
+    <div class="container"> 
+    
+      <%= render 'layouts/avisos' %>  
+
+
+
+      <div class="row">
+          <!-- <div class="col-md-3">
+            <%= render 'layouts/menu' %>  
+           </div> -->
+           <%= yield %>
+      </div>
+    </div>
+   </div>
+   </div> 
+    <%= render 'layouts/footer' %>
+   </div>
+
+
+   <%= javascript_include_tag "js/vendor" %>
+   <%= javascript_include_tag "js/ayuntamiento-madrid" %>
 
 </body>
 </html>
