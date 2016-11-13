@@ -6,7 +6,8 @@ Rails.application.routes.draw do
                      }
 
   devise_scope :user do
-    
+       #get 'users/sign_up/success', to: 'users/registrations#success'
+       get 'users/passwords/updateC', to: 'users/passwords#updateC'
   end                   
   get 'welcome/index'
 

@@ -15,3 +15,18 @@
 // require turbolinks
 //= require js/locale/i18n_es
 //= require_directory .
+
+
+
+function closeErrores()
+{
+
+	$('#errores').hide();
+}
+
+
+function closeAvisos()
+{
+
+	$('#avisos').hide();
+}
