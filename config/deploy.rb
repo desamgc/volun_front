@@ -1,49 +1,61 @@
 # config valid only for current version of Capistrano
 lock '3.5.0'
 
-set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+puts "------------------------- YAML.load_file('config/deploy-secrets.yml') #{YAML.load_file('config/deploy-secrets.yml')}"
 
-# Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+def deploysecret(key)
+  puts "++++++++++++++++++++++++++ fetch(:stage) #{fetch(:stage).inspect}"
+  @deploy_secrets_yml ||= YAML.load_file('config/deploy-secrets.yml')[fetch(:stage).to_s]
+  puts "++++++++++++++++++++++++++ @deploy_secrets_yml #{@deploy_secrets_yml.inspect}"
+  @deploy_secrets_yml[key.to_s]
+end
 
-# Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, '/var/www/my_app_name'
+set :rails_env, fetch(:stage)
+set :rvm_ruby_version, '2.2.2'
+set :rvm_type, :user
 
-# Default value for :scm is :git
-# set :scm, :git
+set :application, 'volun_frontend'
+set :server_name, deploysecret(:server_name)
+set :full_app_name, fetch(:application)
+# If ssh access is restricted, probably you need to use https access
+set :repo_url, 'https://github.com/volunt/volun_frontend.git'
 
-# Default value for :format is :airbrussh.
-# set :format, :airbrussh
+set :scm, :git
+set :revision, `git rev-parse --short #{fetch(:branch)}`.strip
 
-# You can configure the Airbrussh format using :format_options.
-# These are the defaults.
-# set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
+set :log_level, :info
+set :pty, true
+set :use_sudo, false
 
-# Default value for :pty is false
-# set :pty, true
+set :linked_files, %w{config/database.yml config/secrets.yml}
+set :linked_dirs, %w{log tmp public/system public/assets}
 
-# Default value for :linked_files is []
-# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+set :keep_releases, 10
 
-# Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
+set :local_user, ENV['USER']
 
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+# Run test before deploy
+set :tests, ["spec"]
 
-# Default value for keep_releases is 5
-# set :keep_releases, 5
+# Config files should be copied by deploy:setup_config
+set(:config_files, %w(
+  log_rotation
+  database.yml
+  secrets.yml
+  unicorn.rb
+))
+
 
 namespace :deploy do
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
+  # Check right version of deploy branch
+  before :deploy, "deploy:check_revision"
+  # Run test aund continue only if passed
+  # before :deploy, "deploy:run_tests"
+  # Compile assets locally and then rsync
+  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  after :finishing, 'deploy:cleanup'
+  # Restart unicorn
+  after 'deploy:publishing', 'deploy:restart'
+  # after 'deploy:restart', 'sidekiq:restart'
 end
+
