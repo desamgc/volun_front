@@ -1,12 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.5.0'
 
-puts "------------------------- YAML.load_file('config/deploy-secrets.yml') #{YAML.load_file('config/deploy-secrets.yml')}"
-
 def deploysecret(key)
-  puts "++++++++++++++++++++++++++ fetch(:stage) #{fetch(:stage).inspect}"
-  @deploy_secrets_yml ||= YAML.load_file('config/deploy-secrets.yml')[fetch(:stage).to_s]
-  puts "++++++++++++++++++++++++++ @deploy_secrets_yml #{@deploy_secrets_yml.inspect}"
+  @deploy_secrets_yml ||= YAML.load_file('config/deploy_secrets.yml')[fetch(:stage).to_s]
   @deploy_secrets_yml[key.to_s]
 end
 
