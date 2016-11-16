@@ -17,7 +17,7 @@ set :application, 'volun_frontend'
 set :server_name, deploysecret(:server_name)
 set :full_app_name, fetch(:application)
 # If ssh access is restricted, probably you need to use https access
-set :repo_url, 'https://github.com/volunt/volun_frontend.git'
+set :repo_url, 'https://perezljl:Albarracin33@bitbucket.org/perezljl/volun_frontend.git'
 
 set :scm, :git
 set :revision, `git rev-parse --short #{fetch(:branch)}`.strip
