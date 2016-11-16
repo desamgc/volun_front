@@ -52,7 +52,7 @@ group :development, :production, :preproducion do
   #gem 'capistrano'
   #gem 'capistrano-rails'
   #  utility and framework for executing commands in parallel on multiple remote machines, via SSH.
-  gem 'capistrano', '3.4.0',           require: false
+  gem 'capistrano', '3.5.0',           require: false
   gem "capistrano-bundler", '1.1.4',   require: false
   gem "capistrano-rails", '1.1.6',     require: false
   gem "capistrano-rvm",                require: false
