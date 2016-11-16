@@ -48,7 +48,7 @@ group :development, :test do
 end
 
 # Use Capistrano for deployment
-group :development, :production do
+group :development, :production, :preproducion do
   #gem 'capistrano'
   #gem 'capistrano-rails'
   #  utility and framework for executing commands in parallel on multiple remote machines, via SSH.
