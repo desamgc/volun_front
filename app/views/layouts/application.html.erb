@@ -2,13 +2,29 @@
 <html>
 <head>
   <title>VolunFrontend</title>
+
+  <script>
+    var aytmad = {};
+    aytmad.config = {
+        routes:{
+            menu:'data/menu.json',
+            menuTramites:'data/menu_tramites.json',
+            calendar:'04-buscador-agenda.html?vgnextchannel=27dfb4f19cce3210VgnVCM10000026205a0aRCRD&amp;cuando=cuandoDia&amp;enviar=Buscar&amp;newSearch=true&amp;fechaAccesible=',
+            taxonomias:'data/XMLAutocompletarTaxonomias.xml'
+        },
+        constants:{
+            numVisibleLinks:3,
+            API_KEY: "AIzaSyBiYQM0X20DOGmT3IQ6sj4OrUeC3nEuvDs"
+        }
+    };
+    </script>
+  
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<div id="wrapper">
+   <div id="wrapper">
       <%= render 'layouts/header' %>
       <!--[if lt IE 9]>
       <% if browser.ie? && cookies['ie_alert_closed'] != 'true' %>
@@ -26,36 +42,25 @@
         </div>
       <% end %>
       <![endif]-->
-
-      
-     <%= render 'layouts/migas' %>
-    
-
-
-
-  <div class="content">
+   <% if true==false %>
+    <%= render 'layouts/migas' %> 
+   <% end %>   
+   
+   <div class="content">  
+     <%= render 'layouts/accesibilidad' %>
    <div class="bg-fluid0">
     <div class="container"> 
-    
       <%= render 'layouts/avisos' %>  
-
-
-
-      <div class="row">
-          <!-- <div class="col-md-3">
-            <%= render 'layouts/menu' %>  
-           </div> -->
-           <%= yield %>
-      </div>
+                <main>
+                  <%= yield %>
+                </main>
     </div>
-   </div>
-   </div> 
+    </div>
+    </div>
+
     <%= render 'layouts/footer' %>
-   </div>
-
-
-   <%= javascript_include_tag "js/vendor" %>
-   <%= javascript_include_tag "js/ayuntamiento-madrid" %>
-
-</body>
+    <%= javascript_include_tag "js/vendor" %>
+    <%= javascript_include_tag "js/ayuntamiento-madrid" %>
+</div>
+  </body>
 </html>
