@@ -43,12 +43,20 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'bullet'
   gem 'faker'
+
+
 end
 
 # Use Capistrano for deployment
 group :development, :production do
-  gem 'capistrano'
-  gem 'capistrano-rails'
+  #gem 'capistrano'
+  #gem 'capistrano-rails'
+  #  utility and framework for executing commands in parallel on multiple remote machines, via SSH.
+  gem 'capistrano', '3.4.0',           require: false
+  gem "capistrano-bundler", '1.1.4',   require: false
+  gem "capistrano-rails", '1.1.6',     require: false
+  gem "capistrano-rvm",                require: false
+  gem 'capistrano3-delayed-job', '~> 1.0'
 end
 
 group :development do
