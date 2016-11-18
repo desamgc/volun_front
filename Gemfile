@@ -15,9 +15,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 
-gem 'rspec-rails'
-gem 'capybara'
-gem 'factory_girl_rails'
+
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -34,7 +33,7 @@ gem 'browser'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 
 group :development, :test do
@@ -43,12 +42,14 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'bullet'
   gem 'faker'
-
-
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'selenium-webdriver'
 end
 
 # Use Capistrano for deployment
-group :development, :production, :preproducion do
+group :development do
   #gem 'capistrano'
   #gem 'capistrano-rails'
   #  utility and framework for executing commands in parallel on multiple remote machines, via SSH.
