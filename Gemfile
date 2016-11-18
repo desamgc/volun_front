@@ -42,10 +42,10 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'bullet'
   gem 'faker'
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  gem 'rspec-rails', '~> 3.0'
-  gem 'selenium-webdriver'
+  #gem 'capybara'
+  #gem 'factory_girl_rails'
+  #gem 'rspec-rails', '~> 3.0'
+  #gem 'selenium-webdriver'
 end
 
 # Use Capistrano for deployment
