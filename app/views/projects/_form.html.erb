@@ -1,0 +1,89 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :functions %><br>
+    <%= f.text_field :functions %>
+  </div>
+  <div class="field">
+    <%= f.label :execution_start_date %><br>
+    <%= f.date_select :execution_start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :execution_end_date %><br>
+    <%= f.date_select :execution_end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_name %><br>
+    <%= f.text_field :contact_name %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_first_surname %><br>
+    <%= f.text_field :contact_first_surname %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_second_surname %><br>
+    <%= f.text_field :contact_second_surname %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br>
+    <%= f.text_area :comments %>
+  </div>
+  <div class="field">
+    <%= f.label :beneficiaries_num %><br>
+    <%= f.number_field :beneficiaries_num %>
+  </div>
+  <div class="field">
+    <%= f.label :volunteers_num %><br>
+    <%= f.number_field :volunteers_num %>
+  </div>
+  <div class="field">
+    <%= f.label :insured %><br>
+    <%= f.check_box :insured %>
+  </div>
+  <div class="field">
+    <%= f.label :insurance_date %><br>
+    <%= f.date_select :insurance_date %>
+  </div>
+  <div class="field">
+    <%= f.label :project_type_id %><br>
+    <%= f.text_field :project_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :entity_id %><br>
+    <%= f.text_field :entity_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

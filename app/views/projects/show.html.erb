@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @project.active %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
+  <strong>Functions:</strong>
+  <%= @project.functions %>
+</p>
+
+<p>
+  <strong>Execution start date:</strong>
+  <%= @project.execution_start_date %>
+</p>
+
+<p>
+  <strong>Execution end date:</strong>
+  <%= @project.execution_end_date %>
+</p>
+
+<p>
+  <strong>Contact name:</strong>
+  <%= @project.contact_name %>
+</p>
+
+<p>
+  <strong>Contact first surname:</strong>
+  <%= @project.contact_first_surname %>
+</p>
+
+<p>
+  <strong>Contact second surname:</strong>
+  <%= @project.contact_second_surname %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @project.phone_number %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @project.email %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @project.comments %>
+</p>
+
+<p>
+  <strong>Beneficiaries num:</strong>
+  <%= @project.beneficiaries_num %>
+</p>
+
+<p>
+  <strong>Volunteers num:</strong>
+  <%= @project.volunteers_num %>
+</p>
+
+<p>
+  <strong>Insured:</strong>
+  <%= @project.insured %>
+</p>
+
+<p>
+  <strong>Insurance date:</strong>
+  <%= @project.insurance_date %>
+</p>
+
+<p>
+  <strong>Project type:</strong>
+  <%= @project.project_type %>
+</p>
+
+<p>
+  <strong>Entity:</strong>
+  <%= @project.entity %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

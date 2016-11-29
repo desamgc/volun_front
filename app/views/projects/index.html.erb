@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Projects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Description</th>
+      <th>Functions</th>
+      <th>Execution start date</th>
+      <th>Execution end date</th>
+      <th>Contact name</th>
+      <th>Contact first surname</th>
+      <th>Contact second surname</th>
+      <th>Phone number</th>
+      <th>Email</th>
+      <th>Comments</th>
+      <th>Beneficiaries num</th>
+      <th>Volunteers num</th>
+      <th>Insured</th>
+      <th>Insurance date</th>
+      <th>Project type</th>
+      <th>Entity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%= project.active %></td>
+        <td><%= project.description %></td>
+        <td><%= project.functions %></td>
+        <td><%= project.execution_start_date %></td>
+        <td><%= project.execution_end_date %></td>
+        <td><%= project.contact_name %></td>
+        <td><%= project.contact_first_surname %></td>
+        <td><%= project.contact_second_surname %></td>
+        <td><%= project.phone_number %></td>
+        <td><%= project.email %></td>
+        <td><%= project.comments %></td>
+        <td><%= project.beneficiaries_num %></td>
+        <td><%= project.volunteers_num %></td>
+        <td><%= project.insured %></td>
+        <td><%= project.insurance_date %></td>
+        <td><%= project.project_type %></td>
+        <td><%= project.entity %></td>
+        <td><%= link_to 'Show', project %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project', new_project_path %>

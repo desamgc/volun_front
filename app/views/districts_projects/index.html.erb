@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Districts Projects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>District</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @districts_projects.each do |districts_project| %>
+      <tr>
+        <td><%= districts_project.district %></td>
+        <td><%= districts_project.project %></td>
+        <td><%= link_to 'Show', districts_project %></td>
+        <td><%= link_to 'Edit', edit_districts_project_path(districts_project) %></td>
+        <td><%= link_to 'Destroy', districts_project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Districts project', new_districts_project_path %>

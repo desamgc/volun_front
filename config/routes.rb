@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :volunteers
+  resources :districts_projects
+  resources :districts
+  resources :links
+  resources :images
+  resources :entities
+  resources :projects
+  resources :entity_types
+  resources :project_types
   devise_for :users, controllers: {
                        sessions: 'users/sessions',
                        passwords: 'users/passwords',

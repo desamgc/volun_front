@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>District:</strong>
+  <%= @districts_project.district %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @districts_project.project %>
+</p>
+
+<%= link_to 'Edit', edit_districts_project_path(@districts_project) %> |
+<%= link_to 'Back', districts_projects_path %>
