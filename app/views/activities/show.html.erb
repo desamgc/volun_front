@@ -1,0 +1,20 @@
+<%= main_title(t("action.show", model: Activity.model_name.human)) %>
+
+<dl class="dl-horizontal">
+
+  <dt><%= Activity.human_attribute_name(:id) %>:</dt>
+  <dd><%= @activity.id %></dd>
+  <dt><%= Activity.human_attribute_name(:name) %>:</dt>
+  <dd><%= @activity.name %></dd>
+  <dt><%= Activity.human_attribute_name(:description) %>:</dt>
+  <dd><%= @activity.description %></dd>
+  <dt><%= Activity.human_attribute_name(:active) %>:</dt>
+  <dd><%= t("humanize.#{@activity.active}") %></dd>
+  <dt><%= Activity.human_attribute_name(:created_at) %>:</dt>
+  <dd><%= show_simple_date(@activity.created_at) %></dd>
+
+</dl>
+<% unless request.xhr? %>
+<%= button_to_back %>
+<%= button_to_edit(@activity) %>
+<% end %>

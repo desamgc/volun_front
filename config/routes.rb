@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :activities
   resources :volunteers
   resources :districts_projects
   resources :districts

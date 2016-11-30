@@ -1,0 +1,20 @@
+<div class="well">
+  <%%= simple_form_for(@<%= singular_table_name %>, default_form_options) do |f| %>
+
+  <div class="form-inputs">
+  <%- attributes.each do |attr| -%>
+      <%- if attr.reference? -%>
+          <%%= f.association :<%= attr.name %> %>
+      <%- elsif /_date|date_/ =~ attr.name -%>
+          <%%= f.input :<%= attr.name %>, as: :datepicker %>
+      <%- else -%>
+          <%%= f.input :<%= attr.name %> %>
+      <%- end -%>
+  <%- end -%>
+  </div>
+
+  <div class="form-actions">
+    <%%= f.button :submit %>
+  </div>
+  <%% end %>
+</div>
