@@ -11,7 +11,7 @@
                               
                                 <%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class:  "fa fa-power-off") %>
                             </ul>
-                        <% if current_user.profile.class=="Organization" %>
+                        <% if current_user.profile.class=="Entity" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                               <li><%= link_to 'Modificar perfil', edit_entidade_path(current_user.profile.id)%> </li>
                               <li><%= link_to 'Modificar contraseña', update_passwords_user_path %> </li>  

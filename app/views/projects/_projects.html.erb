@@ -1,0 +1,86 @@
+
+
+
+<!-- en modo cuadricula -->
+<% if @grid %>
+<% indice = -1 %>
+<div class="gallery nofluid">
+<% final = (@projects_actives.size % 3 == 0) ? @projects_actives.size / 3 : (@projects_actives.size / 3 ) + 1 %>
+<% nxfila = (final > 3) ? 3 : final %>
+ <% for i in 1..final %>
+
+  <ul class="row">
+      <% for i in 1..nxfila %>
+        <% indice += 1 %>
+        <li class="col-xs-12 col-sm-4">
+          <div class="gallery-item">
+          <% @project = @projects_actives[indice] %>
+            <%= image_tag  @project.image.url, width:200, height:200 %>
+            <%= social_share_button_tag(@project.name) %>
+              
+            <span class="gallery-text">
+
+                <h3><%=  @project.name %></h3>
+                <%=  @project.description %>
+            </span>
+
+            <%= link_to  "Leer mas .." , edit_proyecto_path(@project), class: "event-link " %> 
+            <%= render 'shared/participation', collection: @project %>
+                
+                <div class="event-date"><span>Del viernes 20 de febrero de 2015</span> <span>al domingo 22 de febrero de 2015</span></div>
+                <span class="event-location" data-latitude="" data-longitude="" data-name="" data-direction="">Pabellón de Cristal de la Casa de Campo</span>
+             
+                <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> 0
+          </div>
+        </li>
+     <% end %> 
+  </ul>
+ <% end %> 
+</div>
+
+<% else %>
+
+<!-- en modo fila -->
+<div class="tiny-text">
+
+<% @projects_actives.each do |project| %>
+
+<div class="row">
+  <div class="global-results">
+    <ul class="events-results">
+        
+        <li class="withimage">
+            <div class="event-image">
+                <%= image_tag project.image.url(:medium), height: '200', width: '250' %>
+            </div>
+            <div class="event-info">
+                <span class="event-type"><h3><%= project.name %>
+                <%= social_share_button_tag(project.name) %> </h3></span>
+                
+                <span class="event-intro"><%= project.description %></span>
+                <%= link_to  "Leer mas .." , edit_proyecto_path(project), class: "event-link " %> 
+                <%= render 'shared/participation', collection: @project %>
+                
+                <div class="event-date"><span>Del viernes 20 de febrero de 2015</span> <span>al domingo 22 de febrero de 2015</span></div>
+                <span class="event-location" data-latitude="" data-longitude="" data-name="" data-direction="">Pabellón de Cristal de la Casa de Campo</span>
+                
+            </div>
+        </li>
+        
+        
+    </ul>
+</div>
+</div>
+<hr>
+<% end %>
+
+</div>
+
+
+
+<% end %> 
+
+
+
+
+

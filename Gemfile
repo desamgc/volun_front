@@ -30,6 +30,13 @@ gem 'devise'
 gem 'browser'
 gem 'rspec-rails'
 gem 'factory_girl_rails'
+gem 'social-share-button'
+gem 'ransack'
+gem 'will_paginate'
+#gema para establecer variables en el controller que luego se utilizan en javascritp
+gem 'gon'
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

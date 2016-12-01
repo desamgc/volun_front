@@ -1,10 +1,19 @@
+# controller de projects
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show]
+  respond_to :html, :js, :json
 
-  # GET /projects
-  # GET /projects.json
   def index
-    @projects = Project.all
+    #params[:q] ||= Project.ransack_default
+    @search = Project.search(params[:q])
+    debugger
+    @projects_actives = @search.result  #paginate(page: params[:page], per_page: params[:per_page] || 15)
+    @projects_featured = Project.featured
+    gon.items = @projects_actives
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /projects/1
@@ -12,63 +21,13 @@ class ProjectsController < ApplicationController
   def show
   end
 
-  # GET /projects/new
-  def new
-    @project = Project.new
-  end
-
-  # GET /projects/1/edit
-  def edit
-  end
-
-  # POST /projects
-  # POST /projects.json
-  def create
-    @project = Project.new(project_params)
-
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
-      else
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /projects/1
-  # PATCH/PUT /projects/1.json
-  def update
-    respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
-      else
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /projects/1
-  # DELETE /projects/1.json
-  def destroy
-    @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:name, :active, :description, :functions, :execution_start_date, :execution_end_date, :contact_name, :contact_first_surname, :contact_second_surname, :phone_number, :email, :comments, :beneficiaries_num, :volunteers_num, :insured, :insurance_date, :project_type_id, :entity_id)
-    end
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  def project_params
+    params.require(:project).permit(:name, :active, :description, :functions, :execution_start_date, :execution_end_date, :contact_name, :contact_first_surname, :contact_second_surname, :phone_number, :email, :comments, :beneficiaries_num, :volunteers_num, :insured, :insurance_date, :project_type_id, :entity_id)
+  end
 end

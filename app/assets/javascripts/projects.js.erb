@@ -1,0 +1,83 @@
+App.Projects = {
+
+load_geo: function ()
+{
+    
+   
+ require([
+     "esri/geometry/Point", "esri/Color", "esri/InfoTemplate","esri/map",
+     "esri/symbols/SimpleMarkerSymbol",  "esri/layers/ArcGISDynamicMapServiceLayer",
+     "esri/SpatialReference", "esri/layers/GraphicsLayer", "esri/graphic",
+     "esri/layers/ArcGISTiledMapServiceLayer","esri/InfoTemplate","esri/symbols/PictureMarkerSymbol","dojo/dom", "dojo/on", "dojo/domReady!"], 
+     function(Point, Color, InfoTemplate, Map,SimpleMarkerSymbol,  ArcGISDynamicMapServiceLayer, 
+            SpatialReference, GraphicsLayer, Graphic, ArcGISTiledMapServiceLayer,InfoTemplate,PictureMarkerSymbol,dom, on) 
+     {
+                                  
+             var sr = new SpatialReference({wkid:25830});
+             var centro = new Point([446137,4475471],sr);
+             var map = new Map("mapDiv", {           
+                     center: centro,
+                     spatialReference: sr,
+                     zoom: 1});
+             var mapabase = new ArcGISTiledMapServiceLayer(<%= Rails.application.secrets.url_map %>,{
+                                                               "spatialReference": sr});
+             var rotulacion= new ArcGISDynamicMapServiceLayer(<%= Rails.application.secrets.url_rotulacion %>,{
+                                                               "spatialReference" : sr});
+             var ndps= new ArcGISDynamicMapServiceLayer(<%= Rails.application.secrets.url_ndps %>,{
+                                                               "spatialReference" : sr});
+                                              
+             map.addLayer(mapabase);
+             map.addLayer(rotulacion);
+             map.addLayer(ndps);
+             map.infoWindow.resize(500, 200);
+
+             var picBaseUrl = "assets";
+             var pms = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 64, 64).setOffset(0, 15);
+
+             for(var i = 0; i<gon.items.length;i++)
+             {
+              
+              
+              var pt = new Point(gon.items[i].lat,gon.items[i].len,map.spatialReference);
+             
+
+             var graficos = new GraphicsLayer();
+             map.addLayer(graficos);
+
+             var infoTemplate = new InfoTemplate();
+
+            infoTemplate.setTitle(gon.items[i].nombreproyecto);
+            infoTemplate.setContent("<img src='/assets/" + gon.items[i].image_file_name +  "' alt='2'>" +  
+                "<h2>" + gon.items[i].descripcion + " </h2><br/>" +
+                "<a href='/proyectos/" + gon.items[i].id  + "/edit'>Leer mas..</a>" );
+
+
+             var g = new Graphic(pt,pms);
+             g.setInfoTemplate(infoTemplate);
+             graficos.add(g);
+          
+            }    
+           
+
+})
+}
+}
+
+function showCoordinates(evt) {
+
+    require(["dojo/dom"], function(dom) {
+                                              
+                                                 var mp = evt.mapPoint;
+                                                 //display mouse coordinates
+                                                 dom.byId("info").innerHTML = mp.x.toFixed(3) + ", " + mp.y.toFixed(3);
+   })                                              
+}
+
+
+
+
+//$(document).ready(load_geo);
+
+
+
+

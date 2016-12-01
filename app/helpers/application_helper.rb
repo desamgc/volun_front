@@ -33,4 +33,8 @@ module ApplicationHelper
     }
     Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
+
+  def distritos_select_options
+    Distritc.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
+  end
 end
