@@ -1,5 +1,5 @@
 module ApplicationHelper
-
+  
   def home_page?
     return false if user_signed_in?
     # Using path because fullpath yields false negatives since it contains
@@ -34,7 +34,7 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
 
-  def distritos_select_options
-    Distritc.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
+  def districts_select_options
+    District.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
   end
 end

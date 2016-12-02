@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :rft_volunteer_subscribes
+  resources :request_form_types
+  resources :request_forms
   resources :activities
   resources :volunteers
   resources :districts_projects

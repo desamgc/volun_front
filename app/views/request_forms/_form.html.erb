@@ -1,0 +1,17 @@
+<div class="well">
+  <%= simple_form_for(@request_form, default_form_options) do |f| %>
+
+  <div class="form-inputs">
+          <%= f.association :request_form_type %>
+          <%= f.input :sent_at %>
+          <%= f.input :status %>
+          <%= f.input :status_date, as: :datepicker %>
+          <%= f.association :rejection_type %>
+          <%= f.input :comments %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+  <% end %>
+</div>

@@ -11,7 +11,7 @@
     <% @projects_featured.each do |project| %>
         <li class="col-xs-12 col-sm-4 col-md-4">
           <div class="gallery-item">
-            <%= image_tag project.images[1].url(:thumb) , height: '200', width: '250' %>
+            
              <%= social_share_button_tag(project.name) %>
             
             <span class="gallery-text">

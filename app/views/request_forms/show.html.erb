@@ -1,0 +1,26 @@
+<%= main_title(t("action.show", model: RequestForm.model_name.human)) %>
+
+<dl class="dl-horizontal">
+
+  <dt><%= RequestForm.human_attribute_name(:id) %>:</dt>
+  <dd><%= @request_form.id %></dd>
+  <dt><%= RequestForm.human_attribute_name(:request_form_type_id) %>:</dt>
+  <dd><%= @request_form.request_form_type %></dd>
+  <dt><%= RequestForm.human_attribute_name(:sent_at) %>:</dt>
+  <dd><%= @request_form.sent_at %></dd>
+  <dt><%= RequestForm.human_attribute_name(:status) %>:</dt>
+  <dd><%= @request_form.status %></dd>
+  <dt><%= RequestForm.human_attribute_name(:status_date) %>:</dt>
+  <dd><%= @request_form.status_date %></dd>
+  <dt><%= RequestForm.human_attribute_name(:rejection_type_id) %>:</dt>
+  <dd><%= @request_form.rejection_type %></dd>
+  <dt><%= RequestForm.human_attribute_name(:comments) %>:</dt>
+  <dd><%= @request_form.comments %></dd>
+  <dt><%= RequestForm.human_attribute_name(:created_at) %>:</dt>
+  <dd><%= show_simple_date(@request_form.created_at) %></dd>
+
+</dl>
+<% unless request.xhr? %>
+<%= button_to_back %>
+<%= button_to_edit(@request_form) %>
+<% end %>

@@ -1,0 +1,16 @@
+<tr id="<%= dom_id(request_form) %>" >
+
+  <% project.main_attributes.each do |attr_name| %>
+  <td><%= show_attr(request_form.public_send attr_name) %></td>
+  <% end %>
+
+  <td class="index_table-actions">
+    <%= link_to_show(request_form) %>
+    <%= link_to_edit(request_form) %>
+<% if request_form.try(:archived?) %>
+    <%= link_to_recover(request_form) %>
+<% else %>
+    <%= link_to_destroy(request_form) %>
+<% end %>
+  </td>
+</tr>
