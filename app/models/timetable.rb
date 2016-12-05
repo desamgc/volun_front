@@ -1,5 +1,6 @@
 class Timetable < ActiveRecord::Base
-enum day: [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday]
+	has_and_belongs_to_many :projects
+	enum day: [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday]
 
 
 end

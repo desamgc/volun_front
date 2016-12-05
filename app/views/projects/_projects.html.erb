@@ -26,10 +26,13 @@
 
             <%= link_to  "Leer mas .." , project_path(@project), class: "event-link " %> 
             <%= render 'shared/participation', collection: @project %>
-                
-                <div class="event-date"><span>Del viernes 20 de febrero de 2015</span> <span>al domingo 22 de febrero de 2015</span></div>
-                <span class="event-location" data-latitude="" data-longitude="" data-name="" data-direction="">Pabellón de Cristal de la Casa de Campo</span>
-             
+                <% projects_actives.timetables do |timetable| %>                
+                  <div class="event-date"><span>timetable.day</span></div>
+                <% end %>
+
+                <% projects_actives.addresses do |address| %>
+                  <span class="event-location" data-latitude="" data-longitude="" data-name="" data-direction="">address.road_number </span>
+                <% end %>
                 <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> 0
           </div>
         </li>

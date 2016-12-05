@@ -5,10 +5,13 @@ class ProjectsController < ApplicationController
 
   def index
     #params[:q] ||= Project.ransack_default
-    @search = Project.search(params[:q])
+    @search = Project.includes(:districts, :addresses, :timetables, :project_type).search(params[:q])
     @projects_actives = @search.result  #paginate(page: params[:page], per_page: params[:per_page] || 15)
+
     @projects_featured = Project.featured
     gon.items = @projects_actives
+    @grid = true
+    debugger
     respond_to do |format|
       format.html
       format.js
