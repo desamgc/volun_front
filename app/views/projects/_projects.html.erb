@@ -2,7 +2,8 @@
 
 
 <!-- en modo cuadricula -->
-<% if @grid %>
+<div id="grid">
+
 <% indice = -1 %>
 <div class="gallery nofluid">
 <% final = (@projects_actives.size % 3 == 0) ? @projects_actives.size / 3 : (@projects_actives.size / 3 ) + 1 %>
@@ -25,25 +26,29 @@
             </span>
 
             <%= link_to  "Leer mas .." , project_path(@project), class: "event-link " %> 
+             
             <%= render 'shared/participation', collection: @project %>
-                <% projects_actives.timetables do |timetable| %>                
-                  <div class="event-date"><span>timetable.day</span></div>
+                <% @project.timetables.each do |timetable| %> 
+                  <div class="event-date"><span><%= timetable.day %></span></div>
                 <% end %>
-
-                <% projects_actives.addresses do |address| %>
-                  <span class="event-location" data-latitude="" data-longitude="" data-name="" data-direction="">address.road_number </span>
+                
+                <% @project.addresses.each do |address| %>
+                  <div class="event-location"><span data-latitude="" data-longitude="" data-name="" data-direction=""><%= address.road_name %></span></div>
                 <% end %>
-                <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> 0
+                <br/>
+                <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> <%=  @project.volunteers_num %>
           </div>
         </li>
      <% end %> 
   </ul>
- <% end %> 
+  <% end %>
+ </div>
+ 
 </div>
 
-<% else %>
 
 <!-- en modo fila -->
+<div id="row" style="display:none">
 <div class="tiny-text">
 
 <% @projects_actives.each do |project| %>
@@ -73,15 +78,11 @@
         
     </ul>
 </div>
+ 
 </div>
-<hr>
-<% end %>
-
+ <% end %>
 </div>
-
-
-
-<% end %> 
+</div>
 
 
 

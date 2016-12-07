@@ -8,6 +8,8 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :timetables
   has_and_belongs_to_many :districts, -> { order('districts.name asc') }
 
+  accepts_nested_attributes_for :timetables, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :addresses,  allow_destroy: true, reject_if: :all_blank
 
   scope :featured, -> { where("insured = true and active = true") }
   scope :actives, -> { where("active = true") }

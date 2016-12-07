@@ -11,7 +11,7 @@ require 'database_cleaner'
 DatabaseCleaner.clean_with :truncation
 Faker::Config.locale = I18n.locale
 
-PROJECTS_NUM      = 10
+PROJECTS_NUM      = 15
 DISTRICTS_NUM     = 10
 ACTIVITIES_NUM    = 10
 ENTITIES_NUM      = 10
@@ -21,7 +21,7 @@ PROPOSAL_NUM      = 10
 ENTITY_NUM        = 10
 RACKING_NUM       = 10
 ISSUE_NUM         = 10
-TIMETABLE_NUM     = 10
+TIMETABLE_NUM     = 15
 DOCUMENT_NUM      = 10
 
 PROJECT_TYPES = {
@@ -164,7 +164,7 @@ puts "Creando Direcciones"
   )
 end
 
-puts "Creando Forarios"
+puts "Creando Horarios"
 (1..TIMETABLE_NUM).each do |n|
   Timetable.create!(
       day:        Timetable.days.values.sample,
@@ -196,9 +196,11 @@ puts "Creando Proyectos"
       beneficiaries_num:     10,
       volunteers_num:        rand(100),
     }
-
     
-
     project.save!
+
+    project.addresses << Address.find(n)
+    project.timetables << Timetable.find(n)
+
   end
 

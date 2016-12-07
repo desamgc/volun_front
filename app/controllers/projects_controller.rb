@@ -7,11 +7,9 @@ class ProjectsController < ApplicationController
     #params[:q] ||= Project.ransack_default
     @search = Project.includes(:districts, :addresses, :timetables, :project_type).search(params[:q])
     @projects_actives = @search.result  #paginate(page: params[:page], per_page: params[:per_page] || 15)
-
     @projects_featured = Project.featured
     gon.items = @projects_actives
     @grid = true
-    debugger
     respond_to do |format|
       format.html
       format.js
@@ -30,6 +28,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :active, :description, :functions, :execution_start_date, :execution_end_date, :contact_name, :contact_first_surname, :contact_second_surname, :phone_number, :email, :comments, :beneficiaries_num, :volunteers_num, :insured, :insurance_date, :project_type_id, :entity_id)
+    params.require(:project).permit(:name, :active, :description, :functions, :execution_start_date, :execution_end_date, :contact_name, :contact_first_surname, :contact_second_surname, :phone_number, :email, :comments, :beneficiaries_num, :volunteers_num, :insured, :insurance_date, :project_type_id, :entity_id, :addresses_attributes [:id, :road_name], :timetables)
   end
 end

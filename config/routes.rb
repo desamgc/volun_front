@@ -9,11 +9,14 @@ Rails.application.routes.draw do
   resources :links
   resources :images
   resources :entities
+  resources :address
+  resources :timetable
   resources :projects, only: [:index, :show] do
     member do
       get :image
       put :link
     end
+    
   end
   resources :entity_types
   resources :project_types
