@@ -31,13 +31,15 @@ function closeAvisos()
 	$('#avisos').hide();
 }
 
+
 $(document).ready(function(){
-		$("#btnGrid").click(function(){
-			$('#row').hide();
-			$('#grid').show());
-		 });
-		$("#btnRow").click(function(){
-			$('#grid').hide();
-			$('#row').show();
-		});
+   
+        $("#btnGrid").click(function(){
+            $('#row').hide();
+            $('#grid').show();
+         });
+        $("#btnRow").click(function(){
+            $('#grid').hide();
+            $('#row').show();
+        });
 });

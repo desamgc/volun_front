@@ -1,6 +1,5 @@
 class RftVolunteerSubscribesController < ApplicationController
-
-  load_and_authorize_resource
+  before_action :set_rft_volunteer_subscribe, only: [:show, :edit]
   respond_to :html, :js, :json
 
   def index
@@ -26,8 +25,14 @@ class RftVolunteerSubscribesController < ApplicationController
   end
 
   def create
-    @rft_volunteer_subscribe.save
-    respond_with(@rft_volunteer_subscribe)
+    #@rft_volunteer_subscribe.save
+    #respond_with(@rft_volunteer_subscribe)
+    @rft_volunteer_subscribe = RftVolunteerSubscribe.new(rft_volunteer_subscribe_params)
+    if @rft_volunteer_subscribe.save
+      redirect_to rft_volunteer_subscribes_url, notice: t('nuevoOk')
+    else
+      render action: 'new'
+    end
   end
 
   def update
@@ -41,6 +46,9 @@ class RftVolunteerSubscribesController < ApplicationController
   end
 
   protected
+    def set_rft_volunteer_subscribe
+      @rft_volunteer_subscribe = RftVolunteerSubscribe.find(params[:id])
+    end
 
     def rft_volunteer_subscribe_params
       params.require(:rft_volunteer_subscribe).permit(:request_form_type_id, :name, :first_surname, :second_surname, :phone_number, :phone_number_alt, :email)

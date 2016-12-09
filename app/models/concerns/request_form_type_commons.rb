@@ -1,4 +1,4 @@
-module RequestTypeCommons
+module RequestFormTypeCommons
   extend ActiveSupport::Concern
 
   included do
@@ -23,13 +23,13 @@ module RequestTypeCommons
     end
 
     def set_request_form_type
-      self.request_form_type_id ||= request_form.try(:project_type_id) || get_related_request_form_type.id
+      self.request_form_type_id ||= request_form.try(:request_form_type_id) || get_related_request_form_type.id
     end
 
     def build_new_request_form
-      return if request_form_id || request_form
+      return if request_form_type_id || request_form
       build_request_form
-      request_form.project_type_id = request_form_type_id
+      request_form.request_form_type_id = request_form_type_id
       request_form
     end
 

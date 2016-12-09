@@ -34,6 +34,12 @@ PROJECT_TYPES = {
   6 => 'Otros'
 }
 
+
+REQUEST_FORM_TYPES = {
+  0 => 'volunteer_subscribe',
+  
+}
+
 REQUEST_REASONS = {
   0 => 'Difusión de proyectos',
   1 => 'Solicitud voluntarios',
@@ -134,6 +140,11 @@ PROJECT_TYPES.each do |kind , name|
   ProjectType.create!(kind: kind)
 end
 
+puts "Creando Tipos de request form"
+REQUEST_FORM_TYPES.each do |kind , name|
+  RequestFormType.create!(kind: kind)
+end
+
 puts "Creando entidades"
 (1..ENTITIES_NUM).each do |n|
   Entity.create!(name: "#{Entity.model_name.human} #{n}")
@@ -199,6 +210,7 @@ puts "Creando Proyectos"
     
     project.save!
 
+    project.districts << District.find(n)
     project.addresses << Address.find(n)
     project.timetables << Timetable.find(n)
 

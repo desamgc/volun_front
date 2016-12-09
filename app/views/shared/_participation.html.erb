@@ -2,7 +2,7 @@
   <% if current_user && current_user.profile.class=="Entity" %>
     <%= link_to "Me interesa participar como voluntario", projects_path(@project.id), class: "event-link " %>
   <% else %>
-    <span> Para paticipar como voluntario necesita <%= link_to 'Iniciar sesión', new_user_session_path %> o <%= link_to "Registrarse", new_volunteer_path %></span>
+    <span> Para paticipar como voluntario necesita <%= link_to 'Iniciar sesión', new_user_session_path %> o <%= link_to "Registrarse", new_rft_volunteer_subscribe_path %></span>
               
   <% end %>    
 </div>        
