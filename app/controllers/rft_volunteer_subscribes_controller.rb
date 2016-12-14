@@ -29,7 +29,7 @@ class RftVolunteerSubscribesController < ApplicationController
     #respond_with(@rft_volunteer_subscribe)
     @rft_volunteer_subscribe = RftVolunteerSubscribe.new(rft_volunteer_subscribe_params)
     if @rft_volunteer_subscribe.save
-      redirect_to rft_volunteer_subscribes_url, notice: t('nuevoOk')
+      redirect_to projects_url, notice: t('nuevoOk')
     else
       render action: 'new'
     end
@@ -51,6 +51,6 @@ class RftVolunteerSubscribesController < ApplicationController
     end
 
     def rft_volunteer_subscribe_params
-      params.require(:rft_volunteer_subscribe).permit(:request_form_type_id, :name, :first_surname, :second_surname, :phone_number, :phone_number_alt, :email)
+      params.require(:rft_volunteer_subscribe).permit(:request_form_type_id, :request_form_id, :name, :first_surname, :second_surname, :phone_number, :phone_number_alt, :email )
     end
 end

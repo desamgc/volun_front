@@ -14,6 +14,7 @@ module RequestFormTypeCommons
 
     def self.my_type
       model_name.singular.sub(/rft_/,'')
+      
     end
 
     private
@@ -24,10 +25,11 @@ module RequestFormTypeCommons
 
     def set_request_form_type
       self.request_form_type_id ||= request_form.try(:request_form_type_id) || get_related_request_form_type.id
+      
     end
 
     def build_new_request_form
-      return if request_form_type_id || request_form
+      return if request_form_id || request_form
       build_request_form
       request_form.request_form_type_id = request_form_type_id
       request_form

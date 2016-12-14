@@ -520,6 +520,7 @@ ActiveRecord::Schema.define(version: 20161129131321) do
   add_index "rft_volunteer_appointments", ["volunteer_id"], name: "index_rft_volunteer_appointments_on_volunteer_id", using: :btree
 
   create_table "rft_volunteer_subscribes", force: :cascade do |t|
+    t.integer  "request_form_id"
     t.integer  "request_form_type_id"
     t.string   "name"
     t.string   "first_surname"
