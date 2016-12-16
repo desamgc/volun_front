@@ -1,10 +1,10 @@
-<tr id="<%%= dom_id(<%= singular_table_name %>) %>" >
+<tr id="<%%= dom_id(<%= singular_table_name %>) %>" class="table-row-transform" >
 
   <%% project.main_attributes.each do |attr_name| %>
-  <td><%%= show_attr(<%= singular_table_name %>.public_send attr_name) %></td>
+  <td class="table-cell-group"><%%= show_attr(<%= singular_table_name %>.public_send attr_name) %></td>
   <%% end %>
 
-  <td class="index_table-actions">
+  <td class="table-cell-group">
     <%%= link_to_show(<%= singular_table_name %>) %>
     <%%= link_to_edit(<%= singular_table_name %>) %>
 <%% if <%= singular_table_name %>.try(:archived?) %>

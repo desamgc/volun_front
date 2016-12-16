@@ -1,20 +1,31 @@
-<div class="well">
-  <%%= simple_form_for(@<%= singular_table_name %>, default_form_options) do |f| %>
+<div class="form form-electronic">
+  <p class="notes">
+   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+  </p>
+  <legend class="parrafo"><%%= model_title(model_class) %></legend>
+  <%%= form_for(@<%= singular_table_name %>, default_form_options) do |f| %>
 
-  <div class="form-inputs">
   <%- attributes.each do |attr| -%>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp"><%= attr.name %> <span class="asterisco">*</span></span>
       <%- if attr.reference? -%>
           <%%= f.association :<%= attr.name %> %>
       <%- elsif /_date|date_/ =~ attr.name -%>
-          <%%= f.input :<%= attr.name %>, as: :datepicker %>
+          <%%= f.input :<%= attr.name %>, :class => "form-control-date" %>
       <%- else -%>
           <%%= f.input :<%= attr.name %> %>
       <%- end -%>
-  <%- end -%>
-  </div>
+        </div>
+      </div>
+    </div>
 
-  <div class="form-actions">
-    <%%= f.button :submit %>
-  </div>
+  <%- end -%>
+
+    <div class="button-group">
+      <%%= f.button :submit, :class => 'button button4' %>
+    </div>
   <%% end %>
 </div>
+
