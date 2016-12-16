@@ -47,6 +47,12 @@ REQUEST_REASONS = {
   3 => 'Otros'
 }
 
+ROAD_TYPES = {
+  0 => 'CALLE',
+  1 => 'AVENIDA'
+  
+}
+
 AREA_NAMES = [
   'Derechos Sociales',
   'Ambiental',
@@ -142,7 +148,12 @@ end
 
 puts "Creando Tipos de request form"
 REQUEST_FORM_TYPES.each do |kind , name|
-  RequestFormType.create!(kind: kind)
+  RequestType.create!(kind: kind)
+end
+
+puts "Creando Tipos de request form"
+ROAD_TYPES.each do |kind , name|
+  RoadType.create!(name: kind)
 end
 
 puts "Creando entidades"
@@ -164,7 +175,7 @@ puts "Creando Direcciones"
 (1..ADDRESSES_NUM).each do |n|
   Address.create!(
       postal_code:           Faker::Address.postcode,
-      road_type:             ['Calle', 'Plaza', 'Av.'].sample,
+      road_type_id:             ['1', '2'].sample,
       road_name:             Faker::Address.street_name,
       road_number_type:           nil,
       road_number:           rand(100).to_s,
