@@ -6,7 +6,7 @@ class RequestForm < ActiveRecord::Base
 
 
   def extended_request_form_model
-    "Rft#{request_form_type.kind.classify}".constantize
+    "Rt#{request_form_type.kind.classify}".constantize
   end
 
   def extended_project(join_tables = :request_form)

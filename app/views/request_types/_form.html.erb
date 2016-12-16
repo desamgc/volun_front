@@ -1,0 +1,41 @@
+<div class="form form-electronic">
+  <p class="notes">
+   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+  </p>
+  <legend class="parrafo"><%= model_title(model_class) %></legend>
+  <%= form_for(@request_type, default_form_options) do |f| %>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="form-group">
+      <span class="labelUp">kind <span class="asterisco">*</span></span>
+          <%= f.input :kind %>
+      </div>
+    </div>
+  </div>
+   
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="form-group">
+      <span class="labelUp">description <span class="asterisco">*</span></span>
+          <%= f.input :description %>
+      </div>
+    </div>
+  </div>
+   
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="form-group">
+      <span class="labelUp">active <span class="asterisco">*</span></span>
+          <%= f.input :active %>
+      </div>
+    </div>
+  </div>
+   
+  
+  <div class="button-group">
+    <%= f.button :submit, :class => 'button button4' %>
+  </div>
+  <% end %>
+</div>
+

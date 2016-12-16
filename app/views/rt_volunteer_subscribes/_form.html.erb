@@ -1,0 +1,68 @@
+<div class="form form-electronic">
+  <p class="notes">
+   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+  </p>
+  <legend class="parrafo"></legend>
+  <%= form_for(@rt_volunteer_subscribe) do |f| %>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp">name <span class="asterisco">*</span></span>
+          <%= f.text_field :name %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp">first_surname <span class="asterisco">*</span></span>
+          <%= f.text_field :first_surname %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp">second_surname <span class="asterisco">*</span></span>
+          <%= f.text_field :second_surname %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp">phone_number <span class="asterisco">*</span></span>
+          <%= f.text_field :phone_number %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp">phone_number_alt <span class="asterisco">*</span></span>
+          <%= f.text_field :phone_number_alt %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp">email <span class="asterisco">*</span></span>
+          <%= f.text_field :email %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="button-group">
+      <%= f.button :submit, :class => 'button button4' %>
+    </div>
+  <% end %>
+</div>
+

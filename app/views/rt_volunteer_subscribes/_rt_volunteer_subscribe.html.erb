@@ -1,0 +1,16 @@
+<tr id="<%= dom_id(rt_volunteer_subscribe) %>" class="table-row-transform" >
+
+  <% project.main_attributes.each do |attr_name| %>
+  <td class="table-cell-group"><%= show_attr(rt_volunteer_subscribe.public_send attr_name) %></td>
+  <% end %>
+
+  <td class="table-cell-group">
+    <%= link_to_show(rt_volunteer_subscribe) %>
+    <%= link_to_edit(rt_volunteer_subscribe) %>
+<% if rt_volunteer_subscribe.try(:archived?) %>
+    <%= link_to_recover(rt_volunteer_subscribe) %>
+<% else %>
+    <%= link_to_destroy(rt_volunteer_subscribe) %>
+<% end %>
+  </td>
+</tr>
