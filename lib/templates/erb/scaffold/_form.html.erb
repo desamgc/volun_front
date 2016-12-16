@@ -13,9 +13,9 @@
       <%- if attr.reference? -%>
           <%%= f.association :<%= attr.name %> %>
       <%- elsif /_date|date_/ =~ attr.name -%>
-          <%%= f.input :<%= attr.name %>, :class => "form-control-date" %>
+          <%%= f.text_field :<%= attr.name %>, :class => "form-control-date" %>
       <%- else -%>
-          <%%= f.input :<%= attr.name %> %>
+          <%%= f.text_field :<%= attr.name %> %>
       <%- end -%>
         </div>
       </div>
