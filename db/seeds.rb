@@ -36,7 +36,7 @@ PROJECT_TYPES = {
 
 
 REQUEST_FORM_TYPES = {
-  0 => 'volunteer_subscribe',
+  1 => 'volunteer_subscribe',
   
 }
 
@@ -225,5 +225,25 @@ puts "Creando Proyectos"
     project.addresses << Address.find(n)
     project.timetables << Timetable.find(n)
 
+
+
+    #puts "Creating entidades"
+    #Entity.create(name: 'Ayuntamiento de Madrid', id_tipoente: '1', id_tipo_via: '1', vial:'Maria Molina', planta:'Baja', telefono: '915133368', email: 'ayuntamiento@madrid.es', estado: 'A'   )
+    #Entity.create(name: 'IAM', id_tipoente: '1', id_tipo_via: '1', vial:'Maria Molina', planta:'Baja', telefono: '915133368', email: 'iam@madrid.es', estado: 'A'   )
+    #Entity.create(name: 'Universidad Carlos III', id_tipoente: '3', id_tipo_via: '1', vial:'Lezo', planta:'Baja', telefono: '915133368', email: 'universidad@madrid.es', estado: 'A'   )
+    #Entity.create(name: 'Fundación Real Madrid', id_tipoente: '4', id_tipo_via: '1', vial:'Lezo', planta:'Baja', telefono: '915133368', email: 'empresa@madrid.es', estado: 'A'   )
+
+    puts "Creating voluntarios"
+    Volunteer.create(name: 'Jose Luis', first_surname:'Perez'   ,   second_surname:'Lopez')
+    Volunteer.create(name: 'Angel',     first_surname:'Guiñales'   ,second_surname:'del Valle')
+    Volunteer.create(name: 'Marcia',    first_surname:'Perez'   ,   second_surname:'Lopez')
+    Volunteer.create(name: 'Alberto',   first_surname:'Delgado'   , second_surname:'Rico')
+
+
+    puts "Creating usuarios"
+    pwd = '12345678'
+    User.create( email: 'voluntario@madrid.es', password: pwd, password_confirmation: pwd, profileable_id: '1', profileable_type: "Volunteer")
+    User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, profileable_id: '1', profileable_type: "Entity")
+    
   end
 
