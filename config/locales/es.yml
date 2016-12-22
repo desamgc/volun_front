@@ -3,3 +3,18 @@ es:
     close: Cerrar
     menu: Menú
     title: Voluntariado
+   volunteer_subscribe:
+    new: Registrarse
+    title: Solicitud de participación como voluntario
+    response: "Solicitud recibida de forma correcta, en breve nos pondremos en contacto para realizarle una entrevista."
+    send: Enviar
+    interest: Me interesa participar como voluntario
+    participation: Para paticipar como voluntario necesita
+    submit: Enviar
+    form:
+      email: Correo electronico
+      phone_number: Telefono
+      phone_number_alt: Otro Telefono
+      name: Nombre
+      first_surname: Primer apellido
+      second_surname: Segundo apellido

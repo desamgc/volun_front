@@ -1,0 +1,24 @@
+es:
+  activerecord:
+    errors:
+      models:
+        rt_volunteer_subscribe:
+          attributes:
+            email:
+              password_already_set: "Este usuario ya tiene una clave asociada"
+              invalid: es invalido
+              taken: Ya existe una solicitud con esa dirección de correo electronico
+            first_surname: 
+              blank: es obligatorio
+            name: 
+              blank: es obligatorio
+            phone_number:
+              invalid: es invalido  
+            phone_number_alt:
+              invalid: es invalido  
+    attributes:
+      rt_volunteer_subscribe:
+        name: Nombre
+        phone_number: Telefono
+        phone_number_alt: Otro telefono
+        first_surname: Primer apellido

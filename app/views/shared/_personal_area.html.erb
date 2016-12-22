@@ -1,7 +1,7 @@
            <% if current_user %>
                 <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                           <%= current_user.profile.name %>
+                           <%= current_user.profileable.name %>
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -11,24 +11,24 @@
                               
                                 <%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class:  "fa fa-power-off") %>
                             </ul>
-                        <% if current_user.profile.class=="Entity" %>
+                        <% if current_user.profileable.class=="Entity" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                              <li><%= link_to 'Modificar perfil', edit_entidade_path(current_user.profile.id)%> </li>
+                              <li><%= link_to 'Modificar perfil', edit_entidade_path(current_user.profileable.id)%> </li>
                               <li><%= link_to 'Modificar contraseña', update_passwords_user_path %> </li>  
                               
                               
                               <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Mis proyectos', myProjects_proyecto_path(current_user.profile.id) %></li>
-                              <li><%= link_to 'Solicitar voluntarios', new_proyecto_path(current_user.profile.id) %></li>
-                              <li><%= link_to 'Solicitar difusión proyecto', difusion_proyecto_path(current_user.profile.id) %></li>
-                              <li><%= link_to 'Solicitar publicación actividad', publicar_actividad_proyecto_path(current_user.profile.id) %></li>
-                              <li><%= link_to 'Otras solicitudes', otras_proyecto_path(current_user.profile.id) %></li>
+                              <li><%= link_to 'Mis proyectos', myProjects_proyecto_path(current_user.profileable.id) %></li>
+                              <li><%= link_to 'Solicitar voluntarios', new_proyecto_path(current_user.profileable.id) %></li>
+                              <li><%= link_to 'Solicitar difusión proyecto', difusion_proyecto_path(current_user.profileable.id) %></li>
+                              <li><%= link_to 'Solicitar publicación actividad', publicar_actividad_proyecto_path(current_user.profileable.id) %></li>
+                              <li><%= link_to 'Otras solicitudes', otras_proyecto_path(current_user.profileable.id) %></li>
 
                               <li role="separator" class="divider"></li>
                               <li><a href="#">Mis actividades</a></li>
 
                               <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Solicitar baja de la plataforma', baja_proyecto_path(current_user.profile.id) %></li>
+                              <li><%= link_to 'Solicitar baja de la plataforma', baja_proyecto_path(current_user.profileable.id) %></li>
                               
                               
                               <li role="separator" class="divider"></li>
@@ -36,15 +36,15 @@
                             </ul>
                         <% end %>
                         
-                        <% if current_user.profile.class=="Voluntary" %>
+                        <% if current_user.profileable.class=="Volunteer" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                              <li> <%= link_to 'Modificar perfil', edit_voluntario_path(current_user.profile.id)%> </li>
+                              <li> <%= link_to 'Modificar perfil', edit_voluntario_path(current_user.profileable.id)%> </li>
                               <li><%= link_to 'Modificar contraseña', update_passwords_user_path %> </li> 
                               <li role="separator" class="divider"></li>
-                              <li> <%= link_to 'Solicitar baja plataforma', baja_proyecto_path(current_user.profile.id)%> </li>
-                              <li> <%= link_to 'Solicitar cita', otras_proyecto_path(current_user.profile.id)%> </li>
+                              <li> <%= link_to 'Solicitar baja plataforma', baja_proyecto_path(current_user.profileable.id)%> </li>
+                              <li> <%= link_to 'Solicitar cita', otras_proyecto_path(current_user.profileable.id)%> </li>
                               <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Mis proyectos', myProjects_proyecto_path(current_user.profile.id) %></li>
+                              <li><%= link_to 'Mis proyectos', myProjects_proyecto_path(current_user.profileable.id) %></li>
                               <li role="separator" class="divider"></li>
                               <%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class:  "fa fa-power-off") %>
 

@@ -1,8 +1,8 @@
 <div id="participation">
   <% if current_user && current_user.profile.class=="Entity" %>
-    <%= link_to "Me interesa participar como voluntario", projects_path(@project.id), class: "event-link " %>
+    <%= link_to t('volunteer_subscribe.interest'), projects_path(@project.id), class: "event-link " %>
   <% else %>
-    <span> Para paticipar como voluntario necesita <%= link_to 'Iniciar sesión', new_user_session_path %> o <%= link_to "Registrarse", new_rt_volunteer_subscribe_path %></span>
+    <span> <%= t('volunteer_subscribe.participation') %> <%= link_to t('devise_views.sessions.new.submit'), new_user_session_path %> o <%= link_to t('volunteer_subscribe.new'), new_rt_volunteer_subscribe_path %></span>
               
   <% end %>    
 </div>        
