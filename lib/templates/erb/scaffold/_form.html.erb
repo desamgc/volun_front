@@ -1,10 +1,10 @@
+<%%= form_for(@<%= singular_table_name %>, default_form_options) do |f| %>
 <div class="form form-electronic">
   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
   <legend class="parrafo"><%%= model_title(model_class) %></legend>
-  <%%= form_for(@<%= singular_table_name %>, default_form_options) do |f| %>
-
+  
   <%- attributes.each do |attr| -%>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
@@ -23,9 +23,9 @@
 
   <%- end -%>
 
-    <div class="button-group">
-      <%%= f.button :submit, :class => 'button button4' %>
-    </div>
-  <%% end %>
 </div>
 
+<div class="button-group text-right">
+  <%%= f.button :submit, :class => 'button button4' %>
+</div>
+<%% end %>
