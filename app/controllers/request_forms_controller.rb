@@ -1,6 +1,6 @@
 class RequestFormsController < ApplicationController
-
-  load_and_authorize_resource
+  before_action :set_request_form, only: [:show, :edit, :update, :destroy]
+  before_action :set_rt_extension, only: [:show, :new, :edit, :create, :update]
   respond_to :html, :js, :json
 
   def index
@@ -42,7 +42,19 @@ class RequestFormsController < ApplicationController
 
   protected
 
+    def set_request_form
+      @request_form = RequestForm.find(params[:id])
+    end
+
+    def set_rt_extension
+      @request_form = RequestForm.new
+      @rt_extension = params[:rt_extension]
+      @request_form.request_type = RequestType.where(kind: RequestType.kinds[@rt_extension]).take
+      @request_form.build_rt_extendable @rt_extension
+      @rt_volunteer_subscribe = @request_form.rt_extendable
+    end
+
     def request_form_params
-      params.require(:request_form).permit(:request_form_type_id, :sent_at, :status, :status_date, :rejection_type_id, :comments)
+      params.require(:request_form).permit(:request_type_id, :sent_at, :status, :status_date, :rejection_type_id, :comments,rt_extendable_attributes: [:id, :name, :first_surname, :second_surname, :phone_number, :phone_number_alt, :email] )
     end
 end

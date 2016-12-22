@@ -1,47 +1,53 @@
+# class of volunteer subscribe
 class RtVolunteerSubscribesController < ApplicationController
-
+  include ActionView::Helpers::UrlHelper
+  before_action :set_rt_volunteer_subscribe, only: [:show, :edit, :update, :destroy]
+  before_action :unique_email, only: [:create]
   respond_to :html, :js, :json
 
   def index
-    params[:q] ||= RtVolunteerSubscribe.ransack_default
-    @search_q = @rt_volunteer_subscribes.search(params[:q])
-    @rt_volunteer_subscribes = @search_q.result.paginate(page: params[:page], per_page: params[:per_page]||15)
-
-    respond_with(@rt_volunteer_subscribes)
-  end
-
-  def show
-    respond_with(@rt_volunteer_subscribe) do |format|
-      format.js { render 'shared/popup' }
-    end
   end
 
   def new
     @rt_volunteer_subscribe = RtVolunteerSubscribe.new
-    respond_with(@rt_volunteer_subscribe)
   end
 
   def edit
   end
 
   def create
-    @rt_volunteer_subscribe.save
-    respond_with(@rt_volunteer_subscribe)
+    @rt_volunteer_subscribe = RtVolunteerSubscribe.new(rt_volunteer_subscribe_params)
+    @rt_volunteer_subscribe.build_request_form
+    if @rt_volunteer_subscribe.save
+      redirect_to projects_url, notice: t('volunteer_subscribe.response')
+    else
+      respond_with(@rt_volunteer_subscribe)
+    end
   end
 
   def update
-    @rt_volunteer_subscribe.update_attributes(rt_volunteer_subscribe_params)
-    respond_with(@rt_volunteer_subscribe)
   end
 
   def destroy
-    @rt_volunteer_subscribe.destroy
-    respond_with(@rt_volunteer_subscribe)
   end
 
   protected
 
-    def rt_volunteer_subscribe_params
-      params.require(:rt_volunteer_subscribe).permit(:name, :first_surname, :second_surname, :phone_number, :phone_number_alt, :email)
+  def unique_email
+    if User.where(email: rt_volunteer_subscribe_params[:email]).count > 0 
+      #@rt_volunteer_subscribe = RtVolunteerSubscribe.new(rt_volunteer_subscribe_params)
+      #flash.now[:alert] = "Ya existe un usuario con ese email. Desea recordar constraseña?"
+      #flash.now[:alert] =|| link_to "Olvide mi contraseña", new_password_path("user") 
+      #render action: 'new'
+      redirect_to new_password_path("user"), alert:"Ya existe un usuario con ese email. Desea recordar constraseña?"  
     end
+  end 
+
+  def set_rt_volunteer_subscribe
+    @rt_volunteer_subscribe = RtVolunteerSubscribe.find(params[:id])
+  end
+
+  def rt_volunteer_subscribe_params
+    params.require(:rt_volunteer_subscribe).permit(:name, :first_surname, :second_surname, :phone_number, :phone_number_alt, :email)
+  end
 end

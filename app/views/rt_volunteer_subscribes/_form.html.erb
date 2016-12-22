@@ -1,14 +1,14 @@
+<%= form_for(@rt_volunteer_subscribe) do |f| %>
 <div class="form form-electronic">
+ <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_subscribe})%>
   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-  <legend class="parrafo"></legend>
-  <%= form_for(@rt_volunteer_subscribe) do |f| %>
-
+  <legend class="parrafo"><%= t('volunteer_subscribe.title') %> </legend>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp">name <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= t('volunteer_subscribe.form.name') %> <span class="asterisco">*</span></span>
           <%= f.text_field :name %>
         </div>
       </div>
@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp">first_surname <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= t('volunteer_subscribe.form.first_surname') %> <span class="asterisco">*</span></span>
           <%= f.text_field :first_surname %>
         </div>
       </div>
@@ -26,7 +26,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp">second_surname <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= t('volunteer_subscribe.form.second_surname') %> </span>
           <%= f.text_field :second_surname %>
         </div>
       </div>
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp">phone_number <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= t('volunteer_subscribe.form.phone_number') %> <span class="asterisco">*</span></span>
           <%= f.text_field :phone_number %>
         </div>
       </div>
@@ -44,7 +44,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp">phone_number_alt <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= t('volunteer_subscribe.form.phone_number_alt') %> </span>
           <%= f.text_field :phone_number_alt %>
         </div>
       </div>
@@ -53,16 +53,15 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp">email <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= t('volunteer_subscribe.form.email') %> <span class="asterisco">*</span></span>
           <%= f.text_field :email %>
         </div>
       </div>
     </div>
 
-
-    <div class="button-group">
-      <%= f.button :submit, :class => 'button button4' %>
-    </div>
-  <% end %>
+</div>
+<div class="button-group text-right">
+      <%= f.button t('volunteer_subscribe.submit'), :class => 'button button4' %>
 </div>
 
+<% end %>

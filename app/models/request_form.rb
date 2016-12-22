@@ -1,19 +1,38 @@
 class RequestForm < ActiveRecord::Base
 
-  belongs_to :request_form_type
+  belongs_to :request_type
   belongs_to :rejection_type
+  belongs_to :rt_extendable, polymorphic: true
+  before_save :default_values
+  
+  accepts_nested_attributes_for :rt_extendable
 
-
-
-  def extended_request_form_model
-    "Rt#{request_form_type.kind.classify}".constantize
+  def self.main_columns
+    %i(id request_type_id)
   end
 
-  def extended_project(join_tables = :request_form)
-    @extended_request_form ||= fetch_extended_request_form(join_tables)
+  def self.ransack_default
+    {s: 'id desc'}
   end
 
-  def fetch_extended_request_form(join_tables = :request_form)
-    extended_request_form_model.includes(join_tables).where(request_form_id: id).take
+  def to_s
+    name
   end
+
+  def rt_extendable_class
+    @rt_extendable_class ||= rt_extendable.try(:class) || request_type.kind.classify.constantize
+  end
+
+  def build_rt_extendable(rt_extension_kind)
+    return unless rt_extension_kind.to_s.in? RequestType.rt_extension_tables
+    self.rt_extendable ||= rt_extendable_class.new
+  end
+
+  def default_values
+    self.status ||= 0
+    self.request_type_id = 1
+  end
+
+
+  
 end
