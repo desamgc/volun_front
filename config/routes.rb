@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   resources :rt_volunteer_subscribes
-  resources :request_types
-  resources :request_forms
   resources :activities
   resources :volunteers
   resources :districts_projects
