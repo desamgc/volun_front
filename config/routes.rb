@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rt_entity_subscribes
   resources :rt_volunteer_subscribes
   resources :activities
   resources :volunteers

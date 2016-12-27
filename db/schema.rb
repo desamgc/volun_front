@@ -373,6 +373,7 @@ ActiveRecord::Schema.define(version: 20161214172322) do
   create_table "rt_entity_subscribes", force: :cascade do |t|
     t.string   "name"
     t.string   "vat_num"
+    t.integer  "entity_type_id"
     t.string   "email"
     t.string   "contact_name"
     t.string   "contact_first_surname"
@@ -382,14 +383,15 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.string   "representative_second_surname"
     t.string   "phone_number"
     t.string   "phone_number_alt"
-    t.string   "road_type"
+    t.string   "road_type_id"
     t.string   "road_name"
     t.string   "number_type"
     t.string   "road_number"
     t.string   "postal_code"
     t.string   "town"
-    t.string   "province"
+    t.string   "province_id"
     t.integer  "request_reason_id"
+    t.string   "other_motive"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end

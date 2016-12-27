@@ -33,7 +33,11 @@ function closeAvisos()
 
 
 $(document).ready(function(){
-   
+        if ($("#rt_entity_subscribe_request_reason_id").val()==4)
+            $('#other_motive').show();
+        else
+            $('#other_motive').hide();  
+
         $("#btnGrid").click(function(){
             $('#row').hide();
             $('#grid').show();
@@ -42,4 +46,18 @@ $(document).ready(function(){
             $('#grid').hide();
             $('#row').show();
         });
+
+        $("#rt_entity_subscribe_request_reason_id").change(function(){
+            if ($("#rt_entity_subscribe_request_reason_id").val() == 4)
+            {    
+              $('#other_motive').show();
+              $('#rt_entity_subscribe_other_motive').val("");
+            }
+            else
+            {    
+              $('#other_motive').hide();
+              $('#rt_entity_subscribe_other_motive').val("");
+            }    
+        });
+
 });

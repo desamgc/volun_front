@@ -1,0 +1,45 @@
+<%= form_for(@address) do |f| %>
+<div class="row">
+  <div class="form-group">
+    <div class="col-xs-12 col-sm-12 col-md-3">
+            <span class="labelUp">road_type <span class="asterisco">*</span></span>
+            <%= f.text_field :road_type %>
+    </div>
+    
+    <div class="col-xs-12 col-sm-12 col-md-3">
+            <span class="labelUp">road_name <span class="asterisco">*</span></span>
+            <%= f.text_field :road_name %>
+    </div>    
+
+    <div class="col-xs-12 col-sm-12 col-md-3">
+            <span class="labelUp">number_type <span class="asterisco">*</span></span>
+            <%= f.text_field :number_type %>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-3">
+            <span class="labelUp">road_number <span class="asterisco">*</span></span>
+            <%= f.text_field :road_number %>
+    </div>
+ </div> 
+</div>
+
+<div class="row">
+  <div class="form-group">
+    <div class="col-xs-12 col-sm-12 col-md-4">     
+          <span class="labelUp">postal_code <span class="asterisco">*</span></span>
+          <%= f.text_field :postal_code %>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-4">     
+          <span class="labelUp">town <span class="asterisco">*</span></span>
+          <%= f.text_field :town %>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-4">     
+          <span class="labelUp">province <span class="asterisco">*</span></span>
+          <%= f.text_field :province %>
+    </div>
+  </div>
+</div>  
+<% end %>
+

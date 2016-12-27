@@ -3,6 +3,7 @@ es:
     close: Cerrar
     menu: Menú
     title: Voluntariado
+    submit: Enviar
    volunteer_subscribe:
     new: Registrarse
     title: Solicitud de participación como voluntario
@@ -10,7 +11,6 @@ es:
     send: Enviar
     interest: Me interesa participar como voluntario
     participation: Para paticipar como voluntario necesita
-    submit: Enviar
     form:
       email: Correo electronico
       phone_number: Telefono
@@ -18,3 +18,5 @@ es:
       name: Nombre
       first_surname: Primer apellido
       second_surname: Segundo apellido
+   rt_entity_subscribe:
+    title: Solicitud de alta de entidad

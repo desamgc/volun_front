@@ -16,9 +16,74 @@ es:
               invalid: es invalido  
             phone_number_alt:
               invalid: es invalido  
+        rt_entity_subscribe:
+          attributes:
+            email:
+              password_already_set: "Este usuario ya tiene una clave asociada"
+              invalid: es invalido
+              taken: Ya existe una solicitud con esa dirección de correo electronico
+            contact_first_surname: 
+              blank: es obligatorio
+            contact_name: 
+              blank: es obligatorio  
+            name: 
+              blank: es obligatorio
+            phone_number:
+              invalid: es invalido  
+            phone_number_alt:
+              invalid: es invalido
+            entity_type_id: 
+              blank: es obligatorio  
+            vat_num: 
+              blank: es obligatorio  
+              invalid: formato de CIF incorrecto
+            road_type_id: 
+              blank: es obligatorio  
+            number_type: 
+              blank: es obligatorio  
+            road_number: 
+              blank: es obligatorio
+            road_name: 
+              blank: es obligatorio  
+            postal_code: 
+              blank: es obligatorio    
+            town: 
+              blank: es obligatorio  
+            province_id: 
+              blank: es obligatorio  
+            request_reason_id: 
+              blank: es obligatorio  
+            other_motive: 
+              blank: es obligatorio  
+                      
     attributes:
       rt_volunteer_subscribe:
         name: Nombre
         phone_number: Telefono
         phone_number_alt: Otro telefono
         first_surname: Primer apellido
+        second_surname: Primer apellido
+        email: Correo electronico
+      rt_entity_subscribe:
+        name: Nombre
+        contact_name: Nombre contacto
+        contact_first_surname: Primer apellido 
+        contact_second_surname: Segundo apellido 
+        representative_name: Nombre representante
+        representative_first_surname: Primer apellido
+        representative_second_surname: Segundo apellido
+        phone_number: Telefono
+        phone_number_alt: Otro telefono
+        vat_num: CIF
+        email: Correo electronico
+        road_type_id: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province_id: Provincia
+        request_reason: Motivo
+        other_motive: Otro motivo
+        entity_type: Tipo de entidad
+

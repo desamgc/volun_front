@@ -34,9 +34,19 @@ PROJECT_TYPES = {
   6 => 'Otros'
 }
 
+REQUEST_TYPES = {
+  0 => 'Alta voluntario',
+  1 => 'Alta entidad'
+}
 
-REQUEST_FORM_TYPES = {
-  1 => 'volunteer_subscribe',
+REJECTION_TYPES = {
+  0 => 'Sin estado'
+  
+}
+
+ENTITY_TYPES = {
+  0 => 'Universidad',
+  1 => 'ONG'
   
 }
 
@@ -47,11 +57,7 @@ REQUEST_REASONS = {
   3 => 'Otros'
 }
 
-ROAD_TYPES = {
-  0 => 'CALLE',
-  1 => 'AVENIDA'
-  
-}
+
 
 AREA_NAMES = [
   'Derechos Sociales',
@@ -119,6 +125,98 @@ DISTRICTS = {
 
 }
 
+PROVINCES = {
+
+  '1'  => 'ARABA-ALAVA',
+  '2'  => 'ALBACETE',
+  '3'  => 'ALICANTE-ALACANT',
+  '4'  => 'ALMERIA',
+  '5'  => 'AVILA',
+  '6'  => 'BADAJOZ',
+  '7'  => 'ILLES BALEARS',
+  '8'  => 'BARCELONA',
+  '9'  => 'BURGOS',
+  '10' => 'CACERES',
+  '11' => 'CADIZ',
+  '12' => 'CASTELLON-CASTELLO',
+  '13' => 'CIUDAD REAL',
+  '14' => 'CORDOBA',
+  '15' => 'A CORUÑA',
+  '16' => 'CUENCA',
+  '17' => 'GIRONA',
+  '18' => 'GRANADA',
+  '19' => 'GUADALAJARA',
+  '20' => 'GIPUZKOA',
+  '21' => 'HUELVA',
+  '22' => 'HUESCA',
+  '23' => 'JAEN',
+  '24' => 'LEON',
+  '25' => 'LLEIDA',
+  '26' => 'LA RIOJA',
+  '27' => 'LUGO',
+  '28' => 'MADRID',
+  '29' => 'MALAGA',
+  '30' => 'MURCIA',
+  '31' => 'NAVARRA',
+  '32' => 'OURENSE',
+  '33' => 'ASTURIAS',
+  '34' => 'PALENCIA',
+  '35' => 'LAS PALMAS',
+  '36' => 'PONTEVEDRA',
+  '37' => 'SALAMANCA',
+  '38' => 'SANTA CRUZ DE TENERIFE',
+  '39' => 'CANTABRIA',
+  '40' => 'SEGOVIA',
+  '41' => 'SEVILLA',
+  '42' => 'SORIA',
+  '43' => 'TARRAGONA',
+  '44' => 'TERUEL',
+  '45' => 'TOLEDO',
+  '46' => 'VALENCIA',
+  '47' => 'VALLADOLID',
+  '48' => 'BIZKAIA',
+  '49' => 'ZAMORA',
+  '50' => 'ZARAGOZA',
+  '51' => 'CEUTA',
+  '52' => 'MELILLA'
+
+}
+
+ROAD_TYPES = {
+    'ACCESO'     => '13',
+    'ARROYO'     => '1',
+    'AUTOPISTA'  => '10',
+    'AUTOVIA'    => '364',
+    'AVENIDA'    => '13063',
+    'BULEVAR'    => '199',
+    'CALLE'      => '176374',
+    'CALLEJON'   => '159',
+    'CAMINO'     => '1604',
+    'CAMINOALTO' => '28',
+    'CARRERA'    => '50',
+    'CARRETERA'  => '831',
+    'CAÑADA'     => '107',
+    'COLONIA'    => '364',
+    'COSTANILLA' => '107',
+    'CUESTA'     => '113',
+    'GALERIA'    => '10',
+    'GLORIETA'   => '288',
+    'PARQUE'     => '30',
+    'PARTICULAR' => '21',
+    'PASADIZO'   => '6',
+    'PASAJE'     => '',
+    'PASEO'      => '4239',
+    'PISTA'      => '4',
+    'PLAZA'      => '3478',
+    'PLAZUELA'   => '16',
+    'PUENTE'     => '1',
+    'RONDA'      => '',
+    'TRAVESIA'   => '1007',
+}
+
+
+
+
 PROPOSALS = %w(subvencionado desistido desestimado excluido)
 
 puts "Creando usuario administrador..."
@@ -146,14 +244,19 @@ PROJECT_TYPES.each do |kind , name|
   ProjectType.create!(kind: kind)
 end
 
-puts "Creando Tipos de request form"
-REQUEST_FORM_TYPES.each do |kind , name|
-  RequestType.create!(kind: kind)
+puts "Creando Tipos de rechazo"
+REJECTION_TYPES.each do |kind , name|
+  RejectionType.create!(kind: kind, description: name)
 end
 
-puts "Creando Tipos de request form"
-ROAD_TYPES.each do |kind , name|
-  RoadType.create!(name: kind)
+puts "Creando Tipos de request"
+REQUEST_TYPES.each do |kind , name|
+  RequestType.create!(kind: kind, description: name)
+end
+
+puts "Creando Tipos de entidades"
+ENTITY_TYPES.each do |kind , name|
+  EntityType.create!(kind: kind, description: name)
 end
 
 puts "Creando entidades"
@@ -170,6 +273,24 @@ puts "Creando Distritos"
 DISTRICTS.each do |code, name|
   District.create!(code: code, name: name)
 end
+
+
+puts "Creando Provincias"
+PROVINCES.each do |code, name|
+  Province.create!(code: code, name: name)
+end
+
+puts "Creando Tipos de vías"
+ROAD_TYPES.each do |name, code|
+  RoadType.create!(name: name, code: code)
+end
+
+
+puts "Creando Tipos solicitudes"
+REQUEST_REASONS.each do |code, name|
+  RequestReason.create!(description: name)
+end
+
 
 puts "Creando Direcciones"
 (1..ADDRESSES_NUM).each do |n|
@@ -202,7 +323,7 @@ end
 
 puts "Creando Proyectos"
 
-  (1..PROJECTS_NUM).each do |n|
+(1..PROJECTS_NUM).each do |n|
     project   = Project.new()
     project.attributes = {
       name:                  "#{Faker::App.name} ",
@@ -226,6 +347,7 @@ puts "Creando Proyectos"
     project.timetables << Timetable.find(n)
 
 
+end
 
     #puts "Creating entidades"
     #Entity.create(name: 'Ayuntamiento de Madrid', id_tipoente: '1', id_tipo_via: '1', vial:'Maria Molina', planta:'Baja', telefono: '915133368', email: 'ayuntamiento@madrid.es', estado: 'A'   )
@@ -245,5 +367,5 @@ puts "Creando Proyectos"
     User.create( email: 'voluntario@madrid.es', password: pwd, password_confirmation: pwd, profileable_id: '1', profileable_type: "Volunteer")
     User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, profileable_id: '1', profileable_type: "Entity")
     
-  end
+  
 
