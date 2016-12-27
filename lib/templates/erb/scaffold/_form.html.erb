@@ -3,12 +3,12 @@
   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-  <legend class="parrafo"><%%= model_title(model_class) %></legend>
+  <legend class="parrafo"><%%= main_title(t("action.new", model: <%= singular_table_name.camelize %>.model_name.human)) %></legend>
   
   <%- attributes.each do |attr| -%>
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+      <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-12">
           <span class="labelUp"><%= attr.name %> <span class="asterisco">*</span></span>
       <%- if attr.reference? -%>
           <%%= f.association :<%= attr.name %> %>
