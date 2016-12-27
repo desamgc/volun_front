@@ -37,4 +37,25 @@ module ApplicationHelper
   def districts_select_options
     District.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
   end
+
+  def request_reasons_select_options
+    RequestReason.all.order(description: :asc).collect { |g| [ g.description, g.id ] }
+  end
+
+  def road_types_select_options
+    RoadType.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
+  end
+
+  def entity_types_select_options
+    EntityType.all.order(description: :asc).collect { |g| [ g.description, g.id ] }
+  end
+
+  def number_types_select_options
+    h = {'Km' => :Km, 'Num' => :Num}
+    return h
+  end
+
+  def provinces_select_options
+    Province.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
+  end
 end
