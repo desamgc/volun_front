@@ -36,7 +36,9 @@ PROJECT_TYPES = {
 
 REQUEST_TYPES = {
   0 => 'Alta voluntario',
-  1 => 'Alta entidad'
+  1 => 'Alta entidad',
+  2 => 'Modificación datos voluntario',
+  3 => 'Baja plataforma'
 }
 
 REJECTION_TYPES = {

@@ -24,3 +24,6 @@ es:
    rt_volunteer_amendment:
     title: Solicitud de modificación del perfil
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
+   rt_volunteer_unsubscribe:
+    title: Solicitud de baja de la plataforma
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud." 

@@ -2,8 +2,9 @@ class RequestType < ActiveRecord::Base
   
 enum kind: {
     RtVolunteerSubscribe:  0,   # project_type_social
-    RtEntitySubscribe:     1   # project_type_centre
-   
+    RtEntitySubscribe:     1,   # project_type_centre
+    RtVolunteerAmendment:  2,   # project_type_social
+    RtVolunteerUnsubscribe:  3   # project_type_social
 }  
 
   validates :kind, presence: true
