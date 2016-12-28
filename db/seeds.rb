@@ -38,7 +38,8 @@ REQUEST_TYPES = {
   0 => 'Alta voluntario',
   1 => 'Alta entidad',
   2 => 'Modificación datos voluntario',
-  3 => 'Baja plataforma'
+  3 => 'Baja plataforma',
+  4 => 'Solicitud de cita'
 }
 
 REJECTION_TYPES = {

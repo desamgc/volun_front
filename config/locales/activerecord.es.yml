@@ -83,7 +83,10 @@ es:
           attributes:
             reason:
               blank: Debe de especificar el motivo
-              
+        rt_volunteer_appointment:
+          attributes:
+            reason:
+              blank: Debe de especificar el motivo      
     attributes:
       rt_volunteer_subscribe:
         name: Nombre
@@ -127,4 +130,5 @@ es:
         province_id: Provincia
       rt_volunteer_unsubscribe:
         reason: Motivo
-        
+      rt_volunteer_appointment:
+        reason: Motivo  

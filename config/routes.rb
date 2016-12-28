@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rt_volunteer_appointments
   resources :rt_volunteer_unsubscribes
   resources :addresses
   resources :rt_volunteer_amendments
