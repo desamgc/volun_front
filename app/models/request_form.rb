@@ -10,6 +10,8 @@ class RequestForm < ActiveRecord::Base
 
   def set_default_values
     self.status = 0
+    self.sent_at = Time.now
+    self.status_date = Time.now
     self.rejection_type_id = 1
     self.request_type = RequestType.get_request_form_type(self.rt_extendable_type)
   end  
