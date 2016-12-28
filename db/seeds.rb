@@ -224,6 +224,8 @@ User.first_or_initialize(email: 'admin@madrid.es',
                          password: 'Wordpass1',
                          password_confirmation: 'Wordpass1').save!
 
+
+
 puts "Creando Colectivos"
 AREA_NAMES.each do |name|
   Area.create!(name: name)
@@ -292,18 +294,23 @@ REQUEST_REASONS.each do |code, name|
 end
 
 
+
+
 puts "Creando Direcciones"
 (1..ADDRESSES_NUM).each do |n|
   Address.create!(
-      postal_code:           Faker::Address.postcode,
-      road_type_id:             ['1', '2'].sample,
-      road_name:             Faker::Address.street_name,
-      road_number_type:           nil,
-      road_number:           rand(100).to_s,
-      grader:                nil,
-      stairs:                rand(300).to_s,
-      floor:                 rand(9).to_s,
-      door:                  rand(10).to_s
+    postal_code:           Faker::Address.postcode,
+    road_type:             RoadType.all.sample,
+    road_name:             Faker::Address.street_name,
+    road_number_type:      Address::ROAD_NUMBER_TYPES.sample,
+    road_number:           rand(100).to_s,
+    grader:                Address::GRADERS.sample,
+    stairs:                rand(300).to_s,
+    floor:                 rand(9).to_s,
+    door:                  rand(10).to_s,
+    province:              Province.all.sample,
+    country:               "España",
+    town:                  "Madrid"
   )
 end
 
@@ -356,10 +363,9 @@ end
     #Entity.create(name: 'Fundación Real Madrid', id_tipoente: '4', id_tipo_via: '1', vial:'Lezo', planta:'Baja', telefono: '915133368', email: 'empresa@madrid.es', estado: 'A'   )
 
     puts "Creating voluntarios"
-    Volunteer.create(name: 'Jose Luis', first_surname:'Perez'   ,   second_surname:'Lopez')
-    Volunteer.create(name: 'Angel',     first_surname:'Guiñales'   ,second_surname:'del Valle')
-    Volunteer.create(name: 'Marcia',    first_surname:'Perez'   ,   second_surname:'Lopez')
-    Volunteer.create(name: 'Alberto',   first_surname:'Delgado'   , second_surname:'Rico')
+    Volunteer.create(name: 'Jose Luis', first_surname:'Perez'   ,   second_surname:'Lopez', address: Address.all.sample, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Angel',     first_surname:'Guiñales'   ,second_surname:'del Valle', address: Address.all.sample, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Alberto',   first_surname:'Delgado'   , second_surname:'Rico', address: Address.all.sample, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
 
 
     puts "Creating usuarios"

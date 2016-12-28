@@ -441,8 +441,16 @@ ActiveRecord::Schema.define(version: 20161214172322) do
   create_table "rt_volunteer_amendments", force: :cascade do |t|
     t.integer  "volunteer_id"
     t.integer  "address_id"
+    t.string   "road_type_id"
+    t.string   "road_name"
+    t.string   "number_type"
+    t.string   "road_number"
+    t.string   "postal_code"
+    t.string   "town"
+    t.string   "province_id"
     t.string   "phone_number"
     t.string   "phone_number_alt"
+    t.string   "email"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -544,8 +552,12 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.string   "name"
     t.string   "first_surname"
     t.string   "second_surname"
+    t.string   "phone_number"
+    t.string   "phone_number_alt"
+    t.string   "email"
     t.integer  "age"
     t.string   "id_number"
+    t.integer   "address_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
