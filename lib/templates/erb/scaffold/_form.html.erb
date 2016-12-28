@@ -1,9 +1,10 @@
 <%%= form_for(@<%= singular_table_name %>, default_form_options) do |f| %>
 <div class="form form-electronic">
+  <legend class="parrafo"><%%= main_title(t("<%= singular_table_name %>.title", model: <%= singular_table_name.camelize %>.model_name.human)) %></legend>
+  
   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-  <legend class="parrafo"><%%= main_title(t("action.new", model: <%= singular_table_name.camelize %>.model_name.human)) %></legend>
   
   <%- attributes.each do |attr| -%>
     <div class="row">
@@ -26,6 +27,6 @@
 </div>
 
 <div class="button-group text-right">
-  <%%= f.button :submit, :class => 'button button4' %>
+  <%%= f.button t('application.submit'), :class => 'button button4' %>
 </div>
 <%% end %>
