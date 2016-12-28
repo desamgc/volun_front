@@ -30,3 +30,6 @@ es:
    rt_volunteer_appointment:
     title: Solicitud de cita
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."  
+   rt_volunteers_demand:
+    title: Solicitud de demanda de voluntarios
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."   

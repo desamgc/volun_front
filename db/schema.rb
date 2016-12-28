@@ -411,14 +411,15 @@ ActiveRecord::Schema.define(version: 20161214172322) do
   end
 
   create_table "rt_project_publishings", force: :cascade do |t|
+    t.integer  "entity_id"
     t.text     "description"
-    t.string   "road_type"
+    t.string   "road_type_id"
     t.string   "road_name"
     t.string   "number_type"
     t.string   "road_number"
     t.string   "postal_code"
     t.string   "town"
-    t.string   "province"
+    t.string   "province_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -489,16 +490,18 @@ ActiveRecord::Schema.define(version: 20161214172322) do
   add_index "rt_volunteer_unsubscribes", ["volunteer_id"], name: "index_rt_volunteer_unsubscribes_on_volunteer_id", using: :btree
 
   create_table "rt_volunteers_demands", force: :cascade do |t|
+    t.integer  "entity_id"
     t.text     "description"
     t.date     "execution_start_date"
     t.date     "execution_end_date"
-    t.string   "road_type"
+    t.string   "road_type_id"
     t.string   "road_name"
     t.string   "number_type"
     t.string   "road_number"
     t.string   "postal_code"
+    t.integer  "project_id" 
     t.string   "town"
-    t.string   "province"
+    t.string   "province_id"
     t.string   "requested_volunteers_num"
     t.text     "volunteers_profile"
     t.text     "volunteer_functions_1"

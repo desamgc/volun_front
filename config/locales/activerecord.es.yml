@@ -86,7 +86,34 @@ es:
         rt_volunteer_appointment:
           attributes:
             reason:
-              blank: Debe de especificar el motivo      
+              blank: Debe de especificar el motivo 
+        rt_volunteers_demand:
+          attributes:
+            description: 
+              blank: La descripción es obligatoria
+            execution_start_date: 
+              blank: La fecha de inicio es obligatoria
+            requested_volunteers_num: 
+              blank: El numero de voluntarios es obligatorio
+            volunteers_profile: 
+              blank: El perfil de los voluntarios es obligatorio
+            volunteer_functions_1: 
+              blank: La función 1 es obligatoria
+            road_type_id: 
+              blank: es obligatorio  
+            number_type: 
+              blank: es obligatorio  
+            road_number: 
+              blank: es obligatorio
+            road_name: 
+              blank: es obligatorio  
+            postal_code: 
+              blank: es obligatorio    
+            town: 
+              blank: es obligatorio  
+            province_id: 
+              blank: es obligatorio   
+
     attributes:
       rt_volunteer_subscribe:
         name: Nombre
@@ -131,4 +158,21 @@ es:
       rt_volunteer_unsubscribe:
         reason: Motivo
       rt_volunteer_appointment:
-        reason: Motivo  
+        reason: Motivo 
+      rt_volunteers_demand:
+        description: Descripcion
+        execution_start_date: Fecha desde
+        execution_end_date: Fecha hasta
+        requested_volunteers_num: Numero de voluntarios
+        volunteers_profile: Perfil de los voluntarios
+        volunteer_functions_1: Funcion 1
+        volunteer_functions_2: Funcion 2
+        volunteer_functions_3: Funcion 3
+        road_type_id: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province_id: Provincia
+    

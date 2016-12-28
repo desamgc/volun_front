@@ -39,7 +39,11 @@ REQUEST_TYPES = {
   1 => 'Alta entidad',
   2 => 'Modificación datos voluntario',
   3 => 'Baja plataforma',
-  4 => 'Solicitud de cita'
+  4 => 'Solicitud de cita',
+  5 => 'Demanda de voluntarios',
+  6 => 'Publicar proyecto',
+  6 => 'Publicar actividad'
+
 }
 
 REJECTION_TYPES = {

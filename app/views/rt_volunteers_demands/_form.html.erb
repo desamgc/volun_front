@@ -1,0 +1,82 @@
+<%= form_for(@rt_volunteers_demand, default_form_options) do |f| %>
+<div class="form form-electronic">
+  <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteers_demand})%>
+  <legend class="parrafo"><%= main_title(t("rt_volunteers_demand.title", model: RtVolunteersDemand.model_name.human)) %></legend>
+  
+  <p class="notes">
+   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+  </p>
+  
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.description') %> <span class="asterisco">*</span></span>
+          <%= f.text_area :description %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.execution_start_date') %> <span class="asterisco">*</span></span>
+          <%= f.text_field :execution_start_date, :class => "form-control-date" %>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.execution_end_date') %> <span class="asterisco">*</span></span>
+          <%= f.text_field :execution_end_date, :class => "form-control-date" %>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.requested_volunteers_num') %> <span class="asterisco">*</span></span>
+          <%= f.text_field :requested_volunteers_num %>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <%= render partial: 'shared/addressInternet', locals: {f: f} %>
+
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.volunteers_profile') %> <span class="asterisco">*</span></span>
+          <%= f.text_field :volunteers_profile %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.volunteer_functions_1') %> <span class="asterisco">*</span></span>
+          <%= f.text_field :volunteer_functions_1 %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.volunteer_functions_2') %> <span class="asterisco">*</span></span>
+          <%= f.text_field :volunteer_functions_2 %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.volunteer_functions_3') %> <span class="asterisco">*</span></span>
+          <%= f.text_field :volunteer_functions_3 %>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+<div class="button-group text-right">
+  <%= f.button t('application.submit'), :class => 'button button4' %>
+</div>
+<% end %>
