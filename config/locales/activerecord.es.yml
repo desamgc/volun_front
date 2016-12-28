@@ -55,7 +55,31 @@ es:
               blank: es obligatorio  
             other_motive: 
               blank: es obligatorio  
-                      
+        rt_volunteer_amendment:
+          attributes:
+            email:
+              password_already_set: "Este usuario ya tiene una clave asociada"
+              invalid: es invalido
+              taken: Ya existe una solicitud con esa dirección de correo electronico
+            phone_number:
+              invalid: es invalido  
+            phone_number_alt:
+              invalid: es invalido
+            road_type_id: 
+              blank: es obligatorio  
+            number_type: 
+              blank: es obligatorio  
+            road_number: 
+              blank: es obligatorio
+            road_name: 
+              blank: es obligatorio  
+            postal_code: 
+              blank: es obligatorio    
+            town: 
+              blank: es obligatorio  
+            province_id: 
+              blank: es obligatorio  
+            
     attributes:
       rt_volunteer_subscribe:
         name: Nombre
@@ -86,4 +110,15 @@ es:
         request_reason: Motivo
         other_motive: Otro motivo
         entity_type: Tipo de entidad
-
+      rt_volunteer_amendment:
+        phone_number: Telefono
+        phone_number_alt: Otro telefono
+        email: Correo electronico
+        road_type_id: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province_id: Provincia
+        

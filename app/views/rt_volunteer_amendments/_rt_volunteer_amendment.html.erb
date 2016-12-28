@@ -1,0 +1,16 @@
+<tr id="<%= dom_id(rt_volunteer_amendment) %>" class="table-row-transform" >
+
+  <% project.main_attributes.each do |attr_name| %>
+  <td class="table-cell-group"><%= show_attr(rt_volunteer_amendment.public_send attr_name) %></td>
+  <% end %>
+
+  <td class="table-cell-group">
+    <%= link_to_show(rt_volunteer_amendment) %>
+    <%= link_to_edit(rt_volunteer_amendment) %>
+<% if rt_volunteer_amendment.try(:archived?) %>
+    <%= link_to_recover(rt_volunteer_amendment) %>
+<% else %>
+    <%= link_to_destroy(rt_volunteer_amendment) %>
+<% end %>
+  </td>
+</tr>
