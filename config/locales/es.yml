@@ -39,3 +39,6 @@ es:
    rt_activity_publishing:
     title: Solicitud de publicitación de actividad
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."     
+   rt_other:
+    title: Otro tipo de solicitud
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."      

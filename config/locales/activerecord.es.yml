@@ -160,7 +160,11 @@ es:
             town: 
               blank: es obligatorio  
             province_id: 
-              blank: es obligatorio                   
+              blank: es obligatorio 
+        rt_other:
+          attributes:
+            description:
+              blank: Debe de especificar el motivo                         
     attributes:
       rt_volunteer_subscribe:
         name: Nombre
@@ -246,3 +250,5 @@ es:
         town: Municipio
         province_id: Provincia 
         project_id: Proyecto
+      rt_other:
+        description: Motivo   

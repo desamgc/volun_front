@@ -8,7 +8,8 @@ enum kind: {
     RtVolunteerAppoinment: 4,   # 
     RtVolunteersDemand:    5,   # 
     RtProjectPublishing:   6,   # 
-    RtActivityPublishing:  7    # 
+    RtActivityPublishing:  7,    #
+    RtOther:  8    # 
 }  
 
   validates :kind, presence: true

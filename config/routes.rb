@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :rt_others
+  resources :rt_others
   resources :rt_activity_publishings
   resources :rt_project_publishings
   resources :rt_volunteers_demands

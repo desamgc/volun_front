@@ -42,7 +42,8 @@ REQUEST_TYPES = {
   4 => 'Solicitud de cita',
   5 => 'Demanda de voluntarios',
   6 => 'Publicar proyecto',
-  7 => 'Publicar actividad'
+  7 => 'Publicar actividad',
+  8 => 'Otras solicitudes'
 
 }
 
