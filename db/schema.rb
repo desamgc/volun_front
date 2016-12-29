@@ -420,6 +420,7 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.string   "postal_code"
     t.string   "town"
     t.string   "province_id"
+    t.integer  "project_id" 
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

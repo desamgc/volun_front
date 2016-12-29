@@ -33,3 +33,6 @@ es:
    rt_volunteers_demand:
     title: Solicitud de demanda de voluntarios
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."   
+   rt_project_publishing:
+    title: Solicitud de publicitación de nuevo proyecto
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."    

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rt_project_publishings
   resources :rt_volunteers_demands
   resources :rt_volunteer_appointments
   resources :rt_volunteer_unsubscribes

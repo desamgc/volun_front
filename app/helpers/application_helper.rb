@@ -58,4 +58,8 @@ module ApplicationHelper
   def provinces_select_options
     Province.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
   end
+
+  def projects_select_options
+    Project.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
+  end
 end

@@ -1,0 +1,34 @@
+<%= main_title(t("action.show", model: RtProjectPublishing.model_name.human)) %>
+
+<dl class="dl-horizontal">
+
+  <dt><%= RtProjectPublishing.human_attribute_name(:id) %>:</dt>
+  <dd><%= @rt_project_publishing.id %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:description) %>:</dt>
+  <dd><%= @rt_project_publishing.description %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:road_type_id) %>:</dt>
+  <dd><%= @rt_project_publishing.road_type %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:road_name) %>:</dt>
+  <dd><%= @rt_project_publishing.road_name %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:number_type) %>:</dt>
+  <dd><%= @rt_project_publishing.number_type %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:road_number) %>:</dt>
+  <dd><%= @rt_project_publishing.road_number %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:postal_code) %>:</dt>
+  <dd><%= @rt_project_publishing.postal_code %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:town) %>:</dt>
+  <dd><%= @rt_project_publishing.town %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:province_id) %>:</dt>
+  <dd><%= @rt_project_publishing.province %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:entity_id) %>:</dt>
+  <dd><%= @rt_project_publishing.entity %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:project_id) %>:</dt>
+  <dd><%= @rt_project_publishing.project %></dd>
+  <dt><%= RtProjectPublishing.human_attribute_name(:created_at) %>:</dt>
+  <dd><%= show_simple_date(@rt_project_publishing.created_at) %></dd>
+
+</dl>
+<% unless request.xhr? %>
+<%= button_to_back %>
+<%= button_to_edit(@rt_project_publishing) %>
+<% end %>
