@@ -16,6 +16,8 @@ class RtEntitySubscribe < ActiveRecord::Base
             :town, :request_reason_id, :entity_type_id, :name, :contact_name,
             :contact_first_surname, presence: true
   validates :other_motive, presence: true, if: -> { request_reason_id == 4 }
+  VALID_CODIGOPOSTAL_REGEX = /\A(\d{5})\z/
+  validates :postal_code, format: { with: VALID_CODIGOPOSTAL_REGEX }
 
   def to_s
     name

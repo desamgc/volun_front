@@ -11,4 +11,6 @@ class RtVolunteerAmendment < ActiveRecord::Base
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :road_type_id, :road_name, :number_type, :road_number, :postal_code, :province_id,
             :town, presence: true
+  VALID_CODIGOPOSTAL_REGEX = /\A(\d{5})\z/
+  validates :postal_code, format: { with: VALID_CODIGOPOSTAL_REGEX }          
 end
