@@ -353,13 +353,15 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.text     "description"
     t.date     "execution_date"
     t.string   "execution_hour"
-    t.string   "road_type"
+    t.integer   "road_type_id"
     t.string   "road_name"
     t.string   "number_type"
     t.string   "road_number"
     t.string   "postal_code"
     t.string   "town"
-    t.string   "province"
+    t.integer   "province_id"
+    t.integer   "entity_id"
+    t.integer   "project_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

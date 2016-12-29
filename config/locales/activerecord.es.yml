@@ -133,7 +133,34 @@ es:
             town: 
               blank: es obligatorio  
             province_id: 
-              blank: es obligatorio           
+              blank: es obligatorio
+        rt_activity_publishing:
+          attributes:
+            description: 
+              blank: La descripción es obligatoria
+            name: 
+              blank: El nombre es obligatorio
+            organizer: 
+              blank: El organizador es obligatorio
+            execution_date: 
+              blank: La fecha es obligatoria
+            execution_hour: 
+              blank: La hora es obligatoria
+            road_type_id: 
+              blank: es obligatorio  
+            number_type: 
+              blank: es obligatorio  
+            road_number: 
+              blank: es obligatorio
+            road_name: 
+              blank: es obligatorio  
+            postal_code: 
+              blank: es obligatorio
+              invalid: formato invalido    
+            town: 
+              blank: es obligatorio  
+            province_id: 
+              blank: es obligatorio                   
     attributes:
       rt_volunteer_subscribe:
         name: Nombre
@@ -204,4 +231,18 @@ es:
         postal_code: Codigo postal
         town: Municipio
         province_id: Provincia  
-    
+      rt_activity_publishing:
+        description: Descripcion
+        execution_date: Fecha
+        execution_hour: Hora
+        name: Denominación
+        description: Descripción
+        organizer: Organizador
+        road_type_id: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province_id: Provincia 
+        project_id: Proyecto

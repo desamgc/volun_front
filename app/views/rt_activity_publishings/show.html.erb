@@ -1,0 +1,42 @@
+<%= main_title(t("action.show", model: RtActivityPublishing.model_name.human)) %>
+
+<dl class="dl-horizontal">
+
+  <dt><%= RtActivityPublishing.human_attribute_name(:id) %>:</dt>
+  <dd><%= @rt_activity_publishing.id %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:name) %>:</dt>
+  <dd><%= @rt_activity_publishing.name %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:organizer) %>:</dt>
+  <dd><%= @rt_activity_publishing.organizer %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:description) %>:</dt>
+  <dd><%= @rt_activity_publishing.description %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:execution_date) %>:</dt>
+  <dd><%= show_simple_date(@rt_activity_publishing.execution_date) %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:execution_hour) %>:</dt>
+  <dd><%= @rt_activity_publishing.execution_hour %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:road_type_id) %>:</dt>
+  <dd><%= @rt_activity_publishing.road_type %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:road_name) %>:</dt>
+  <dd><%= @rt_activity_publishing.road_name %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:number_type) %>:</dt>
+  <dd><%= @rt_activity_publishing.number_type %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:road_number) %>:</dt>
+  <dd><%= @rt_activity_publishing.road_number %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:postal_code) %>:</dt>
+  <dd><%= @rt_activity_publishing.postal_code %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:town) %>:</dt>
+  <dd><%= @rt_activity_publishing.town %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:province_id) %>:</dt>
+  <dd><%= @rt_activity_publishing.province %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:entity_id) %>:</dt>
+  <dd><%= @rt_activity_publishing.entity %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:project_id) %>:</dt>
+  <dd><%= @rt_activity_publishing.project %></dd>
+  <dt><%= RtActivityPublishing.human_attribute_name(:created_at) %>:</dt>
+  <dd><%= show_simple_date(@rt_activity_publishing.created_at) %></dd>
+
+</dl>
+<% unless request.xhr? %>
+<%= button_to_back %>
+<%= button_to_edit(@rt_activity_publishing) %>
+<% end %>

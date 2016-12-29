@@ -1,14 +1,14 @@
 class RequestType < ActiveRecord::Base
   
 enum kind: {
-    RtVolunteerSubscribe:  0,   # project_type_social
-    RtEntitySubscribe:     1,   # project_type_centre
-    RtVolunteerAmendment:  2,   # project_type_social
-    RtVolunteerUnsubscribe:  3,   # project_type_social
-    RtVolunteerAppoinment:  4,   # project_type_social
-    RtVolunteersDemand:  5,   # project_type_social
-    RtProjectPublishing:  6,   # project_type_social
-    RtActivityPublishing:  7   # project_type_social
+    RtVolunteerSubscribe:  0,   # 
+    RtEntitySubscribe:     1,   # 
+    RtVolunteerAmendment:  2,   # 
+    RtVolunteerUnsubscribe:3,   # 
+    RtVolunteerAppoinment: 4,   # 
+    RtVolunteersDemand:    5,   # 
+    RtProjectPublishing:   6,   # 
+    RtActivityPublishing:  7    # 
 }  
 
   validates :kind, presence: true
