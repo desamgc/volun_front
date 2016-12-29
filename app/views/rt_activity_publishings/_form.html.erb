@@ -35,7 +35,7 @@
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-5">
           <span class="labelUp"><%= t('activerecord.attributes.rt_activity_publishing.project') %> <span class="asterisco">*</span></span>
-          <%= f.select :project_id, projects_select_options %>
+          <%= f.select :project_id, entity_projects_select_options(current_user.id) %>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-4">

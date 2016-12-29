@@ -62,4 +62,8 @@ module ApplicationHelper
   def projects_select_options
     Project.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
   end
+
+  def entity_projects_select_options (id)
+    Project.entity_projects(id).order(name: :asc).collect { |g| [ g.name, g.id ] }
+  end  
 end
