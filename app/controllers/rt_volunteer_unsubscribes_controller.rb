@@ -19,7 +19,7 @@ class RtVolunteerUnsubscribesController < ApplicationController
   def create
     @rt_volunteer_unsubscribe = RtVolunteerUnsubscribe.new(rt_volunteer_unsubscribe_params)
     @rt_volunteer_unsubscribe.build_request_form
-    @rt_volunteer_unsubscribe.volunteer = Volunteer.find_by_id(current_user.profileable_id)
+    @rt_volunteer_unsubscribe.user_id = current_user.id
     if @rt_volunteer_unsubscribe.save
       redirect_to projects_url, notice: t('rt_volunteer_unsubscribe.response')
     else

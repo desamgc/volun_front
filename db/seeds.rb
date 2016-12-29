@@ -45,6 +45,7 @@ REQUEST_TYPES = {
   7 => 'Publicar actividad',
   8 => 'Otras solicitudes'
 
+
 }
 
 REJECTION_TYPES = {

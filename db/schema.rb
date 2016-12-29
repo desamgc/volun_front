@@ -402,6 +402,7 @@ ActiveRecord::Schema.define(version: 20161214172322) do
 
   create_table "rt_entity_unsubscribes", force: :cascade do |t|
     t.text     "reason"
+    t.integer  "entity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -484,14 +485,14 @@ ActiveRecord::Schema.define(version: 20161214172322) do
   end
 
   create_table "rt_volunteer_unsubscribes", force: :cascade do |t|
-    t.integer  "volunteer_id"
+    t.integer  "user_id"
     t.integer  "level"
     t.text     "reason"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  add_index "rt_volunteer_unsubscribes", ["volunteer_id"], name: "index_rt_volunteer_unsubscribes_on_volunteer_id", using: :btree
+  add_index "rt_volunteer_unsubscribes", ["user_id"], name: "index_rt_volunteer_unsubscribes_on_user_id", using: :btree
 
   create_table "rt_volunteers_demands", force: :cascade do |t|
     t.integer  "entity_id"
@@ -591,6 +592,6 @@ ActiveRecord::Schema.define(version: 20161214172322) do
   add_foreign_key "rt_volunteer_amendments", "addresses"
   add_foreign_key "rt_volunteer_amendments", "volunteers"
   add_foreign_key "rt_volunteer_appointments", "volunteers"
-  add_foreign_key "rt_volunteer_unsubscribes", "volunteers"
+  add_foreign_key "rt_volunteer_unsubscribes", "users"
   add_foreign_key "trackings", "projects"
 end

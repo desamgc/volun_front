@@ -9,7 +9,8 @@ enum kind: {
     RtVolunteersDemand:    5,   # 
     RtProjectPublishing:   6,   # 
     RtActivityPublishing:  7,    #
-    RtOther:  8    # 
+    RtOther:  8,    # 
+    RtEntityUnsubscribe:  9    # 
 }  
 
   validates :kind, presence: true
