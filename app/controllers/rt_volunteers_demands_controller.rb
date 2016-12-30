@@ -1,5 +1,6 @@
 # class for request volunteers demand
 class RtVolunteersDemandsController < ApplicationController
+  before_filter :authenticate_user!
   respond_to :html, :js, :json
 
   def index
