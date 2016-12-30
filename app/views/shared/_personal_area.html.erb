@@ -7,12 +7,12 @@
                         
                         <% if current_user.profileable_type=="Entity" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                              <li><%= link_to 'Modificar perfil', edit_user_password_path%> </li>
-                              <li><%= link_to 'Modificar contraseña', edit_user_password_path %> </li>  
+                              <li><%= link_to 'Modificar perfil', edit_user_registration%> </li>
+                              <li><%= link_to 'Modificar contraseña', edit_user_registration_path %> </li>  
                               
                               
                               <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Mis proyectos', edit_user_password_path %></li>
+                              <li><%= link_to 'Mis proyectos', projects_path %></li>
 
                               <li><%= link_to 'Demandar voluntarios', new_rt_volunteers_demand_path %></li>
 
@@ -36,11 +36,11 @@
                         
                         <% if current_user.profileable_type=="Volunteer" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                              <li><%= link_to 'Modificar contraseña', edit_user_password_path %> </li>  
+                              <li><%= link_to 'Modificar contraseña', edit_user_registration_path %> </li>  
                               
                               <li><%= link_to 'Mi perfil', new_rt_volunteer_amendment_path %> </li>  
                               
-                              <li><%= link_to 'Mis proyectos', users_passwords_updateC_path %> </li>  
+                              <li><%= link_to 'Mis proyectos', projects_path %> </li>  
                               
                               <li><%= link_to 'Solicitud baja de la plataforma', new_rt_volunteer_unsubscribe_path %> </li>  
                               

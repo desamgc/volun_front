@@ -28,16 +28,18 @@ Rails.application.routes.draw do
   end
   resources :entity_types
   resources :project_types
+  
+
   devise_for :users, controllers: {
                        sessions: 'users/sessions',
-                       passwords: 'users/passwords',
-                       
-                     }
+                       passwords: 'users/passwords'
+                     }, :skip => [:registrations]                                          
+  as :user do
+    get 'users/edit' => 'users/registrations#edit', :as => 'edit_user_registration', :defaults => { :format => 'html' }    
+    put 'users' => 'users/registrations#update', :as => 'user_registration', :defaults => { :format => 'html' }                
+  end
 
-  devise_scope :user do
-       #get 'users/sign_up/success', to: 'users/registrations#success'
-       get 'users/passwords/updateC', to: 'users/passwords#updateC'
-  end                   
+                    
   get 'welcome/index'
 
 

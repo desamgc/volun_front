@@ -1,6 +1,6 @@
 
 <div class="mc-acceso nofluid">
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put}) do |f| %>
+    <%= form_for(resource ) do |f| %>
 
       <% if resource.errors.any? %>
     <div id="errores" class="nofluid">

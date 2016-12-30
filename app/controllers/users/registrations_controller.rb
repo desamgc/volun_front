@@ -1,7 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
-
+#before_filter :configure_account_update_params, only: [:update]
+#before_action :configure_permitted_parameters, if: :devise_controller?
+  respond_to :html, :js, :json
   # GET /resource/sign_up
   # def new
   #   super
@@ -18,9 +19,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+      if @user.update(user_params)
+        redirect_to projects_url, notice: t('modificacionOk')
+      else
+        render action: 'edit'
+      end
+    
+  end
 
   # DELETE /resource
   # def destroy
@@ -44,9 +50,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.for(:account_update) << :attribute
-  # end
+   def configure_account_update_params
+     devise_parameter_sanitizer.for(:account_update) << :attribute
+   end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
@@ -57,4 +63,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:user) { |u| 
+      u.permit(:password, :password_confirmation) 
+    }
+  end
+
+  def user_params
+      params.require(:user).permit(:password, :password_confirmation)
+  end
 end
