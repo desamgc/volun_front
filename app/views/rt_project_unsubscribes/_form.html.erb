@@ -1,0 +1,29 @@
+<%= form_for(@rt_project_unsubscribe, default_form_options) do |f| %>
+<div class="form form-electronic">
+  <%= render(partial: 'shared/errors', locals: {model_name: @rt_project_unsubscribe})%>
+  <legend class="parrafo"><%= main_title(t("rt_project_unsubscribe.title", model: RtProjectUnsubscribe.model_name.human))  %></legend>
+  
+  <p class="notes">
+   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+  </p>
+  
+    <h1> Proyecto: <%= @rt_project_unsubscribe.project.name %> </h1>
+    <br/>
+    <%= f.hidden_field :project_id %>
+
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <span class="labelUp"><%= t('activerecord.attributes.rt_project_unsubscribe.reason') %> <span class="asterisco">*</span></span>
+          <%= f.text_area :reason %>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+<div class="button-group text-right">
+  <%= f.button t('application.submit'), :class => 'button button4' %>
+</div>
+<% end %>
