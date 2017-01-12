@@ -118,7 +118,7 @@ es:
         rt_project_publishing:
           attributes:
             description: 
-              blank: La descripción es obligatoria
+              blank: es obligatoria
             road_type_id: 
               blank: es obligatorio  
             number_type: 
@@ -164,7 +164,11 @@ es:
         rt_other:
           attributes:
             description:
-              blank: Debe de especificar el motivo                         
+              blank: Debe de especificar el motivo  
+        rt_project_unsubscribe:
+          attributes:
+            reason:
+              blank: Debe de especificar el motivo                       
     attributes:
       rt_volunteer_subscribe:
         name: Nombre
@@ -251,4 +255,9 @@ es:
         province_id: Provincia 
         project_id: Proyecto
       rt_other:
-        description: Motivo   
+        description: Motivo 
+      rt_project_unsubscribe:
+        reason: Motivo
+        project: Proyecto  
+      rt_entity_unsubscribe:
+        reason: Motivo  

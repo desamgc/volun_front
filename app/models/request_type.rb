@@ -10,7 +10,8 @@ enum kind: {
     RtProjectPublishing:   6,   # 
     RtActivityPublishing:  7,    #
     RtOther:  8,    # 
-    RtEntityUnsubscribe:  9    # 
+    RtProjectUnsubscribe:   9,   #  
+    RtEntityUnsubscribe:    10,   # 
 }  
 
   validates :kind, presence: true
@@ -23,8 +24,14 @@ enum kind: {
     send(kind).take
   end
 
+  def extendable?
+    kind.classify.sub(/\ARt/, 'Rt::').safe_constantize.present?
+  end
+
   def to_s
     kind_i18n
   end
+
+
 
 end

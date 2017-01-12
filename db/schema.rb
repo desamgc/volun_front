@@ -316,6 +316,7 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.datetime "status_date"
     t.integer  "rejection_type_id"
     t.text     "comments"
+    t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
@@ -402,7 +403,6 @@ ActiveRecord::Schema.define(version: 20161214172322) do
 
   create_table "rt_entity_unsubscribes", force: :cascade do |t|
     t.text     "reason"
-    t.integer  "entity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
