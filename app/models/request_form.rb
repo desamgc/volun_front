@@ -1,7 +1,8 @@
 class RequestForm < ActiveRecord::Base
-  before_save :set_default_values
+  #before_save :set_default_values, on: :create
   belongs_to :request_type
   belongs_to :rejection_type
+  belongs_to :user
   belongs_to :rt_extendable, polymorphic: true
 
   accepts_nested_attributes_for :rt_extendable

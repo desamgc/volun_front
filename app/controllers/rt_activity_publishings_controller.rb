@@ -17,10 +17,9 @@ class RtActivityPublishingsController < ApplicationController
 
   def create
     @rt_activity_publishing = RtActivityPublishing.new(rt_activity_publishing_params)
-    @rt_activity_publishing.build_request_form
-    @rt_activity_publishing.entity_id = current_user.profileable_id
+    @rt_activity_publishing.request_form.user_id = current_user.id
     if @rt_activity_publishing.save
-      redirect_to projects_url, notice: t('rt_activity_publishing.response')
+      redirect_to index_i_projects_path, notice: t('rt_activity_publishing.response')
     else
       respond_with(@rt_activity_publishing)
     end

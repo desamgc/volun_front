@@ -17,10 +17,9 @@ class RtOthersController < ApplicationController
 
   def create
     @rt_other = RtOther.new(rt_other_params)
-    @rt_other.build_request_form
-    @rt_other.entity_id = current_user.profileable_id
+    @rt_other.request_form.user_id = current_user.id
     if @rt_other.save
-      redirect_to projects_url, notice: t('rt_other.response')
+      redirect_to index_i_projects_path, notice: t('rt_other.response')
     else
       respond_with(@rt_other)
     end

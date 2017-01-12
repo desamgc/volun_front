@@ -17,9 +17,8 @@ class RtVolunteerSubscribesController < ApplicationController
 
   def create
     @rt_volunteer_subscribe = RtVolunteerSubscribe.new(rt_volunteer_subscribe_params)
-    @rt_volunteer_subscribe.build_request_form
     if @rt_volunteer_subscribe.save
-      redirect_to projects_url, notice: t('volunteer_subscribe.response')
+      redirect_to index_i_projects_path, notice: t('volunteer_subscribe.response')
     else
       respond_with(@rt_volunteer_subscribe)
     end
@@ -34,7 +33,7 @@ class RtVolunteerSubscribesController < ApplicationController
   protected
 
   def unique_email
-    if User.where(email: rt_volunteer_subscribe_params[:email]).count > 0 
+    if User.where(email: rt_volunteer_subscribe_params[:email]).exists? 
       #@rt_volunteer_subscribe = RtVolunteerSubscribe.new(rt_volunteer_subscribe_params)
       #flash.now[:alert] = "Ya existe un usuario con ese email. Desea recordar constraseña?"
       #flash.now[:alert] =|| link_to "Olvide mi contraseña", new_password_path("user") 

@@ -1,8 +1,7 @@
 class RtActivityPublishing < ActiveRecord::Base
-  has_one :request_form, as: :rt_extendable	 
+  include RtCommons
   belongs_to :road_type
   belongs_to :province
-  belongs_to :entity
   belongs_to :project
 
   VALID_CODIGOPOSTAL_REGEX = /\A(\d{5})\z/

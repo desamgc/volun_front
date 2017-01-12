@@ -1,8 +1,7 @@
 # model for volunteer amendment
 class RtVolunteerAmendment < ActiveRecord::Base
-  belongs_to :volunteer
-  has_one :request_form, as: :rt_extendable
-
+  include RtCommons
+  
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PHONE_NUMBER_REGEX = /\d[0-9]\)*\z/
 

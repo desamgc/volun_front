@@ -1,7 +1,6 @@
 # model for volunteer appoinment
 class RtVolunteerAppointment < ActiveRecord::Base
-  belongs_to :volunteer
-  has_one    :request_form, as: :rt_extendable
-
+  include RtCommons
+  
   validates :reason, presence: true
 end

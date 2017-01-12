@@ -1,11 +1,11 @@
 # model for entity subscribe
 class RtEntitySubscribe < ActiveRecord::Base
+  include RtCommons
   belongs_to :request_reason
   belongs_to :road_type
   belongs_to :province
   belongs_to :entity_type
-  has_one :request_form, as: :rt_extendable
-
+  
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PHONE_NUMBER_REGEX = /\d[0-9]\)*\z/
 

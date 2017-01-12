@@ -19,9 +19,8 @@ class RtEntitySubscribesController < ApplicationController
 
   def create
     @rt_entity_subscribe = RtEntitySubscribe.new(rt_entity_subscribe_params)
-    @rt_entity_subscribe.build_request_form
     if @rt_entity_subscribe.save
-      redirect_to projects_url, notice: t('volunteer_subscribe.response')
+      redirect_to index_i_projects_path, notice: t('volunteer_subscribe.response')
     else
       respond_with(@rt_entity_subscribe)
     end
@@ -35,7 +34,7 @@ class RtEntitySubscribesController < ApplicationController
 
   protected
     def unique_email
-      if User.where(email: rt_entity_subscribe_params[:email]).count > 0 
+      if User.where(email: rt_entity_subscribe_params[:email]).exits > 0 
         redirect_to new_password_path("user"), alert:"Ya existe un usuario con ese email. Desea recordar constraseña?"  
       end
     end 

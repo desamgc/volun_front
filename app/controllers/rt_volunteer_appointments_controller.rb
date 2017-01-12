@@ -17,10 +17,9 @@ class RtVolunteerAppointmentsController < ApplicationController
 
   def create
     @rt_volunteer_appointment = RtVolunteerAppointment.new(rt_volunteer_appointment_params)
-    @rt_volunteer_appointment.build_request_form
-    @rt_volunteer_appointment.volunteer = Volunteer.find_by_id(current_user.profileable_id)
+    @rt_volunteer_appointment.request_form.user_id = current_user.id
     if @rt_volunteer_appointment.save
-      redirect_to projects_url, notice: t('rt_volunteer_appointment.response')
+      redirect_to index_i_projects_path, notice: t('rt_volunteer_appointment.response')
     else
       respond_with(@rt_volunteer_appointment)
     end

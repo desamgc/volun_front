@@ -22,10 +22,9 @@ class RtVolunteerAmendmentsController < ApplicationController
 
   def create
     @rt_volunteer_amendment = RtVolunteerAmendment.new(rt_volunteer_amendment_params)
-    @rt_volunteer_amendment.build_request_form
-    @rt_volunteer_amendment.volunteer = Volunteer.includes(:address).find_by_id(current_user.profileable_id)
+    @rt_volunteer_amendment.request_form.user_id = current_user.id
     if @rt_volunteer_amendment.save
-      redirect_to projects_url, notice: t('rt_volunteer_amendment.response')
+      redirect_to index_i_projects_path, notice: t('rt_volunteer_amendment.response')
     else
       respond_with(@rt_volunteer_amendment)
     end

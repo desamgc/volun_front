@@ -1,6 +1,5 @@
 class RtOther < ActiveRecord::Base
-  has_one :request_form, as: :rt_extendable	
-  belongs_to :entity
- 
+  include RtCommons
+  
   validates :description, presence: true
 end

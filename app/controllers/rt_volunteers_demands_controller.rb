@@ -18,10 +18,9 @@ class RtVolunteersDemandsController < ApplicationController
 
   def create
     @rt_volunteers_demand = RtVolunteersDemand.new(rt_volunteers_demand_params)
-    @rt_volunteers_demand.build_request_form
-    @rt_volunteers_demand.entity_id = current_user.profileable_id
+    @rt_volunteers_demand.request_form.user_id = current_user.id
     if @rt_volunteers_demand.save
-      redirect_to projects_url, notice: t('rt_volunteers_demand.response')
+      redirect_to index_i_projects_path, notice: t('rt_volunteers_demand.response')
     else
       respond_with(@rt_volunteers_demand)
     end
