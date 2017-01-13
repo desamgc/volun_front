@@ -61,4 +61,9 @@ class ApplicationController < ActionController::Base
         store_location_for(:user, request.path)
       end
     end
+
+    def set_page_params
+      params[:per_page_list] ||= [10,20,30,40,50]
+      params[:per_page] ||= 20
+    end
 end

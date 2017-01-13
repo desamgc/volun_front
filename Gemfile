@@ -7,6 +7,9 @@ gem 'rails', '4.2.7.1'
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+
+#gem 'bootstrap-sass'
+#gem 'bootstrap-sass-extras'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -32,7 +35,8 @@ gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'social-share-button'
 gem 'ransack'
-gem 'will_paginate'
+#gem 'will_paginate'
+gem 'kaminari'
 #gema para establecer variables en el controller que luego se utilizan en javascritp
 gem 'gon'
 

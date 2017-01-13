@@ -1,10 +1,25 @@
 # controller de projects
 class ProjectsController < ApplicationController
+  before_filter :authenticate_user!, only: [:index]
   before_action :set_project, only: [:show]
   respond_to :html, :js, :json
 
+  
   def index
-    #params[:q] ||= Project.ransack_default
+    #@search = Project.includes(:project_type).search(params[:q])
+    #@projects = @search.result   #.paginate(page: params[:page], per_page: params[:per_page] || 5)
+    
+    @projects = Project.includes(:project_type).all.page(params[:page]).per(5)
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+
+  def index_i
+    params[:q] ||= Project.ransack_default
     @search = Project.includes(:districts, :addresses, :timetables, :project_type).search(params[:q])
     @projects_actives = @search.result  #paginate(page: params[:page], per_page: params[:per_page] || 15)
     @projects_featured = Project.featured
@@ -16,6 +31,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def projects_by_entity
+    @search = Project.includes(:districts, :addresses, :timetables, :project_type).search(params[:q])
+
+  end  
+
+  
   # GET /projects/1
   # GET /projects/1.json
   def show

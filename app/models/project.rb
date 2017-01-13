@@ -14,5 +14,9 @@ class Project < ActiveRecord::Base
   scope :featured, -> { where("insured = true and active = true") }
   scope :actives, -> { where("active = true") }
   scope :entity_projects, ->(id) { where("entity_id = ?", id) }
+
+  def self.ransack_default
+    {s: 'id desc'}
+  end
   
 end

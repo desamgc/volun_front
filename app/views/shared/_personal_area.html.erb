@@ -7,12 +7,12 @@
                         
                         <% if current_user.profileable_type=="Entity" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                              <li><%= link_to 'Modificar perfil', edit_user_registration%> </li>
+                              
                               <li><%= link_to 'Modificar contraseña', edit_user_registration_path %> </li>  
                               
                               
                               <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Mis proyectos', projects_path %></li>
+                              <li><%= link_to 'Mis proyectos', entity_projects_path(q: {entity_id_eq: current_user.profileable_id}, entity_id: current_user.profileable_id) %></li>
 
                               <li><%= link_to 'Demandar voluntarios', new_rt_volunteers_demand_path %></li>
 
@@ -26,7 +26,7 @@
                               <li><a href="#">Mis actividades</a></li>
 
                               <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Solicitar baja de la plataforma', new_rt_volunteer_unsubscribe_path %></li>
+                              <li><%= link_to 'Solicitar baja de la plataforma', new_rt_entity_unsubscribe_path %></li>
                               
                               
                               <li role="separator" class="divider"></li>

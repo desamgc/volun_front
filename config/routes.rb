@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :rt_entity_unsubscribes
+  resources :rt_entity_unsubscribes
+  resources :rt_entity_unsubscribes
+  resources :rt_entity_unsubscribes
+  resources :rt_entity_unsubscribes
+  resources :rt_project_unsubscribes, param: :project
   resources :rt_others
   resources :rt_others
   resources :rt_activity_publishings
@@ -6,28 +12,33 @@ Rails.application.routes.draw do
   resources :rt_volunteers_demands
   resources :rt_volunteer_appointments
   resources :rt_volunteer_unsubscribes
-  resources :addresses
   resources :rt_volunteer_amendments
   resources :rt_entity_subscribes
   resources :rt_volunteer_subscribes
+  
   resources :activities
-  resources :volunteers
-  resources :districts_projects
-  resources :districts
-  resources :links
-  resources :images
-  resources :entities
-  resources :address
-  resources :timetable
-  resources :projects, only: [:index, :show] do
-    member do
-      get :image
-      put :link
-    end
-    
+  resources :entities, only:[:index,:show] do
+    resources :projects, only:[:index, :show], param: :q
   end
-  resources :entity_types
-  resources :project_types
+
+  resources :projects, only: [:show, :index, :index_i] do
+    collection do
+      get :index_i
+    end
+    resources :images
+  end
+
+  #resources :entity_types
+  #resources :project_types
+  
+  #resources :districts
+  #resources :links
+  #resources :images
+  #resources :addresses
+  #resources :address
+  #resources :timetable
+  #resources :volunteers
+  #resources :districts_projects
   
 
   devise_for :users, controllers: {

@@ -1,62 +1,63 @@
 <div class="row">
-  <div class="col-md-12">
-     <div id="mapDiv">
-       
-     </div>
+<div class="bg-fluid0">
+  <div class="bg-triangle">
+    <div class="tributes nofluid">
+      <ul>
+        
+        <li>
+          <h3 class="tributes-header"><span class="tributes-title">Proyectos</span></h3>
+          <div class="tributes-body tributes-table">
+            <form class="tributes-form">
+              <table class="table">
+                <thead>
+                  <tr class="table-row-transform">
+                    <th>Fecha inicio</th>
+                    <th>Fecha fin</th>
+                    <th>Nº voluntarios</th>
+                    <th>Nombre proyecto</th>
+                    
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @projects.each do |tb_proyecto| %>
+                    <tr class="table-row-transform">
+                      <td class="table-cell-group"><%= tb_proyecto.execution_start_date %></td>
+                      <td class="table-cell-group"><%= tb_proyecto.execution_end_date %></td>
+                      <td class="table-cell-group"><%= tb_proyecto.volunteers_num %></td>
+                      <td class="table-cell-group"><%= tb_proyecto.name %></td>
+                      <td class="table-cell-group"><%= link_to  "Ver" , project_path(tb_proyecto) %></td> 
+                      <td class="table-cell-group"><%= link_to "Baja", {controller:"rt_project_unsubscribes", action:"new", project_id: tb_proyecto.id} %> </td>  
+
+
+                      </tr>
+                  <% end %>
+                </tbody>
+                
+              </table>
+              
+              
+            </form>
+          </div>
+        </li>
+      </ul>
+     
+    </div>
   </div>
 </div>
-<br/>
-<div class="gallery nofluid">
-  <ul class="row">
-    <% @projects_featured.each do |project| %>
-        <li class="col-xs-12 col-sm-4 col-md-4">
-          <div class="gallery-item">
-            
-             <%= social_share_button_tag(project.name) %>
-            
-            <span class="gallery-text">
-
-                <h3><%= project.name %></h3>
-                <%= project.description %>
-            </span>
-            <%= link_to  "Leer mas .." , edit_project_path(project), class: "event-link " %> 
-                <% @project= project %>
-                <%= render 'shared/participation', collection: @project %>
-                
-                <div class="event-date"><span>Del viernes 20 de febrero de 2015</span> <span>al domingo 22 de febrero de 2015</span></div>
-                <span class="event-location" data-latitude="" data-longitude="" data-name="" data-direction="">Pabellón de Cristal de la Casa de Campo</span>
-             
-                <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> 0 
-         </div>
-        </li>
-
-    <% end %> 
-  </ul>
-</div>  
+</div>
 
 
+
+<%= paginate @projects, locals: {modelo: @projects} %>
+
+<%= page_entries_info @projects %>
 
 <div class="row">
 
-   <div class="col-xs-6 col-sm-6 col-md-6">
-     <span class="labelUp">Ordenar </span>
-      
-      <select>
-          <option>Fecha</option>
-          <option>Mas demandados</option>
-          <option>Etc.</option>
-      </select>
-    
-   </div>    
+<div class="button-group text-right">
+        <%= link_to 'Difundir proyecto', new_rt_project_publishing_path, class: "button button4" %>
+        <%= link_to 'Demandar voluntarios', new_rt_volunteers_demand_path, class: "button button4" %>
+ </div> 
 
-  <div class="col-md-1 pull-right">
-      <%= link_to  "" , "#", class: "fa fa-list fa-2x", id: "btnRow" %>
-      <%= link_to  "" , "#", class: "fa fa-table fa-2x", id: "btnGrid" %>
-  </div>
-</div>
-
-<%= render "buscador" %>
-
-<div id = "projects">
-  <%= render 'projects' %>
 </div>
