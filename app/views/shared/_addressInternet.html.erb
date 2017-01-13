@@ -1,22 +1,22 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-3">
-                <span class="labelUp"><%= t('activerecord.attributes.rt_entity_subscribe.road_type_id') %> <span class="asterisco">*</span></span>
+                <span class="labelUp"><%= RtEntitySubscribe.human_attribute_name(:road_type_id) %> <span class="asterisco">*</span></span>
                 <%= f.select :road_type_id, road_types_select_options %> 
         </div>
         
         <div class="col-xs-12 col-sm-12 col-md-5">
-                <span class="labelUp"><%= t('activerecord.attributes.rt_entity_subscribe.road_name') %> <span class="asterisco">*</span></span>
+                <span class="labelUp"><%= RtEntitySubscribe.human_attribute_name(:road_name) %> <span class="asterisco">*</span></span>
                 <%= f.text_field :road_name %>
         </div>    
 
         <div class="col-xs-12 col-sm-12 col-md-2">
-                <span class="labelUp"><%= t('activerecord.attributes.rt_entity_subscribe.number_type') %> <span class="asterisco">*</span></span>
+                <span class="labelUp"><%= RtEntitySubscribe.human_attribute_name(:number_type) %><span class="asterisco">*</span></span>
                 <%= f.select :number_type, number_types_select_options %> 
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-2">
-                <span class="labelUp"><%= t('activerecord.attributes.rt_entity_subscribe.road_number') %> <span class="asterisco">*</span></span>
+                <span class="labelUp"><%= RtEntitySubscribe.human_attribute_name(:road_number) %> <span class="asterisco">*</span></span>
                 <%= f.text_field :road_number %>
         </div>
      </div> 
@@ -25,17 +25,17 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-4">     
-              <span class="labelUp"><%= t('activerecord.attributes.rt_entity_subscribe.postal_code') %> <span class="asterisco">*</span></span>
+              <span class="labelUp"><%= RtEntitySubscribe.human_attribute_name(:postal_code) %><span class="asterisco">*</span></span>
               <%= f.text_field :postal_code %>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-4">     
-              <span class="labelUp"><%= t('activerecord.attributes.rt_entity_subscribe.town') %> <span class="asterisco">*</span></span>
+              <span class="labelUp"><%= RtEntitySubscribe.human_attribute_name(:town) %><span class="asterisco">*</span></span>
               <%= f.text_field :town %>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-4">     
-              <span class="labelUp"><%= t('activerecord.attributes.rt_entity_subscribe.province_id') %> <span class="asterisco">*</span></span>
+              <span class="labelUp"><%= RtEntitySubscribe.human_attribute_name(:province_id) %> <span class="asterisco">*</span></span>
               <%= f.select :province_id, provinces_select_options %> 
         </div>
       </div>
