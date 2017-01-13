@@ -48,3 +48,9 @@ es:
    rt_entity_unsubscribe:
     title: solicitud de baja de la plataforma
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."        
+   helpers:
+      page_entries_info:
+        one_page:
+          display_entries: "Mostrando todos os %{entry_name}"
+        more_pages:
+          display_entries: "Total %{total}  &nbsp;-&nbsp;  Mostrando del %{first} al %{last}"  
