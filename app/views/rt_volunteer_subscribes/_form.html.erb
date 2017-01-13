@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp"><%= t('volunteer_subscribe.form.name') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteerSubscribe.human_attribute_name(:name) %> <span class="asterisco">*</span></span>
           <%= f.text_field :name %>
         </div>
       </div>
@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp"><%= t('volunteer_subscribe.form.first_surname') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteerSubscribe.human_attribute_name(:first_surname) %> <span class="asterisco">*</span></span>
           <%= f.text_field :first_surname %>
         </div>
       </div>
@@ -26,7 +26,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp"><%= t('volunteer_subscribe.form.second_surname') %> </span>
+          <span class="labelUp"><%= RtVolunteerSubscribe.human_attribute_name(:second_surname) %> </span>
           <%= f.text_field :second_surname %>
         </div>
       </div>
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp"><%= t('volunteer_subscribe.form.phone_number') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteerSubscribe.human_attribute_name(:phone_number) %> <span class="asterisco">*</span></span>
           <%= f.text_field :phone_number %>
         </div>
       </div>
@@ -44,7 +44,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp"><%= t('volunteer_subscribe.form.phone_number_alt') %> </span>
+          <span class="labelUp"><%= RtVolunteerSubscribe.human_attribute_name(:phone_number_alt) %> </span>
           <%= f.text_field :phone_number_alt %>
         </div>
       </div>
@@ -53,12 +53,13 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp"><%= t('volunteer_subscribe.form.email') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteerSubscribe.human_attribute_name(:email) %> <span class="asterisco">*</span></span>
           <%= f.text_field :email %>
         </div>
       </div>
     </div>
 
+    <%= render partial: 'shared/protection' %> 
 </div>
 <div class="button-group text-right">
       <%= f.button t('application.submit'), :class => 'button button4' %>

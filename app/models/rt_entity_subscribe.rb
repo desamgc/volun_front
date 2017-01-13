@@ -13,7 +13,7 @@ class RtEntitySubscribe < ActiveRecord::Base
   validates :phone_number_alt, format: { with: VALID_PHONE_NUMBER_REGEX, if: -> { phone_number_alt.present? } }
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :road_type_id, :road_name, :number_type, :road_number, :postal_code, :province_id,
-            :town, :request_reason_id, :entity_type_id, :name, :contact_name,
+            :town, :request_reason_id, :name, :contact_name,
             :contact_first_surname, presence: true
   validates :other_motive, presence: true, if: -> { request_reason_id == 4 }
   VALID_CODIGOPOSTAL_REGEX = /\A(\d{5})\z/

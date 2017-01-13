@@ -36,7 +36,7 @@ es:
               blank: es obligatorio  
             vat_num: 
               blank: es obligatorio  
-              invalid: formato de CIF incorrecto
+              invalid: formato incorrecto
             road_type_id: 
               blank: es obligatorio  
             number_type: 
@@ -83,23 +83,23 @@ es:
         rt_volunteer_unsubscribe:
           attributes:
             reason:
-              blank: Debe de especificar el motivo
+              blank: es obligatorio
         rt_volunteer_appointment:
           attributes:
             reason:
-              blank: Debe de especificar el motivo 
+              blank: es obligatorio 
         rt_volunteers_demand:
           attributes:
             description: 
-              blank: La descripción es obligatoria
+              blank: es obligatoria
             execution_start_date: 
-              blank: La fecha de inicio es obligatoria
+              blank: es obligatoria
             requested_volunteers_num: 
-              blank: El numero de voluntarios es obligatorio
+              blank: es obligatorio
             volunteers_profile: 
-              blank: El perfil de los voluntarios es obligatorio
+              blank: es obligatorio
             volunteer_functions_1: 
-              blank: La función 1 es obligatoria
+              blank: es obligatoria
             road_type_id: 
               blank: es obligatorio  
             number_type: 
@@ -137,15 +137,15 @@ es:
         rt_activity_publishing:
           attributes:
             description: 
-              blank: La descripción es obligatoria
+              blank: es obligatoria
             name: 
-              blank: El nombre es obligatorio
+              blank: es obligatorio
             organizer: 
-              blank: El organizador es obligatorio
+              blank: es obligatorio
             execution_date: 
-              blank: La fecha es obligatoria
+              blank: es obligatoria
             execution_hour: 
-              blank: La hora es obligatoria
+              blank: es obligatoria
             road_type_id: 
               blank: es obligatorio  
             number_type: 
@@ -164,11 +164,11 @@ es:
         rt_other:
           attributes:
             description:
-              blank: Debe de especificar el motivo  
+              blank: es obligatoria  
         rt_project_unsubscribe:
           attributes:
             reason:
-              blank: Debe de especificar el motivo                       
+              blank: es obligatorio                       
     attributes:
       rt_volunteer_subscribe:
         name: Nombre

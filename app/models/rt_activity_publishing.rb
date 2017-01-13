@@ -6,7 +6,7 @@ class RtActivityPublishing < ActiveRecord::Base
 
   VALID_CODIGOPOSTAL_REGEX = /\A(\d{5})\z/
   validates :road_type_id, :road_name, :number_type, :road_number, :postal_code, :province_id,
-            :town, :name, :description, :execution_date, :execution_hour, :organizer, :entity_id, presence: true
+            :town, :name, :description, :execution_date, :execution_hour, :organizer, presence: true
   validates :postal_code, format: { with: VALID_CODIGOPOSTAL_REGEX }
 
   def to_s

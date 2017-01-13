@@ -10,17 +10,17 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteer_amendment.email') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteerAmendment.human_attribute_name(:email) %> <span class="asterisco">*</span></span>
           <%= f.text_field :email %>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteer_amendment.phone_number') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteerAmendment.human_attribute_name(:phone_number) %> <span class="asterisco">*</span></span>
           <%= f.text_field :phone_number %>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteer_amendment.phone_number_alt') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteerAmendment.human_attribute_name(:phone_number_alt) %> <span class="asterisco">*</span></span>
           <%= f.text_field :phone_number_alt %>
         </div>
       </div>

@@ -10,7 +10,7 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-12">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.description') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:description) %> <span class="asterisco">*</span></span>
           <%= f.text_area :description %>
         </div>
       </div>
@@ -19,15 +19,15 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.execution_start_date') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:execution_start_date) %> <span class="asterisco">*</span></span>
           <%= f.text_field :execution_start_date, :class => "form-control-date" %>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.execution_end_date') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:execution_end_date) %><span class="asterisco">*</span></span>
           <%= f.text_field :execution_end_date, :class => "form-control-date" %>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.requested_volunteers_num') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:requested_volunteers_num) %> <span class="asterisco">*</span></span>
           <%= f.text_field :requested_volunteers_num %>
         </div>
       </div>
@@ -40,7 +40,7 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-12">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.volunteers_profile') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:volunteers_profile) %> <span class="asterisco">*</span></span>
           <%= f.text_field :volunteers_profile %>
         </div>
       </div>
@@ -49,7 +49,7 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-12">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.volunteer_functions_1') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:volunteer_functions_1) %> <span class="asterisco">*</span></span>
           <%= f.text_field :volunteer_functions_1 %>
         </div>
       </div>
@@ -58,7 +58,7 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-12">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.volunteer_functions_2') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:volunteer_functions_2) %> </span>
           <%= f.text_field :volunteer_functions_2 %>
         </div>
       </div>
@@ -67,7 +67,7 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-12">
-          <span class="labelUp"><%= t('activerecord.attributes.rt_volunteers_demand.volunteer_functions_3') %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:volunteer_functions_3) %></span>
           <%= f.text_field :volunteer_functions_3 %>
         </div>
       </div>
