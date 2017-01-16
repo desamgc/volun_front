@@ -5,5 +5,6 @@ set :branch, :master
 set :ssh_options, port: deploysecret(:ssh_port)
 set :stage, :production
 set :rails_env, :production
+set :application, 'volun_frontend'
 
 server deploysecret(:server), user: deploysecret(:user), roles: %w(web app db importer)
