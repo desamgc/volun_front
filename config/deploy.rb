@@ -2,7 +2,7 @@
 lock '3.5.0'
 
 # TODO Remove this line when cap -T works
-set :stage, 'production'
+#set :stage, 'production'
 
 def deploysecret(key)
   @deploy_secrets_yml ||= YAML.load_file('config/deploy_secrets.yml')[fetch(:stage).to_s]
