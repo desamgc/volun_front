@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214172322) do
+ActiveRecord::Schema.define(version: 20170305083217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,17 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.integer  "address_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "events", ["address_id"], name: "index_events_on_address_id", using: :btree
+  add_index "events", ["eventable_type", "eventable_id"], name: "index_events_on_eventable_type_and_eventable_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "name"
@@ -297,6 +308,7 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.datetime "updated_at",            null: false
   end
 
+  add_index "record_histories", ["recordable_type", "recordable_id"], name: "index_record_histories_on_recordable_type_and_recordable_id", using: :btree
   add_index "record_histories", ["user_id"], name: "index_record_histories_on_user_id", using: :btree
 
   create_table "rejection_types", force: :cascade do |t|
@@ -324,6 +336,7 @@ ActiveRecord::Schema.define(version: 20161214172322) do
   add_index "request_forms", ["rejection_type_id"], name: "index_request_forms_on_rejection_type_id", using: :btree
   add_index "request_forms", ["request_type_id"], name: "index_request_forms_on_request_type_id", using: :btree
   add_index "request_forms", ["rt_extendable_type", "rt_extendable_id"], name: "index_request_forms_on_rt_extendable_type_and_rt_extendable_id", using: :btree
+  add_index "request_forms", ["user_id"], name: "index_request_forms_on_user_id", using: :btree
 
   create_table "request_reasons", force: :cascade do |t|
     t.integer  "kind"
@@ -354,15 +367,15 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.text     "description"
     t.date     "execution_date"
     t.string   "execution_hour"
-    t.integer   "road_type_id"
+    t.integer  "road_type_id"
     t.string   "road_name"
     t.string   "number_type"
     t.string   "road_number"
     t.string   "postal_code"
     t.string   "town"
-    t.integer   "province_id"
-    t.integer   "entity_id"
-    t.integer   "project_id"
+    t.integer  "province_id"
+    t.integer  "entity_id"
+    t.integer  "project_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -403,6 +416,7 @@ ActiveRecord::Schema.define(version: 20161214172322) do
 
   create_table "rt_entity_unsubscribes", force: :cascade do |t|
     t.text     "reason"
+    t.integer  "entity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -424,9 +438,9 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.string   "postal_code"
     t.string   "town"
     t.string   "province_id"
-    t.integer  "project_id" 
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "project_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "rt_project_unpublishings", force: :cascade do |t|
@@ -488,8 +502,8 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.integer  "user_id"
     t.integer  "level"
     t.text     "reason"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "rt_volunteer_unsubscribes", ["user_id"], name: "index_rt_volunteer_unsubscribes_on_user_id", using: :btree
@@ -504,7 +518,7 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.string   "number_type"
     t.string   "road_number"
     t.string   "postal_code"
-    t.integer  "project_id" 
+    t.integer  "project_id"
     t.string   "town"
     t.string   "province_id"
     t.string   "requested_volunteers_num"
@@ -565,15 +579,16 @@ ActiveRecord::Schema.define(version: 20161214172322) do
     t.string   "email"
     t.integer  "age"
     t.string   "id_number"
-    t.integer   "address_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "address_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_foreign_key "addresses", "provinces"
   add_foreign_key "addresses", "road_types"
   add_foreign_key "documents", "projects"
   add_foreign_key "entities", "entity_types"
+  add_foreign_key "events", "addresses"
   add_foreign_key "images", "projects"
   add_foreign_key "issues", "projects"
   add_foreign_key "links", "projects"
@@ -587,6 +602,7 @@ ActiveRecord::Schema.define(version: 20161214172322) do
   add_foreign_key "record_histories", "users"
   add_foreign_key "request_forms", "rejection_types"
   add_foreign_key "request_forms", "request_types"
+  add_foreign_key "request_forms", "users"
   add_foreign_key "rt_entity_subscribes", "request_reasons"
   add_foreign_key "rt_project_unsubscribes", "projects"
   add_foreign_key "rt_volunteer_amendments", "addresses"

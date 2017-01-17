@@ -23,31 +23,34 @@ RACKING_NUM       = 10
 ISSUE_NUM         = 10
 TIMETABLE_NUM     = 15
 DOCUMENT_NUM      = 10
+EVENTS_NUM        = 10
 
 PROJECT_TYPES = {
-  0 => 'Servicios Sociales',
-  1 => 'Centros de mayores',
-  2 => 'Permanentes',
-  3 => 'Puntuales',
-  4 => 'Entidades',
-  5 => 'Subvencionados',
-  6 => 'Otros'
+  1 => 'Servicios Sociales',
+  2 => 'Centros de mayores',
+  3 => 'Permanentes',
+  4 => 'Puntuales',
+  5 => 'Entidades',
+  6 => 'Subvencionados',
+  7 => 'Otros'
 }
 
+
+
 REQUEST_TYPES = {
-  0 => 'Alta voluntario',
-  1 => 'Alta entidad',
-  2 => 'Modificación datos voluntario',
-  3 => 'Baja plataforma voluntario',
-  4 => 'Solicitud de cita',
-  5 => 'Demanda de voluntarios',
-  6 => 'Publicar proyecto',
-  7 => 'Publicar actividad',
-  8 => 'Otras solicitudes',
-  9 => 'Baja de proyecto',
-  10 => 'Baja de plataforma entidad'
-
-
+  1  => 'rt_volunteer_subscribe',
+  2  => 'rt_volunteer_unsubscribe',
+  3  => 'rt_volunteer_amendment',
+  4  => 'rt_volunteer_appointment',
+  5  => 'rt_entity_subscribe',
+  6  => 'rt_entity_unsubscribe',
+  7  => 'rt_volunteers_demand',
+  8  => 'rt_project_publishing',
+  9  => 'rt_project_unpublishing', #todo
+  10 => 'rt_project_unsubscribe',
+  11 => 'rt_activity_publishing',
+  12 => 'rt_activity_unpublishing', #todo
+  13 => 'rt_other'
 }
 
 REJECTION_TYPES = {
@@ -207,22 +210,16 @@ ROAD_TYPES = {
     'CARRERA'    => '50',
     'CARRETERA'  => '831',
     'CAÑADA'     => '107',
-    'COLONIA'    => '364',
-    'COSTANILLA' => '107',
     'CUESTA'     => '113',
-    'GALERIA'    => '10',
     'GLORIETA'   => '288',
     'PARQUE'     => '30',
     'PARTICULAR' => '21',
     'PASADIZO'   => '6',
-    'PASAJE'     => '',
     'PASEO'      => '4239',
     'PISTA'      => '4',
     'PLAZA'      => '3478',
     'PLAZUELA'   => '16',
-    'PUENTE'     => '1',
-    'RONDA'      => '',
-    'TRAVESIA'   => '1007',
+    'TRAVESIA'   => '1007'
 }
 
 
@@ -321,18 +318,13 @@ puts "Creando Direcciones"
     door:                  rand(10).to_s,
     province:              Province.all.sample,
     country:               "España",
-    town:                  "Madrid"
+    town:                  "Madrid",
+    latitude:              441900 + rand(100), 
+    longitude:             4479566 + rand(100) 
   )
 end
 
-puts "Creando Horarios"
-(1..TIMETABLE_NUM).each do |n|
-  Timetable.create!(
-      day:        Timetable.days.values.sample,
-      start_hour: '11:11',
-      end_hour:   '12:12'
-  )
-end
+
 
 # puts "Creando Motivos de solicitud"
 # REQUEST_REASONS.each do |kind , name|
@@ -340,11 +332,11 @@ end
 # end
 
 puts "Creando Proyectos"
-
+ProjectType.all.each do |project_type|
 (1..PROJECTS_NUM).each do |n|
     project   = Project.new()
     project.attributes = {
-      name:                  "#{Faker::App.name} ",
+      name:                  "#{Faker::App.name} #{project_type} #{n}",
       description:           Faker::Lorem.sentence,
       functions:             Faker::Lorem.sentence,
       comments:              Faker::Lorem.sentence,
@@ -356,14 +348,30 @@ puts "Creando Proyectos"
       email:                 Faker::Internet.email,
       beneficiaries_num:     10,
       volunteers_num:        rand(100),
+      project_type:          project_type
     }
     
     project.save!
 
-    project.districts << District.find(n)
-    project.addresses << Address.find(n)
-    project.timetables << Timetable.find(n)
+    puts "Creando Eventos"
+    EVENTS_NUM.times do
+      event = Event.create!(
+        address:    Address.all.sample,
+        eventable:  project,
+      )
 
+      puts "Creando Horarios para evento #{event.id}"
+      TIMETABLE_NUM.times do
+        Timetable.create!(
+          event: event,
+          execution_date:  rand(100).days.since.to_date,
+          start_hour: '11:11',
+          end_hour:   '12:12'
+        )
+      end
+    end
+    
+end
 
 end
 
@@ -374,15 +382,15 @@ end
     #Entity.create(name: 'Fundación Real Madrid', id_tipoente: '4', id_tipo_via: '1', vial:'Lezo', planta:'Baja', telefono: '915133368', email: 'empresa@madrid.es', estado: 'A'   )
 
     puts "Creating voluntarios"
-    Volunteer.create(name: 'Jose Luis', first_surname:'Perez'   ,   second_surname:'Lopez', address: Address.all.sample, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
-    Volunteer.create(name: 'Angel',     first_surname:'Guiñales'   ,second_surname:'del Valle', address: Address.all.sample, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
-    Volunteer.create(name: 'Alberto',   first_surname:'Delgado'   , second_surname:'Rico', address: Address.all.sample, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Jose Luis', phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Angel', phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Alberto', phone_number: 'xxxxx', email: 'perezljl@madrid.es')
 
 
     puts "Creating usuarios"
     pwd = '12345678'
-    User.create( email: 'voluntario@madrid.es', password: pwd, password_confirmation: pwd, profileable_id: '1', profileable_type: "Volunteer")
-    User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, profileable_id: '1', profileable_type: "Entity")
+    User.create( email: 'voluntario@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Volunteer")
+    User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Entity")
     
   
 
