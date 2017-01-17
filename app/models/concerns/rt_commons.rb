@@ -15,7 +15,7 @@ module RtCommons
 
     def request_type_valid?
       
-      self.class.model_name.singular.camelize == request_form.request_type.kind
+      self.class.model_name.singular == request_form.request_type.kind
     end
 
     def check_request_type
@@ -26,7 +26,7 @@ module RtCommons
       return if persisted? || request_form
       attributes.reverse_merge!(
         
-        request_type: RequestType.where(kind: RequestType.kinds[self.class.model_name.singular.camelize]).take,
+        request_type: RequestType.where(kind: RequestType.kinds[self.class.model_name.singular]).take,
         status:  0,
         sent_at: Time.now,
         status_date:  Time.now,
