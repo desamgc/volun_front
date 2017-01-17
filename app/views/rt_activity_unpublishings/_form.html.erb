@@ -1,0 +1,25 @@
+<%= form_for(@rt_activity_unpublishing, default_form_options) do |f| %>
+<div class="form form-electronic">
+<%= render(partial: 'shared/errors', locals: {model_name: @rt_activity_unpublishing})%>
+  <legend class="parrafo"><%= main_title(t("rt_activity_unpublishing.title", model: RtActivityUnpublishing.model_name.human)) %></legend>
+  
+  <p class="notes">
+   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+  </p>
+  
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <span class="labelUp"><%= RtActivityUnpublishing.human_attribute_name(:reason) %> <span class="asterisco">*</span></span>
+          <%= f.text_field :reason %>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+<div class="button-group text-right">
+  <%= f.button t('application.submit'), :class => 'button button4' %>
+</div>
+<% end %>
