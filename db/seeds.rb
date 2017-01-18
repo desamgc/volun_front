@@ -354,14 +354,14 @@ ProjectType.all.each do |project_type|
     project.save!
 
     puts "Creando Eventos"
-    EVENTS_NUM.times do
+    2.times do
       event = Event.create!(
         address:    Address.all.sample,
         eventable:  project,
       )
 
       puts "Creando Horarios para evento #{event.id}"
-      TIMETABLE_NUM.times do
+      2.times do
         Timetable.create!(
           event: event,
           execution_date:  rand(100).days.since.to_date,
@@ -382,9 +382,9 @@ end
     #Entity.create(name: 'Fundación Real Madrid', id_tipoente: '4', id_tipo_via: '1', vial:'Lezo', planta:'Baja', telefono: '915133368', email: 'empresa@madrid.es', estado: 'A'   )
 
     puts "Creating voluntarios"
-    Volunteer.create(name: 'Jose Luis', phone_number: 'xxxxx', email: 'perezljl@madrid.es')
-    Volunteer.create(name: 'Angel', phone_number: 'xxxxx', email: 'perezljl@madrid.es')
-    Volunteer.create(name: 'Alberto', phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Jose Luis', last_name: 'perez', address_id: 1, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Angel', last_name: 'perez', address_id: 2, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Alberto', last_name: 'perez', address_id: 3, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
 
 
     puts "Creating usuarios"

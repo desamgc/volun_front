@@ -118,6 +118,7 @@ CREATE TABLE addresses (
     door character varying,
     postal_code character varying,
     borough character varying,
+    district_id integer,
     town character varying,
     province_id integer,
     country character varying,
@@ -504,16 +505,6 @@ ALTER SEQUENCE districts_id_seq OWNED BY districts.id;
 
 
 --
--- Name: districts_projects; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE districts_projects (
-    district_id integer NOT NULL,
-    project_id integer NOT NULL
-);
-
-
---
 -- Name: documents; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -588,6 +579,8 @@ CREATE TABLE entities (
     name character varying,
     description text,
     active boolean DEFAULT true,
+    public_pictures boolean DEFAULT false,
+    annual_survey boolean DEFAULT false,
     entity_type_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -655,7 +648,8 @@ CREATE TABLE event_types (
     kind integer,
     description text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    CONSTRAINT kind_and_id_must_be_equal CHECK ((((id = 1) AND (kind = 1)) OR ((id = 2) AND (kind = 2))))
 );
 
 
@@ -689,7 +683,8 @@ CREATE TABLE events (
     event_type_id integer,
     address_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    CONSTRAINT eventable_must_be_consistent CHECK ((((event_type_id = 1) AND ((eventable_type)::text = 'Activity'::text)) OR ((event_type_id = 2) AND ((eventable_type)::text = 'Project'::text))))
 );
 
 
@@ -742,6 +737,38 @@ CREATE SEQUENCE id_number_types_id_seq
 --
 
 ALTER SEQUENCE id_number_types_id_seq OWNED BY id_number_types.id;
+
+
+--
+-- Name: info_sources; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE info_sources (
+    id integer NOT NULL,
+    name character varying,
+    active boolean DEFAULT true,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: info_sources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE info_sources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: info_sources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE info_sources_id_seq OWNED BY info_sources.id;
 
 
 --
@@ -1046,7 +1073,8 @@ CREATE TABLE project_types (
     description text,
     active boolean DEFAULT true,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    CONSTRAINT kind_and_id_must_be_equal CHECK (((((((((id = 1) AND (kind = 1)) OR ((id = 2) AND (kind = 2))) OR ((id = 3) AND (kind = 3))) OR ((id = 4) AND (kind = 4))) OR ((id = 5) AND (kind = 5))) OR ((id = 6) AND (kind = 6))) OR ((id = 7) AND (kind = 7))))
 );
 
 
@@ -1085,13 +1113,14 @@ CREATE TABLE projects (
     contact_last_name character varying,
     contact_last_name_alt character varying,
     phone_number character varying,
+    phone_number_alt character varying,
     email character varying,
     comments text,
     beneficiaries_num integer,
     volunteers_num integer,
     insured boolean DEFAULT false,
     volunteers_allowed boolean DEFAULT true,
-    public boolean DEFAULT false,
+    publish boolean DEFAULT false,
     outstanding boolean DEFAULT false,
     insurance_date date,
     project_type_id integer,
@@ -1099,7 +1128,8 @@ CREATE TABLE projects (
     pt_extendable_type character varying,
     entity_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    CONSTRAINT pt_extendable_must_be_consistent CHECK (((((((((project_type_id = 1) AND (pt_extendable_type IS NULL)) OR ((project_type_id = 2) AND (pt_extendable_type IS NULL))) OR ((project_type_id = 3) AND (pt_extendable_type IS NULL))) OR ((project_type_id = 4) AND (pt_extendable_type IS NULL))) OR ((project_type_id = 5) AND ((pt_extendable_type)::text = 'Pt::Entity'::text))) OR ((project_type_id = 6) AND ((pt_extendable_type)::text = 'Pt::Subvention'::text))) OR ((project_type_id = 7) AND (pt_extendable_type IS NULL))))
 );
 
 
@@ -1363,7 +1393,8 @@ CREATE TABLE request_forms (
     rejection_type_id integer,
     comments text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    CONSTRAINT rt_extendable_must_be_consistent CHECK (((((((((((((((request_type_id = 1) AND ((rt_extendable_type)::text = 'Rt::VolunteerSubscribe'::text)) OR ((request_type_id = 2) AND ((rt_extendable_type)::text = 'Rt::VolunteerUnsubscribe'::text))) OR ((request_type_id = 3) AND ((rt_extendable_type)::text = 'Rt::VolunteerAmendment'::text))) OR ((request_type_id = 4) AND ((rt_extendable_type)::text = 'Rt::VolunteerAppointment'::text))) OR ((request_type_id = 5) AND ((rt_extendable_type)::text = 'Rt::EntitySubscribe'::text))) OR ((request_type_id = 6) AND ((rt_extendable_type)::text = 'Rt::EntityUnsubscribe'::text))) OR ((request_type_id = 7) AND ((rt_extendable_type)::text = 'Rt::VolunteersDemand'::text))) OR ((request_type_id = 8) AND ((rt_extendable_type)::text = 'Rt::ProjectPublishing'::text))) OR ((request_type_id = 9) AND ((rt_extendable_type)::text = 'Rt::ProjectUnpublishing'::text))) OR ((request_type_id = 10) AND ((rt_extendable_type)::text = 'Rt::ProjectUnsubscribe'::text))) OR ((request_type_id = 11) AND ((rt_extendable_type)::text = 'Rt::ActivityPublishing'::text))) OR ((request_type_id = 12) AND ((rt_extendable_type)::text = 'Rt::ActivityUnpublishing'::text))) OR ((request_type_id = 13) AND ((rt_extendable_type)::text = 'Rt::Other'::text))))
 );
 
 
@@ -1496,13 +1527,15 @@ CREATE TABLE rt_activity_publishings (
     description text,
     execution_date date,
     execution_hour character varying,
-    road_type character varying,
+    road_type_id integer,
     road_name character varying,
     number_type character varying,
     road_number character varying,
     postal_code character varying,
+    borough character varying,
+    district_id integer,
     town character varying,
-    province character varying,
+    province_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1575,12 +1608,15 @@ CREATE TABLE rt_entity_subscribes (
     representative_last_name_alt character varying,
     phone_number character varying,
     phone_number_alt character varying,
-    road_type character varying,
+    public_pictures boolean DEFAULT false,
+    annual_survey boolean DEFAULT false,
+    road_type_id integer,
     road_name character varying,
     number_type character varying,
     road_number character varying,
     postal_code character varying,
     borough character varying,
+    district_id integer,
     town character varying,
     province_id integer,
     request_reason_id integer,
@@ -1677,13 +1713,15 @@ ALTER SEQUENCE rt_others_id_seq OWNED BY rt_others.id;
 CREATE TABLE rt_project_publishings (
     id integer NOT NULL,
     description text,
-    road_type character varying,
+    road_type_id integer,
     road_name character varying,
     number_type character varying,
     road_number character varying,
     postal_code character varying,
+    borough character varying,
+    district_id integer,
     town character varying,
-    province character varying,
+    province_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1777,7 +1815,14 @@ ALTER SEQUENCE rt_project_unsubscribes_id_seq OWNED BY rt_project_unsubscribes.i
 
 CREATE TABLE rt_volunteer_amendments (
     id integer NOT NULL,
-    address_id integer,
+    road_type_id integer,
+    road_name character varying,
+    number_type character varying,
+    road_number character varying,
+    postal_code character varying,
+    town character varying,
+    province_id integer,
+    email character varying,
     phone_number character varying,
     phone_number_alt character varying,
     created_at timestamp without time zone NOT NULL,
@@ -1847,6 +1892,8 @@ CREATE TABLE rt_volunteer_subscribes (
     phone_number character varying,
     phone_number_alt character varying,
     email character varying,
+    public_pictures boolean DEFAULT false,
+    annual_survey boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1912,13 +1959,14 @@ CREATE TABLE rt_volunteers_demands (
     description text,
     execution_start_date date,
     execution_end_date date,
-    road_type character varying,
+    road_type_id integer,
     road_name character varying,
     number_type character varying,
     road_number character varying,
     postal_code character varying,
+    district_id integer,
     town character varying,
-    province character varying,
+    province_id integer,
     requested_volunteers_num character varying,
     volunteers_profile text,
     volunteer_functions_1 text,
@@ -2478,13 +2526,13 @@ CREATE TABLE volunteers (
     name character varying,
     last_name character varying,
     last_name_alt character varying,
-    document_id integer,
+    id_number_type_id integer,
     id_number character varying,
     gender integer,
     birth_date date,
     nationality_id integer,
-    mobile_number character varying,
     phone_number character varying,
+    phone_number_alt character varying,
     email character varying,
     address_id integer,
     status_id integer,
@@ -2503,8 +2551,10 @@ CREATE TABLE volunteers (
     search_authorization boolean DEFAULT false,
     representative_statement boolean DEFAULT false,
     has_driving_license boolean DEFAULT false,
+    public_pictures boolean DEFAULT false,
+    annual_survey boolean DEFAULT false,
     technician_id integer,
-    knowledge_id integer,
+    info_source_id integer,
     other_academic_info text,
     skill_id integer,
     profession_id integer,
@@ -2663,6 +2713,13 @@ ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::reg
 --
 
 ALTER TABLE ONLY id_number_types ALTER COLUMN id SET DEFAULT nextval('id_number_types_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY info_sources ALTER COLUMN id SET DEFAULT nextval('info_sources_id_seq'::regclass);
 
 
 --
@@ -3168,6 +3225,14 @@ ALTER TABLE ONLY id_number_types
 
 
 --
+-- Name: info_sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY info_sources
+    ADD CONSTRAINT info_sources_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: issues_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3603,6 +3668,13 @@ CREATE INDEX index_activities_on_project_id ON activities USING btree (project_i
 
 
 --
+-- Name: index_addresses_on_district_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_addresses_on_district_id ON addresses USING btree (district_id);
+
+
+--
 -- Name: index_addresses_on_province_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3757,20 +3829,6 @@ CREATE UNIQUE INDEX index_districts_on_name ON districts USING btree (name);
 
 
 --
--- Name: index_districts_projects_on_district_id_and_project_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_districts_projects_on_district_id_and_project_id ON districts_projects USING btree (district_id, project_id);
-
-
---
--- Name: index_districts_projects_on_project_id_and_district_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_districts_projects_on_project_id_and_district_id ON districts_projects USING btree (project_id, district_id);
-
-
---
 -- Name: index_documents_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3845,6 +3903,13 @@ CREATE INDEX index_events_on_eventable_type_and_eventable_id ON events USING btr
 --
 
 CREATE UNIQUE INDEX index_id_number_types_on_name ON id_number_types USING btree (name);
+
+
+--
+-- Name: index_info_sources_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_info_sources_on_name ON info_sources USING btree (name);
 
 
 --
@@ -4065,6 +4130,34 @@ CREATE UNIQUE INDEX index_road_types_on_name ON road_types USING btree (name);
 
 
 --
+-- Name: index_rt_activity_publishings_on_district_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_activity_publishings_on_district_id ON rt_activity_publishings USING btree (district_id);
+
+
+--
+-- Name: index_rt_activity_publishings_on_province_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_activity_publishings_on_province_id ON rt_activity_publishings USING btree (province_id);
+
+
+--
+-- Name: index_rt_activity_publishings_on_road_type_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_activity_publishings_on_road_type_id ON rt_activity_publishings USING btree (road_type_id);
+
+
+--
+-- Name: index_rt_entity_subscribes_on_district_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_entity_subscribes_on_district_id ON rt_entity_subscribes USING btree (district_id);
+
+
+--
 -- Name: index_rt_entity_subscribes_on_province_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4079,6 +4172,34 @@ CREATE INDEX index_rt_entity_subscribes_on_request_reason_id ON rt_entity_subscr
 
 
 --
+-- Name: index_rt_entity_subscribes_on_road_type_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_entity_subscribes_on_road_type_id ON rt_entity_subscribes USING btree (road_type_id);
+
+
+--
+-- Name: index_rt_project_publishings_on_district_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_project_publishings_on_district_id ON rt_project_publishings USING btree (district_id);
+
+
+--
+-- Name: index_rt_project_publishings_on_province_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_project_publishings_on_province_id ON rt_project_publishings USING btree (province_id);
+
+
+--
+-- Name: index_rt_project_publishings_on_road_type_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_project_publishings_on_road_type_id ON rt_project_publishings USING btree (road_type_id);
+
+
+--
 -- Name: index_rt_project_unsubscribes_on_project_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4090,6 +4211,20 @@ CREATE INDEX index_rt_project_unsubscribes_on_project_id ON rt_project_unsubscri
 --
 
 CREATE INDEX index_rt_volunteer_amendments_on_address_id ON rt_volunteer_amendments USING btree (address_id);
+
+
+--
+-- Name: index_rt_volunteers_demands_on_district_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_volunteers_demands_on_district_id ON rt_volunteers_demands USING btree (district_id);
+
+
+--
+-- Name: index_rt_volunteers_demands_on_province_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_rt_volunteers_demands_on_province_id ON rt_volunteers_demands USING btree (province_id);
 
 
 --
@@ -4289,13 +4424,6 @@ CREATE INDEX index_volunteers_on_address_id ON volunteers USING btree (address_i
 
 
 --
--- Name: index_volunteers_on_document_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_volunteers_on_document_id ON volunteers USING btree (document_id);
-
-
---
 -- Name: index_volunteers_on_employment_status_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4303,10 +4431,17 @@ CREATE INDEX index_volunteers_on_employment_status_id ON volunteers USING btree 
 
 
 --
--- Name: index_volunteers_on_knowledge_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_volunteers_on_id_number_type_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_volunteers_on_knowledge_id ON volunteers USING btree (knowledge_id);
+CREATE INDEX index_volunteers_on_id_number_type_id ON volunteers USING btree (id_number_type_id);
+
+
+--
+-- Name: index_volunteers_on_info_source_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_volunteers_on_info_source_id ON volunteers USING btree (info_source_id);
 
 
 --
@@ -4375,14 +4510,6 @@ ALTER TABLE ONLY pt_subventions
 
 
 --
--- Name: fk_rails_14f0495cc5; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY volunteers
-    ADD CONSTRAINT fk_rails_14f0495cc5 FOREIGN KEY (knowledge_id) REFERENCES knowledges(id);
-
-
---
 -- Name: fk_rails_15c4c560b1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4396,6 +4523,14 @@ ALTER TABLE ONLY timetables
 
 ALTER TABLE ONLY volunteers
     ADD CONSTRAINT fk_rails_1b6a6db21c FOREIGN KEY (address_id) REFERENCES addresses(id);
+
+
+--
+-- Name: fk_rails_1b98d66e19; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY addresses
+    ADD CONSTRAINT fk_rails_1b98d66e19 FOREIGN KEY (district_id) REFERENCES districts(id);
 
 
 --
@@ -4463,6 +4598,14 @@ ALTER TABLE ONLY activities
 
 
 --
+-- Name: fk_rails_332a8e8cba; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_project_publishings
+    ADD CONSTRAINT fk_rails_332a8e8cba FOREIGN KEY (province_id) REFERENCES provinces(id);
+
+
+--
 -- Name: fk_rails_337988b857; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4487,11 +4630,27 @@ ALTER TABLE ONLY volunteers
 
 
 --
+-- Name: fk_rails_55cf1b51e4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_activity_publishings
+    ADD CONSTRAINT fk_rails_55cf1b51e4 FOREIGN KEY (province_id) REFERENCES provinces(id);
+
+
+--
 -- Name: fk_rails_55cfc1b0e0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY documents
     ADD CONSTRAINT fk_rails_55cfc1b0e0 FOREIGN KEY (project_id) REFERENCES projects(id);
+
+
+--
+-- Name: fk_rails_57ce8fa08b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_project_publishings
+    ADD CONSTRAINT fk_rails_57ce8fa08b FOREIGN KEY (district_id) REFERENCES districts(id);
 
 
 --
@@ -4535,6 +4694,14 @@ ALTER TABLE ONLY volun_assessments
 
 
 --
+-- Name: fk_rails_6c193dac04; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY volunteers
+    ADD CONSTRAINT fk_rails_6c193dac04 FOREIGN KEY (info_source_id) REFERENCES info_sources(id);
+
+
+--
 -- Name: fk_rails_757c811ef3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4551,6 +4718,14 @@ ALTER TABLE ONLY events
 
 
 --
+-- Name: fk_rails_8916b62779; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_activity_publishings
+    ADD CONSTRAINT fk_rails_8916b62779 FOREIGN KEY (road_type_id) REFERENCES road_types(id);
+
+
+--
 -- Name: fk_rails_899c8f3231; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4564,6 +4739,14 @@ ALTER TABLE ONLY issues
 
 ALTER TABLE ONLY request_forms
     ADD CONSTRAINT fk_rails_8fad3bcf60 FOREIGN KEY (rejection_type_id) REFERENCES rejection_types(id);
+
+
+--
+-- Name: fk_rails_90b919b5dd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_volunteers_demands
+    ADD CONSTRAINT fk_rails_90b919b5dd FOREIGN KEY (province_id) REFERENCES provinces(id);
 
 
 --
@@ -4607,11 +4790,27 @@ ALTER TABLE ONLY volun_availabilities
 
 
 --
+-- Name: fk_rails_abaca6d161; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_volunteers_demands
+    ADD CONSTRAINT fk_rails_abaca6d161 FOREIGN KEY (district_id) REFERENCES districts(id);
+
+
+--
 -- Name: fk_rails_b0091044ff; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY volun_contacts
     ADD CONSTRAINT fk_rails_b0091044ff FOREIGN KEY (contact_result_id) REFERENCES contact_results(id);
+
+
+--
+-- Name: fk_rails_b0d97e7abf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_entity_subscribes
+    ADD CONSTRAINT fk_rails_b0d97e7abf FOREIGN KEY (district_id) REFERENCES districts(id);
 
 
 --
@@ -4639,14 +4838,6 @@ ALTER TABLE ONLY trackings
 
 
 --
--- Name: fk_rails_c06d3f8c88; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY volunteers
-    ADD CONSTRAINT fk_rails_c06d3f8c88 FOREIGN KEY (document_id) REFERENCES documents(id);
-
-
---
 -- Name: fk_rails_c5cc40e3a0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4660,6 +4851,22 @@ ALTER TABLE ONLY volun_assessments
 
 ALTER TABLE ONLY volun_trackings
     ADD CONSTRAINT fk_rails_c6094089f7 FOREIGN KEY (volunteer_id) REFERENCES volunteers(id);
+
+
+--
+-- Name: fk_rails_c722c76bbe; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY volunteers
+    ADD CONSTRAINT fk_rails_c722c76bbe FOREIGN KEY (id_number_type_id) REFERENCES id_number_types(id);
+
+
+--
+-- Name: fk_rails_c92072a9cf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_activity_publishings
+    ADD CONSTRAINT fk_rails_c92072a9cf FOREIGN KEY (district_id) REFERENCES districts(id);
 
 
 --
@@ -4684,6 +4891,14 @@ ALTER TABLE ONLY volun_known_languages
 
 ALTER TABLE ONLY volunteers
     ADD CONSTRAINT fk_rails_d3eae920e5 FOREIGN KEY (employment_status_id) REFERENCES employment_statuses(id);
+
+
+--
+-- Name: fk_rails_d4023380ab; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_project_publishings
+    ADD CONSTRAINT fk_rails_d4023380ab FOREIGN KEY (road_type_id) REFERENCES road_types(id);
 
 
 --
@@ -4716,6 +4931,14 @@ ALTER TABLE ONLY volun_contacts
 
 ALTER TABLE ONLY rt_entity_subscribes
     ADD CONSTRAINT fk_rails_ed2268fc5c FOREIGN KEY (province_id) REFERENCES provinces(id);
+
+
+--
+-- Name: fk_rails_ef6ed1df81; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY rt_entity_subscribes
+    ADD CONSTRAINT fk_rails_ef6ed1df81 FOREIGN KEY (road_type_id) REFERENCES road_types(id);
 
 
 --
@@ -4772,161 +4995,171 @@ ALTER TABLE ONLY projects
 
 SET search_path TO "$user",public;
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104608');
+INSERT INTO schema_migrations (version) VALUES ('20170117125915');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104609');
+INSERT INTO schema_migrations (version) VALUES ('20170117163950');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104610');
+INSERT INTO schema_migrations (version) VALUES ('20170117163951');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104612');
+INSERT INTO schema_migrations (version) VALUES ('20170117163953');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104613');
+INSERT INTO schema_migrations (version) VALUES ('20170117163954');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104615');
+INSERT INTO schema_migrations (version) VALUES ('20170117163955');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104616');
+INSERT INTO schema_migrations (version) VALUES ('20170117163957');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104618');
+INSERT INTO schema_migrations (version) VALUES ('20170117163958');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104619');
+INSERT INTO schema_migrations (version) VALUES ('20170117164000');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104620');
+INSERT INTO schema_migrations (version) VALUES ('20170117164001');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104622');
+INSERT INTO schema_migrations (version) VALUES ('20170117164003');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104624');
+INSERT INTO schema_migrations (version) VALUES ('20170117164004');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104625');
+INSERT INTO schema_migrations (version) VALUES ('20170117164006');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104627');
+INSERT INTO schema_migrations (version) VALUES ('20170117164008');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104628');
+INSERT INTO schema_migrations (version) VALUES ('20170117164009');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104629');
+INSERT INTO schema_migrations (version) VALUES ('20170117164011');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104631');
+INSERT INTO schema_migrations (version) VALUES ('20170117164013');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104632');
+INSERT INTO schema_migrations (version) VALUES ('20170117164014');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104634');
+INSERT INTO schema_migrations (version) VALUES ('20170117164016');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104635');
+INSERT INTO schema_migrations (version) VALUES ('20170117164017');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104637');
+INSERT INTO schema_migrations (version) VALUES ('20170117164019');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104638');
+INSERT INTO schema_migrations (version) VALUES ('20170117164020');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104640');
+INSERT INTO schema_migrations (version) VALUES ('20170117164022');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104641');
+INSERT INTO schema_migrations (version) VALUES ('20170117164024');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104643');
+INSERT INTO schema_migrations (version) VALUES ('20170117164025');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104644');
+INSERT INTO schema_migrations (version) VALUES ('20170117164027');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104646');
+INSERT INTO schema_migrations (version) VALUES ('20170117164028');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104647');
+INSERT INTO schema_migrations (version) VALUES ('20170117164030');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104649');
+INSERT INTO schema_migrations (version) VALUES ('20170117164031');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104650');
+INSERT INTO schema_migrations (version) VALUES ('20170117164033');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104652');
+INSERT INTO schema_migrations (version) VALUES ('20170117164034');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104653');
+INSERT INTO schema_migrations (version) VALUES ('20170117164036');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104655');
+INSERT INTO schema_migrations (version) VALUES ('20170117164037');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104656');
+INSERT INTO schema_migrations (version) VALUES ('20170117164039');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104658');
+INSERT INTO schema_migrations (version) VALUES ('20170117164041');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104700');
+INSERT INTO schema_migrations (version) VALUES ('20170117164043');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104701');
+INSERT INTO schema_migrations (version) VALUES ('20170117164045');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104703');
+INSERT INTO schema_migrations (version) VALUES ('20170117164047');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104704');
+INSERT INTO schema_migrations (version) VALUES ('20170117164049');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104706');
+INSERT INTO schema_migrations (version) VALUES ('20170117164051');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104707');
+INSERT INTO schema_migrations (version) VALUES ('20170117164052');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104709');
+INSERT INTO schema_migrations (version) VALUES ('20170117164054');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104710');
+INSERT INTO schema_migrations (version) VALUES ('20170117164055');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104712');
+INSERT INTO schema_migrations (version) VALUES ('20170117164057');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104714');
+INSERT INTO schema_migrations (version) VALUES ('20170117164059');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104715');
+INSERT INTO schema_migrations (version) VALUES ('20170117164100');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104717');
+INSERT INTO schema_migrations (version) VALUES ('20170117164102');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104719');
+INSERT INTO schema_migrations (version) VALUES ('20170117164104');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104720');
+INSERT INTO schema_migrations (version) VALUES ('20170117164105');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104722');
+INSERT INTO schema_migrations (version) VALUES ('20170117164107');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104723');
+INSERT INTO schema_migrations (version) VALUES ('20170117164108');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104725');
+INSERT INTO schema_migrations (version) VALUES ('20170117164110');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104727');
+INSERT INTO schema_migrations (version) VALUES ('20170117164112');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104728');
+INSERT INTO schema_migrations (version) VALUES ('20170117164114');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104730');
+INSERT INTO schema_migrations (version) VALUES ('20170117164115');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104732');
+INSERT INTO schema_migrations (version) VALUES ('20170117164117');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104733');
+INSERT INTO schema_migrations (version) VALUES ('20170117164119');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104735');
+INSERT INTO schema_migrations (version) VALUES ('20170117164120');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104736');
+INSERT INTO schema_migrations (version) VALUES ('20170117164122');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104738');
+INSERT INTO schema_migrations (version) VALUES ('20170117164124');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104740');
+INSERT INTO schema_migrations (version) VALUES ('20170117164125');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104741');
+INSERT INTO schema_migrations (version) VALUES ('20170117164127');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104743');
+INSERT INTO schema_migrations (version) VALUES ('20170117164129');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104744');
+INSERT INTO schema_migrations (version) VALUES ('20170117164130');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104746');
+INSERT INTO schema_migrations (version) VALUES ('20170117164132');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104748');
+INSERT INTO schema_migrations (version) VALUES ('20170117164134');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104750');
+INSERT INTO schema_migrations (version) VALUES ('20170117164136');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104751');
+INSERT INTO schema_migrations (version) VALUES ('20170117164138');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104753');
+INSERT INTO schema_migrations (version) VALUES ('20170117164139');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104755');
+INSERT INTO schema_migrations (version) VALUES ('20170117164141');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104757');
+INSERT INTO schema_migrations (version) VALUES ('20170117164143');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104758');
+INSERT INTO schema_migrations (version) VALUES ('20170117164144');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104759');
+INSERT INTO schema_migrations (version) VALUES ('20170117164146');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104800');
+INSERT INTO schema_migrations (version) VALUES ('20170117164147');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104801');
+INSERT INTO schema_migrations (version) VALUES ('20170117164148');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104803');
+INSERT INTO schema_migrations (version) VALUES ('20170117164150');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104804');
+INSERT INTO schema_migrations (version) VALUES ('20170117164151');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104805');
+INSERT INTO schema_migrations (version) VALUES ('20170117164152');
 
-INSERT INTO schema_migrations (version) VALUES ('20170116104809');
+INSERT INTO schema_migrations (version) VALUES ('20170117164154');
+
+INSERT INTO schema_migrations (version) VALUES ('20170117164155');
+
+INSERT INTO schema_migrations (version) VALUES ('20170117164157');
+
+INSERT INTO schema_migrations (version) VALUES ('20170117164158');
+
+INSERT INTO schema_migrations (version) VALUES ('20170117164159');
+
+INSERT INTO schema_migrations (version) VALUES ('20170117164201');
 
