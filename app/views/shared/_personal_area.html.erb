@@ -1,18 +1,18 @@
            <% if current_user %>
                 <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                           <%= current_user.profileable.name %>
+                           <%= current_user.loggable.name %>
                           <span class="caret"></span>
                         </button>
                         
-                        <% if current_user.profileable_type=="Entity" %>
+                        <% if current_user.loggable_type=="Entity" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                               
                               <li><%= link_to 'Modificar contraseña', edit_user_registration_path %> </li>  
                               
                               
                               <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Mis proyectos', entity_projects_path(q: {entity_id_eq: current_user.profileable_id}, entity_id: current_user.profileable_id) %></li>
+                              <li><%= link_to 'Mis proyectos', entity_projects_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id) %></li>
 
                               <li><%= link_to 'Demandar voluntarios', new_rt_volunteers_demand_path %></li>
 
@@ -34,7 +34,7 @@
                             </ul>
                         <% end %>
                         
-                        <% if current_user.profileable_type=="Volunteer" %>
+                        <% if current_user.loggable_type=="Volunteer" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                               <li><%= link_to 'Modificar contraseña', edit_user_registration_path %> </li>  
                               

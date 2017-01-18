@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :registerable
-  belongs_to :profileable, polymorphic: true
+  belongs_to :loggable, polymorphic: true
 
   scope :count_email, ->(email) { where("email = ?", email).count }
 end
