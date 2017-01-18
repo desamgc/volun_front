@@ -43,15 +43,15 @@ class RtVolunteerAmendmentsController < ApplicationController
   end
 
   def set_amendment_volunteer
-    @rt_volunteer_amendment.phone_number = Volunteer.find_by_id(current_user.profileable_id).phone_number
-    @rt_volunteer_amendment.phone_number_alt = Volunteer.find_by_id(current_user.profileable_id).phone_number_alt
-    @rt_volunteer_amendment.email = Volunteer.find_by_id(current_user.profileable_id).email
-    @rt_volunteer_amendment.road_type_id = Volunteer.includes(:address).find_by_id(current_user.profileable_id).address.road_type_id
-    @rt_volunteer_amendment.road_name = Volunteer.includes(:address).find_by_id(current_user.profileable_id).address.road_name
-    @rt_volunteer_amendment.number_type = Volunteer.includes(:address).find_by_id(current_user.profileable_id).address.road_number_type
-    @rt_volunteer_amendment.road_number = Volunteer.includes(:address).find_by_id(current_user.profileable_id).address.road_number
-    @rt_volunteer_amendment.postal_code = Volunteer.includes(:address).find_by_id(current_user.profileable_id).address.postal_code
-    @rt_volunteer_amendment.town = Volunteer.includes(:address).find_by_id(current_user.profileable_id).address.town
-    @rt_volunteer_amendment.province_id = Volunteer.includes(:address).find_by_id(current_user.profileable_id).address.province_id
+    @rt_volunteer_amendment.phone_number = Volunteer.find_by_id(current_user.loggable_id).phone_number 
+    @rt_volunteer_amendment.phone_number_alt = Volunteer.find_by_id(current_user.loggable_id).phone_number_alt
+    @rt_volunteer_amendment.email = current_user.email
+    @rt_volunteer_amendment.road_type_id = Volunteer.includes(:address).find_by_id(current_user.loggable_id).address.road_type_id 
+    @rt_volunteer_amendment.road_name = Volunteer.includes(:address).find_by_id(current_user.loggable_id).address.road_name 
+    @rt_volunteer_amendment.number_type = Volunteer.includes(:address).find_by_id(current_user.loggable_id).address.road_number_type 
+    @rt_volunteer_amendment.road_number = Volunteer.includes(:address).find_by_id(current_user.loggable_id).address.road_number 
+    @rt_volunteer_amendment.postal_code = Volunteer.includes(:address).find_by_id(current_user.loggable_id).address.postal_code 
+    @rt_volunteer_amendment.town = Volunteer.includes(:address).find_by_id(current_user.loggable_id).address.town 
+    @rt_volunteer_amendment.province_id = Volunteer.includes(:address).find_by_id(current_user.loggable_id).address.province_id 
   end  
 end

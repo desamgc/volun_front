@@ -16,8 +16,8 @@ es:
       phone_number: Telefono
       phone_number_alt: Otro Telefono
       name: Nombre
-      first_surname: Primer apellido
-      second_surname: Segundo apellido
+      last_name: Primer apellido
+      last_name_alt: Segundo apellido
    rt_entity_subscribe:
     title: Solicitud de alta de entidad
     response: "Solicitud recibida de forma correcta, en breve nos pondremos en contacto para realizarle una entrevista."
@@ -54,3 +54,6 @@ es:
           display_entries: "Mostrando todos os %{entry_name}"
         more_pages:
           display_entries: "Total %{total}  &nbsp;-&nbsp;  Mostrando del %{first} al %{last}"  
+   views:
+    pagination:
+      truncate: ...

@@ -8,7 +8,7 @@ es:
               password_already_set: "Este usuario ya tiene una clave asociada"
               invalid: es invalido
               taken: Ya existe una solicitud con esa dirección de correo electronico
-            first_surname: 
+            last_name: 
               blank: es obligatorio
             name: 
               blank: es obligatorio
@@ -22,7 +22,7 @@ es:
               password_already_set: "Este usuario ya tiene una clave asociada"
               invalid: es invalido
               taken: Ya existe una solicitud con esa dirección de correo electronico
-            contact_first_surname: 
+            contact_last_name: 
               blank: es obligatorio
             contact_name: 
               blank: es obligatorio  
@@ -174,17 +174,17 @@ es:
         name: Nombre
         phone_number: Telefono
         phone_number_alt: Otro telefono
-        first_surname: Primer apellido
-        second_surname: Primer apellido
+        last_name: Primer apellido
+        last_name_alt: Primer apellido
         email: Correo electronico
       rt_entity_subscribe:
         name: Nombre
         contact_name: Nombre contacto
-        contact_first_surname: Primer apellido 
-        contact_second_surname: Segundo apellido 
+        contact_last_name: Primer apellido 
+        contact_last_name_alt: Segundo apellido 
         representative_name: Nombre representante
-        representative_first_surname: Primer apellido
-        representative_second_surname: Segundo apellido
+        representative_last_name: Primer apellido
+        representative_last_name_alt: Segundo apellido
         phone_number: Telefono
         phone_number_alt: Otro telefono
         vat_num: CIF
