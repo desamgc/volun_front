@@ -1,30 +1,39 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 require 'database_cleaner'
 
 DatabaseCleaner.clean_with :truncation
 Faker::Config.locale = I18n.locale
 
-PROJECTS_NUM      = 15
+ADDRESSES_NUM     = 20
+PROJECTS_NUM      = 10
+REQUEST_FORMS_NUM = 10
 DISTRICTS_NUM     = 10
-ACTIVITIES_NUM    = 10
 ENTITIES_NUM      = 10
 COORDINATIONS_NUM = 10
-ADDRESSES_NUM     = 20
 PROPOSAL_NUM      = 10
 ENTITY_NUM        = 10
 RACKING_NUM       = 10
 ISSUE_NUM         = 10
-TIMETABLE_NUM     = 15
-DOCUMENT_NUM      = 10
-EVENTS_NUM        = 10
-LINKS_NUM         = 4
+ACTIVITIES_NUM    = 5
+TIMETABLE_NUM     = 5
+EVENTS_NUM        = 5
+DOCUMENT_NUM      = 5
+SKILLS_NUM        = 5
+
+REQUEST_TYPES = {
+  1  => 'rt_volunteer_subscribe',
+  2  => 'rt_volunteer_unsubscribe',
+  3  => 'rt_volunteer_amendment',
+  4  => 'rt_volunteer_appointment',
+  5  => 'rt_entity_subscribe',
+  6  => 'rt_entity_unsubscribe',
+  7  => 'rt_volunteers_demand',
+  8  => 'rt_project_publishing',
+  9  => 'rt_project_unpublishing',
+  10 => 'rt_project_unsubscribe',
+  11 => 'rt_activity_publishing',
+  12 => 'rt_activity_unpublishing',
+  13 => 'rt_other'
+}
 
 PROJECT_TYPES = {
   1 => 'Servicios Sociales',
@@ -36,43 +45,12 @@ PROJECT_TYPES = {
   7 => 'Otros'
 }
 
-
-
-REQUEST_TYPES = {
-  1  => 'rt_volunteer_subscribe',
-  2  => 'rt_volunteer_unsubscribe',
-  3  => 'rt_volunteer_amendment',
-  4  => 'rt_volunteer_appointment',
-  5  => 'rt_entity_subscribe',
-  6  => 'rt_entity_unsubscribe',
-  7  => 'rt_volunteers_demand',
-  8  => 'rt_project_publishing',
-  9  => 'rt_project_unpublishing', #todo
-  10 => 'rt_project_unsubscribe',
-  11 => 'rt_activity_publishing',
-  12 => 'rt_activity_unpublishing', #todo
-  13 => 'rt_other'
-}
-
-REJECTION_TYPES = {
-  0 => 'Sin estado'
-  
-}
-
-ENTITY_TYPES = {
-  0 => 'Universidad',
-  1 => 'ONG'
-  
-}
-
 REQUEST_REASONS = {
   0 => 'Difusión de proyectos',
   1 => 'Solicitud voluntarios',
   2 => 'Publicación actividad en agenda',
   3 => 'Otros'
 }
-
-
 
 AREA_NAMES = [
   'Derechos Sociales',
@@ -211,71 +189,62 @@ ROAD_TYPES = {
     'CARRERA'    => '50',
     'CARRETERA'  => '831',
     'CAÑADA'     => '107',
+    'COLONIA'    => '364 ',
+    'COSTANILLA' => '107 ',
     'CUESTA'     => '113',
+    'GALERIA'    => '10 ',
     'GLORIETA'   => '288',
     'PARQUE'     => '30',
     'PARTICULAR' => '21',
     'PASADIZO'   => '6',
+    'PASAJE'     => '',
     'PASEO'      => '4239',
     'PISTA'      => '4',
     'PLAZA'      => '3478',
     'PLAZUELA'   => '16',
-    'TRAVESIA'   => '1007'
+    'PUENTE'     => '1 ',
+    'RONDA'      => ' ',
+    'TRAVESIA'   => '1007',
 }
-
-
-
 
 PROPOSALS = %w(subvencionado desistido desestimado excluido)
 
-puts "Creando usuario administrador..."
-User.first_or_initialize(email: 'admin@madrid.es',
-                         password: 'Wordpass1',
-                         password_confirmation: 'Wordpass1').save!
+ENTITY_TYPES = {
+  0 => 'Organización',
+  1 => 'Empresa',
+  2 => 'Asociación'
+}
+
+NOTICE_TYPES = {
+  0 => 'email',
+  1 => 'sms',
+  2 => 'papel'
+}
 
 
-
-puts "Creando Colectivos"
-AREA_NAMES.each do |name|
-  Area.create!(name: name)
+puts "Creando Medios de comunicación"
+NOTICE_TYPES.each do |kind , name|
+  NoticeType.create!(kind: kind, description: name)
 end
 
-puts "Creando Ámbitos"
-COLLECTIVE_NAMES.each do |name|
-  Collective.create!(name: name)
-end
 
-puts "Creando Propuestas"
-PROPOSALS.each do |name|
-  Proposal.create!(name: name)
-end
 
-puts "Creando Tipos de proyectos"
-PROJECT_TYPES.each do |kind , name|
-  ProjectType.create!(kind: kind)
-end
-
-puts "Creando Tipos de rechazo"
-REJECTION_TYPES.each do |kind , name|
-  RejectionType.create!(kind: kind, description: name)
-end
-
-puts "Creando Tipos de request"
+puts "Creando Tipos de solicitudes"
 REQUEST_TYPES.each do |kind , name|
-  RequestType.create!(kind: kind, description: name)
+  RequestType.create!(kind: kind)
 end
 
-puts "Creando Tipos de entidades"
+puts "Creando Tipos de solicitudes"
 ENTITY_TYPES.each do |kind , name|
   EntityType.create!(kind: kind, description: name)
 end
 
-puts "Creando entidades"
-(1..ENTITIES_NUM).each do |n|
-  Entity.create!(name: "#{Entity.model_name.human} #{n}")
+puts "Creando Tipos de proyectos"
+PROJECT_TYPES.each do |kind , name|
+  ProjectType.create!(kind: kind, description: name)
 end
 
-puts "Creando coordinaciones"
+puts "Creando Coordinaciones"
 (1..COORDINATIONS_NUM).each do |n|
   Coordination.create!(name: "#{Coordination.model_name.human} #{n}")
 end
@@ -284,7 +253,6 @@ puts "Creando Distritos"
 DISTRICTS.each do |code, name|
   District.create!(code: code, name: name)
 end
-
 
 puts "Creando Provincias"
 PROVINCES.each do |code, name|
@@ -297,110 +265,7 @@ ROAD_TYPES.each do |name, code|
 end
 
 
-puts "Creando Tipos solicitudes"
-REQUEST_REASONS.each do |code, name|
-  RequestReason.create!(description: name)
-end
 
 
-
-
-puts "Creando Direcciones"
-(1..ADDRESSES_NUM).each do |n|
-  Address.create!(
-    postal_code:           Faker::Address.postcode,
-    road_type:             RoadType.all.sample,
-    road_name:             Faker::Address.street_name,
-    road_number_type:      Address::ROAD_NUMBER_TYPES.sample,
-    road_number:           rand(100).to_s,
-    grader:                Address::GRADERS.sample,
-    stairs:                rand(300).to_s,
-    floor:                 rand(9).to_s,
-    door:                  rand(10).to_s,
-    province:              Province.all.sample,
-    country:               "España",
-    town:                  "Madrid",
-    latitude:              441900 + rand(100), 
-    longitude:             4479566 + rand(100) 
-  )
-end
-
-
-
-# puts "Creando Motivos de solicitud"
-# REQUEST_REASONS.each do |kind , name|
-#   RequestReason.create!(kind: kind)
-# end
-
-puts "Creando Proyectos"
-ProjectType.all.each do |project_type|
-(1..PROJECTS_NUM).each do |n|
-    project   = Project.new()
-    project.attributes = {
-      name:                  "#{Faker::App.name} #{project_type} #{n}",
-      description:           Faker::Lorem.sentence,
-      functions:             Faker::Lorem.sentence,
-      comments:              Faker::Lorem.sentence,
-      entity_id:             Entity.all.sample.id,
-      execution_start_date:  Faker::Time.between(DateTime.now - 10, DateTime.now),
-      execution_end_date:    Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow),
-      contact_name:          Faker::Name.name,
-      phone_number:          Faker::PhoneNumber.phone_number,
-      email:                 Faker::Internet.email,
-      beneficiaries_num:     10,
-      volunteers_num:        rand(100),
-      project_type:          project_type
-    }
-    
-    project.save!
-
-    puts "Creando Eventos"
-    2.times do
-      event = Event.create!(
-        address:    Address.all.sample,
-        eventable:  project,
-      )
-
-      puts "Creando Horarios para evento #{event.id}"
-      2.times do
-        Timetable.create!(
-          event: event,
-          execution_date:  rand(100).days.since.to_date,
-          start_hour: '11:11',
-          end_hour:   '12:12'
-        )
-      end
-    end
-
-    puts "Creando links"
-    (1..LINKS_NUM).each do |n|
-      link = Link.create!(
-        description:   Faker::Lorem.sentence,
-        kind: image,
-        url: "assets/#{n}.jpg"
-    )
-
-    
-end
-
-end
-
-    #puts "Creating entidades"
-    #Entity.create(name: 'Ayuntamiento de Madrid', id_tipoente: '1', id_tipo_via: '1', vial:'Maria Molina', planta:'Baja', telefono: '915133368', email: 'ayuntamiento@madrid.es', estado: 'A'   )
-    #Entity.create(name: 'IAM', id_tipoente: '1', id_tipo_via: '1', vial:'Maria Molina', planta:'Baja', telefono: '915133368', email: 'iam@madrid.es', estado: 'A'   )
-    #Entity.create(name: 'Universidad Carlos III', id_tipoente: '3', id_tipo_via: '1', vial:'Lezo', planta:'Baja', telefono: '915133368', email: 'universidad@madrid.es', estado: 'A'   )
-    #Entity.create(name: 'Fundación Real Madrid', id_tipoente: '4', id_tipo_via: '1', vial:'Lezo', planta:'Baja', telefono: '915133368', email: 'empresa@madrid.es', estado: 'A'   )
-
-    puts "Creating voluntarios"
-    Volunteer.create(name: 'Jose Luis', last_name: 'perez', address_id: 1, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
-    Volunteer.create(name: 'Angel', last_name: 'perez', address_id: 2, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
-    Volunteer.create(name: 'Alberto', last_name: 'perez', address_id: 3, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
-
-
-    puts "Creating usuarios"
-    pwd = '12345678'
-    User.create( email: 'voluntario@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Volunteer")
-    User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Entity")
-    
   
 
