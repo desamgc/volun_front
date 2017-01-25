@@ -14,7 +14,6 @@ module RtCommons
     private
 
     def request_type_valid?
-      
       self.class.model_name.singular == request_form.request_type.kind
     end
 

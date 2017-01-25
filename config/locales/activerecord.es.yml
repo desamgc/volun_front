@@ -2,7 +2,7 @@ es:
   activerecord:
     errors:
       models:
-        rt_volunteer_subscribe:
+        rt/volunteer_subscribe:
           attributes:
             email:
               password_already_set: "Este usuario ya tiene una clave asociada"
@@ -16,7 +16,7 @@ es:
               invalid: es invalido  
             phone_number_alt:
               invalid: es invalido  
-        rt_entity_subscribe:
+        rt/entity_subscribe:
           attributes:
             email:
               password_already_set: "Este usuario ya tiene una clave asociada"
@@ -55,7 +55,7 @@ es:
               blank: es obligatorio  
             other_motive: 
               blank: es obligatorio  
-        rt_volunteer_amendment:
+        rt/volunteer_amendment:
           attributes:
             email:
               password_already_set: "Este usuario ya tiene una clave asociada"
@@ -80,15 +80,15 @@ es:
               blank: es obligatorio  
             province_id: 
               blank: es obligatorio  
-        rt_volunteer_unsubscribe:
+        rt/volunteer_unsubscribe:
           attributes:
             reason:
               blank: es obligatorio
-        rt_volunteer_appointment:
+        rt/volunteer_appointment:
           attributes:
             reason:
               blank: es obligatorio 
-        rt_volunteers_demand:
+        rt/volunteers_demand:
           attributes:
             description: 
               blank: es obligatoria
@@ -115,7 +115,7 @@ es:
               blank: es obligatorio  
             province_id: 
               blank: es obligatorio   
-        rt_project_publishing:
+        rt/project_publishing:
           attributes:
             description: 
               blank: es obligatoria
@@ -134,7 +134,7 @@ es:
               blank: es obligatorio  
             province_id: 
               blank: es obligatorio
-        rt_activity_publishing:
+        rt/activity_publishing:
           attributes:
             description: 
               blank: es obligatoria
@@ -161,23 +161,23 @@ es:
               blank: es obligatorio  
             province_id: 
               blank: es obligatorio 
-        rt_other:
+        rt/other:
           attributes:
             description:
               blank: es obligatoria  
-        rt_project_unsubscribe:
+        rt/project_unsubscribe:
           attributes:
             reason:
               blank: es obligatorio                       
     attributes:
-      rt_volunteer_subscribe:
+      rt/volunteer_subscribe:
         name: Nombre
         phone_number: Telefono
         phone_number_alt: Otro telefono
         last_name: Primer apellido
         last_name_alt: Primer apellido
         email: Correo electronico
-      rt_entity_subscribe:
+      rt/entity_subscribe:
         name: Nombre
         contact_name: Nombre contacto
         contact_last_name: Primer apellido 
@@ -199,7 +199,7 @@ es:
         request_reason: Motivo
         other_motive: Otro motivo
         entity_type: Tipo de entidad
-      rt_volunteer_amendment:
+      rt/volunteer_amendment:
         phone_number: Telefono
         phone_number_alt: Otro telefono
         email: Correo electronico
@@ -210,11 +210,11 @@ es:
         postal_code: Codigo postal
         town: Municipio
         province_id: Provincia
-      rt_volunteer_unsubscribe:
+      rt/volunteer_unsubscribe:
         reason: Motivo
-      rt_volunteer_appointment:
+      rt/volunteer_appointment:
         reason: Motivo 
-      rt_volunteers_demand:
+      rt/volunteers_demand:
         description: Descripcion
         execution_start_date: Fecha desde
         execution_end_date: Fecha hasta
@@ -230,7 +230,7 @@ es:
         postal_code: Codigo postal
         town: Municipio
         province_id: Provincia
-      rt_project_publishing:
+      rt/project_publishing:
         description: Descripcion
         road_type_id: Tipo de calle
         road_number: Numero de calle
@@ -239,7 +239,7 @@ es:
         postal_code: Codigo postal
         town: Municipio
         province_id: Provincia  
-      rt_activity_publishing:
+      rt/activity_publishing:
         description: Descripcion
         execution_date: Fecha
         execution_hour: Hora
@@ -254,10 +254,10 @@ es:
         town: Municipio
         province_id: Provincia 
         project_id: Proyecto
-      rt_other:
+      rt/other:
         description: Motivo 
-      rt_project_unsubscribe:
+      rt/project_unsubscribe:
         reason: Motivo
         project: Proyecto  
-      rt_entity_unsubscribe:
+      rt/entity_unsubscribe:
         reason: Motivo  
