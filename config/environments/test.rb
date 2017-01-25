@@ -30,6 +30,10 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = {
+    host: 'test'
+  }
+  config.action_mailer.asset_host = 'http://madrid.test'
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
@@ -39,4 +43,15 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.cache_store = :null_store
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    if ENV['BULLET']
+      Bullet.raise = true # raise an error if n+1 query occurs
+    end
+  end
+
 end
