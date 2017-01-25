@@ -17,20 +17,20 @@
     </div>
 
     <div class="row">
-      <div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:execution_start_date) %> <span class="asterisco">*</span></span>
-          <%= f.text_field :execution_start_date, :class => "form-control-date" %>
+     <div class="form-group">
+        <div class="form-group date-field">
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:execution_start_date) %> <span class="asterisco">*</span></span>
+            <%= f.text_field :execution_start_date, :class => "form-control-date" %>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:execution_end_date) %><span class="asterisco">*</span></span>
+            <%= f.text_field :execution_end_date, :class => "form-control-date" %>
+          </div>
+          
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:execution_end_date) %><span class="asterisco">*</span></span>
-          <%= f.text_field :execution_end_date, :class => "form-control-date" %>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:requested_volunteers_num) %> <span class="asterisco">*</span></span>
-          <%= f.text_field :requested_volunteers_num %>
-        </div>
-      </div>
+        
+      </div>  
     </div>
 
     
@@ -39,9 +39,14 @@
 
     <div class="row">
       <div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-9">
           <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:volunteers_profile) %> <span class="asterisco">*</span></span>
           <%= f.text_field :volunteers_profile %>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-3">
+          <span class="labelUp"><%= RtVolunteersDemand.human_attribute_name(:requested_volunteers_num) %> <span class="asterisco">*</span></span>
+          <%= f.text_field :requested_volunteers_num %>
         </div>
       </div>
     </div>

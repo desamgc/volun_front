@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VolunFrontend</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <%= csrf_meta_tags %>
+    <title><%= content_for?(:title) ? yield(:title) : "Voluntariado" %></title>
 
   <script>
     var aytmad = {};
@@ -18,10 +22,23 @@
         }
     };
     </script>
+
+    <link rel="stylesheet" href="https://sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/esri/css/esri.css">
+    <script type="text/javascript">
+    var dojoConfig = { 
+        paths: {
+          extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras"
+        }
+      };
+   </script>   
+   <script src="https://sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/init.js"></script>
+
+    
+    
   
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  
 </head>
 <body>
    <div id="wrapper">

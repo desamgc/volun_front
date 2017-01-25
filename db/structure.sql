@@ -684,6 +684,7 @@ CREATE TABLE events (
     address_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    publish boolean,
     CONSTRAINT eventable_must_be_consistent CHECK ((((event_type_id = 1) AND ((eventable_type)::text = 'Activity'::text)) OR ((event_type_id = 2) AND ((eventable_type)::text = 'Project'::text))))
 );
 
@@ -1621,7 +1622,9 @@ CREATE TABLE rt_entity_subscribes (
     province_id integer,
     request_reason_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    entity_type_id integer,
+    other_motive character varying
 );
 
 

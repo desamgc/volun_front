@@ -11,39 +11,19 @@
 
 <div role="tabpanel" class="tab-pane active" id="tpi-tab2">
               
+              
               <ul class="row">
+               <% @project.links.each do |link| %>
                 <li class="col-md-3 col-sm-3 col-xs-12">
                   <div class="element_info_relevant element_info_relevant-type2">
                     <div class="info_relevant_img">
-                      <%= image_tag @proyecto.image.url(:medium), width:200, height:200 %>
+                      <%= render partial: "links/link", locals: { link: link} %>
+                      
                     </div>
                     
                   </div>
                 </li>
-                <li class="col-md-3 col-sm-3 col-xs-12">
-                  <div class="element_info_relevant element_info_relevant-type2">
-                    <div class="info_relevant_img">
-                      <%= image_tag @proyecto.image.url(:medium), width:200, height:200 %>
-                    </div>
-                    
-                  </div>
-                </li>
-                <li class="col-md-3 col-sm-3 col-xs-12">
-                  <div class="element_info_relevant element_info_relevant-type2">
-                    <div class="info_relevant_img">
-                      <%= image_tag @proyecto.image.url(:medium), width:200, height:200 %>
-                    </div>
-                    
-                  </div>
-                </li>
-                <li class="col-md-3 col-sm-3 col-xs-12">
-                  <div class="element_info_relevant element_info_relevant-type2">
-                    <div class="info_relevant_img">
-                      <%= image_tag @proyecto.image.url(:medium), width:200, height:200 %>
-                    </div>
-                    
-                  </div>
-                </li>
+               <% end %> 
               </ul>
 </div>
 
@@ -52,7 +32,7 @@
   <div class="nofluid">
     <div class="tramites-content">
      <div class="tiny-text">
-                        <p> <%= @proyecto.descripcion %> </p>
+                        <p> <%= @project.description %> </p>
       </div>
     
     </div>
@@ -140,7 +120,9 @@
 <div class="button-group">
     
        
-    <%= link_to 'volver', proyectos_path,class: "button button4" %>
+    <%= link_to 'volver', index_i_projects_path,class: "button button4" %>
 
-    <%= link_to 'Me interesa participar como voluntario', proyectos_path,class: "button button4" %>
+    <%= link_to 'Me interesa participar como voluntario', new_rt_volunteer_subscribe_path,class: "button button4" %>
  </div>
+
+

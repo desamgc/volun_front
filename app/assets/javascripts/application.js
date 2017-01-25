@@ -14,7 +14,26 @@
 //= require jquery_ujs
 // require turbolinks
 //= require js/locale/i18n_es
-//= require_directory .
+//= require_tree .
+
+
+
+
+var initialize_modules = function() {
+  App.Projects.load_geo();
+  //App.ayuntamiento;
+  //App.vendor;
+  
+};
+
+$(function(){
+  //Turbolinks.enableProgressBar()
+
+  $(document).ready(initialize_modules);
+  $(document).on('page:load', initialize_modules);
+  $(document).on('ajax:complete', initialize_modules);
+  $(document).on('turbolinks:load', initialize_modules);
+});
 
 
 

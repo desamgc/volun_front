@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :rt_project_unpublishings
+  resources :rt_activity_unpublishings
+  resources :rt_activity_unpublishings
   resources :rt_entity_unsubscribes
   resources :rt_entity_unsubscribes
   resources :rt_entity_unsubscribes
@@ -26,6 +29,7 @@ Rails.application.routes.draw do
       get :index_i
     end
     resources :images
+    resources :links
   end
 
   #resources :entity_types

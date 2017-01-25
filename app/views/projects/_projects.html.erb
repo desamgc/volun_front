@@ -6,17 +6,17 @@
 
 <% indice = -1 %>
 <div class="gallery nofluid">
-<% final = (@projects_actives.size % 3 == 0) ? @projects_actives.size / 3 : (@projects_actives.size / 3 ) + 1 %>
-<% nxfila = (final > 3) ? 3 : final %>
- <% for i in 1..final %>
+<% rows = (@projects_actives.size % 3 == 0) ? @projects_actives.size / 3 : (@projects_actives.size / 3 ) + 1 %>
+<% columns = 3 %>
+ <% for i in 1..rows %>
 
   <ul class="row">
-      <% for i in 1..nxfila %>
+      <% for i in 1..columns %>
         <% indice += 1 %>
         <li class="col-xs-12 col-sm-4">
           <div class="gallery-item">
           <% @project = @projects_actives[indice] %>
-            
+            <%= render partial: "links/link", collection: @project.links %>
             <%= social_share_button_tag(@project.name) %>
               
             <span class="gallery-text">
@@ -28,13 +28,17 @@
             <%= link_to  "Leer mas .." , project_path(@project), class: "event-link " %> 
              
             <%= render 'shared/participation', collection: @project %>
-                <% @project.timetables.each do |timetable| %> 
-                  <div class="event-date"><span><%= timetable.day %></span></div>
+            <% @project.events.each do |event| %> 
+                <div class="event-location"><span data-latitude="" data-longitude="" data-name="" data-direction=""><%= event.address.road_name %></span></div>
+                <br/>
+
+                <% event.timetables.each do |timetable| %> 
+                  <div class="event-date"><span><%= timetable.execution_date %></span></div>
                 <% end %>
                 
-                <% @project.addresses.each do |address| %>
-                  <div class="event-location"><span data-latitude="" data-longitude="" data-name="" data-direction=""><%= address.road_name %></span></div>
-                <% end %>
+                
+                
+            <% end %>    
                 <br/>
                 <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> <%=  @project.volunteers_num %>
           </div>

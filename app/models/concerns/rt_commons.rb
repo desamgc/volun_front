@@ -28,7 +28,6 @@ module RtCommons
         
         request_type: RequestType.where(kind: RequestType.kinds[self.class.model_name.singular]).take,
         status:  0,
-        sent_at: Time.now,
         status_date:  Time.now,
         rejection_type_id:  1,
         #request_type: RequestType.get_request_form_type(self.rt_extendable_type)

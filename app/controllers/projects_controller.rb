@@ -20,10 +20,12 @@ class ProjectsController < ApplicationController
 
   def index_i
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:districts, :addresses, :timetables, :project_type).search(params[:q])
-    @projects_actives = @search.result  #paginate(page: params[:page], per_page: params[:per_page] || 15)
-    @projects_featured = Project.featured
-    gon.items = @projects_actives
+    @search = Project.includes(:links).image_featured.search(params[:q])
+    @projects_actives = @search.result  
+    @projects_featured = Project.includes(:links).featured.image_featured
+    @locations = Project.first(5).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    #gon.items = @projects_actives.as_json(:only => [:id, :description])
+    #gon.locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     @grid = true
     respond_to do |format|
       format.html
@@ -31,21 +33,19 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def projects_by_entity
-    @search = Project.includes(:districts, :addresses, :timetables, :project_type).search(params[:q])
-
-  end  
+  
 
   
   # GET /projects/1
   # GET /projects/1.json
   def show
+
   end
 
   private
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.includes(:links).find(params[:id])
   end
 
   def project_params

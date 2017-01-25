@@ -1,6 +1,6 @@
 
 
-<%= search_form_for(@search, url:"/projects", :method => :get, remote: true) do |f| %>
+<%= search_form_for(@search, url:"/projects/index_i", :method => :get, remote: true) do |f| %>
 <div class='form form-electronic'>
 <div class="bg-fluid0">
                             
@@ -38,7 +38,6 @@
                          <div class="form-group">
                             <label for="id_propuesta">
                             <span class="labelUp">Distrito <span class="asterisco">*</span></span>
-                            <%= f.select :districts_id_eq, districts_select_options, class:"box6"%> 
                             </label>
                         </div>
                     </div>

@@ -1,0 +1,6 @@
+<% if link.nil? %>
+	
+<% else %>
+	<%= image_tag Rails.application.secrets.nas_images +  link.url , height: 250, width: 250 %>
+<% end %>	
+

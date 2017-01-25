@@ -24,6 +24,7 @@ ISSUE_NUM         = 10
 TIMETABLE_NUM     = 15
 DOCUMENT_NUM      = 10
 EVENTS_NUM        = 10
+LINKS_NUM         = 4
 
 PROJECT_TYPES = {
   1 => 'Servicios Sociales',
@@ -370,6 +371,15 @@ ProjectType.all.each do |project_type|
         )
       end
     end
+
+    puts "Creando links"
+    (1..LINKS_NUM).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: image,
+        url: "assets/#{n}.jpg"
+    )
+
     
 end
 
