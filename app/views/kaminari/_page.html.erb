@@ -1,0 +1,10 @@
+<% if page.current? %>
+<li class="active">
+  <%= link_to page, url, {:remote => remote, :rel => page.next? ? "next" : page.prev? ? "prev" : nil, :class => 'pagination-text'} %>
+</li>
+<% else %>
+  <li>
+  <%= link_to page, url, {:remote => remote, :rel => page.next? ? "next" : page.prev? ? "prev" : nil, :class => 'pagination-text'} %>
+</li>
+<% end %>
+

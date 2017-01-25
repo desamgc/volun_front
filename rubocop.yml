@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "db/schema.rb"
+    - "spec/fixtures/**/*"
+  UseCache: false
+  DefaultFormatter: progress
+  DisplayStyleGuide: true
+  DisplayCopNames: false
+  TargetRubyVersion: 2.2

@@ -1,0 +1,16 @@
+<% if model_name.errors.any? %>
+    <div id="errores" class="nofluid">
+       <div class="info-seccion">
+          <div class="modal-alert modal-error">
+            <h2 class="title-modal">Existen errores en el formulario</h2>
+            <a href="#" onclick='closeErrores()' class="close" title="<%= t("application.close") %>">&times;</a>
+            <h2><%= pluralize(model_name.errors.count, "error") %> </h2>
+            <ul>
+              <% model_name.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+       </div>
+      </div>      
+    </div>
+<% end %>

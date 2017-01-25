@@ -1,0 +1,263 @@
+es:
+  activerecord:
+    errors:
+      models:
+        rt/volunteer_subscribe:
+          attributes:
+            email:
+              password_already_set: "Este usuario ya tiene una clave asociada"
+              invalid: es invalido
+              taken: Ya existe una solicitud con esa dirección de correo electronico
+            last_name: 
+              blank: es obligatorio
+            name: 
+              blank: es obligatorio
+            phone_number:
+              invalid: es invalido  
+            phone_number_alt:
+              invalid: es invalido  
+        rt/entity_subscribe:
+          attributes:
+            email:
+              password_already_set: "Este usuario ya tiene una clave asociada"
+              invalid: es invalido
+              taken: Ya existe una solicitud con esa dirección de correo electronico
+            contact_last_name: 
+              blank: es obligatorio
+            contact_name: 
+              blank: es obligatorio  
+            name: 
+              blank: es obligatorio
+            phone_number:
+              invalid: es invalido  
+            phone_number_alt:
+              invalid: es invalido
+            entity_type_id: 
+              blank: es obligatorio  
+            vat_num: 
+              blank: es obligatorio  
+              invalid: formato incorrecto
+            road_type_id: 
+              blank: es obligatorio  
+            number_type: 
+              blank: es obligatorio  
+            road_number: 
+              blank: es obligatorio
+            road_name: 
+              blank: es obligatorio  
+            postal_code: 
+              blank: es obligatorio    
+            town: 
+              blank: es obligatorio  
+            province_id: 
+              blank: es obligatorio  
+            request_reason_id: 
+              blank: es obligatorio  
+            other_motive: 
+              blank: es obligatorio  
+        rt/volunteer_amendment:
+          attributes:
+            email:
+              password_already_set: "Este usuario ya tiene una clave asociada"
+              invalid: es invalido
+              taken: Ya existe una solicitud con esa dirección de correo electronico
+            phone_number:
+              invalid: es invalido  
+            phone_number_alt:
+              invalid: es invalido
+            road_type_id: 
+              blank: es obligatorio  
+            number_type: 
+              blank: es obligatorio  
+            road_number: 
+              blank: es obligatorio
+            road_name: 
+              blank: es obligatorio  
+            postal_code: 
+              blank: es obligatorio 
+              invalid: formato invalido   
+            town: 
+              blank: es obligatorio  
+            province_id: 
+              blank: es obligatorio  
+        rt/volunteer_unsubscribe:
+          attributes:
+            reason:
+              blank: es obligatorio
+        rt/volunteer_appointment:
+          attributes:
+            reason:
+              blank: es obligatorio 
+        rt/volunteers_demand:
+          attributes:
+            description: 
+              blank: es obligatoria
+            execution_start_date: 
+              blank: es obligatoria
+            requested_volunteers_num: 
+              blank: es obligatorio
+            volunteers_profile: 
+              blank: es obligatorio
+            volunteer_functions_1: 
+              blank: es obligatoria
+            road_type_id: 
+              blank: es obligatorio  
+            number_type: 
+              blank: es obligatorio  
+            road_number: 
+              blank: es obligatorio
+            road_name: 
+              blank: es obligatorio  
+            postal_code: 
+              blank: es obligatorio 
+              invalid: formato invalido   
+            town: 
+              blank: es obligatorio  
+            province_id: 
+              blank: es obligatorio   
+        rt/project_publishing:
+          attributes:
+            description: 
+              blank: es obligatoria
+            road_type_id: 
+              blank: es obligatorio  
+            number_type: 
+              blank: es obligatorio  
+            road_number: 
+              blank: es obligatorio
+            road_name: 
+              blank: es obligatorio  
+            postal_code: 
+              blank: es obligatorio
+              invalid: formato invalido    
+            town: 
+              blank: es obligatorio  
+            province_id: 
+              blank: es obligatorio
+        rt/activity_publishing:
+          attributes:
+            description: 
+              blank: es obligatoria
+            name: 
+              blank: es obligatorio
+            organizer: 
+              blank: es obligatorio
+            execution_date: 
+              blank: es obligatoria
+            execution_hour: 
+              blank: es obligatoria
+            road_type_id: 
+              blank: es obligatorio  
+            number_type: 
+              blank: es obligatorio  
+            road_number: 
+              blank: es obligatorio
+            road_name: 
+              blank: es obligatorio  
+            postal_code: 
+              blank: es obligatorio
+              invalid: formato invalido    
+            town: 
+              blank: es obligatorio  
+            province_id: 
+              blank: es obligatorio 
+        rt/other:
+          attributes:
+            description:
+              blank: es obligatoria  
+        rt/project_unsubscribe:
+          attributes:
+            reason:
+              blank: es obligatorio                       
+    attributes:
+      rt/volunteer_subscribe:
+        name: Nombre
+        phone_number: Telefono
+        phone_number_alt: Otro telefono
+        last_name: Primer apellido
+        last_name_alt: Primer apellido
+        email: Correo electronico
+      rt/entity_subscribe:
+        name: Nombre
+        contact_name: Nombre contacto
+        contact_last_name: Primer apellido 
+        contact_last_name_alt: Segundo apellido 
+        representative_name: Nombre representante
+        representative_last_name: Primer apellido
+        representative_last_name_alt: Segundo apellido
+        phone_number: Telefono
+        phone_number_alt: Otro telefono
+        vat_num: CIF
+        email: Correo electronico
+        road_type_id: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province_id: Provincia
+        request_reason: Motivo
+        other_motive: Otro motivo
+        entity_type: Tipo de entidad
+      rt/volunteer_amendment:
+        phone_number: Telefono
+        phone_number_alt: Otro telefono
+        email: Correo electronico
+        road_type_id: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province_id: Provincia
+      rt/volunteer_unsubscribe:
+        reason: Motivo
+      rt/volunteer_appointment:
+        reason: Motivo 
+      rt/volunteers_demand:
+        description: Descripcion
+        execution_start_date: Fecha desde
+        execution_end_date: Fecha hasta
+        requested_volunteers_num: Numero de voluntarios
+        volunteers_profile: Perfil de los voluntarios
+        volunteer_functions_1: Funcion 1
+        volunteer_functions_2: Funcion 2
+        volunteer_functions_3: Funcion 3
+        road_type_id: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province_id: Provincia
+      rt/project_publishing:
+        description: Descripcion
+        road_type_id: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province_id: Provincia  
+      rt/activity_publishing:
+        description: Descripcion
+        execution_date: Fecha
+        execution_hour: Hora
+        name: Denominación
+        description: Descripción
+        organizer: Organizador
+        road_type_id: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province_id: Provincia 
+        project_id: Proyecto
+      rt/other:
+        description: Motivo 
+      rt/project_unsubscribe:
+        reason: Motivo
+        project: Proyecto  
+      rt/entity_unsubscribe:
+        reason: Motivo  

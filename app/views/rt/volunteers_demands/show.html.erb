@@ -1,0 +1,44 @@
+<%= main_title(t("action.show", model: RtVolunteersDemand.model_name.human)) %>
+
+<dl class="dl-horizontal">
+
+  <dt><%= RtVolunteersDemand.human_attribute_name(:id) %>:</dt>
+  <dd><%= @rt_volunteers_demand.id %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:description) %>:</dt>
+  <dd><%= @rt_volunteers_demand.description %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:execution_start_date) %>:</dt>
+  <dd><%= show_simple_date(@rt_volunteers_demand.execution_start_date) %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:execution_end_date) %>:</dt>
+  <dd><%= show_simple_date(@rt_volunteers_demand.execution_end_date) %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:road_type) %>:</dt>
+  <dd><%= @rt_volunteers_demand.road_type %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:road_name) %>:</dt>
+  <dd><%= @rt_volunteers_demand.road_name %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:number_type) %>:</dt>
+  <dd><%= @rt_volunteers_demand.number_type %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:road_number) %>:</dt>
+  <dd><%= @rt_volunteers_demand.road_number %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:postal_code) %>:</dt>
+  <dd><%= @rt_volunteers_demand.postal_code %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:town) %>:</dt>
+  <dd><%= @rt_volunteers_demand.town %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:province) %>:</dt>
+  <dd><%= @rt_volunteers_demand.province %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:requested_volunteers_num) %>:</dt>
+  <dd><%= @rt_volunteers_demand.requested_volunteers_num %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:volunteers_profile) %>:</dt>
+  <dd><%= @rt_volunteers_demand.volunteers_profile %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:volunteer_functions_1) %>:</dt>
+  <dd><%= @rt_volunteers_demand.volunteer_functions_1 %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:volunteer_functions_2) %>:</dt>
+  <dd><%= @rt_volunteers_demand.volunteer_functions_2 %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:volunteer_functions_3) %>:</dt>
+  <dd><%= @rt_volunteers_demand.volunteer_functions_3 %></dd>
+  <dt><%= RtVolunteersDemand.human_attribute_name(:created_at) %>:</dt>
+  <dd><%= show_simple_date(@rt_volunteers_demand.created_at) %></dd>
+
+</dl>
+<% unless request.xhr? %>
+<%= button_to_back %>
+<%= button_to_edit(@rt_volunteers_demand) %>
+<% end %>

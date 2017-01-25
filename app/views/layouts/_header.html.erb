@@ -1,73 +1,57 @@
 <header class="header" style='background-image: url("/assets/sede/cabeceraCiudadanos.jpg");'>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">    
-            <div class="row visible-md-block visible-lg-block">
-                
-                  
-                    
-                         <% if current_user %>
-                          <div class=" col-md-0 pull-right">
-                            <ul>
-                              <li>
-                                 <%= render 'shared/personal_area' %>
-                              </li>
-                            </ul>
-                          </div>  
-                         <% else %>
-                          <div class=" col-md-12 pull-right">
-                           <div class="quick-links-header">
-                            <ul> 
-                              <li>
-                              <%= link_to '  Entrar ', new_user_session_path, :class => "qlh-item " %>
-                              </li> 
-                            </ul>
-                            </div>    
-                           </div> 
-                         <% end %>
-                    
-                  
-              </div>
-           </div>
-         </div>  
-
-        
-
-
-        
-        <div class="navigation-bar" id="navbar">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="header-logo">
-                        <a href="00-home.html">
-                          <span class="text-hide">Ayuntamiento de Madrid</span>
-                          
-                           <%= image_tag("logo-madrid.png") %>
-                        </a>
-                    </h1>
-                </div>
-               
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row visible-md-block visible-lg-block">
+          <% if current_user %>
+            <div class=" col-md-0 pull-right">
+              <ul>
+                <li>
+                  <%= render 'shared/personal_area' %>
+                </li>
+              </ul>
             </div>
+          <% else %>
+            <div class=" col-md-12 pull-right">
+              <div class="quick-links-header">
+                <ul> 
+                  <li>
+                    <%= link_to '  Entrar ', new_user_session_path, :class => "qlh-item " %>
+                  </li> 
+                </ul>
+              </div>    
+            </div> 
+          <% end %>
         </div>
-        
-        
-        
-<div class="section-cont">
-    
-       <h2 class="section-name">
-            <span class="section-name-title">
-                VOLUNTARIADO
-            </span>
-        </h2>
-    
-</div>
+      </div>
+    </div>  
+    <div class="navigation-bar" id="navbar">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="header-logo">
+            <a href="00-home.html">
+            <span class="text-hide">Ayuntamiento de Madrid</span>
+              <%= image_tag("logo-madrid.png") %>
+            </a>
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div class="section-cont">
+      <h2 class="section-name">
+        <span class="section-name-title">
+          VOLUNTARIADO
+        </span>
+      </h2>
+    </div>
 
     <p class="section-subname visible-xs-block"><span class="section-subname-title">COMUNIDAD VIRTUAL DEL VOLUNTARIADO</span></p>
-
-        
-  
-        
-</div>
+    <ul class="sub-menu visible-md-block visible-lg-block hidden-print">
+      <li class=""><%= link_to t("layouts.header.proyectos"), index_i_projects_path, class: "sub-menu-item" %></li>
+      <li class=""><%= link_to t("layouts.header.entidades"), entities_path, class: "sub-menu-item" %></li>
+      <li class=""><%= link_to t("layouts.header.noticias"), activities_path, class: "sub-menu-item" %></li>
+    </ul>   
+  </div>
 </header>
 
 

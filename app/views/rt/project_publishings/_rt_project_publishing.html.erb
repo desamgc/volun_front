@@ -1,0 +1,16 @@
+<tr id="<%= dom_id(rt_project_publishing) %>" class="table-row-transform" >
+
+  <% project.main_attributes.each do |attr_name| %>
+  <td class="table-cell-group"><%= show_attr(rt_project_publishing.public_send attr_name) %></td>
+  <% end %>
+
+  <td class="table-cell-group">
+    <%= link_to_show(rt_project_publishing) %>
+    <%= link_to_edit(rt_project_publishing) %>
+<% if rt_project_publishing.try(:archived?) %>
+    <%= link_to_recover(rt_project_publishing) %>
+<% else %>
+    <%= link_to_destroy(rt_project_publishing) %>
+<% end %>
+  </td>
+</tr>

@@ -1,0 +1,16 @@
+<%= main_title(t("action.show", model: RtProjectUnpublishing.model_name.human)) %>
+
+<dl class="dl-horizontal">
+
+  <dt><%= RtProjectUnpublishing.human_attribute_name(:id) %>:</dt>
+  <dd><%= @rt_project_unpublishing.id %></dd>
+  <dt><%= RtProjectUnpublishing.human_attribute_name(:reason) %>:</dt>
+  <dd><%= @rt_project_unpublishing.reason %></dd>
+  <dt><%= RtProjectUnpublishing.human_attribute_name(:created_at) %>:</dt>
+  <dd><%= show_simple_date(@rt_project_unpublishing.created_at) %></dd>
+
+</dl>
+<% unless request.xhr? %>
+<%= button_to_back %>
+<%= button_to_edit(@rt_project_unpublishing) %>
+<% end %>

@@ -19,13 +19,15 @@ module VolunFrontend
     # Add the new directories to the locales load path
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.paths << Rails.root.join("app", "assets", "fonts", "images")
 
     # Add lib to the autoload path
     config.autoload_paths << Rails.root.join('lib')
     config.time_zone = 'Madrid'
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.active_record.schema_format = :sql
 
     config.generators do |g|
       g.test_framework :rspec,

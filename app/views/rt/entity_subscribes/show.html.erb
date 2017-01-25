@@ -1,0 +1,52 @@
+<%= main_title(t("action.show", model: RtEntitySubscribe.model_name.human)) %>
+
+<dl class="dl-horizontal">
+
+  <dt><%= RtEntitySubscribe.human_attribute_name(:id) %>:</dt>
+  <dd><%= @rt_entity_subscribe.id %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:name) %>:</dt>
+  <dd><%= @rt_entity_subscribe.name %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:vat_num) %>:</dt>
+  <dd><%= @rt_entity_subscribe.vat_num %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:email) %>:</dt>
+  <dd><%= @rt_entity_subscribe.email %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:contact_name) %>:</dt>
+  <dd><%= @rt_entity_subscribe.contact_name %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:contact_first_surname) %>:</dt>
+  <dd><%= @rt_entity_subscribe.contact_first_surname %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:contact_second_surname) %>:</dt>
+  <dd><%= @rt_entity_subscribe.contact_second_surname %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:representative_name) %>:</dt>
+  <dd><%= @rt_entity_subscribe.representative_name %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:representative_first_surname) %>:</dt>
+  <dd><%= @rt_entity_subscribe.representative_first_surname %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:representative_second_surname) %>:</dt>
+  <dd><%= @rt_entity_subscribe.representative_second_surname %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:phone_number) %>:</dt>
+  <dd><%= @rt_entity_subscribe.phone_number %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:phone_number_alt) %>:</dt>
+  <dd><%= @rt_entity_subscribe.phone_number_alt %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:road_type) %>:</dt>
+  <dd><%= @rt_entity_subscribe.road_type %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:road_name) %>:</dt>
+  <dd><%= @rt_entity_subscribe.road_name %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:number_type) %>:</dt>
+  <dd><%= @rt_entity_subscribe.number_type %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:road_number) %>:</dt>
+  <dd><%= @rt_entity_subscribe.road_number %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:postal_code) %>:</dt>
+  <dd><%= @rt_entity_subscribe.postal_code %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:town) %>:</dt>
+  <dd><%= @rt_entity_subscribe.town %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:province) %>:</dt>
+  <dd><%= @rt_entity_subscribe.province %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:request_reason_id) %>:</dt>
+  <dd><%= @rt_entity_subscribe.request_reason %></dd>
+  <dt><%= RtEntitySubscribe.human_attribute_name(:created_at) %>:</dt>
+  <dd><%= show_simple_date(@rt_entity_subscribe.created_at) %></dd>
+
+</dl>
+<% unless request.xhr? %>
+<%= button_to_back %>
+<%= button_to_edit(@rt_entity_subscribe) %>
+<% end %>

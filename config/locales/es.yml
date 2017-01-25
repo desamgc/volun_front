@@ -3,3 +3,57 @@ es:
     close: Cerrar
     menu: Menú
     title: Voluntariado
+    submit: Enviar
+   volunteer_subscribe:
+    new: Registrarse
+    title: Solicitud de participación como voluntario
+    response: "Solicitud recibida de forma correcta, en breve nos pondremos en contacto para realizarle una entrevista."
+    send: Enviar
+    interest: Me interesa participar como voluntario
+    participation: Para paticipar como voluntario necesita
+    form:
+      email: Correo electronico
+      phone_number: Telefono
+      phone_number_alt: Otro Telefono
+      name: Nombre
+      last_name: Primer apellido
+      last_name_alt: Segundo apellido
+   rt_entity_subscribe:
+    title: Solicitud de alta de entidad
+    response: "Solicitud recibida de forma correcta, en breve nos pondremos en contacto para realizarle una entrevista."
+   rt_volunteer_amendment:
+    title: Solicitud de modificación del perfil
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
+   rt_volunteer_unsubscribe:
+    title: Solicitud de baja de la plataforma
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud." 
+   rt_volunteer_appointment:
+    title: Solicitud de cita
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."  
+   rt_volunteers_demand:
+    title: Solicitud de demanda de voluntarios
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."   
+   rt_project_publishing:
+    title: Solicitud de publicitación de nuevo proyecto
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."    
+   rt_activity_publishing:
+    title: Solicitud de publicitación de actividad
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."     
+   rt_other:
+    title: Otro tipo de solicitud
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."      
+   rt_project_unsubscribe:
+    title: solicitud de baja de proyecto
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."       
+   rt_entity_unsubscribe:
+    title: solicitud de baja de la plataforma
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."        
+   helpers:
+      page_entries_info:
+        one_page:
+          display_entries: "Mostrando todos os %{entry_name}"
+        more_pages:
+          display_entries: "Total %{total}  &nbsp;-&nbsp;  Mostrando del %{first} al %{last}"  
+   views:
+    pagination:
+      truncate: ...

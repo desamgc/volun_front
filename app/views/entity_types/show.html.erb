@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @entity_type.kind %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @entity_type.description %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @entity_type.active %>
+</p>
+
+<%= link_to 'Edit', edit_entity_type_path(@entity_type) %> |
+<%= link_to 'Back', entity_types_path %>

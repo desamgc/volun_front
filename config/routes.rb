@@ -1,14 +1,58 @@
 Rails.application.routes.draw do
+  
+
+  namespace :rt do
+    resources :others
+    resources :activity_unpublishings
+    resources :activity_publishings
+    resources :project_unsubscribes, param: :project
+    resources :project_unpublishings
+    resources :project_publishings
+    resources :volunteers_demands
+    resources :entity_unsubscribes
+    resources :entity_subscribes
+    resources :volunteer_appointments
+    resources :volunteer_amendments
+    resources :volunteer_unsubscribes
+    resources :volunteer_subscribes
+  end
+  
+  resources :activities
+  resources :entities, only:[:index,:show] do
+    resources :projects, only:[:index, :show], param: :q
+  end
+
+  resources :projects, only: [:show, :index, :index_i] do
+    collection do
+      get :index_i
+    end
+    resources :images
+    resources :links
+  end
+
+  #resources :entity_types
+  #resources :project_types
+  
+  #resources :districts
+  #resources :links
+  #resources :images
+  #resources :addresses
+  #resources :address
+  #resources :timetable
+  #resources :volunteers
+  #resources :districts_projects
+  
+
   devise_for :users, controllers: {
                        sessions: 'users/sessions',
-                       passwords: 'users/passwords',
-                       
-                     }
+                       passwords: 'users/passwords'
+                     }, :skip => [:registrations]                                          
+  as :user do
+    get 'users/edit' => 'users/registrations#edit', :as => 'edit_user_registration', :defaults => { :format => 'html' }    
+    put 'users' => 'users/registrations#update', :as => 'user_registration', :defaults => { :format => 'html' }                
+  end
 
-  devise_scope :user do
-       #get 'users/sign_up/success', to: 'users/registrations#success'
-       get 'users/passwords/updateC', to: 'users/passwords#updateC'
-  end                   
+                    
   get 'welcome/index'
 
 

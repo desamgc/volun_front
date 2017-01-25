@@ -1,0 +1,128 @@
+<!--
+<%= javascript_tag do %>
+  $(document).ready(load_geo_project);
+<% end %>
+-->
+
+
+
+<h3 class="summary-title"><%= @project.name %></h3>
+
+
+<div role="tabpanel" class="tab-pane active" id="tpi-tab2">
+              
+              
+              <ul class="row">
+               <% @project.links.each do |link| %>
+                <li class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="element_info_relevant element_info_relevant-type2">
+                    <div class="info_relevant_img">
+                      <%= render partial: "links/link", locals: { link: link} %>
+                      
+                    </div>
+                    
+                  </div>
+                </li>
+               <% end %> 
+              </ul>
+</div>
+
+
+<div class="detalle">
+  <div class="nofluid">
+    <div class="tramites-content">
+     <div class="tiny-text">
+                        <p> <%= @project.description %> </p>
+      </div>
+    
+    </div>
+    <div class="info-actividad">
+      <div class="item ">
+        <h3 class="place title9">Dirección</h3>
+        <div class="row">
+          <div class="col-xs-12 col-sm-8">
+            <dl class="dl-horz">
+              <dt>Dirección</dt>
+              <dd>Avenida Pío XII, 2 28016 - Madrid</dd>
+              <dt>Barrio / Distrito</dt>
+              <dd>Nueva España / Chamartín</dd>
+              
+            </dl>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="button-action">
+              <a href="#mapa" data-name="Centro Deportivo Municipal Chamartín" data-direction="Av. Pio XII, 2, 28016 Madrid" data-latitude="40.4635345" data-longitude="-3.6755936,17" class="button button3 button-icon view-map" id="vermapa" data-toggle-text="Ocultar mapa"  aria-expanded="false" aria-controls="mapa">Ver mapa<i class="glyphicon glyphicon-map-marker"></i></a>
+            </div>
+          </div>
+        </div>
+        <div id="mapa" class="mapa collapse">
+        </div>
+      </div>
+      <div class="item ">
+        <h3 class="fecha title9">Fecha</h3>
+        <p class="text-date">
+          Sábado, 21 junio a las 19:00 horas.
+        </p>
+        
+        
+        
+      </div>
+      <div class="item noTitle">
+        <dl class="dl-horz">
+          <dt>Página web</dt>
+          <dd><a href="#">www.centrodeportivomunicipalchamartin.es</a></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="bg-fluid5 nofluid">
+  <div class="videoplayer row">
+    <div class="col-sm-4 cabecera">
+      <h4 class="title">Galería de videos</h4>
+    </div>
+    <div class="col-sm-12">
+      <div class="currentvideo" data-height="308" data-width="450" data-url="" data-expressInstallSwfurl="" data-file="" data-logo="" data-image="assets/images/videoplayer/video-generico.jpg" data-urlhtml5="http://vjs.zencdn.net/v/oceans.mp4">
+      </div>
+    </div>
+    <!--
+    <div class="col-sm-4 playlist">
+      <ul class="trancateList vidlist">
+        <li class="">
+          <a href="http://www.madrid.es/portales/video001.html">Emisión del pleno con fecha del día 20/02/2015</a>
+        </li>
+        <li class="">
+          <a href="http://www.madrid.es/portales/video001.html">Emisión del pleno con fecha del día 20/02/2015</a>
+        </li>
+        <li class="current">
+          Nombre del video que se está reproduciendo
+        </li>
+        <li class="">
+          <a href="http://www.madrid.es/portales/video001.html">Emisión del pleno con fecha del día 20/02/2015</a>
+        </li>
+        <li class="">
+          <a href="http://www.madrid.es/portales/video001.html">Emisión del pleno con fecha del día 20/02/2015</a>
+        </li>
+        <li class="">
+          <a href="http://www.madrid.es/portales/video001.html">Emisión del pleno con fecha del día 20/02/2015</a>
+        </li>
+      </ul>
+    </div> -->
+  </div>
+</div>
+
+
+
+
+<div class="button-group">
+    
+       
+    <%= link_to 'volver', index_i_projects_path,class: "button button4" %>
+
+    <%= link_to 'Me interesa participar como voluntario', new_rt_volunteer_subscribe_path,class: "button button4" %>
+ </div>
+
+

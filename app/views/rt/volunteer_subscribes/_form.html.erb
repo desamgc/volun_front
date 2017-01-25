@@ -1,0 +1,68 @@
+<%= form_for(@rt_volunteer_subscribe) do |f| %>
+<div class="form form-electronic">
+ <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_subscribe})%>
+  <legend class="parrafo"><%= t('volunteer_subscribe.title') %> </legend>
+  <p class="notes">
+   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+  </p>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:name) %> <span class="asterisco">*</span></span>
+          <%= f.text_field :name %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:last_name) %> <span class="asterisco">*</span></span>
+          <%= f.text_field :last_name %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:last_name_alt) %> </span>
+          <%= f.text_field :last_name_alt %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:phone_number) %> <span class="asterisco">*</span></span>
+          <%= f.text_field :phone_number %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:phone_number_alt) %> </span>
+          <%= f.text_field :phone_number_alt %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <span class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:email) %> <span class="asterisco">*</span></span>
+          <%= f.text_field :email %>
+        </div>
+      </div>
+    </div>
+
+    <%= render partial: 'shared/protection' %> 
+</div>
+<div class="button-group text-right">
+      <%= f.button t('application.submit'), :class => 'button button4' %>
+</div>
+
+<% end %>

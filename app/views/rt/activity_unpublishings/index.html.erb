@@ -1,0 +1,51 @@
+<% model_class = RtActivityUnpublishing %>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <%= model_title(model_class) %>
+  </div>
+<div class="bg-fluid0">
+  <div class="bg-triangle">
+    <div class="tributes nofluid">
+      <ul>
+        <li>
+          <h3 class="tributes-header"><span class="tributes-title">Proyectos</span></h3>
+          <div class="tributes-body tributes-table">
+            <form class="tributes-form">
+              
+                <div class="col-md-6">
+                  <%= content_tag(:div, link_to_new(model_class), class: 'col-md-6 pull-left') %>
+                </div>
+                <div class="col-md-6">
+                  <%= content_tag(:div, search_collection(@search_q, :reason_cont), class: 'col-md-6 pull-right') %>
+                </div>
+              
+
+              <table class="table">
+                <thead>
+                  <tr class="table-row-transform">
+                  <% model_class.main_columns.each do |column| -%>
+                    <th><%= sort_link(@search_q, column) %></th>
+                  <% end -%>
+
+                    <th class="actions index_table-actions">
+                      <%= t('actions') %>
+                    </th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  <%= render(partial: 'rt_activity_unpublishing', collection: @rt_activity_unpublishings)%>
+                </tbody>
+              </table>
+
+              <%= render partial: "shared/pagination", locals: {collection: @rt_activity_unpublishings} %>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
