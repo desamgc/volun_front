@@ -207,7 +207,6 @@ ROAD_TYPES = {
     'TRAVESIA'   => '1007',
 }
 
-PROPOSALS = %w(subvencionado desistido desestimado excluido)
 
 ENTITY_TYPES = {
   0 => 'Organización',
@@ -234,7 +233,7 @@ REQUEST_TYPES.each do |kind , name|
   RequestType.create!(kind: kind)
 end
 
-puts "Creando Tipos de solicitudes"
+puts "Creando Tipos de entidades"
 ENTITY_TYPES.each do |kind , name|
   EntityType.create!(kind: kind, description: name)
 end

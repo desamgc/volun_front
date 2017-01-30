@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  volunteer_subscribe:
+    new: Registrarse en area personal
+    title: Request of participation for volunteer
+    response: "Request sent successfully, en breve nos pondremos en contacto para realizarle una entrevista."
+    send: Submit
+   
