@@ -17,29 +17,8 @@
 <br/>
 <div class="gallery nofluid">
   <ul class="row">
-    <% @projects_featured.each do |project| %>
-        <li class="col-xs-12 col-sm-4 col-md-4">
-          <div class="gallery-item">
-             <%= render partial: "links/link", collection: project.links %>
-             <%= social_share_button_tag(project.name) %>
-            
-             <span class="gallery-text">
-
-                <h3><%= project.name %></h3>
-                <%= project.description %>
-             </span>
-             <%= link_to  "Leer mas .." , project_path(project), class: "event-link " %> 
-                <% @project= project %>
-                <%= render 'shared/participation', collection: @project %>
-                
-                <div class="event-date"><span>Del viernes 20 de febrero de 2015</span> <span>al domingo 22 de febrero de 2015</span></div>
-                <span class="event-location" data-latitude="" data-longitude="" data-name="" data-direction="">Pabellón de Cristal de la Casa de Campo</span>
-             
-                <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> 0 
-         </div>
-        </li>
-
-    <% end %> 
+      
+      <%= render partial: 'project', collection: @projects_featured  %>
   </ul>
 </div>  
 
@@ -66,6 +45,29 @@
 
 <%= render "buscador" %>
 
-<div id = "projects">
-  <%= render 'projects' %>
+
+
+
+<!-- en modo cuadricula -->
+<div id="grid">
+
+<div class="gallery nofluid">
+
+  <ul class="row">
+
+    <div id = "projects">
+      <%= render partial: 'project', collection: @projects_actives %>
+    </div>
+  </ul>
+ </div>
+ 
+</div>
+
+
+<!-- en modo fila -->
+<div id="row" style="display:none">
+<div class="tiny-text">
+  <%= render partial: 'row_project', collection: @projects_actives, as: :project %>
+
+</div>
 </div>
