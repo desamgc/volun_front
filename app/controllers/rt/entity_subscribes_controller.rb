@@ -11,14 +11,14 @@ class Rt::EntitySubscribesController < ApplicationController
   end
 
   def new
-    @rt_entity_subscribe = Rt::EntitySubscribe.new
+    @rt_entity_subscribe = EntitySubscribe.new
   end
 
   def edit
   end
 
   def create
-    @rt_entity_subscribe = Rt::EntitySubscribe.new(rt_entity_subscribe_params)
+    @rt_entity_subscribe = EntitySubscribe.new(rt_entity_subscribe_params)
     if @rt_entity_subscribe.save
       redirect_to index_i_projects_path, notice: t('volunteer_subscribe.response')
     else

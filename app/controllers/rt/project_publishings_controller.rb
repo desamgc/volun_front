@@ -10,14 +10,14 @@ class Rt::ProjectPublishingsController < ApplicationController
   end
 
   def new
-    @rt_project_publishing = RtProjectPublishing.new
+    @rt_project_publishing = ProjectPublishing.new
   end
 
   def edit
   end
 
   def create
-    @rt_project_publishing = RtProjectPublishing.new(rt_project_publishing_params)
+    @rt_project_publishing = ProjectPublishing.new(rt_project_publishing_params)
     @rt_project_publishing.request_form.user_id = current_user.id
     if @rt_project_publishing.save
       redirect_to index_i_projects_path, notice: t('rt_project_publishing.response')

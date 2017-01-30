@@ -9,14 +9,14 @@ class Rt::VolunteerSubscribesController < ApplicationController
   end
 
   def new
-    @rt_volunteer_subscribe = RtVolunteerSubscribe.new
+    @rt_volunteer_subscribe = VolunteerSubscribe.new
   end
 
   def edit
   end
 
   def create
-    @rt_volunteer_subscribe = RtVolunteerSubscribe.new(rt_volunteer_subscribe_params)
+    @rt_volunteer_subscribe = VolunteerSubscribe.new(rt_volunteer_subscribe_params)
     if @rt_volunteer_subscribe.save
       redirect_to index_i_projects_path, notice: t('volunteer_subscribe.response')
     else
@@ -43,7 +43,7 @@ class Rt::VolunteerSubscribesController < ApplicationController
   end 
 
   def set_rt_volunteer_subscribe
-    @rt_volunteer_subscribe = RtVolunteerSubscribe.find(params[:id])
+    @rt_volunteer_subscribe = VolunteerSubscribe.find(params[:id])
   end
 
   def rt_volunteer_subscribe_params
