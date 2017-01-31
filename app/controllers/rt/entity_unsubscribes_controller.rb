@@ -3,7 +3,7 @@ class Rt::EntityUnsubscribesController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    params[:q] ||= RtEntityUnsubscribe.ransack_default
+    params[:q] ||= EntityUnsubscribe.ransack_default
     @search_q = @rt_entity_unsubscribes.search(params[:q])
     @rt_entity_unsubscribes = @search_q.result.paginate(page: params[:page], per_page: params[:per_page]||15)
 
@@ -17,14 +17,14 @@ class Rt::EntityUnsubscribesController < ApplicationController
   end
 
   def new
-    @rt_entity_unsubscribe = RtEntityUnsubscribe.new
+    @rt_entity_unsubscribe = EntityUnsubscribe.new
   end
 
   def edit
   end
 
   def create
-    @rt_entity_unsubscribe = RtEntityUnsubscribe.new(rt_entity_unsubscribe_params)
+    @rt_entity_unsubscribe = EntityUnsubscribe.new(rt_entity_unsubscribe_params)
     @rt_entity_unsubscribe.request_form.user_id = current_user.id
     if @rt_entity_unsubscribe.save
       redirect_to index_i_projects_path, notice: t('rt_entity_unsubscribe.response')

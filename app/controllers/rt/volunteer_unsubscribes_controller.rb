@@ -10,14 +10,14 @@ class Rt::VolunteerUnsubscribesController < ApplicationController
   end
 
   def new
-    @rt_volunteer_unsubscribe = RtVolunteerUnsubscribe.new
+    @rt_volunteer_unsubscribe = VolunteerUnsubscribe.new
   end
 
   def edit
   end
 
   def create
-    @rt_volunteer_unsubscribe = RtVolunteerUnsubscribe.new(rt_volunteer_unsubscribe_params)
+    @rt_volunteer_unsubscribe = VolunteerUnsubscribe.new(rt_volunteer_unsubscribe_params)
     @rt_volunteer_unsubscribe.request_form.user_id = current_user.id
     if @rt_volunteer_unsubscribe.save
       redirect_to index_i_projects_path, notice: t('rt_volunteer_unsubscribe.response')

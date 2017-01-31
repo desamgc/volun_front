@@ -23,5 +23,73 @@ FactoryGirl.define do
     phone_number "915133368"
     email "perezljl@madrid.es"
   end
+
+  factory :address do
+    postal_code           Faker::Address.postcode
+    road_type_id             1
+    road_name             Faker::Address.street_name
+    road_number_type      "num"
+    road_number           Faker::Number.number(1)
+    grader                Address::GRADERS.sample
+    stairs                Faker::Number.number(1)
+    floor                 Faker::Number.number(1)
+    door                  Faker::Number.number(1)
+    province_id              1
+    country               "España"
+    town                  "Madrid"
+    latitude              Faker::Address.latitude 
+    longitude             Faker::Address.longitude 
+  end
+  
+  factory :entity do
+    name Faker::Lorem.name
+    email Faker::Internet.email 
+    representative_name Faker::Lorem.name 
+    representative_last_name Faker::Lorem.name 
+    contact_name Faker::Lorem.name 
+    contact_last_name Faker::Lorem.name
+    entity_type_id 1 
+    association :address, factory: :address 
+  end
+
+  
+
+  factory :project do
+      name                  Faker::App.name
+      description           Faker::Lorem.sentence
+      functions             Faker::Lorem.sentence
+      comments              Faker::Lorem.sentence
+      association :entity, factory: :entity
+      execution_start_date  Faker::Time.between(DateTime.now - 10, DateTime.now)
+      execution_end_date    Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow)
+      phone_number          Faker::PhoneNumber.phone_number
+      email                 Faker::Internet.email
+      beneficiaries_num     10
+      volunteers_num        20
+      project_type_id       1
+      insured               true
+      active                true
+      publish               true
+      contact_name          Faker::Lorem.name  
+      contact_last_name     Faker::Lorem.name
+                
+
+  end
+
+  factory :volunteer do
+    name "jose"
+    last_name "MyString"
+    phone_number "MyString"
+    email "perezljl@madrid.es"
+    association :address, factory: :address 
+  end
+
+  factory :user do
+     email 'voluntario@madrid.es'
+     password '12345678'
+     password_confirmation '12345678' 
+     association  :loggable, factory: :volunteer
+     notice_type_id 1
+  end  
   
 end

@@ -20,7 +20,7 @@ TIMETABLE_NUM     = 5
 EVENTS_NUM        = 5
 DOCUMENT_NUM      = 5
 SKILLS_NUM        = 5
-LINKS_NUM      = 3
+LINKS_NUM      = 4
 
 REQUEST_TYPES = {
   1  => 'rt_volunteer_subscribe',
@@ -232,7 +232,7 @@ REQUEST_TYPES.each do |kind , name|
   RequestType.create!(kind: kind)
 end
 
-puts "Creando Tipos de solicitudes"
+puts "Creando Tipos de entidades"
 ENTITY_TYPES.each do |kind , name|
   EntityType.create!(kind: kind, description: name)
 end
@@ -360,8 +360,8 @@ ProjectType.all.each do |project_type|
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 1,
-        active: 0,
+        kind: 2,
+        active: 1,
         url: "assets/#{n}.jpg",
         linkable: project
     )
@@ -431,8 +431,8 @@ ProjectType.all.each do |project_type|
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 1,
-        active: 0,
+        kind: 2,
+        active: 1,
         url: "assets/#{n}.jpg",
         linkable: project
     )

@@ -1,29 +1,48 @@
 require 'rails_helper'
-
+include Devise::TestHelpers
 feature 'rt volunteer subscribe' do
 
   
 
-  context "Proposals" do
-    scenario "Shows moderation activity on proposals", :js do
-      proposal = create(:proposal)
+  context "Projects" do
 
-      visit proposal_path(proposal)
 
-      within("#proposal_#{proposal.id}") do
-        click_link 'Hide'
-      end
+    scenario "create request" do
+      visit new_rt_volunteer_subscribe_path
+      fill_in 'rt_volunteer_subscribe_name', with: 'A name'
+      
+      click_button 'button button4'
+      expect(page).to_not have_content 'Request sent successfully.'
+    
+      
+    end
 
-      visit admin_activity_path
-
-      within("#activity_#{Activity.last.id}") do
-        expect(page).to have_content(proposal.title)
-        expect(page).to have_content("Hidden")
-        expect(page).to have_content(@admin.user.username)
+    scenario "Shows project in projects" do
+      project = create(:project)
+      visit index_i_projects_path
+      within("#projects") do
+        expect(page).to have_content(project.name)
       end
     end
 
+    scenario "Shows login" do
+      current_user = login_as(create(:user))	
+      #project = create(:project)
+      visit index_i_projects_path
+      #click_link new_user_session_path
+      expect(page).to have_content('Modificar contraseña')
+      
+    end
+
+    scenario "not Shows login" do
+      visit index_i_projects_path
+      expect(page).to_not have_content('Modificar contraseña')
+      
+    end
+
     
+  end  
+          
   
 
 end

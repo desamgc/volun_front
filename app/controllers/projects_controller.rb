@@ -20,9 +20,9 @@ class ProjectsController < ApplicationController
 
   def index_i
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:links).image_featured.search(params[:q])
+    @search = Project.includes(:links).search(params[:q])
     @projects_actives = @search.result  
-    @projects_featured = Project.includes(:links).featured.image_featured
+    @projects_featured = Project.includes(:links).featured
     @locations = Project.first(5).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     #gon.items = @projects_actives.as_json(:only => [:id, :description])
     #gon.locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
