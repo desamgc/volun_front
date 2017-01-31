@@ -9,14 +9,14 @@ class Rt::OthersController < ApplicationController
   end
 
   def new
-    @rt_other = Other.new
+    @rt_other = Rt::Other.new
   end
 
   def edit
   end
 
   def create
-    @rt_other = Other.new(rt_other_params)
+    @rt_other = Rt::Other.new(rt_other_params)
     @rt_other.request_form.user_id = current_user.id
     if @rt_other.save
       redirect_to index_i_projects_path, notice: t('rt_other.response')

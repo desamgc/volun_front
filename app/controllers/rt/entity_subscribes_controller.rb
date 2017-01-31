@@ -11,14 +11,15 @@ class Rt::EntitySubscribesController < ApplicationController
   end
 
   def new
-    @rt_entity_subscribe = EntitySubscribe.new
+    @rt_entity_subscribe = Rt::EntitySubscribe.new
   end
 
   def edit
   end
 
   def create
-    @rt_entity_subscribe = EntitySubscribe.new(rt_entity_subscribe_params)
+    @rt_entity_subscribe = Rt::EntitySubscribe.new(rt_entity_subscribe_params)
+    debugger
     if @rt_entity_subscribe.save
       redirect_to index_i_projects_path, notice: t('volunteer_subscribe.response')
     else
@@ -39,6 +40,6 @@ class Rt::EntitySubscribesController < ApplicationController
       end
     end 
     def rt_entity_subscribe_params
-      params.require(:rt_entity_subscribe).permit(:name, :vat_num, :email, :contact_name, :contact_last_name, :contact_last_name_alt, :representative_name, :representative_last_name, :representative_last_name_alt, :phone_number, :phone_number_alt, :road_type_id, :road_name, :number_type, :road_number, :postal_code, :town, :province_id, :request_reason_id, :entity_type_id, :other_motive)
+      params.require(:rt_entity_subscribe).permit(:name, :vat_number, :email, :contact_name, :contact_last_name, :contact_last_name_alt, :representative_name, :representative_last_name, :representative_last_name_alt, :phone_number, :phone_number_alt, :road_type_id, :road_name, :number_type, :road_number, :postal_code, :town, :province_id, :entity_type_id, :other_subscribe_reason, :request_form, request_form_attributes: [:id, :request_reason_id] )
     end
 end

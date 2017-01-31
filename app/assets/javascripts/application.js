@@ -52,7 +52,7 @@ function closeAvisos()
 
 
 $(document).ready(function(){
-        if ($("#rt_entity_subscribe_request_reason_id").val()==4)
+        if ($("#rt_entity_subscribe_request_form_request_reason_id").val()==4)
             $('#other_motive').show();
         else
             $('#other_motive').hide();  
@@ -66,8 +66,8 @@ $(document).ready(function(){
             $('#row').show();
         });
 
-        $("#rt_entity_subscribe_request_reason_id").change(function(){
-            if ($("#rt_entity_subscribe_request_reason_id").val() == 4)
+        $("#rt_entity_subscribe_request_form_request_reason_id").change(function(){
+            if ($("#rt_entity_subscribe_request_form_request_reason_id").val() == 4)
             {    
               $('#other_motive').show();
               $('#rt_entity_subscribe_other_motive').val("");

@@ -1,7 +1,7 @@
 <%= form_for(@rt_volunteer_appointment, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_appointment})%>
-  <legend class="parrafo"><%= main_title(t("rt_volunteer_appointment.title", model: RtVolunteerAppointment.model_name.human)) %></legend>
+  <legend class="parrafo"><%= main_title(t("rt_volunteer_appointment.title", model: Rt::VolunteerAppointment.model_name.human)) %></legend>
   
   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
@@ -12,7 +12,7 @@
     <div class="row">
       <div class="form-group">
         <div class="col-xs-12 col-sm-12 col-md-12">
-          <span class="labelUp"><%= RtVolunteerAppointment.human_attribute_name(:reason) %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= Rt::VolunteerAppointment.human_attribute_name(:reason) %> <span class="asterisco">*</span></span>
           <%= f.text_area :reason %>
         </div>
       </div>

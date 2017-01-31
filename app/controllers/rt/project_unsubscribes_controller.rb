@@ -9,7 +9,7 @@ class Rt::ProjectUnsubscribesController < ApplicationController
   end
 
   def new
-    @rt_project_unsubscribe = ProjectUnsubscribe.new
+    @rt_project_unsubscribe = Rt::ProjectUnsubscribe.new
     @rt_project_unsubscribe.project = Project.find_by_id(params[:project_id])
     
   end
@@ -18,7 +18,7 @@ class Rt::ProjectUnsubscribesController < ApplicationController
   end
 
   def create
-    @rt_project_unsubscribe = ProjectUnsubscribe.new(rt_project_unsubscribe_params)
+    @rt_project_unsubscribe = Rt::ProjectUnsubscribe.new(rt_project_unsubscribe_params)
     @rt_project_unsubscribe.request_form.user_id = current_user.id
     if @rt_project_unsubscribe.save
       redirect_to index_i_projects_path, notice: t('rt_project_unsubscribe.response')

@@ -263,9 +263,22 @@ ROAD_TYPES.each do |name, code|
 end
 
 
+puts "Creando Tipos de razones"
+REQUEST_REASONS.each do |code, name|
+  RequestReason.create!(description: name)
+end
 
 
+
+REJECTION_TYPES = {
+  1 => 'No procede',
   
+}
+
+puts "Creando Tipos de rechazos"
+REJECTION_TYPES.each do |code, name|
+  RejectionType.create!(description: name, kind:code)
+end
 
 
 
@@ -313,7 +326,6 @@ ProjectType.all.each do |project_type|
       entity_id:             Entity.all.sample.id,
       execution_start_date:  Faker::Time.between(DateTime.now - 10, DateTime.now),
       execution_end_date:    Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow),
-      contact_name:          Faker::Name.name,
       phone_number:          Faker::PhoneNumber.phone_number,
       email:                 Faker::Internet.email,
       beneficiaries_num:     10,
@@ -322,8 +334,8 @@ ProjectType.all.each do |project_type|
       insured:               true,
       active:                true,
       publish:               true,
-      contact_name:           Faker::Lorem.name,   
-      contact_last_name:           Faker::Lorem.name
+      contact_name:          Faker::Lorem.name,   
+      contact_last_name:     Faker::Lorem.name
 
     }
     
@@ -385,7 +397,6 @@ ProjectType.all.each do |project_type|
       entity_id:             Entity.all.sample.id,
       execution_start_date:  Faker::Time.between(DateTime.now - 10, DateTime.now),
       execution_end_date:    Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow),
-      contact_name:          Faker::Name.name,
       phone_number:          Faker::PhoneNumber.phone_number,
       email:                 Faker::Internet.email,
       beneficiaries_num:     10,

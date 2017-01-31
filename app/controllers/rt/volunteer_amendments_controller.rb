@@ -13,7 +13,7 @@ class Rt::VolunteerAmendmentsController < ApplicationController
   end
 
   def new
-    @rt_volunteer_amendment = VolunteerAmendment.new
+    @rt_volunteer_amendment = Rt::VolunteerAmendment.new
     set_amendment_volunteer
   end
 
@@ -21,7 +21,7 @@ class Rt::VolunteerAmendmentsController < ApplicationController
   end
 
   def create
-    @rt_volunteer_amendment = VolunteerAmendment.new(rt_volunteer_amendment_params)
+    @rt_volunteer_amendment = Rt::VolunteerAmendment.new(rt_volunteer_amendment_params)
     @rt_volunteer_amendment.request_form.user_id = current_user.id
     if @rt_volunteer_amendment.save
       redirect_to index_i_projects_path, notice: t('rt_volunteer_amendment.response')

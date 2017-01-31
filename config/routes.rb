@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :others
     resources :activity_unpublishings
     resources :activity_publishings
-    resources :project_unsubscribes, param: :project
+    resources :project_unsubscribes, param: :project_id
     resources :project_unpublishings
     resources :project_publishings
     resources :volunteers_demands

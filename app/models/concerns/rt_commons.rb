@@ -4,8 +4,6 @@ module RtCommons
   included do
 
     has_one :request_form, as: :rt_extendable, required: true
-    belongs_to :user
-    
     accepts_nested_attributes_for :request_form
 
     validate :check_request_type

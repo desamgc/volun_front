@@ -2,6 +2,10 @@ es:
   activerecord:
     errors:
       models:
+        request_form:
+          attributes:
+            request_reason_id: 
+              blank: es obligatorio  
         rt/volunteer_subscribe:
           attributes:
             email:
@@ -46,14 +50,13 @@ es:
             road_name: 
               blank: es obligatorio  
             postal_code: 
-              blank: es obligatorio    
+              blank: es obligatorio
+              invalid: es incorrecto
             town: 
               blank: es obligatorio  
             province_id: 
               blank: es obligatorio  
-            request_reason_id: 
-              blank: es obligatorio  
-            other_motive: 
+            other_subscribe_reason: 
               blank: es obligatorio  
         rt/volunteer_amendment:
           attributes:
@@ -170,6 +173,8 @@ es:
             reason:
               blank: es obligatorio                       
     attributes:
+      request_form:
+        request_reason_id: Motivo
       rt/volunteer_subscribe:
         name: Nombre
         phone_number: Telefono
@@ -187,7 +192,7 @@ es:
         representative_last_name_alt: Segundo apellido
         phone_number: Telefono
         phone_number_alt: Otro telefono
-        vat_num: CIF
+        vat_number: CIF
         email: Correo electronico
         road_type_id: Tipo de calle
         road_number: Numero de calle
@@ -196,8 +201,7 @@ es:
         postal_code: Codigo postal
         town: Municipio
         province_id: Provincia
-        request_reason: Motivo
-        other_motive: Otro motivo
+        other_subscribe_reason: Otro motivo
         entity_type: Tipo de entidad
       rt/volunteer_amendment:
         phone_number: Telefono

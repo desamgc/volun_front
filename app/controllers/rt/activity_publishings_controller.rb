@@ -9,14 +9,14 @@ class Rt::ActivityPublishingsController < ApplicationController
   end
 
   def new
-    @rt_activity_publishing = ActivityPublishing.new
+    @rt_activity_publishing = Rt::ActivityPublishing.new
   end
 
   def edit
   end
 
   def create
-    @rt_activity_publishing = ActivityPublishing.new(rt_activity_publishing_params)
+    @rt_activity_publishing = Rt::ActivityPublishing.new(rt_activity_publishing_params)
     @rt_activity_publishing.request_form.user_id = current_user.id
     if @rt_activity_publishing.save
       redirect_to index_i_projects_path, notice: t('rt_activity_publishing.response')

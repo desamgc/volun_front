@@ -9,14 +9,14 @@ class Rt::VolunteerAppointmentsController < ApplicationController
   end
 
   def new
-    @rt_volunteer_appointment = VolunteerAppointment.new
+    @rt_volunteer_appointment = Rt::VolunteerAppointment.new
   end
 
   def edit
   end
 
   def create
-    @rt_volunteer_appointment = VolunteerAppointment.new(rt_volunteer_appointment_params)
+    @rt_volunteer_appointment = Rt::VolunteerAppointment.new(rt_volunteer_appointment_params)
     @rt_volunteer_appointment.request_form.user_id = current_user.id
     if @rt_volunteer_appointment.save
       redirect_to index_i_projects_path, notice: t('rt_volunteer_appointment.response')

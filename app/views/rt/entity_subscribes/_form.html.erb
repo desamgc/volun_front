@@ -20,8 +20,8 @@
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-3">
-          <span class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:vat_num) %> <span class="asterisco">*</span></span>
-          <%= f.text_field :vat_num %>
+          <span class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:vat_number) %> <span class="asterisco">*</span></span>
+          <%= f.text_field :vat_number %>
         </div>
       </div>
     </div>
@@ -142,8 +142,10 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:request_reason_id) %> <span class="asterisco">*</span></span>
-          <%= f.select :request_reason_id, request_reasons_select_options %> 
+          <span class="labelUp"><%= RequestForm.human_attribute_name(:request_reason_id) %> <span class="asterisco">*</span></span>
+          <%= f.fields_for(@rt_entity_subscribe.request_form) do |f_r| %>
+              <%= f_r.select :request_reason_id, request_reasons_select_options %> 
+          <% end %>    
         </div>
       </div>
     </div>
@@ -151,8 +153,8 @@
     <div class="row" id="other_motive">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:other_motive) %> <span class="asterisco">*</span></span>
-          <%= f.text_area :other_motive %> 
+          <span class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:other_subscribe_reason) %> <span class="asterisco">*</span></span>
+          <%= f.text_area :other_subscribe_reason %> 
         </div>
       </div>
     </div>

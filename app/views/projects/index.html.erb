@@ -27,7 +27,7 @@
                       <td class="table-cell-group"><%= tb_proyecto.volunteers_num %></td>
                       <td class="table-cell-group"><%= tb_proyecto.name %></td>
                       <td class="table-cell-group"><%= link_to  "Ver" , project_path(tb_proyecto) %></td> 
-                      <td class="table-cell-group"><%= link_to "Baja", {controller:"rt_project_unsubscribes", action:"new", project_id: tb_proyecto.id} %> </td>  
+                      <td class="table-cell-group"><%= link_to "Baja", {controller:"rt/project_unsubscribes", action:"new", project_id: tb_proyecto.id} %> </td>  
 
 
                       </tr>

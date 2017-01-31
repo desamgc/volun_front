@@ -3,7 +3,7 @@ class Rt::ActivityUnpublishingsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    params[:q] ||= ActivityUnpublishing.ransack_default
+    params[:q] ||= Rt::ActivityUnpublishing.ransack_default
     @search_q = @rt_activity_unpublishings.search(params[:q])
     @rt_activity_unpublishings = @search_q.result.paginate(page: params[:page], per_page: params[:per_page]||15)
 
@@ -17,14 +17,14 @@ class Rt::ActivityUnpublishingsController < ApplicationController
   end
 
   def new
-    @rt_activity_unpublishing = ActivityUnpublishing.new
+    @rt_activity_unpublishing = Rt::ActivityUnpublishing.new
   end
 
   def edit
   end
 
   def create
-    @rt_activity_unpublishing = ActivityUnpublishing.new(rt_activity_unpublishing_params)
+    @rt_activity_unpublishing = Rt::ActivityUnpublishing.new(rt_activity_unpublishing_params)
     if @rt_activity_unpublishing.save
       redirect_to projects_url, notice: t('rt_activity_unpublishing.response')
     else

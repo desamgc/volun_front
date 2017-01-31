@@ -46,10 +46,10 @@ PROJECT_TYPES = {
 }
 
 REQUEST_REASONS = {
-  0 => 'Difusión de proyectos',
-  1 => 'Solicitud voluntarios',
-  2 => 'Publicación actividad en agenda',
-  3 => 'Otros'
+  1 => 'Difusión de proyectos',
+  2 => 'Solicitud voluntarios',
+  3 => 'Publicación actividad en agenda',
+  4 => 'Otros'
 }
 
 AREA_NAMES = [
@@ -221,6 +221,13 @@ NOTICE_TYPES = {
 }
 
 
+REJECTION_TYPES = {
+  1 => 'No procede',
+  
+}
+
+
+
 puts "Creando Medios de comunicación"
 NOTICE_TYPES.each do |kind , name|
   NoticeType.create!(kind: kind, description: name)
@@ -264,6 +271,16 @@ ROAD_TYPES.each do |name, code|
 end
 
 
+puts "Creando Tipos de vías"
+REQUEST_REASONS.each do |code, name|
+  RequestReason.create!(description: name)
+end
+
+
+puts "Creando Tipos de rechazos"
+REJECTION_TYPES.each do |code, name|
+  RejectionType.create!(description: name, kind:code)
+end
 
 
   

@@ -1,7 +1,5 @@
-# model for entity subscribe
 class Rt::EntitySubscribe < ActiveRecord::Base
   include RtCommons
-  belongs_to :request_reason
   belongs_to :road_type
   belongs_to :province
   belongs_to :entity_type
@@ -13,9 +11,9 @@ class Rt::EntitySubscribe < ActiveRecord::Base
   validates :phone_number_alt, format: { with: VALID_PHONE_NUMBER_REGEX, if: -> { phone_number_alt.present? } }
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :road_type_id, :road_name, :number_type, :road_number, :postal_code, :province_id,
-            :town, :request_reason_id, :name, :contact_name,
+            :town,  :name, :contact_name,
             :contact_last_name, presence: true
-  validates :other_motive, presence: true, if: -> { request_reason_id == 4 }
+  validates :other_subscribe_reason, presence: true, if: -> { request_form.request_reason_id == 4 }
   VALID_CODIGOPOSTAL_REGEX = /\A(\d{5})\z/
   validates :postal_code, format: { with: VALID_CODIGOPOSTAL_REGEX }
 
