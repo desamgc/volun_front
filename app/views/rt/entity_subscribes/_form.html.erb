@@ -143,7 +143,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
           <span class="labelUp"><%= RequestForm.human_attribute_name(:request_reason_id) %> <span class="asterisco">*</span></span>
-          <%= f.fields_for(@rt_entity_subscribe.request_form) do |f_r| %>
+          <%= f.fields_for(:request_form_attributes, @rt_entity_subscribe.request_form) do |f_r| %>
               <%= f_r.select :request_reason_id, request_reasons_select_options %> 
           <% end %>    
         </div>
