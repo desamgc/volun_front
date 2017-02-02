@@ -1,32 +1,144 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Entities</h1>
+<div class="row">
+<div class="form-group">
+<div class="bg-fluid2">
+  <div class="container bg-triangle nofluid">
+    <div class="tu-formas-parte">
+      <div class="row">
+        <h2 class="title5">Al registrarte como entidad tendras acceso a ..</h2>
+        <ul class="carouselFormasParte carousel-pagination-type2">
+          <li class="item">
+            <a href="#" class="formasParte-link" title="Ir a comparte">
+              <i class="formasParte-ico formasParte-ico-comparte"></i>
+              <h3 class="formasParte-title">Publicar actividades en la agenda</h3>
+            </a>
+            <p class="formasParte-text">Existe una agenda de actividades .......</p>
+          </li>
+          <li class="item">
+            <a href="#" class="formasParte-link" title="Ir a opina">
+              <i class="formasParte-ico formasParte-ico-opina"></i>
+              <h3 class="formasParte-title">Difundir proyectos</h3>
+            </a>
+            <p class="formasParte-text">Podra dar visibilidad .........</p>
+          </li>
+          <li class="item">
+            <a href="#" class="formasParte-link" title="Ir a tu contenido">
+              <i class="formasParte-ico formasParte-ico-tu-contenido"></i>
+              <h3 class="formasParte-title">Demandar voluntarios</h3>
+            </a>
+            <p class="formasParte-text">Podra demandar voluntarios para sus proyectos ..........</p>
+          </li>
+          
+          <li class="item">
+            <a href="#" class="formasParte-link" title="Ir a tus trámites">
+              <i class="formasParte-ico formasParte-ico-tramites"></i>
+              <h3 class="formasParte-title">Otras solicitudes</h3>
+            </a>
+            <p class="formasParte-text">Otros tipos de solicitudes .........</p>
+          </li>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Active</th>
-      <th>Entity type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @entities.each do |entity| %>
-      <tr>
-        <td><%= entity.name %></td>
-        <td><%= entity.description %></td>
-        <td><%= entity.active %></td>
-        <td><%= entity.entity_type %></td>
-        <td><%= link_to 'Show', entity %></td>
-        <td><%= link_to 'Destroy', entity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <li class="item">
+            <a href="#" class="formasParte-link" title="Ir a tus trámites">
+              <i class="formasParte-ico formasParte-ico-tramites"></i>
+              <h3 class="formasParte-title">Otras solicitudes</h3>
+            </a>
+            <p class="formasParte-text">Otros tipos de solicitudes .........</p>
+          </li>
 
-<br>
+          <li class="item">
+            <a href="#" class="formasParte-link" title="Ir a tus trámites">
+              <i class="formasParte-ico formasParte-ico-tramites"></i>
+              <h3 class="formasParte-title">Otras solicitudes</h3>
+            </a>
+            <p class="formasParte-text">Otros tipos de solicitudes .........</p>
+          </li>
 
-<%= link_to 'New Entity', new_rt_entity_subscribe_path %>
+          <li class="item">
+            <a href="#" class="formasParte-link" title="Ir a tus trámites">
+              <i class="formasParte-ico formasParte-ico-tramites"></i>
+              <h3 class="formasParte-title">Otras solicitudes</h3>
+            </a>
+            <p class="formasParte-text">Otros tipos de solicitudes .........</p>
+          </li>
+
+
+          <li class="item">
+            <a href="#" class="formasParte-link" title="Ir a tus trámites">
+              <i class="formasParte-ico formasParte-ico-tramites"></i>
+              <h3 class="formasParte-title">Otras solicitudes</h3>
+            </a>
+            <p class="formasParte-text">Otros tipos de solicitudes .........</p>
+          </li>
+
+
+          <li class="item">
+            <a href="#" class="formasParte-link" title="Ir a tus trámites">
+              <i class="formasParte-ico formasParte-ico-tramites"></i>
+              <h3 class="formasParte-title">Otras solicitudes</h3>
+            </a>
+            <p class="formasParte-text">Otros tipos de solicitudes .........</p>
+          </li>
+          
+        </ul>
+      </div>
+      <div class="row">
+          <% if current_user && current_user.loggable_type=="Entity" %>
+            
+        <% else %>
+            
+            <%= link_to 'Quiero darme de alta como entidad', new_rt_entity_subscribe_path, class: "button button4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="summary nofluid ">
+     <h3 class="summary-title">Entidades colaboradoras</h3>
+  </div>
+
+
+ <div class="listing nofluid">
+    <ul class="row">
+       <% @entities.each do |entity| %>
+
+          <li class="col-sm-4">
+                <a href="#" class="listing-link ">
+                    <%= render partial: "links/link", collection: entity.links %>
+                    <span class="listing-text">
+                        <%= entity.name %>
+                    </span>
+                </a>
+
+           </li>
+
+       <% end %>
+        
+           
+        
+    </ul>
+</div>
+</div>
+
+
+
+
+
+
+
+
