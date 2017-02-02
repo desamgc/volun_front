@@ -4,6 +4,7 @@ require 'database_cleaner'
 DatabaseCleaner.clean_with :truncation
 Faker::Config.locale = I18n.locale
 
+ACTIVITIES_NUM    = 10
 ADDRESSES_NUM     = 20
 PROJECTS_NUM      = 10
 PROJECTS_NUM_FEATURED = 3
@@ -304,9 +305,27 @@ end
 
 puts "Creando entidades"
 (1..ENTITIES_NUM).each do |n|
-  Entity.create!(name: "#{Entity.model_name.human} #{n}", email:Faker::Internet.email, representative_name:Faker::Lorem.name, representative_last_name:Faker::Lorem.name, contact_name:Faker::Lorem.name, contact_last_name:Faker::Lorem.name,
-      entity_type_id:EntityType.all.sample.id, address_id:Address.all.sample.id  )
-end
+  entity = Entity.create!(
+    name: "#{Entity.model_name.human} #{n}", 
+    email:Faker::Internet.email, 
+    representative_name:Faker::Lorem.name, 
+    representative_last_name:Faker::Lorem.name, 
+    contact_name:Faker::Lorem.name, 
+    contact_last_name:Faker::Lorem.name,
+    entity_type_id:EntityType.all.sample.id, 
+    address_id:Address.all.sample.id  )
+
+  puts "Creando links"
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 1,
+        active: 1,
+        url: "assets/" + rand(1..16).to_s + ".jpg",
+        linkable: entity
+    )
+  end
+end  
 
 
 # puts "Creando Motivos de solicitud"
@@ -450,6 +469,65 @@ ProjectType.all.each do |project_type|
     end  
     
 end
+
+end
+
+
+
+
+puts "Creando actividades"
+(1..ACTIVITIES_NUM).each do |n|
+    activity   = Activity.new()
+    activity.attributes = {
+      name:                  Faker::Lorem.name + "#{n}" ,
+      description:           Faker::Lorem.sentence,
+      start_date:   Time.now,
+      end_date:     Time.now,
+      transport: Faker::Lorem.name,
+      entity: Entity.all.sample
+      
+    }
+    
+    activity.save!
+
+    puts "Creando Eventos"
+    2.times do
+      event = Event.create!(
+        address:    Address.all.sample,
+        eventable:  activity,
+      )
+
+      puts "Creando Horarios para evento #{event.id}"
+      2.times do
+        Timetable.create!(
+          event: event,
+          execution_date:  rand(100).days.since.to_date,
+          start_hour: '11:11',
+          end_hour:   '12:12'
+        )
+      end
+    end
+
+    puts "Creando links"
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 1,
+        active: 1,
+        url: "assets/" + rand(1..16).to_s  + ".jpg",
+        linkable: activity
+    )
+    end  
+    (2..LINKS_NUM).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 2,
+        active: 1,
+        url: "assets/#{n}.jpg",
+        linkable: activity
+    )
+    end  
+    
 
 end
 
