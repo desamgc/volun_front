@@ -1,12 +1,11 @@
 class ActivitiesController < ApplicationController
 
-  load_and_authorize_resource
   respond_to :html, :js, :json
 
   def index
     params[:q] ||= Activity.ransack_default
-    @search_q = @activities.search(params[:q])
-    @activities = @search_q.result.paginate(page: params[:page], per_page: params[:per_page]||15)
+    @search_q = Activity.search(params[:q])
+    @activities = @search_q.result #.paginate(page: params[:page], per_page: params[:per_page]||15)
 
     respond_with(@activities)
   end

@@ -1,35 +1,111 @@
-<% model_class = Activity %>
 
 <div class="row">
-  <div class="col-md-12">
-    <%= model_title(model_class) %>
-  </div>
+<div class="form-group">
+<div class="bg-fluid1">
+  <div class="col-sm-6">
+    <div class="calendar-box rs_skip">
+      <div class="datepicker datepicker-inline datepicker-server">
+        <div class="datepicker-days">
+          <table class=" table-condensed">
+            <thead>
+              <tr>
+                <th class="prev"><a href="#">«</a></th>
+                <th class="prev-year"><a rel="nofollow" href="#" title="Año anterior: 2014"> < <span class="text-hide">Año anterior</span></a></th>
+                <th colspan="3" class="datepicker-switch">Noviembre 2016</th>
+                <th class="next-year"><a rel="nofollow" href="#" title="Año siguiente: 2016"> > <span class="text-hide">Año siguiente</span></a></th>
+                <th class="next"><a href="#">»</a></th>
+              </tr>
+              <tr>
+                <th class="dow">L</th>
+                <th class="dow">M</th>
+                <th class="dow">X</th>
+                <th class="dow">J</th>
+                <th class="dow">V</th>
+                <th class="dow">S</th>
+                <th class="dow">D</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="old disabled day">31</td>
+                <td class="old disabled day">1</td>
+                <td class="old disabled day">2</td>
+                <td class="old disabled day">3</td>
+                <td class="old disabled day">4</td>
+                <td class="old disabled day">5</td>
+                <td class="disabled day">6</td>
+              </tr>
+              <tr>
+                <td class="disabled day">7</td>
+                <td class="disabled day">8</td>
+                <td class="disabled day">9</td>
+                <td class="disabled day">10</td>
+                <td class="disabled day">11</td>
+                <td class="disabled day">12</td>
+                <td class="disabled day">13</td>
+              </tr>
+              <tr>
+                <td class="disabled day">14</td>
+                <td class="disabled day">15</td>
+                <td class="disabled day">16</td>
+                <td class="disabled day">17</td>
+                <td class="disabled day">18</td>
+                <td class="day active"><a href="00-home-medios.html">19</a></td>
+                <td class="disabled day">20</td>
+              </tr>
+              <tr>
+                <td class="disabled day">21</td>
+                <td class="disabled day">22</td>
+                <td class="day active"><a href="00-home-medios.html">23</a></td>
+                <td class="disabled day">24</td>
+                <td class="disabled day">25</td>
+                <td class="disabled day">26</td>
+                <td class="disabled day">27</td>
+              </tr>
+              <tr>
+                <td class="disabled day">28</td>
+                <td class="day active"><a href="00-home-medios.html">29</a></td>
+                <td class="day active"><a href="00-home-medios.html">30</a></td>
+                <td class="disabled day">1</td>
+                <td class="disabled day">2</td>
+                <td class="disabled day">3</td>
+                <td class="disabled day">4</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
 </div>
-<div class="index-panel row well">
-  <div class="col-md-6">
-    <%= content_tag(:div, link_to_new(model_class), class: 'col-md-6 pull-left') %>
-  </div>
-  <div class="col-md-6">
-    <%= content_tag(:div, search_collection(@search_q, :name_or_description_cont), class: 'col-md-6 pull-right') %>
-  </div>
+</div>
 </div>
 
-<table class="index-table">
-  <thead>
-    <tr>
-    <% model_class.main_columns.each do |column| -%>
-      <th><%= sort_link(@search_q, column) %></th>
-    <% end -%>
+<br/>
+<br/>
 
-      <th class="actions index_table-actions">
-        <%= t('actions') %>
-      </th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    <%= render(partial: 'activity', collection: @activities)%>
-  </tbody>
-</table>
 
-<%= render partial: "shared/pagination", locals: {collection: @activities} %>
+
+
+<div class="global-results">
+    <ul class="events-results">
+        
+        <li class="withimage">
+            <div class="event-image">
+                <img src="assets/eventos/eventos-01.jpg" alt="">
+            </div>
+            <div class="event-info">
+                <span class="event-type">EXPOSICIÓN</span>
+                <a href="#" class="event-link ">ClassicAuto Madrid 2015. VI Salón Internacional del Vehículo Clásico
+                </a>
+                <span class="event-intro">Automóviles, motocicletas, fabricantes, recambios, accesorios, equipos competición, preparadores, restauradores, organizadores de pruebas deportivas, industria auxiliar, clubes, medios de comunicación...</span>
+                <div class="event-date"><span>Del viernes 20 de febrero de 2015</span> <span>al domingo 22 de febrero de 2015</span></div>
+                <span class="event-location" data-latitude="" data-longitude="" data-name="" data-direction="">Pabellón de Cristal de la Casa de Campo</span>
+                
+            </div>
+        </li>
+        
+        
+    </ul>
+</div>
