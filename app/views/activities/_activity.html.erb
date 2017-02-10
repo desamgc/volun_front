@@ -1,16 +1,30 @@
-<tr id="<%= dom_id(activity) %>" >
 
-  <% project.main_attributes.each do |attr_name| %>
-  <td><%= show_attr(activity.public_send attr_name) %></td>
-  <% end %>
+<br/>
+<div class="global-results">
+    <ul class="events-results">
+        <li class="withimage">
+            <div class="event-image">
+                <%= render partial: "links/link", collection: activity.links.logo %>
+            </div>
 
-  <td class="index_table-actions">
-    <%= link_to_show(activity) %>
-    <%= link_to_edit(activity) %>
-<% if activity.try(:archived?) %>
-    <%= link_to_recover(activity) %>
-<% else %>
-    <%= link_to_destroy(activity) %>
-<% end %>
-  </td>
-</tr>
+
+            <div class="event-info">
+             <span class="event-type"><h3><%= activity.name %></h3></span>
+                
+             <span class="event-intro"><%= truncate(activity.description) %></span>
+             <%= link_to  "Leer mas .." , activity_path(activity), class: "event-link " %> 
+
+             <% activity.events.each do |event| %> 
+             
+                <div class="event-location"><span data-latitude="" data-longitude="" data-name="" data-direction=""><%= event.address.road_name %></span>
+                </div>
+                <br/>
+
+                <% event.timetables.each do |timetable| %> 
+                  <div class="event-date"><span><%= timetable.execution_date %></span></div>
+                <% end %>
+             <% end %>     
+            </div>
+        </li>
+</ul>
+</div>
