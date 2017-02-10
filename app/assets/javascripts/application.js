@@ -14,7 +14,7 @@
 //= require jquery_ujs
 // require turbolinks
 //= require js/locale/i18n_es
-//= require_tree .
+//= require_directory .
 
 
 
@@ -78,5 +78,11 @@ $(document).ready(function(){
               $('#rt_entity_subscribe_other_subscribe_reason').val("");
             }    
         });
+
+        
+                       
+          
+
+
 
 });
