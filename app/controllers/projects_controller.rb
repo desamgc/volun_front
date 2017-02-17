@@ -23,9 +23,10 @@ class ProjectsController < ApplicationController
     @search = Project.includes(:links).search(params[:q])
     @projects_actives = @search.result  
     @projects_featured = Project.includes(:links).featured
-    @locations = Project.first(5).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
-    #gon.items = @projects_actives.as_json(:only => [:id, :description])
-    #gon.locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    @districts = Project.includes(:districts).actives.distinct.order("districts.name").pluck('districts.name','districts.id')
+    @boroughs = ""
+    @areas = Area.all
     @grid = true
     respond_to do |format|
       format.html
@@ -33,13 +34,20 @@ class ProjectsController < ApplicationController
     end
   end
 
-  
+  def boroughs
+   @boroughs = Project.includes(:districts).actives.distinct.where("addresses.district_id=?", params[:district]).order("addresses.borough").pluck('addresses.borough', 'addresses.borough')
+    respond_to do |format|
+      format.json { render json: @boroughs }
+    end  
+
+  end if  
 
   
   # GET /projects/1
   # GET /projects/1.json
   def show
-
+    @locations_project = @project.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    
   end
 
   private

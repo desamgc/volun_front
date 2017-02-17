@@ -1,32 +1,17 @@
-
-        <li class="col-xs-12 col-sm-4 col-md-4">
-          <div class="gallery-item">
-            <%= render partial: "links/link", collection: project.links.logo %>
-            <%= social_share_button_tag(project.name) %>
-              
-            <span class="gallery-text">
-
-                <h3><%=  project.name %></h3>
-                <%= truncate project.description %>
-            </span>
-
-            <%= link_to  "Leer mas .." , project_path(project), class: "event-link " %> 
-             
-            <%= render 'shared/participation', collection: project %>
-            <% project.events.each do |event| %> 
-                <div class="event-location"><span data-latitude="" data-longitude="" data-name="" data-direction=""><%= event.address.road_name %></span></div>
-                <br/>
-
-                <% event.timetables.each do |timetable| %> 
-                  <div class="event-date"><span><%= timetable.execution_date %></span></div>
-                <% end %>
-                
-                
-                
-            <% end %>    
-                <br/>
-                <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> <%=  project.volunteers_num %>
-          </div>
-        </li>
+<li class="col-xs-12 col-sm-4 col-md-4">
+  <div class="gallery-item">
+      <%= render partial: "links/link", collection: project.links.logo %>
+      <%= social_share_button_tag(project.name) %>
+      <span class="gallery-text">
+         <h3><%=  project.name %></h3>
+         <%= truncate project.description %>
+      </span>
+      <%= link_to  "Leer mas .." , project_path(project), class: "event-link " %> 
+      <%= render 'shared/participation', collection: project %>
+      <%= render partial: 'events/event', collection: project.events %>   
+      <br/>
+      <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> <%=  project.volunteers_num %>
+  </div>
+</li>
     
 
