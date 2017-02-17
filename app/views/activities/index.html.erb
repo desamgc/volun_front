@@ -1,21 +1,61 @@
-<%= javascript_tag do %>
-  var list_days = <%= raw @list_days.to_json %>;
-<% end %>
+<div class="row">
+<div class="bg-fluid0">
+  <div class="bg-triangle">
+    <div class="tributes nofluid">
+      <ul>
+        
+        <li>
+          <h3 class="tributes-header"><span class="tributes-title">Actividades</span></h3>
+          <div class="tributes-body tributes-table">
+            <form class="tributes-form">
+              <table class="table">
+                <thead>
+                  <tr class="table-row-transform">
+                    <th>Fecha inicio</th>
+                    <th>Fecha fin</th>
+                    <th>Nombre Actividad</th>
+                    
+                  </tr>
+                </thead>
 
-<div id="fecha">
+                <tbody>
+                  <% @activities.each do |activity| %>
+                    <tr class="table-row-transform">
+                      <td class="table-cell-group"><%= activity.start_date %></td>
+                      <td class="table-cell-group"><%= activity.end_date %></td>
+                      <td class="table-cell-group"><%= activity.name %></td>
+                      <td class="table-cell-group"><%= link_to  "Ver" , activity_path(activity) %></td> 
+                      <td class="table-cell-group"><%= link_to "Baja", {controller:"rt/activity_unpublishings", action:"new", activity_id: activity.id} %> </td>  
 
+
+                      </tr>
+                  <% end %>
+                </tbody>
+                
+              </table>
+              
+              
+            </form>
+          </div>
+        </li>
+      </ul>
+     
+    </div>
+  </div>
+</div>
 </div>
 
-<br/>
-<br/>
-<%= text_area_tag :first_day, @day.html_safe, { style: "display: none;"} %>
 
 
-<div id="day">
-    <h1> Agenda del dia <%= @day %> </h1> 
-</div>
+<%= paginate @activities, locals: {modelo: @activities} %>
 
-<div id="activities">
+<%= page_entries_info @activities %>
 
-  <%= render partial: 'activity', collection: @activities %>      
+<div class="row">
+
+ <div class="button-group text-right">
+    <%= link_to 'Publicar actividad', new_rt_activity_publishing_path, class: "button button4" %>
+        
+ </div> 
+
 </div>

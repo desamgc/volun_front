@@ -1,8 +1,19 @@
 class ActivitiesController < ApplicationController
-
+  before_filter :authenticate_user!, only: [:index]
+  before_action :set_activity, only: [:show]
   respond_to :html, :js, :json
+  
 
   def index
+    @activities = Activity.all.page(params[:page]).per(5)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+
+  def index_i
 
     params[:q] ||= Activity.ransack_default
     params[:day] ||= Activity.includes(:events, :timetables).activities_present(0.day.ago.to_s).minimum(:execution_date).strftime ("%Y-%m-%d")
@@ -20,36 +31,15 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    respond_with(@activity) do |format|
-      format.js { render 'shared/popup' }
-    end
+    @locations_activity = @activity.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
   end
 
-  def new
-    @activity = Activity.new
-    respond_with(@activity)
-  end
-
-  def edit
-  end
-
-  def create
-    @activity.save
-    respond_with(@activity)
-  end
-
-  def update
-    @activity.update_attributes(activity_params)
-    respond_with(@activity)
-  end
-
-  def destroy
-    @activity.destroy
-    respond_with(@activity)
-  end
+  
 
   protected
-
+    def set_activity
+      @activity = Activity.includes(:links).find(params[:id])
+    end
     def activity_params
       params.require(:activity).permit(:name, :description, :active)
     end

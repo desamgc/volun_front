@@ -1,0 +1,21 @@
+<%= javascript_tag do %>
+  var list_days = <%= raw @list_days.to_json %>;
+<% end %>
+
+<div id="fecha">
+
+</div>
+
+<br/>
+<br/>
+<%= text_area_tag :first_day, @day.html_safe, { style: "display: none;"} %>
+
+
+<div id="day">
+    <h1> Agenda del dia <%= @day %> </h1> 
+</div>
+
+<div id="activities">
+
+  <%= render partial: 'activity', collection: @activities %>      
+</div>

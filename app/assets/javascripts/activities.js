@@ -9,7 +9,7 @@ $("#fecha").datepicker({
         //var arr_list_days = new Array();
         //arr_list_days = list_days.split(",");
         //$('#fecha').datepicker('setDates', arr_list_days);  
-        //$('#fecha').datepicker('setDates', $("#first_day").val());  
+        $('#fecha').datepicker('setDates', $("#first_day").val());  
         
         $('#fecha').datepicker().on('changeDate', function() {
                            param_day = '{"timetables_execution_date_eq"' + "=>" + "'" + $('#fecha').datepicker('getFormattedDate') + '"}'
@@ -32,21 +32,10 @@ $("#fecha").datepicker({
         }); 
 
         function DisableDays(date){
-           var formatted = date.getFullYear() + "-" + ("0" + date.getMonth()+1).slice(-2) + "-" + ("0"+date.getDate()).slice(-2);
-           //alert(formatted)
-           if (formatted == "2017-02-10") alert('estoy aqui')
+           var formatted = date.getFullYear() + "-" + ("0" + (date.getMonth()+1)).slice(-2) + "-" + ("0"+date.getDate()).slice(-2);
            var str = list_days.toString();
-           //alert(str);
-           if (str.indexOf(formatted,0) >= 0)
-           {
-              alert('estoy aqui');
-              return true
-           } 
-           else
-           {
-
-              return false
-           } 
+           var res = (str.indexOf(formatted,0) >= 0) ? true : false
+           return res
 
         }
 

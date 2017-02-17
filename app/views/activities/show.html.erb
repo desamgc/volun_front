@@ -1,20 +1,102 @@
-<%= main_title(t("action.show", model: Activity.model_name.human)) %>
 
-<dl class="dl-horizontal">
-
-  <dt><%= Activity.human_attribute_name(:id) %>:</dt>
-  <dd><%= @activity.id %></dd>
-  <dt><%= Activity.human_attribute_name(:name) %>:</dt>
-  <dd><%= @activity.name %></dd>
-  <dt><%= Activity.human_attribute_name(:description) %>:</dt>
-  <dd><%= @activity.description %></dd>
-  <dt><%= Activity.human_attribute_name(:active) %>:</dt>
-  <dd><%= t("humanize.#{@activity.active}") %></dd>
-  <dt><%= Activity.human_attribute_name(:created_at) %>:</dt>
-  <dd><%= show_simple_date(@activity.created_at) %></dd>
-
-</dl>
-<% unless request.xhr? %>
-<%= button_to_back %>
-<%= button_to_edit(@activity) %>
+<%= javascript_tag do %>
+  var locations = <%= raw @locations_activity.to_json %>;
+  var multiple = false;
+  var url_map = "<%= Rails.application.secrets.url_map %>";
+  var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
 <% end %>
+
+<div class="col-md-8">
+<h3 class="summary-title"><%= @activity.name %></h3>
+<div role="tabpanel" class="tab-pane active" id="tpi-tab2">
+              <ul class="row">
+               <% @activity.links.logo.each do |link| %>
+                <li class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="element_info_relevant element_info_relevant-type2">
+                    <div class="info_relevant_img">
+                      <%= render partial: "links/link", locals: { link: link} %>
+                      
+                    </div>
+                    
+                  </div>
+                </li>
+               <% end %> 
+
+               <% @activity.links.image.each do |link| %>
+                <li class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="element_info_relevant element_info_relevant-type2">
+                    <div class="info_relevant_img">
+                      <%= render partial: "links/link", locals: { link: link} %>
+                      
+                    </div>
+                    
+                  </div>
+                </li>
+               <% end %>  
+              </ul>
+</div>
+
+<div class="detalle">
+  <div class="nofluid">
+    <div class="tramites-content">
+     <div class="tiny-text">
+          <p> <%= @activity.description %> </p>
+      </div>
+    </div>
+    
+    <div class="item noTitle">
+        <h3 class="">Enlaces</h3>
+        <dl class="dl-horz">
+          <% @activity.links.url.each do |link| %>
+              <dd><a href="<%= link.url %>"><%= link.description %></a></dd>
+          <% end %>    
+        </dl>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<div class="bg-fluid5 nofluid">
+  <div class="videoplayer row">
+    <div class="col-sm-4 cabecera">
+      <h4 class="title">Galería de videos</h4>
+    </div>
+    <% @activity.links.video.each do |link| %>
+    <div class="col-sm-12">
+      <div class="currentvideo" data-height="308" data-width="450" data-url="" data-expressInstallSwfurl="" data-file="" data-logo="" data-image="" data-urlhtml5= "<%= link.url %>" >
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+ <div class="button-group">
+    <%= link_to 'volver', index_i_activities_path,class: "button button4" %>
+ </div>
+</div>
+
+
+<div class="col-md-4">
+<div class="gallery-item">
+  <div class="info-actividad">
+      <div class="item ">
+        <h3 class="place title9">Direcciónes</h3>
+        <%= render partial: 'events/event', collection: @activity.events %>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+         <div id="mapDiv">
+           
+         </div>
+      </div>
+    </div>
+ </div>   
+</div>

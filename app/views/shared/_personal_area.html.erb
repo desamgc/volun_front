@@ -23,7 +23,7 @@
                               <li><%= link_to 'Otras solicitudes', new_rt_other_path %></li>
 
                               <li role="separator" class="divider"></li>
-                              <li><a href="#">Mis actividades</a></li>
+                              <li><%= link_to 'Mis Actividades', entity_activities_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id) %></li>
 
                               <li role="separator" class="divider"></li>
                               <li><%= link_to 'Solicitar baja de la plataforma', new_rt_entity_unsubscribe_path %></li>
