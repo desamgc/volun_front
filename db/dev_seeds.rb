@@ -227,6 +227,18 @@ NOTICE_TYPES.each do |kind , name|
 end
 
 
+AREAS = {
+  1 => 'EDUCACION',
+  2 => 'CULTURA',
+  3 => 'EMPLEO',
+  4 => 'OTRA'
+}
+
+puts "Creando Areas"
+AREAS.each do |kind , name|
+  Area.create!(name: name, description: name, active: true)
+end
+
 
 puts "Creando Tipos de solicitudes"
 REQUEST_TYPES.each do |kind , name|
@@ -299,7 +311,9 @@ puts "Creando Direcciones"
     country:               "España",
     town:                  "Madrid",
     latitude:              441900 + rand(100), 
-    longitude:             4479566 + rand(100) 
+    longitude:             4479566 + rand(100), 
+    district:              District.all.sample,
+    borough:               Faker::Address.state 
   )
 end
 
@@ -339,7 +353,7 @@ ProjectType.all.each do |project_type|
     project   = Project.new()
     project.attributes = {
       name:                  "#{Faker::App.name} #{project_type} #{n}",
-      description:           Faker::Lorem.sentence,
+      description:           "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
       functions:             Faker::Lorem.sentence,
       comments:              Faker::Lorem.sentence,
       entity_id:             Entity.all.sample.id,
@@ -396,7 +410,25 @@ ProjectType.all.each do |project_type|
         url: "assets/#{n}.jpg",
         linkable: project
     )
+    end
+    (2..LINKS_NUM).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 3,
+        active: 1,
+        url: "http://www.marca.com",
+        linkable: project
+    )  
     end  
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 4,
+        active: 1,
+        url: "http://vjs.zencdn.net/v/oceans.mp4",
+        linkable: project
+    )  
+    end    
     
 end
 
@@ -410,7 +442,7 @@ ProjectType.all.each do |project_type|
     project   = Project.new()
     project.attributes = {
       name:                  "#{Faker::App.name} #{project_type} #{n}",
-      description:           Faker::Lorem.sentence,
+      description:          "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
       functions:             Faker::Lorem.sentence,
       comments:              Faker::Lorem.sentence,
       entity_id:             Entity.all.sample.id,
@@ -430,6 +462,7 @@ ProjectType.all.each do |project_type|
     
     project.save!
 
+    
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
@@ -467,6 +500,24 @@ ProjectType.all.each do |project_type|
         linkable: project
     )
     end  
+    (2..LINKS_NUM).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 3,
+        active: 1,
+        url: "http://www.marca.com",
+        linkable: project
+    )  
+    end  
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 4,
+        active: 1,
+        url: "http://vjs.zencdn.net/v/oceans.mp4",
+        linkable: project
+    )  
+    end  
     
 end
 
@@ -480,7 +531,7 @@ puts "Creando actividades"
     activity   = Activity.new()
     activity.attributes = {
       name:                  Faker::Lorem.name + "#{n}" ,
-      description:           Faker::Lorem.sentence,
+      description:           "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
       start_date:   Time.now,
       end_date:     Time.now,
       transport: Faker::Lorem.name,
@@ -526,7 +577,25 @@ puts "Creando actividades"
         url: "assets/#{n}.jpg",
         linkable: activity
     )
+    end
+    (2..LINKS_NUM).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 3,
+        active: 1,
+        url: "http://www.marca.com",
+        linkable: activity
+    )  
     end  
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 4,
+        active: 1,
+        url: "http://vjs.zencdn.net/v/oceans.mp4",
+        linkable: activity
+    )  
+    end    
     
 
 end
@@ -555,4 +624,3 @@ end
                          notice_type: NoticeType.all.sample)
     User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Entity",
                          notice_type: NoticeType.all.sample)
-    
