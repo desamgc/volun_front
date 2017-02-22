@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     resources :volunteer_subscribes
   end
   
-  resources :activities
+  resources :activities, only: [:show, :index, :index_i] do
+    collection do
+      get :index_i
+    end
+  end
+
   resources :entities, only:[:index,:show] do
     resources :projects, only:[:index, :show], param: :q
   end
@@ -29,6 +34,8 @@ Rails.application.routes.draw do
     resources :images
     resources :links
   end
+
+  resources :volunteers
 
   #resources :entity_types
   #resources :project_types

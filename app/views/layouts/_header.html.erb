@@ -1,52 +1,70 @@
-<header class="header" style='background-image: url("/assets/sede/cabeceraCiudadanos.jpg");'>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-0 pull-right">
-          <% if current_user %>
-             <%= render 'shared/personal_area' %>
-          <% else %>
-                  
-                  <%= link_to '  Quiénes somos  ', new_user_session_path %>
-                  <%= link_to '  ¿Que puedes hacer?  ', volunteers_path %>
-                  <%= link_to '  Proyectos', index_i_projects_path %>
-                  <%= link_to '  Entidades colaboradoras', entities_path %>
-                  <%= link_to '  Agenda', index_i_activities_path %>
-                  <%= link_to '  Blog', new_user_session_path %>
-                  
-                  <%= link_to 'Iniciar sesión', new_user_session_path, class: "button button2" %>
-                
-            
-          <% end %>
-        
-      </div>
-    </div>  
-
-    <div class="navigation-bar" id="navbar">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="header-logo">
+<div class="navigation-bar" id="navbar">
+    <div class="row">  
+      <div class="col-md-3">
+        <h1 class="header-logo">
             <a href="00-home.html">
             <span class="text-hide">Ayuntamiento de Madrid</span>
               <%= image_tag("logo-madrid.png") %>
             </a>
           </h1>
-        </div>
+      </div>
+      
+        
+        <div class="col-md-9 pull-right">
+          <% if current_user %>
+             <%= render 'shared/personal_area' %>
+          <% else %>
+                  <%= link_to 'Quiénes somos', new_user_session_path, class: "btn btn-default" %>
+                  <%= link_to '¿Que puedes hacer?', volunteers_path, class: "btn btn-default" %>
+                  <%= link_to 'Proyectos', index_i_projects_path, class: "btn btn-default" %>
+                  <%= link_to 'Entidades colaboradoras', entities_path, class: "btn btn-default" %>
+                  <%= link_to 'Agenda', index_i_activities_path, class: "btn btn-default" %>
+                  <%= link_to 'Blog', new_user_session_path, class: "btn btn-default" %>
+                  
+                  <%= link_to 'Iniciar sesión', new_user_session_path, class: "button button2" %>
+                
+              
+          <% end %>
+        
+      </div>
       </div>
     </div>
+<header class="header" style='background-image: url("/assets/destacados/destacado-home.png");'>
+  <div class="container">
+    
+   
+    
+
+
     <div class="section-cont">
       <h2 class="section-name">
         <span class="section-name-title">
-          VOLUNTARIADO
+          Comunidad Virtual del Voluntariado y la solidaridad en la Ciudad de Madrid
         </span>
       </h2>
     </div>
 
-    <p class="section-subname visible-xs-block"><span class="section-subname-title">COMUNIDAD VIRTUAL DEL VOLUNTARIADO</span></p>
-    <ul class="sub-menu visible-md-block visible-lg-block hidden-print">
-      <li class=""><%= link_to t("layouts.header.proyectos"), index_i_projects_path, class: "sub-menu-item" %></li>
-      <li class=""><%= link_to t("layouts.header.entidades"), entities_path, class: "sub-menu-item" %></li>
-      <li class=""><%= link_to t("layouts.header.noticias"), index_i_activities_path, class: "sub-menu-item" %></li>
-    </ul>   
+    
+  
+    <div class="modal-alert ">
+      
+        <a href="#" class="close-info" title="cerrar">Cerrar</a>
+      
+      <h2 class="title-modal">Últimos dias de periodo voluntario de pago de tributos</h2>
+      <p>El 2 de Diciembre finaliza el plazo para el pago.
+            
+                <a class="link-modal" href="#">Realiza ahora el tramite sin moverte de casa.</a>
+            
+        </p>
+    </div>
+
+
+    <div class="header-carousel">
+  
+    </div> 
+     
+          
+
   </div>
 </header>
 
