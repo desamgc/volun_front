@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :rt do
     resources :others
-    resources :activity_unpublishings
+    resources :activity_unpublishings, param: :activity_id
     resources :activity_publishings
     resources :project_unsubscribes, param: :project_id
     resources :project_unpublishings
@@ -25,11 +25,13 @@ Rails.application.routes.draw do
 
   resources :entities, only:[:index,:show] do
     resources :projects, only:[:index, :show], param: :q
+    resources :activities, only:[:index, :show], param: :q
   end
 
   resources :projects, only: [:show, :index, :index_i] do
     collection do
       get :index_i
+      get :boroughs
     end
     resources :images
     resources :links

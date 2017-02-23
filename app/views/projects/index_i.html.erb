@@ -19,15 +19,6 @@
 </div>
 
 <br/>
-<div class="gallery nofluid">
-  <ul class="row">
-      
-      <%= render partial: 'project', collection: @projects_featured  %>
-  </ul>
-</div>  
-
-
-
 <div class="row">
 
    <div class="col-xs-6 col-sm-6 col-md-6">
@@ -46,8 +37,20 @@
       <%= link_to  "" , "#", class: "fa fa-table fa-2x", id: "btnGrid" %>
   </div>
 </div>
-
 <%= render "buscador" %>
+
+<div class="gallery nofluid">
+  <ul class="row">
+      
+      <%= render partial: 'project', collection: @projects_featured  %>
+  </ul>
+</div>  
+
+
+
+
+
+
 
 
 

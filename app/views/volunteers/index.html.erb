@@ -1,35 +1,149 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Volunteers</h1>
+<div class="generic-content nofluid">
+    
+    <div class="image-content ic-left">
+       <%= image_tag("FotoEPVolun.jpg") %>
+    </div>
+    <div class="tiny-text">
+      <h4>
+         <p>Presentación </p>
+      </h4>   
+El Área de Gobierno de Participación Ciudadana, Transparencia y Gobierno Abierto, a través del "Programa Voluntarios por Madrid", gestiona la prestación de un servicio de interés general cuyos destinatarios son los vecinos de la ciudad interesados en formar parte de proyectos de participación e implicación ciudadana promovidos desde la iniciativa municipal.
+    </div>
+                         
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>First surname</th>
-      <th>Second surname</th>
-      <th>Age</th>
-      <th>Id number</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @volunteers.each do |volunteer| %>
-      <tr>
-        <td><%= volunteer.name %></td>
-        <td><%= volunteer.first_surname %></td>
-        <td><%= volunteer.second_surname %></td>
-        <td><%= volunteer.age %></td>
-        <td><%= volunteer.id_number %></td>
-        <td><%= link_to 'Show', volunteer %></td>
-        <td><%= link_to 'Edit', edit_volunteer_path(volunteer) %></td>
-        <td><%= link_to 'Destroy', volunteer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Volunteer', new_volunteer_path %>
+
+<div class="nofluid">
+  <div class="panel-group info-detalles">
+    <div class="panel">
+      <div class="panel-title">
+        <div class="header-panel-detalle">
+          <h4>
+            <a class="collapsed" data-toggle="collapse" href="#info" data-parent=".info-detalles">¿Que significa ser voluntario del Ayuntamiento de Madrid?</a>
+          </h4>
+        </div>
+      </div>
+      <div id="info" class="collapse out">
+        <div class="content-panel-detalle panel-body  with-icons ">
+          <h5 class="tiny-text">
+            <ul> 
+            <li>
+              Ser "Voluntario de Madrid" es ayudar activamente al bien común, colaborando en tareas de todo tipo (sociales, culturales, deportivas, medioambientales...), adaptadas a nuestro tiempo y a nuestras habilidades y posibilidades.
+            </li>
+            <li>  
+              Ser "Voluntario de Madrid" es sentirse parte activa de la ciudad.
+            </li>
+            <li>  
+              Ser "Voluntario de Madrid" es ser agente protagonista y corresponsable en la búsqueda de soluciones, 
+              propuestas y alternativas a las realidades de nuestro entorno.
+            </li>  
+            <li>
+              Ser "Voluntario de Madrid" es formar parte de un equipo de personas solidarias, optimistas, positivas... que colaboran en construir una ciudad mejor.
+            </li>  
+            <li>  
+              Ser "Voluntario de Madrid" es dar y recibir para crecer como personas.
+            </li>  
+            <li>
+              Ser "Voluntario de Madrid" es conocer Madrid intensamente, hacer amigos, compartir ilusiones, disfrutar y, sobre todo, ayudar a los demás.
+            </li>
+            <li>
+              "Voluntario por Madrid" es la acreditación otorgada por el Ayuntamiento de Madrid, a través del Departamento de Voluntariado, a las personas, entidades sociales y empresas solidarias que participan en acciones de interés general.
+            </li>  
+            <li>  
+              El Ayuntamiento de Madrid propicia una ciudad solidaria en la que todos podemos participar.
+            </li>
+            <li>  
+              Sin compromiso, sin disponibilidad, como quieras, cuando quieras y en lo que más te guste. (Teléfono de atención gratuita: 900 777 888).
+            </li>  
+            </ul>  
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">
+        <div class="header-panel-detalle">
+          <h5>
+            <a class="collapsed" data-toggle="collapse" href="#one" data-parent=".info-detalles">¿Como me hago voluntario?</a>
+          </h5>
+        </div>
+      </div>
+      <div id="one" class="collapse out">
+        <div class="content-panel-detalle panel-body  with-icons ">
+
+           <h5 class="tiny-text"> 
+
+              Rellena la solicitud de información en línea que se encuentra a tu disposición en el apartado Informaciación relacionada "Departamento de Voluntariado. Servicio de atención a voluntarios" o llamando al teléfono gratuito 900 777 888.
+
+              También puedes acudir al Departamento de Voluntariado. Servicio de Atención a Voluntarios: C/ Alcalá, 45. 28045 Madrid.
+
+              Nosotros te llamaremos y te citaremos a una entrevista para conocer tus motivaciones voluntarias y ofrecerte las acciones que mejor se adecuen a tu perfil.
+            </h5>  
+            <% if current_user %>
+               <% if current_user.loggable_type == "Volunteer" %>
+                    <%= link_to "Editar datos de voluntario", edit_volunteer_path(current_user.logable), class: "event-link " %>
+               <% else %>
+                    <%= link_to 'New Volunteer', new_volunteer_path %>
+               <% end %>
+
+            <% else %>
+                   <%= link_to 'New Volunteer', new_volunteer_path %>
+            <% end %>  
+          
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">
+        <div class="header-panel-detalle">
+          <h5>
+            <a class="collapsed" data-toggle="collapse" href="#two" data-parent=".info-detalles">¿En que puedo participar?</a>
+          </h5>
+        </div>
+      </div>
+      <div id="two" class="collapse out">
+        <div class="content-panel-detalle panel-body ">
+          <h5 class="tiny-text">
+
+Puedes participar cuándo quieras y cómo quieras, en aquello que más responda a tus motivaciones, de manera permanente o de forma puntual, ya que contamos con actividades de todo tipo.
+
+Puedes participar con nosotros en numerosos proyectos: acompañamiento en hospitales, reparto de alimentos, apoyo escolar a menores, proyectos con animales, actividades deportivas, culturales, etc.
+
+Si quieres ver alguna de nuestras actuaciones accede al apartado de "Proyectos de voluntariado".
+</h5>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">
+        <div class="header-panel-detalle">
+          <h4>
+            <a class="collapsed" data-toggle="collapse" href="#three" data-parent=".info-detalles">¿Quienes somos?</a>
+          </h4>
+        </div>
+      </div>
+      <div id="three" class="collapse out">
+        <div class="content-panel-detalle panel-body ">
+          <h5 class="tiny-text">
+
+"VOLUNTARIOS POR MADRID", UN INNOVADOR PROGRAMA PARA PROMOVER LA SOLIDARIDAD EN LA CIUDAD.
+
+Desde este programa municipal se potencia la ciudadanía activa y el voluntariado solidario.
+
+El Ayuntamiento de Madrid cuenta con un cuerpo de voluntarios que participan en numerosas actividades solidarias, ya sean puntuales o permanentes, lo que posibilita que cada ciudadano pueda participar cuándo y cómo quiera, en función de sus propias motivaciones.
+
+Además, este programa desarrolla numerosos proyectos de voluntariado y participa junto con áreas, entidades sociales, empresas y otros organismos que promueven la solidaridad, la convivencia y el bien común.
+</h5>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
