@@ -18,6 +18,8 @@ class Rt::ActivityUnpublishingsController < ApplicationController
 
   def new
     @rt_activity_unpublishing = Rt::ActivityUnpublishing.new
+    @rt_activity_unpublishing.activity = Activity.find_by_id(params[:activity_id])
+    
   end
 
   def edit

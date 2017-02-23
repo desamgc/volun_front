@@ -11,3 +11,4 @@
 /log/*
 !/log/.keep
 /tmp/*
+/app/assets/javascripts/js/projects.js.erb

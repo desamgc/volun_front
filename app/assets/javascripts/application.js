@@ -20,7 +20,7 @@
 
 
 var initialize_modules = function() {
-  App.Projects.load_geo();
+  //App.Projects.load_geo();
   //App.ayuntamiento;
   //App.vendor;
   
