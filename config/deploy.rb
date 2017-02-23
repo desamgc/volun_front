@@ -10,7 +10,7 @@ def deploysecret(key)
 end
 
 set :rails_env, fetch(:stage)
-set :rvm_ruby_version, '2.2.2'
+set :rvm_ruby_version, '2.3.3'
 set :rvm_type, :user
 
 set :application, 'volun_frontend'
