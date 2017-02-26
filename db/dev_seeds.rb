@@ -457,11 +457,12 @@ ProjectType.all.each do |project_type|
       active:                true,
       publish:               true,
       contact_name:           Faker::Lorem.name,   
-      contact_last_name:           Faker::Lorem.name     
+      contact_last_name:           Faker::Lorem.name
     }
     
     project.save!
 
+    project.areas << Area.all.sample
     
     puts "Creando Eventos"
     2.times do

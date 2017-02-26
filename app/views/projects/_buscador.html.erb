@@ -48,11 +48,24 @@
                   <% @areas.each do |area| %>  
                     <div class="col-sm-6 col-md-2">
                          <div class="form-group">
-                            <%= f.button area.name, :class => 'button button4' %>
+                            <%= check_box_tag "q[areas_name_in][]", area.name %> <%= area.name %>
                         </div>
                     </div>
                   <% end %>  
                 </div>
+
+                <!--
+                 <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <span class="labelUp">Descripción <span class="asterisco">*</span></span>
+                              <%= f.text_field :areas_name_in %>
+                        </div>
+                    </div>
+                   
+                </div>
+                -->
+
         </form>
 
         <div class="button-group text-right">

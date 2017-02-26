@@ -39,6 +39,7 @@
 </div>
 <%= render "buscador" %>
 
+<h1> PROYECTOS DESTACADOS </h1>
 <div class="gallery nofluid">
   <ul class="row">
       
@@ -54,21 +55,23 @@
 
 
 
-
+<h1> MAS PROYECTOS </h1>
 <!-- en modo cuadricula -->
 <div id="grid">
-
-<div class="gallery nofluid">
-
+<div id = "projects">
+<!-- <div class="gallery nofluid"> -->
+ <% @projects_actives.each_slice(3) do |group| %>
   <ul class="row">
 
-    <div id = "projects">
-      <%= render partial: 'project', collection: @projects_actives %>
-    </div>
+    
+      <%= render partial: 'project', collection: group %>
+   
   </ul>
+
+  <% end %> 
  </div>
- 
-</div>
+ </div>
+ </div>
 
 
 <!-- en modo fila -->

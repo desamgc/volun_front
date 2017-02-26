@@ -19,8 +19,9 @@ class ProjectsController < ApplicationController
 
 
   def index_i
+    
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:links).search(params[:q])
+    @search = Project.includes(:links).actives.search(params[:q])
     @projects_actives = @search.result  
     @projects_featured = Project.includes(:links).featured
     @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
