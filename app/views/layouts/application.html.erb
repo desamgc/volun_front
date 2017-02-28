@@ -65,18 +65,12 @@
    <% if true==false %>
     <%= render 'layouts/migas' %> 
    <% end %>   
-   
-   <div class="content">  
 
-   <div class="bg-fluid0">
-    <div class="container"> 
-      <%= render 'layouts/avisos' %>  
+
+    <%= render 'layouts/avisos' %>
                 <main>
                   <%= yield %>
                 </main>
-    </div>
-    </div>
-    </div>
 
     <%= render 'layouts/footer' %>
     <%= javascript_include_tag "js/vendor" %>
