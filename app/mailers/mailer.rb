@@ -1,12 +1,11 @@
 class Mailer < ApplicationMailer
-  helper :text_with_links
-  helper :mailer
-  helper :users
+  #helper :text_with_links
+  #helper :mailer
+  #helper :users
 
  
 
   def email_verification(user, recipient, token, document_type, document_number)
-    debugger
     @user = user
     @recipient = recipient
     @token = token

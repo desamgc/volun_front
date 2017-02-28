@@ -32,7 +32,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    debugger
     @user.update_attributes(user_params)
     respond_with(@user)
   end
