@@ -1,41 +1,97 @@
-<div class="navigation-bar" id="navbar">
-    <div class="row">  
-      <div class="col-md-3">
-        <h1 class="header-logo">
-            <a href="00-home.html">
-            <span class="text-hide">Ayuntamiento de Madrid</span>
-              <%= image_tag("logo-madrid.png") %>
-            </a>
-          </h1>
-      </div>
-      
-        
-        <div class="col-md-9 pull-right">
-          <% if current_user %>
-             <%= render 'shared/personal_area' %>
+<header>
+ <div id="headerTop" class="container-fluid">
+  <div class="container-fluid">
+      <div class="row">
+       <div class="col-xs-6 text-left">
+           <span>Voluntarios X Madrid</span>
+       </div>
+       <div class="col-xs-6 text-right">
+           <%= image_tag("logo_black_min.svg") %>
+       </div>
+   </div>
+  </div>
+
+
+</div>
+
+
+<div id="HeaderWrapper" class="container-fluid" style='background-image: url("/assets/destacados/destacado-home.png");'>
+  <div id="menuWrapper" class="container-fluid">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#">  <%= image_tag("LOGO_VOLUNTARIOS_ALTA.svg") %></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+<!--
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+-->
+            <ul class="nav navbar-nav navbar-right">
+
+             <% if current_user %>
+
+              <li> <%= link_to 'Quiénes somos', new_user_session_path, class: "" %></li>
+                     <li><%= link_to '¿Que puedes hacer?', volunteers_path, class: "" %></li>
+                     <li> <%= link_to 'Proyectos', index_i_projects_path, class: "" %></li>
+                     <li><%= link_to 'Entidades colaboradoras', entities_path, class: "" %></li>
+                     <li><%= link_to 'Agenda', index_i_activities_path, class: "" %></li>
+                     <li> <%= link_to 'Blog', new_user_session_path, class: "" %></li>
+                     <li>  <%= render 'shared/personal_area' %></li>
           <% else %>
-                  <%= link_to 'Quiénes somos', new_user_session_path, class: "btn btn-default" %>
-                  <%= link_to '¿Que puedes hacer?', volunteers_path, class: "btn btn-default" %>
-                  <%= link_to 'Proyectos', index_i_projects_path, class: "btn btn-default" %>
-                  <%= link_to 'Entidades colaboradoras', entities_path, class: "btn btn-default" %>
-                  <%= link_to 'Agenda', index_i_activities_path, class: "btn btn-default" %>
-                  <%= link_to 'Blog', new_user_session_path, class: "btn btn-default" %>
-                  
-                  <%= link_to 'Iniciar sesión', new_user_session_path, class: "button button2" %>
-                
-              
+
+
+                      <li> <%= link_to 'Quiénes somos', new_user_session_path, class: "" %></li>
+                     <li><%= link_to '¿Que puedes hacer?', volunteers_path, class: "" %></li>
+                     <li> <%= link_to 'Proyectos', index_i_projects_path, class: "" %></li>
+                     <li><%= link_to 'Entidades colaboradoras', entities_path, class: "" %></li>
+                     <li><%= link_to 'Agenda', index_i_activities_path, class: "" %></li>
+                     <li> <%= link_to 'Blog', new_user_session_path, class: "" %></li>
+                     <li><span class="sessionTrigger"><%= link_to 'Iniciar sesión', new_user_session_path, class: "" %></span> </li>
+            </ul>
+
           <% end %>
-        
-      </div>
-      </div>
-    </div>
-<header class="header" style='background-image: url("/assets/destacados/destacado-home.png");'>
-  <div class="container">
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+
+
+
+
+
+
+  </div>
+
+  <div class="container containerHeaderOverlay">
     
    
     
 
 
+<!--
     <div class="section-cont">
       <h2 class="section-name">
         <span class="section-name-title">
@@ -43,31 +99,33 @@
         </span>
       </h2>
     </div>
+-->
 
     
   
-    <div class="modal-alert ">
-      
-        <a href="#" class="close-info" title="cerrar">Cerrar</a>
-      
-      <h2 class="title-modal">Proyecto urgente</h2>
+
+      <div class="urgenteWrapper">
+           <h2 class="title-modal">Este es el título del destacado</h2>
       <p>
             
-                <a class="link-modal" href="#">Si quieres participar.</a>
+               Esta es la descripción lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper ante at lectus bibendum, sit amet blandit ante pretium.
             
         </p>
-    </div>
+
+        <a href=""><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 
 
-    <div class="header-carousel">
-  
-    </div> 
-     
-          
+      </div>
+
 
   </div>
+  </div>
+
+
+
+
+
+
+
 </header>
-
-
-
 
