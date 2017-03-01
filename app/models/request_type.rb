@@ -10,10 +10,9 @@ enum kind: {
     rt_volunteers_demand:      7,
     rt_project_publishing:     8,
     rt_project_unpublishing:   9,
-    rt_project_unsubscribe:    10,
-    rt_activity_publishing:    11,
-    rt_activity_unpublishing:  12,
-    rt_other:                  13
+    rt_activity_publishing:    10,
+    rt_activity_unpublishing:  11,
+    rt_other:                  12
   }
 
   validates :kind, presence: true

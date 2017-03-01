@@ -101,6 +101,42 @@ CREATE TABLE academic_levels (
 );
 
 
+
+CREATE TABLE districts (
+    id integer NOT NULL,
+    name character varying,
+    code character varying,
+    active boolean DEFAULT true,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+
+
+--
+-- Name: districts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE districts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: districts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE districts_id_seq OWNED BY districts.id;
+
+
+--
+-- Name: documents; Type: TABLE; Schema: public; Owner: -
+--
+
 --
 -- Name: academic_levels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
@@ -187,6 +223,7 @@ CREATE TABLE addresses (
     province_code character varying,
     town_code character varying,
     district_code character varying,
+    district_id integer,
     class_name character varying,
     latitude character varying,
     longitude character varying,
@@ -5761,6 +5798,48 @@ ALTER TABLE ONLY request_forms
 
 ALTER TABLE ONLY projects
     ADD CONSTRAINT fk_rails_ffd1fb1016 FOREIGN KEY (entity_id) REFERENCES entities(id);
+
+
+
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY districts ALTER COLUMN id SET DEFAULT nextval('districts_id_seq'::regclass);
+
+--
+-- Name: districts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY districts
+    ADD CONSTRAINT districts_pkey PRIMARY KEY (id);
+
+--
+-- Name: index_addresses_on_district_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_addresses_on_district_id ON addresses USING btree (district_id);
+
+
+--
+-- Name: index_districts_on_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_districts_on_code ON districts USING btree (code);
+
+
+--
+-- Name: index_districts_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_districts_on_name ON districts USING btree (name);
+
+
+
+
+
 
 
 --

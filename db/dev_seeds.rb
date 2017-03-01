@@ -33,10 +33,9 @@ REQUEST_TYPES = {
   7  => 'rt_volunteers_demand',
   8  => 'rt_project_publishing',
   9  => 'rt_project_unpublishing',
-  10 => 'rt_project_unsubscribe',
-  11 => 'rt_activity_publishing',
-  12 => 'rt_activity_unpublishing',
-  13 => 'rt_other'
+  10 => 'rt_activity_publishing',
+  11 => 'rt_activity_unpublishing',
+  12 => 'rt_other'
 }
 
 PROJECT_TYPES = {
@@ -242,7 +241,7 @@ end
 
 puts "Creando Tipos de solicitudes"
 REQUEST_TYPES.each do |kind , name|
-  RequestType.create!(kind: kind)
+  RequestType.create!(kind: kind, description: name)
 end
 
 puts "Creando Tipos de entidades"
@@ -251,8 +250,8 @@ ENTITY_TYPES.each do |kind , name|
 end
 
 puts "Creando Tipos de proyectos"
-PROJECT_TYPES.each do |kind , name|
-  ProjectType.create!(kind: kind, description: name)
+ProjectType.kinds.each do |kind_name , kind_num|
+  ProjectType.create!(id: kind_num, kind: kind_num, description: kind_name)
 end
 
 puts "Creando Coordinaciones"
@@ -266,19 +265,19 @@ DISTRICTS.each do |code, name|
 end
 
 puts "Creando Provincias"
-PROVINCES.each do |code, name|
-  Province.create!(code: code, name: name)
-end
+#PROVINCES.each do |code, name|
+#  Province.create!(code: code, name: name)
+#end
 
 puts "Creando Tipos de vías"
-ROAD_TYPES.each do |name, code|
-  RoadType.create!(name: name, code: code)
-end
+#ROAD_TYPES.each do |name, code|
+#  RoadType.create!(name: name, code: code)
+#end
 
 
 puts "Creando Tipos de razones"
 REQUEST_REASONS.each do |code, name|
-  RequestReason.create!(description: name)
+  ReqReason.create!(description: name)
 end
 
 
@@ -290,7 +289,7 @@ REJECTION_TYPES = {
 
 puts "Creando Tipos de rechazos"
 REJECTION_TYPES.each do |code, name|
-  RejectionType.create!(description: name, kind:code)
+  ReqRejectionType.create!(description: name, name: name)
 end
 
 
@@ -299,7 +298,7 @@ puts "Creando Direcciones"
 (1..ADDRESSES_NUM).each do |n|
   Address.create!(
     postal_code:           Faker::Address.postcode,
-    road_type:             RoadType.all.sample,
+    #road_type:             RoadType.all.sample,
     road_name:             Faker::Address.street_name,
     road_number_type:      Address::ROAD_NUMBER_TYPES.sample,
     road_number:           rand(100).to_s,
@@ -307,7 +306,7 @@ puts "Creando Direcciones"
     stairs:                rand(300).to_s,
     floor:                 rand(9).to_s,
     door:                  rand(10).to_s,
-    province:              Province.all.sample,
+    #province:              Province.all.sample,
     country:               "España",
     town:                  "Madrid",
     latitude:              441900 + rand(100), 
@@ -334,7 +333,6 @@ puts "Creando entidades"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 1,
-        active: 1,
         url: "assets/" + rand(1..16).to_s + ".jpg",
         linkable: entity
     )
@@ -350,6 +348,7 @@ end
 puts "Creando Proyectos featured"
 ProjectType.all.each do |project_type|
 (1..PROJECTS_NUM_FEATURED).each do |n|
+    project_other = Pt::Other.new()
     project   = Project.new()
     project.attributes = {
       name:                  "#{Faker::App.name} #{project_type} #{n}",
@@ -363,12 +362,13 @@ ProjectType.all.each do |project_type|
       email:                 Faker::Internet.email,
       beneficiaries_num:     10,
       volunteers_num:        rand(100),
-      project_type:          project_type,
+      project_type_id:       7,
       insured:               true,
       active:                true,
       publish:               true,
       contact_name:          Faker::Lorem.name,   
-      contact_last_name:     Faker::Lorem.name
+      contact_last_name:     Faker::Lorem.name,
+      pt_extendable:         project_other 
 
     }
     
@@ -397,7 +397,6 @@ ProjectType.all.each do |project_type|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 1,
-        active: 1,
         url: "assets/" + rand(1..16).to_s + ".jpg",
         linkable: project
     )
@@ -406,7 +405,6 @@ ProjectType.all.each do |project_type|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 2,
-        active: 1,
         url: "assets/#{n}.jpg",
         linkable: project
     )
@@ -415,7 +413,6 @@ ProjectType.all.each do |project_type|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 3,
-        active: 1,
         url: "http://www.marca.com",
         linkable: project
     )  
@@ -424,7 +421,6 @@ ProjectType.all.each do |project_type|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 4,
-        active: 1,
         url: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: project
     )  
@@ -439,6 +435,7 @@ end
 puts "Creando Proyectos"
 ProjectType.all.each do |project_type|
 (1..PROJECTS_NUM).each do |n|
+    project_other = Pt::Other.new()
     project   = Project.new()
     project.attributes = {
       name:                  "#{Faker::App.name} #{project_type} #{n}",
@@ -452,12 +449,13 @@ ProjectType.all.each do |project_type|
       email:                 Faker::Internet.email,
       beneficiaries_num:     10,
       volunteers_num:        rand(100),
-      project_type:          project_type,
+      project_type_id:       7,
       insured:               false,
       active:                true,
       publish:               true,
       contact_name:           Faker::Lorem.name,   
-      contact_last_name:           Faker::Lorem.name
+      contact_last_name:           Faker::Lorem.name,
+      pt_extendable:         project_other    
     }
     
     project.save!
@@ -487,7 +485,6 @@ ProjectType.all.each do |project_type|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 1,
-        active: 1,
         url: "assets/" + rand(1..16).to_s  + ".jpg",
         linkable: project
     )
@@ -496,7 +493,6 @@ ProjectType.all.each do |project_type|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 2,
-        active: 1,
         url: "assets/#{n}.jpg",
         linkable: project
     )
@@ -505,7 +501,6 @@ ProjectType.all.each do |project_type|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 3,
-        active: 1,
         url: "http://www.marca.com",
         linkable: project
     )  
@@ -514,7 +509,6 @@ ProjectType.all.each do |project_type|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 4,
-        active: 1,
         url: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: project
     )  
@@ -565,7 +559,6 @@ puts "Creando actividades"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 1,
-        active: 1,
         url: "assets/" + rand(1..16).to_s  + ".jpg",
         linkable: activity
     )
@@ -574,7 +567,6 @@ puts "Creando actividades"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 2,
-        active: 1,
         url: "assets/#{n}.jpg",
         linkable: activity
     )
@@ -583,7 +575,6 @@ puts "Creando actividades"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 3,
-        active: 1,
         url: "http://www.marca.com",
         linkable: activity
     )  
@@ -592,7 +583,6 @@ puts "Creando actividades"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 4,
-        active: 1,
         url: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: activity
     )  

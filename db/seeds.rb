@@ -29,10 +29,9 @@ REQUEST_TYPES = {
   7  => 'rt_volunteers_demand',
   8  => 'rt_project_publishing',
   9  => 'rt_project_unpublishing',
-  10 => 'rt_project_unsubscribe',
-  11 => 'rt_activity_publishing',
-  12 => 'rt_activity_unpublishing',
-  13 => 'rt_other'
+  10 => 'rt_activity_publishing',
+  11 => 'rt_activity_unpublishing',
+  12 => 'rt_other'
 }
 
 PROJECT_TYPES = {
@@ -237,7 +236,7 @@ end
 
 puts "Creando Tipos de solicitudes"
 REQUEST_TYPES.each do |kind , name|
-  RequestType.create!(kind: kind)
+  RequestType.create!(kind: kind, description: name)
 end
 
 puts "Creando Tipos de entidades"

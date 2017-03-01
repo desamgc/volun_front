@@ -1,5 +1,6 @@
 # class de projects of voluntaries
 class Project < ActiveRecord::Base
+  belongs_to :pt_extendable, polymorphic: true
   belongs_to :project_type
   belongs_to :entity
   has_many   :links, as: :linkable
