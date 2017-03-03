@@ -1,4 +1,5 @@
 FactoryGirl.define do
+  
   factory :notice_type do
     kind 1
     description "MyText"
@@ -26,7 +27,7 @@ FactoryGirl.define do
 
   factory :address do
     postal_code           Faker::Address.postcode
-    road_type_id             1
+    road_type             1
     road_name             Faker::Address.street_name
     road_number_type      "num"
     road_number           Faker::Number.number(1)
@@ -34,7 +35,7 @@ FactoryGirl.define do
     stairs                Faker::Number.number(1)
     floor                 Faker::Number.number(1)
     door                  Faker::Number.number(1)
-    province_id              1
+    province              1
     country               "España"
     town                  "Madrid"
     latitude              Faker::Address.latitude 

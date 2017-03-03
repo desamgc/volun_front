@@ -48,38 +48,37 @@ gem 'gon'
  gem 'unicorn'
 
 
-group :development, :test do
+
+
+group :preproduction, :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'quiet_assets'
   gem 'bullet'
   gem 'faker'
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  gem 'rspec-rails', '~> 3.0'
-  #gem 'selenium-webdriver'
-  gem 'poltergeist'
   gem 'database_cleaner'
-  
+  gem 'capybara' # integration testing tool for rack based web applications.
+  gem 'fuubar'   # RSpec progress bar formatter
+  gem 'i18n-tasks' #  helps you find and manage missing and unused translations.
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
-# Use Capistrano for deployment
 group :development do
-  #gem 'capistrano'
-  #gem 'capistrano-rails'
+  gem 'poltergeist'
+  gem 'coveralls', require: false
+  gem 'email_spec'
   #  utility and framework for executing commands in parallel on multiple remote machines, via SSH.
-  gem 'capistrano', '3.5.0',           require: false
-  gem "capistrano-bundler", '1.1.4',   require: false
-  gem "capistrano-rails", '1.1.6',     require: false
-  gem "capistrano-rvm",                require: false
-  gem 'capistrano3-delayed-job', '~> 1.0'
+  gem 'capistrano',         '3.5.0', require: false
+  gem 'capistrano-rails',   '1.1.6', require: false
+  gem 'capistrano-bundler', '1.1.4', require: false
+  gem 'capistrano-rvm',              require: false
+  # gem 'capistrano3-delayed-job', '~> 1.0'
+  gem 'letter_opener_web', '~> 1.3.0'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  gem 'letter_opener_web', '~> 1.3.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
-
 
