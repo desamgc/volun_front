@@ -321,7 +321,6 @@ DEPENDENCIES
   capistrano-bundler (= 1.1.4)
   capistrano-rails (= 1.1.6)
   capistrano-rvm
-  capybara
   coffee-rails (~> 4.1.0)
   coveralls
   database_cleaner
