@@ -12,6 +12,13 @@
         
         <div class="col-md-9 pull-right">
           <% if current_user %>
+             <%= link_to 'Quiénes somos', new_user_session_path, class: "btn btn-default" %>
+                  <%= link_to '¿Que puedes hacer?', volunteers_path, class: "btn btn-default" %>
+                  <%= link_to 'Proyectos', index_i_projects_path, class: "btn btn-default" %>
+                  <%= link_to 'Entidades colaboradoras', entities_path, class: "btn btn-default" %>
+                  <%= link_to 'Agenda', index_i_activities_path, class: "btn btn-default" %>
+                  <%= link_to 'Blog', new_user_session_path, class: "btn btn-default" %>
+                 
              <%= render 'shared/personal_area' %>
           <% else %>
                   <%= link_to 'Quiénes somos', new_user_session_path, class: "btn btn-default" %>

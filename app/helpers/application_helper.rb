@@ -39,11 +39,11 @@ module ApplicationHelper
   end
 
   def request_reasons_select_options
-    RequestReason.all.order(description: :asc).collect { |g| [ g.description, g.id ] }
+    ReqReason.all.order(description: :asc).collect { |g| [ g.description, g.id ] }
   end
 
   def road_types_select_options
-    RoadType.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
+    RoadType.all.order(name: :asc).collect { |g| [ g.name, g.name] }
   end
 
   def entity_types_select_options
@@ -56,7 +56,7 @@ module ApplicationHelper
   end
 
   def provinces_select_options
-    Province.all.order(name: :asc).collect { |g| [ g.name, g.id ] }
+    Province.all.order(name: :asc).collect { |g| [ g.name, g.name ] }
   end
 
   def projects_select_options

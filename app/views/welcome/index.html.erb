@@ -1,4 +1,76 @@
 
 
+<%= javascript_tag do %>
+  var locations = <%= raw @locations.to_json %>;
+  var multiple = true;
+  var url_map = "<%= Rails.application.secrets.url_map %>";
+  var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
+  var list_days = <%= raw @list_days.to_json %>;
+<% end %>
+
+
+
+
+
+
+
+<div class="row">
+
+   <div class="col-xs-6 col-sm-6 col-md-6">
+     <span class="labelUp">Ordenar </span>
+      
+      <select>
+          <option>Fecha</option>
+          <option>Mas demandados</option>
+          <option>Etc.</option>
+      </select>
+    
+   </div>    
+
+  <div class="col-md-1 pull-right">
+      <%= link_to  "" , "#", class: "fa fa-list fa-2x", id: "btnRow" %>
+      <%= link_to  "" , "#", class: "fa fa-table fa-2x", id: "btnGrid" %>
+  </div>
+</div>
+
+<h1> PROYECTOS DESTACADOS </h1>
+<div class="gallery nofluid">
+  <ul class="row">
+      
+      <%= render partial: 'projects/project', collection: @projects_featured  %>
+  </ul>
+</div>  
+
+
+
+
+<% if @day %>
+	<div id="fecha">
+
+	</div>
+	<br/>
+	<br/>
+	<%= text_area_tag :first_day, @day.html_safe, { style: "display: none;"} %>
+	<div id="day">
+	  <h1> Agenda del dia <%= @day %> </h1> 
+	</div>
+
+	<div id="activities">
+	  <%= render partial: 'activities/activity', collection: @activities %>      
+	</div>
+
+<% end %>
+
+
+<div class="row">
+  <div class="col-md-12">
+     <div id="mapDiv">
+       
+     </div>
+  </div>
+</div>
+
+
+
 
 
