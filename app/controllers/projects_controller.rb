@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
     @projects_actives = @search.result  
     @projects_featured = Project.includes(:links).featured
     @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
-    @districts = Project.includes(:districts).actives.distinct.order("districts.name").pluck('districts.name','districts.id')
+    @districts = Project.includes(:addresses).actives.distinct.order("district").pluck('district','district')
     @boroughs = ""
     @areas = Area.all
     @grid = true
@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
   end
 
   def boroughs
-   @boroughs = Project.includes(:districts).actives.distinct.where("addresses.district_id=?", params[:district]).order("addresses.borough").pluck('addresses.borough', 'addresses.borough')
+   @boroughs = Project.includes(:addresses).actives.distinct.where("addresses.district=?", params[:district]).order("addresses.borough").pluck('addresses.borough', 'addresses.borough')
     respond_to do |format|
       format.json { render json: @boroughs }
     end  

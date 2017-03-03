@@ -34,6 +34,6 @@ class Rt::ActivityPublishingsController < ApplicationController
   protected
 
     def rt_activity_publishing_params
-      params.require(:rt_activity_publishing).permit(:name, :organizer, :description, :execution_date, :execution_hour, :road_type_id, :road_name, :number_type, :road_number, :postal_code, :town, :province_id, :entity_id, :project_id)
+      params.require(:rt_activity_publishing).permit(:name, :organizer, :description, :execution_date, :execution_hour, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :entity_id, :project_id)
     end
 end

@@ -98,8 +98,8 @@
     <div class="row">
   <div class="form-group">
     <div class="col-xs-12 col-sm-12 col-md-3">
-            <span class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_type_id) %> <span class="asterisco">*</span></span>
-            <%= f.select :road_type_id, road_types_select_options %> 
+            <span class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_type) %> <span class="asterisco">*</span></span>
+            <%= f.select :road_type, road_types_select_options %> 
     </div>
     
     <div class="col-xs-12 col-sm-12 col-md-5">
@@ -132,8 +132,8 @@
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-4">     
-          <span class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:province_id) %> <span class="asterisco">*</span></span>
-          <%= f.select :province_id, provinces_select_options %> 
+          <span class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:province) %> <span class="asterisco">*</span></span>
+          <%= f.select :province, provinces_select_options %> 
     </div>
   </div>
 </div>
@@ -142,9 +142,9 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <span class="labelUp"><%= RequestForm.human_attribute_name(:request_reason_id) %> <span class="asterisco">*</span></span>
+          <span class="labelUp"><%= RequestForm.human_attribute_name(:req_reason_id) %> <span class="asterisco">*</span></span>
           <%= f.fields_for(:request_form_attributes, @rt_entity_subscribe.request_form) do |f_r| %>
-              <%= f_r.select :request_reason_id, request_reasons_select_options %> 
+              <%= f_r.select :req_reason_id, request_reasons_select_options %> 
           <% end %>    
         </div>
       </div>

@@ -86,13 +86,13 @@ El Área de Gobierno de Participación Ciudadana, Transparencia y Gobierno Abier
             </h5>  
             <% if current_user %>
                <% if current_user.loggable_type == "Volunteer" %>
-                    <%= link_to "Editar datos de voluntario", edit_volunteer_path(current_user.logable), class: "event-link " %>
+                    <%= link_to "Editar datos de voluntario", new_rt_volunteer_amendment_path, class: "event-link " %>
                <% else %>
-                    <%= link_to 'New Volunteer', new_volunteer_path %>
+                    <%= link_to 'Darse de alta', new_rt_volunteer_subscribe_path %>
                <% end %>
 
             <% else %>
-                   <%= link_to 'New Volunteer', new_volunteer_path %>
+                   <%= link_to 'Darse de alta', new_rt_volunteer_subscribe_path %>
             <% end %>  
           
         </div>

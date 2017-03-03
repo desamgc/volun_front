@@ -41,7 +41,7 @@ es:
             vat_num: 
               blank: es obligatorio  
               invalid: formato incorrecto
-            road_type_id: 
+            road_type: 
               blank: es obligatorio  
             number_type: 
               blank: es obligatorio  
@@ -54,7 +54,7 @@ es:
               invalid: es incorrecto
             town: 
               blank: es obligatorio  
-            province_id: 
+            province: 
               blank: es obligatorio  
             other_subscribe_reason: 
               blank: es obligatorio  
@@ -68,7 +68,7 @@ es:
               invalid: es invalido  
             phone_number_alt:
               invalid: es invalido
-            road_type_id: 
+            road_type: 
               blank: es obligatorio  
             number_type: 
               blank: es obligatorio  
@@ -81,7 +81,7 @@ es:
               invalid: formato invalido   
             town: 
               blank: es obligatorio  
-            province_id: 
+            province: 
               blank: es obligatorio  
         rt/volunteer_unsubscribe:
           attributes:
@@ -103,7 +103,7 @@ es:
               blank: es obligatorio
             volunteer_functions_1: 
               blank: es obligatoria
-            road_type_id: 
+            road_type: 
               blank: es obligatorio  
             number_type: 
               blank: es obligatorio  
@@ -116,13 +116,13 @@ es:
               invalid: formato invalido   
             town: 
               blank: es obligatorio  
-            province_id: 
+            province: 
               blank: es obligatorio   
         rt/project_publishing:
           attributes:
             description: 
               blank: es obligatoria
-            road_type_id: 
+            road_type: 
               blank: es obligatorio  
             number_type: 
               blank: es obligatorio  
@@ -135,7 +135,7 @@ es:
               invalid: formato invalido    
             town: 
               blank: es obligatorio  
-            province_id: 
+            province: 
               blank: es obligatorio
         rt/activity_publishing:
           attributes:
@@ -149,7 +149,7 @@ es:
               blank: es obligatoria
             execution_hour: 
               blank: es obligatoria
-            road_type_id: 
+            road_type: 
               blank: es obligatorio  
             number_type: 
               blank: es obligatorio  
@@ -162,7 +162,7 @@ es:
               invalid: formato invalido    
             town: 
               blank: es obligatorio  
-            province_id: 
+            province: 
               blank: es obligatorio 
         rt/other:
           attributes:
@@ -194,26 +194,26 @@ es:
         phone_number_alt: Otro telefono
         vat_number: CIF
         email: Correo electronico
-        road_type_id: Tipo de calle
+        road_type: Tipo de calle
         road_number: Numero de calle
         road_name: Calle
         number_type: Tipo de numero
         postal_code: Codigo postal
         town: Municipio
-        province_id: Provincia
+        province: Provincia
         other_subscribe_reason: Otro motivo
         entity_type: Tipo de entidad
       rt/volunteer_amendment:
         phone_number: Telefono
         phone_number_alt: Otro telefono
         email: Correo electronico
-        road_type_id: Tipo de calle
+        road_type: Tipo de calle
         road_number: Numero de calle
         road_name: Calle
         number_type: Tipo de numero
         postal_code: Codigo postal
         town: Municipio
-        province_id: Provincia
+        province: Provincia
       rt/volunteer_unsubscribe:
         reason: Motivo
       rt/volunteer_appointment:
@@ -227,22 +227,22 @@ es:
         volunteer_functions_1: Funcion 1
         volunteer_functions_2: Funcion 2
         volunteer_functions_3: Funcion 3
-        road_type_id: Tipo de calle
+        road_type: Tipo de calle
         road_number: Numero de calle
         road_name: Calle
         number_type: Tipo de numero
         postal_code: Codigo postal
         town: Municipio
-        province_id: Provincia
+        province: Provincia
       rt/project_publishing:
         description: Descripcion
-        road_type_id: Tipo de calle
+        road_type: Tipo de calle
         road_number: Numero de calle
         road_name: Calle
         number_type: Tipo de numero
         postal_code: Codigo postal
         town: Municipio
-        province_id: Provincia  
+        province: Provincia  
       rt/activity_publishing:
         description: Descripcion
         execution_date: Fecha
@@ -250,13 +250,13 @@ es:
         name: Denominación
         description: Descripción
         organizer: Organizador
-        road_type_id: Tipo de calle
+        road_type: Tipo de calle
         road_number: Numero de calle
         road_name: Calle
         number_type: Tipo de numero
         postal_code: Codigo postal
         town: Municipio
-        province_id: Provincia 
+        province: Provincia 
         project_id: Proyecto
       rt/other:
         description: Motivo 

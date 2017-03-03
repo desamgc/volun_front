@@ -8,6 +8,7 @@ ACTIVITIES_NUM    = 10
 ADDRESSES_NUM     = 20
 PROJECTS_NUM      = 10
 PROJECTS_NUM_FEATURED = 3
+PROJECTS_NUM_OUTSTANDING = 1
 REQUEST_FORMS_NUM = 10
 DISTRICTS_NUM     = 10
 ENTITIES_NUM      = 10
@@ -246,7 +247,7 @@ end
 
 puts "Creando Tipos de entidades"
 ENTITY_TYPES.each do |kind , name|
-  EntityType.create!(kind: kind, description: name)
+  EntityType.create!(name: name, description: name)
 end
 
 puts "Creando Tipos de proyectos"
@@ -254,10 +255,7 @@ ProjectType.kinds.each do |kind_name , kind_num|
   ProjectType.create!(id: kind_num, kind: kind_num, description: kind_name)
 end
 
-puts "Creando Coordinaciones"
-(1..COORDINATIONS_NUM).each do |n|
-  Coordination.create!(name: "#{Coordination.model_name.human} #{n}")
-end
+
 
 puts "Creando Distritos"
 DISTRICTS.each do |code, name|
@@ -265,19 +263,19 @@ DISTRICTS.each do |code, name|
 end
 
 puts "Creando Provincias"
-#PROVINCES.each do |code, name|
-#  Province.create!(code: code, name: name)
-#end
+PROVINCES.each do |code, name|
+  Province.create!(code: code, name: name)
+end
 
 puts "Creando Tipos de vías"
-#ROAD_TYPES.each do |name, code|
-#  RoadType.create!(name: name, code: code)
-#end
+ROAD_TYPES.each do |name, code|
+  RoadType.create!(name: name, code: code)
+end
 
 
 puts "Creando Tipos de razones"
 REQUEST_REASONS.each do |code, name|
-  ReqReason.create!(description: name)
+  ReqReason.create!(name: name, description: name)
 end
 
 
@@ -298,7 +296,7 @@ puts "Creando Direcciones"
 (1..ADDRESSES_NUM).each do |n|
   Address.create!(
     postal_code:           Faker::Address.postcode,
-    #road_type:             RoadType.all.sample,
+    road_type:             RoadType.all.sample.name,
     road_name:             Faker::Address.street_name,
     road_number_type:      Address::ROAD_NUMBER_TYPES.sample,
     road_number:           rand(100).to_s,
@@ -306,12 +304,12 @@ puts "Creando Direcciones"
     stairs:                rand(300).to_s,
     floor:                 rand(9).to_s,
     door:                  rand(10).to_s,
-    #province:              Province.all.sample,
+    province:              Province.all.sample.name,
     country:               "España",
     town:                  "Madrid",
     latitude:              441900 + rand(100), 
     longitude:             4479566 + rand(100), 
-    district:              District.all.sample,
+    district:              District.all.sample.code,
     borough:               Faker::Address.state 
   )
 end
@@ -340,18 +338,118 @@ puts "Creando entidades"
 end  
 
 
+
+
+
+
+
+
+
+# puts "Creando Motivos de solicitud"
+# REQUEST_REASONS.each do |kind , name|
+#   RequestReason.create!(kind: kind)
+# end
+
+
+
+
 # puts "Creando Motivos de solicitud"
 # REQUEST_REASONS.each do |kind , name|
 #   RequestReason.create!(kind: kind)
 # end
 
 puts "Creando Proyectos featured"
-ProjectType.all.each do |project_type|
+(1..PROJECTS_NUM_OUTSTANDING).each do |n|
+    project_other = Pt::Other.new()
+    project   = Project.new()
+    project.attributes = {
+      name:                  "#{Faker::App.name}  #{n}",
+      description:           "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
+      functions:             Faker::Lorem.sentence,
+      comments:              Faker::Lorem.sentence,
+      entity_id:             Entity.all.sample.id,
+      execution_start_date:  Faker::Time.between(DateTime.now - 10, DateTime.now),
+      execution_end_date:    Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow),
+      phone_number:          Faker::PhoneNumber.phone_number,
+      email:                 Faker::Internet.email,
+      beneficiaries_num:     10,
+      volunteers_num:        rand(100),
+      project_type_id:       7,
+      insured:               true,
+      active:                true,
+      publish:               true,
+      outstanding:           true,  
+      contact_name:          Faker::Lorem.name,   
+      contact_last_name:     Faker::Lorem.name,
+      pt_extendable:         project_other 
+
+    }
+    
+    project.save!
+
+    puts "Creando Eventos"
+    2.times do
+      event = Event.create!(
+        address:    Address.all.sample,
+        eventable:  project,
+      )
+
+      puts "Creando Horarios para evento #{event.id}"
+      2.times do
+        Timetable.create!(
+          event: event,
+          execution_date:  rand(100).days.since.to_date,
+          start_hour: '11:11',
+          end_hour:   '12:12'
+        )
+      end
+    end
+
+    puts "Creando links"
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 1,
+        url: "assets/" + rand(1..16).to_s + ".jpg",
+        linkable: project
+    )
+    end  
+    (2..LINKS_NUM).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 2,
+        url: "assets/#{n}.jpg",
+        linkable: project
+    )
+    end
+    (2..LINKS_NUM).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 3,
+        url: "http://www.marca.com",
+        linkable: project
+    )  
+    end  
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        kind: 4,
+        url: "http://vjs.zencdn.net/v/oceans.mp4",
+        linkable: project
+    )  
+    end    
+    
+end
+
+
+
+
+puts "Creando Proyectos featured"
 (1..PROJECTS_NUM_FEATURED).each do |n|
     project_other = Pt::Other.new()
     project   = Project.new()
     project.attributes = {
-      name:                  "#{Faker::App.name} #{project_type} #{n}",
+      name:                  "#{Faker::App.name}  #{n}",
       description:           "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
       functions:             Faker::Lorem.sentence,
       comments:              Faker::Lorem.sentence,
@@ -428,17 +526,15 @@ ProjectType.all.each do |project_type|
     
 end
 
-end
 
 
 
 puts "Creando Proyectos"
-ProjectType.all.each do |project_type|
 (1..PROJECTS_NUM).each do |n|
     project_other = Pt::Other.new()
     project   = Project.new()
     project.attributes = {
-      name:                  "#{Faker::App.name} #{project_type} #{n}",
+      name:                  "#{Faker::App.name}  #{n}",
       description:          "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
       functions:             Faker::Lorem.sentence,
       comments:              Faker::Lorem.sentence,
@@ -516,7 +612,6 @@ ProjectType.all.each do |project_type|
     
 end
 
-end
 
 
 

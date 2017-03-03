@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
   has_many   :events, as: :eventable
 
   has_many :addresses, through: :events
-  has_many :districts, through: :addresses
+  #has_many :districts, through: :addresses
   has_and_belongs_to_many :areas, -> { where(active: true).order('areas.name asc') }
 
   accepts_nested_attributes_for :events
@@ -17,6 +17,7 @@ class Project < ActiveRecord::Base
 
   scope :featured, -> { where("projects.publish = true and projects.active = true and projects.insured = true") }
   scope :actives, -> { where("projects.publish = true and projects.active = true and projects.insured = false") }
+  scope :outstanding, -> { where("projects.publish = true and projects.active = true and projects.outstanding = true") }
   scope :entity_projects, ->(id) { where("entity_id = ?", id) }
   scope :image_featured, -> { where(links: {kind: 1, active: 1 }) }
   #scope :images_projects, -> { includes(:links).where("links.kind=1 and links.active=1") }

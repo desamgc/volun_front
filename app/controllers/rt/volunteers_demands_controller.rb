@@ -35,6 +35,6 @@ class Rt::VolunteersDemandsController < ApplicationController
   protected
 
   def rt_volunteers_demand_params
-    params.require(:rt_volunteers_demand).permit(:description, :execution_start_date, :execution_end_date, :road_type_id, :road_name, :number_type, :road_number, :postal_code, :town, :province_id, :requested_volunteers_num, :volunteers_profile, :volunteer_functions_1, :volunteer_functions_2, :volunteer_functions_3)
+    params.require(:rt_volunteers_demand).permit(:description, :execution_start_date, :execution_end_date, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :requested_volunteers_num, :volunteers_profile, :volunteer_functions_1, :volunteer_functions_2, :volunteer_functions_3)
   end
 end
