@@ -80,10 +80,11 @@
   <div class="urgenteWrapper">
 
   <% @project_outstanding.each do |project| %>
-      <h3><%=  project.name %></h3>
-         <%= project.description %>
+      <h2><%=  project.name %></h2>
+        <p> <%= project.description %></p>
+          <a href=""><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
   <% end %>
-        
+
   </div>   
 <% end %>
 
