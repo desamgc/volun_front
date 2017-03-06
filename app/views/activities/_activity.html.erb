@@ -1,30 +1,24 @@
 
-<br/>
-<div class="global-results">
-    <ul class="events-results">
-        <li class="withimage">
-            <div class="event-image">
-                <%= render partial: "links/link", collection: activity.links.logo %>
-            </div>
 
 
-            <div class="event-info">
-             <span class="event-type"><h3><%= activity.name %></h3></span>
-                
-             <span class="event-intro"><%= truncate(activity.description) %></span>
-             <%= link_to  "Leer mas .." , activity_path(activity), class: "event-link " %> 
+<% activity.events.each do |event| %>
+<% event.timetables.each do |timetable| %>
+<div class="row">
+           
+              
+                    <div class="col-xs-2 no-padding-left">
+                        <p class="fecha">
+                            <%= timetable.execution_date.day %>
 
-             <% activity.events.each do |event| %> 
-             
-                <div class="event-location"><span data-latitude="" data-longitude="" data-name="" data-direction=""><%= event.address.road_name %></span>
-                </div>
-                <br/>
-
-                <% event.timetables.each do |timetable| %> 
-                  <div class="event-date"><span><%= timetable.execution_date %></span></div>
-                <% end %>
-             <% end %>     
-            </div>
-        </li>
-</ul>
+                            <span><%= Date::MONTHNAMES[timetable.execution_date.month] %> <%= timetable.execution_date.year %></span>
+                        </p>
+                    </div>
+                    <div class="col-xs-10">
+                        <p class="distrito"><%= event.address.district %></p>
+                        <h3 class="titular"><%= activity.name %></h3>
+                    </div>
+               
+           
 </div>
+<% end %>     
+<% end %>         

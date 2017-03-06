@@ -54,8 +54,8 @@
             <ul class="nav navbar-nav navbar-right">
 
              <% if current_user %>
-
-              <li> <%= link_to 'Quiénes somos', new_user_session_path, class: "" %></li>
+                     <li> <%= link_to 'Inicio', root_path, class: "" %></li> 
+                     <li> <%= link_to 'Quiénes somos', new_user_session_path, class: "" %></li>
                      <li><%= link_to '¿Que puedes hacer?', volunteers_path, class: "" %></li>
                      <li> <%= link_to 'Proyectos', index_i_projects_path, class: "" %></li>
                      <li><%= link_to 'Entidades colaboradoras', entities_path, class: "" %></li>
@@ -64,8 +64,8 @@
                      <li>  <%= render 'shared/personal_area' %></li>
           <% else %>
 
-
-                      <li> <%= link_to 'Quiénes somos', new_user_session_path, class: "" %></li>
+                     <li> <%= link_to 'Inicio', root_path, class: "" %></li>  
+                     <li> <%= link_to 'Quiénes somos', new_user_session_path, class: "" %></li>
                      <li><%= link_to '¿Que puedes hacer?', volunteers_path, class: "" %></li>
                      <li> <%= link_to 'Proyectos', index_i_projects_path, class: "" %></li>
                      <li><%= link_to 'Entidades colaboradoras', entities_path, class: "" %></li>

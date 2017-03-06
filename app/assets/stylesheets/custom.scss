@@ -23,6 +23,10 @@ ol {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.no-padding-left {
+    padding-left: 0;
+}
+
 #headerTop {
     height: 69px;
     border-bottom: solid 1px #000000;
@@ -118,6 +122,7 @@ ol {
     text-align: center;
     padding: 45px 20%;
     background-color: #ff6600;
+    margin-top: -60px;
     h2 {
         span {
             font-family: Lato;
@@ -316,6 +321,240 @@ footer {
     right: 0;
 }
 
+main {
+    padding-top: 60px;
+}
+
+h1 {
+    &.titlePage {
+        font-size: 28px;
+        font-weight: 900;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        letter-spacing: 1.2px;
+        color: #1d1d1d;
+        margin-bottom: 45px;
+    }
+}
+
+
+/*AGENDA*/
+
+.datepicker table tr td.disabled,
+.datepicker table tr td.disabled:hover {
+    color: unset;
+    &:after {
+        content: "";
+        display: none;
+    }
+}
+
+.datepicker table tr td.active.active,
+.datepicker table tr td.active.disabled,
+.datepicker table tr td.active.disabled.active,
+.datepicker table tr td.active.disabled.disabled,
+.datepicker table tr td.active.disabled:active,
+.datepicker table tr td.active.disabled:hover,
+.datepicker table tr td.active.disabled:hover.active,
+.datepicker table tr td.active.disabled:hover.disabled,
+.datepicker table tr td.active.disabled:hover:active,
+.datepicker table tr td.active.disabled:hover:hover,
+.datepicker table tr td.active.disabled:hover[disabled],
+.datepicker table tr td.active.disabled[disabled],
+.datepicker table tr td.active:active,
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active:hover.active,
+.datepicker table tr td.active:hover.disabled,
+.datepicker table tr td.active:hover:active,
+.datepicker table tr td.active:hover:hover,
+.datepicker table tr td.active:hover[disabled],
+.datepicker table tr td.active[disabled] {
+    background-color: unset;
+}
+.datepicker table tr td.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active:hover {
+    background-color:unset;
+    background-image: unset;
+    background-image: unset;
+    background-image:unset;
+    background-image: unset;
+    background-image: unset;
+    background-image: unset;
+    background-repeat: unset;
+    border-color: unset;
+    border-color: unset;
+    filter: unset;
+    color: unset;
+    text-shadow: unset;
+}
+
+.datepicker {
+    thead{
+        tr{
+
+//                th{
+//                    &:first-child{
+//                        text-align: left;
+//                    } &:last-child{
+//                        text-align: right;
+//                    }
+//                }
+
+            &:nth-child(2){
+                position: relative;
+                    th{
+                            border-bottom: solid 1px rgba(29, 29, 29, 0.15);
+                        }
+            }
+        }
+    }
+    tbody{
+        tr{
+//            td{
+//                &:first-child{
+//                    text-align: left;
+//                }
+//                &:last-child{
+//                    text-align: right;
+//                }
+//            }
+        }
+    }
+    td {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+    }
+    &.datepicker-inline {
+        width: unset;
+        border: solid 1px rgba(29, 29, 29, 0.3);
+        border-radius: 0px;
+    }
+    .table-condensed {
+        width: 100%;
+    }
+    .day {
+        font-size: 14px;
+        font-weight: 700;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #1d1d1d;
+        position: relative;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            right: 11px;
+            width: 10px;
+            height: 10px;
+            background-color: #ff6600;
+            border-radius: 100px;
+        }
+        &.old,
+        &.new {
+            &:after {
+                display: none;
+            }
+            pointer-events: none;
+            color: rgba(29,
+            29,
+            29,
+            0.3);
+            a {
+                color: rgba(29, 29, 29, 0.3);
+            }
+            &.active {}
+        }
+        &.active {
+            &:before {
+                content: "";
+                width: 40px;
+                height: 40px;
+                background-color: rgba(254, 102, 0, 0.3);
+                border-radius: 100px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+            background-color: unset;
+            background: unset;
+            a {
+            color: #1d1d1d;
+        }
+        }
+        a {
+            color: #1d1d1d;
+        }
+    }
+}
+
+.numActividades {
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: 1.3px;
+    color: #1d1d1d;
+}
+
+.actividadWrapper {
+    padding: 30px;
+    border: solid 1px rgba(29, 29, 29, 0.3);
+    border-left: solid 6px #ff6600;
+    margin-bottom: 30px;
+    .fecha {
+        font-size: 52px;
+        font-weight: 900;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.0;
+        letter-spacing: 3.5px;
+        text-align: center;
+        color: rgba(29, 29, 29, 0.7);
+        border-right: solid 1px rgba(29, 29, 29, 0.3);
+        span {
+            font-size: 16px;
+            font-weight: 700;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: 0.8px;
+            text-align: center;
+            color: rgba(29, 29, 29, 0.7);
+            display: block;
+        }
+    }
+    .distrito {
+        font-size: 14px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        letter-spacing: 0.7px;
+        color: rgba(29, 29, 29, 0.8);
+    }
+    .titular {
+        font-family: 'Merriweather', serif;
+        font-size: 28px;
+        font-weight: 900;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        letter-spacing: 1.2px;
+        color: #1d1d1d;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 90%;
+        overflow: hidden;
+    }
+}
+
 @media(max-width:410px) {
     #headerTop {
         span {
@@ -388,10 +627,9 @@ footer {
             font-size: 23px;
             font-weight: 900;
         }
-         a.email {
-    font-size: 13px;
-
-}
+        a.email {
+            font-size: 13px;
+        }
         #widgetArea {
             .column {
                 &:nth-child(2) {

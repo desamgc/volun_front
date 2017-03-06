@@ -1,20 +1,47 @@
-<%= javascript_tag do %>
-  var list_days = <%= raw @list_days.to_json %>;
-<% end %>
+<div class="container-fluid">
+    <h1 class="titlePage">Agenda de actividades solidarias</h1>
 
-<% if @day %>
-	<div id="fecha">
 
-	</div>
-	<br/>
-	<br/>
-	<%= text_area_tag :first_day, @day.html_safe, { style: "display: none;"} %>
-	<div id="day">
-	  <h1> Agenda del dia <%= @day %> </h1> 
-	</div>
+    <div class="row">
+        <div class="col-md-4">
+            <%= javascript_tag do %>
+          var list_days = <%= raw @list_days.to_json %>;
+            <% end %>
+       <div id="fecha">
 
-	<div id="activities">
-	  <%= render partial: 'activity', collection: @activities %>      
-	</div>
+        </div>
 
-<% end %>
+            <%= text_area_tag :first_day, @day.html_safe, { style: "display: none;"} %>
+
+
+
+        </div>
+        <div class="col-md-8">
+            <div id="activities">
+            <h4 class="numActividades"><span>57</span> actividades</h4>
+  	          <div class="actividadWrapper">
+  	          	<%= render partial: 'activity', collection: @activities %>	
+                
+            </div>
+
+
+  
+</div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!--
+<div id="day">
+    <h1> Agenda del dia <%= @day %> </h1> 
+</div>
+-->
