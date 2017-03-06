@@ -1,3 +1,4 @@
+<!--
 <li class="col-xs-12 col-sm-4 col-md-4">
   <div class="gallery-item">
       <%= render partial: "links/link", collection: project.links.logo %>
@@ -14,4 +15,31 @@
   </div>
 </li>
     
+-->
+
+<li class="col-xs-12 col-sm-4 col-md-4" style="display:inline-block">
+  <div class="gallery-item">
+     <header>
+        <%= render partial: "links/link", collection: project.links.logo %>
+     </header>
+
+    <div class="main">
+        <h3><%=  project.name %></h3>
+        <p><%= truncate(project.description, length: 200) %></p>
+
+         <div class="row">
+             <div class="col-xs-6">  <%= render partial: 'events/event', collection: project.events %>   </div>
+             <div class="col-xs-6"> <%= link_to  "Leer mas .." , project_path(project), class: "event-link " %> </div>
+         </div>
+
+
+
+      <br/>
+
+    </div>
+
+
+  </div>
+</li>
+
 

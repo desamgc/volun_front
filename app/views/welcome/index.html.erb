@@ -19,8 +19,8 @@
 
 
 
-
-<div class="row">
+<div class="container-fluid" style="display: none">
+    <div class="row">
 
    <div class="col-xs-6 col-sm-6 col-md-6">
      <span class="labelUp">Ordenar </span>
@@ -39,17 +39,23 @@
   </div>
 </div>
 
-<h1> PROYECTOS DESTACADOS </h1>
-<div class="gallery nofluid">
-  <ul class="row">
+
+</div>
+
+<section class="container-fluid">
+    <div class="row">
+          <div class="col-md-12">
+        <h2 class="titlePage"> Proyectos destacados</h2>
+  <ul class="row destacadosWrapperHome">
       
       <%= render partial: 'projects/project', collection: @projects_featured  %>
   </ul>
-</div>  
+    </div>
 
 
+    </div>
 
-
+<!--
 <% if @day %>
 	<div id="fecha">
 
@@ -67,6 +73,7 @@
 
 <% end %>
 
+-->
 
 <div class="row">
   <div class="col-md-12">
@@ -88,5 +95,9 @@
   </div>   
 <% end %>
 
+
+
+
+</section>
 
 
