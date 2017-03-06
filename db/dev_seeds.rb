@@ -358,7 +358,7 @@ end
 #   RequestReason.create!(kind: kind)
 # end
 
-puts "Creando Proyectos featured"
+puts "Creando Proyectos outstanding"
 (1..PROJECTS_NUM_OUTSTANDING).each do |n|
     project_other = Pt::Other.new()
     project   = Project.new()
@@ -375,7 +375,7 @@ puts "Creando Proyectos featured"
       beneficiaries_num:     10,
       volunteers_num:        rand(100),
       project_type_id:       7,
-      insured:               true,
+      insured:               false,
       active:                true,
       publish:               true,
       outstanding:           true,  

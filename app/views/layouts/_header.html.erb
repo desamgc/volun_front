@@ -15,7 +15,7 @@
 </div>
 
 
-<div id="HeaderWrapper" class="container-fluid" style='background-image: url("/assets/destacados/destacado-home.png");'>
+<div id="HeaderWrapper" class="container-fluid" style='background-image: url(<%= asset_path("destacado-home.jpg") %>);'>
   <div id="menuWrapper" class="container-fluid">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -105,19 +105,11 @@
 
     
   
-
-      <div class="urgenteWrapper">
-           <h2 class="title-modal">Este es el título del destacado</h2>
-      <p>
-            
-               Esta es la descripción lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper ante at lectus bibendum, sit amet blandit ante pretium.
-            
-        </p>
-
-        <a href=""><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+  
+        <%= yield :head %>
 
 
-      </div>
+      
 
 
   </div>

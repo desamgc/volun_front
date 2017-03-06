@@ -69,8 +69,16 @@
   </div>
 </div>
 
+<% content_for :head do %>	
+  <div class="urgenteWrapper">
 
-
+  <% @project_outstanding.each do |project| %>
+      <h3><%=  project.name %></h3>
+         <%= project.description %>
+  <% end %>
+        
+  </div>   
+<% end %>
 
 
 

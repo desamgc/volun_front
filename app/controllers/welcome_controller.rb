@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
   def index
   	@search = Project.includes(:links).actives.all
   	@projects_featured = Project.includes(:links).featured
-  	@projects_outstanding = Project.includes(:links).outstanding
+  	@project_outstanding = Project.includes(:links).outstanding
   	@locations = Project.includes(:links).actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
 
 
