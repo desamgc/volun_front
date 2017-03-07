@@ -785,8 +785,24 @@ h2 {
 }
 
 @media(max-width:767px) {
+    #actividadesHome{
+        h4{
+            margin-top: 27px;
+        }
+    }
+    h1.titlePage, h2.titlePage{
+        text-align: center;
+
+        .right{
+            float: none;
+            margin-top: 18px;
+        }
+    }
     .gallery-item{
         margin-bottom: 20px;
+        header{
+            height: 242px;
+        }
     }
     .section-cont {
         padding: 35px 20px;
@@ -1029,6 +1045,20 @@ h2 {
         text-decoration: underline;
     }
 }
+
+@media(min-width:768px) and (max-width:1200px) {
+    .gallery-item{
+        header{
+            height: 233px;
+        }
+    }
+    .ctaGroupPreview{
+        .text-right{
+            text-align: left !important;
+        }
+    }
+}
+
 
 @media(min-width:1200px) {}
 
