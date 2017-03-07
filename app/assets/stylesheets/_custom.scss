@@ -770,7 +770,7 @@ h3 {
 
 /*VOLUNTARIOS*/
 
-#voluntariosNoLoginWrapper {
+#voluntariosNoLoginWrapper, #entidadessNoLoginWrapper {
     padding-top: 60px;
     padding-bottom: 120px;
     background-color: rgba(0, 0, 0, 0.05);
@@ -782,8 +782,9 @@ h3 {
         line-height: 1.44;
         letter-spacing: 1px;
         color: rgba(29, 29, 29, 0.8);
+        margin-bottom: 10px;
     }
-    .wrapperHazteVoluntario {
+    .wrapperColaborar {
         padding: 60px 12%;
         background-color: #ffffff;
         margin-top: 60px;
