@@ -51,6 +51,11 @@ REQUEST_REASONS = {
   3 => 'Otros'
 }
 
+REQUEST_STATUS = {
+  1 => 'Pending'
+  
+}
+
 AREA_NAMES = [
   'Derechos Sociales',
   'Ambiental',
@@ -279,6 +284,11 @@ REQUEST_REASONS.each do |code, name|
 end
 
 
+puts "Creando Tipos de status"
+REQUEST_STATUS.each do |code, name|
+  ReqStatus.create!(kind: code, description: name)
+end
+
 
 REJECTION_TYPES = {
   1 => 'No procede',
@@ -309,7 +319,7 @@ puts "Creando Direcciones"
     town:                  "Madrid",
     latitude:              441900 + rand(100), 
     longitude:             4479566 + rand(100), 
-    district:              District.all.sample.code,
+    district:              District.all.sample.name,
     borough:               Faker::Address.state 
   )
 end

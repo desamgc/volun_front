@@ -3,8 +3,11 @@ require 'database_cleaner'
 DatabaseCleaner.clean_with :truncation
 Faker::Config.locale = I18n.locale
 
+ACTIVITIES_NUM    = 10
 ADDRESSES_NUM     = 20
 PROJECTS_NUM      = 10
+PROJECTS_NUM_FEATURED = 3
+PROJECTS_NUM_OUTSTANDING = 1
 REQUEST_FORMS_NUM = 10
 DISTRICTS_NUM     = 10
 ENTITIES_NUM      = 10
@@ -18,6 +21,7 @@ TIMETABLE_NUM     = 5
 EVENTS_NUM        = 5
 DOCUMENT_NUM      = 5
 SKILLS_NUM        = 5
+LINKS_NUM      = 4
 
 REQUEST_TYPES = {
   1  => 'rt_volunteer_subscribe',
@@ -35,20 +39,20 @@ REQUEST_TYPES = {
 }
 
 PROJECT_TYPES = {
-  1 => 'Servicios Sociales',
-  2 => 'Centros de mayores',
-  3 => 'Permanentes',
-  4 => 'Puntuales',
-  5 => 'Entidades',
-  6 => 'Subvencionados',
-  7 => 'Otros'
+  1 => 'Servicios Sociales'
+  
 }
 
 REQUEST_REASONS = {
-  1 => 'Difusión de proyectos',
-  2 => 'Solicitud voluntarios',
-  3 => 'Publicación actividad en agenda',
-  4 => 'Otros'
+  0 => 'Difusión de proyectos',
+  1 => 'Solicitud voluntarios',
+  2 => 'Publicación actividad en agenda',
+  3 => 'Otros'
+}
+
+REQUEST_STATUS = {
+  1 => 'Pending'
+  
 }
 
 AREA_NAMES = [
@@ -206,6 +210,7 @@ ROAD_TYPES = {
     'TRAVESIA'   => '1007',
 }
 
+PROPOSALS = %w(subvencionado desistido desestimado excluido)
 
 ENTITY_TYPES = {
   0 => 'Organización',
@@ -220,18 +225,23 @@ NOTICE_TYPES = {
 }
 
 
-REJECTION_TYPES = {
-  1 => 'No procede',
-  
-}
-
-
-
 puts "Creando Medios de comunicación"
 NOTICE_TYPES.each do |kind , name|
   NoticeType.create!(kind: kind, description: name)
 end
 
+
+AREAS = {
+  1 => 'EDUCACION',
+  2 => 'CULTURA',
+  3 => 'EMPLEO',
+  4 => 'OTRA'
+}
+
+puts "Creando Areas"
+AREAS.each do |kind , name|
+  Area.create!(name: name, description: name, active: true)
+end
 
 
 puts "Creando Tipos de solicitudes"
@@ -241,18 +251,15 @@ end
 
 puts "Creando Tipos de entidades"
 ENTITY_TYPES.each do |kind , name|
-  EntityType.create!(kind: kind, description: name)
+  EntityType.create!(name: name, description: name)
 end
 
 puts "Creando Tipos de proyectos"
-PROJECT_TYPES.each do |kind , name|
-  ProjectType.create!(kind: kind, description: name)
+ProjectType.kinds.each do |kind_name , kind_num|
+  ProjectType.create!(id: kind_num, kind: kind_num, description: kind_name)
 end
 
-puts "Creando Coordinaciones"
-(1..COORDINATIONS_NUM).each do |n|
-  Coordination.create!(name: "#{Coordination.model_name.human} #{n}")
-end
+
 
 puts "Creando Distritos"
 DISTRICTS.each do |code, name|
@@ -270,17 +277,27 @@ ROAD_TYPES.each do |name, code|
 end
 
 
-puts "Creando Tipos de vías"
+puts "Creando Tipos de razones"
 REQUEST_REASONS.each do |code, name|
-  RequestReason.create!(description: name)
+  ReqReason.create!(name: name, description: name)
 end
 
+
+puts "Creando Tipos de status"
+REQUEST_STATUS.each do |code, name|
+  ReqStatus.create!(kind: code, description: name)
+end
+
+
+REJECTION_TYPES = {
+  1 => 'No procede',
+  
+}
 
 puts "Creando Tipos de rechazos"
 REJECTION_TYPES.each do |code, name|
-  RejectionType.create!(description: name, kind:code)
+  ReqRejectionType.create!(description: name, name: name)
 end
-
 
   
 
