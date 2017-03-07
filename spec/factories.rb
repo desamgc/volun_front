@@ -8,6 +8,19 @@ FactoryGirl.define do
 
   sequence(:document_number) { |n| "#{n.to_s.rjust(8, '0')}X" }
 
+
+ 
+  factory :request_type do
+    kind 1
+    description "MyText"
+    active true
+
+    trait :invalid do
+      association :kind
+    end
+  end
+  
+    
  factory :request_form do
     #request_type 1 #RequestType.get_request_form_type(self.rt_extendable_type)
     sent_at "2016-12-02 12:48:05"
@@ -92,5 +105,160 @@ FactoryGirl.define do
      association  :loggable, factory: :volunteer
      notice_type_id 1
   end  
+
+
+
+  factory :rt_other, class: 'Rt::Other' do
+    description "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :activity_unpublishing, class: 'Rt::ActivityUnpublishing' do
+    reason "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :activity_publishing, class: 'Rt::ActivityPublishing' do
+    name "MyString"
+    organizer "MyString"
+    description "MyText"
+    execution_date "2017-01-27"
+    execution_hour "MyString"
+    association :road_type 
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "MyString"
+    borough "MyString"
+    association :district 
+    town "MyString"
+    association :province 
+    association :project 
+
+    trait :invalid do
+    end
+  end
+  factory :project_unsubscribe, class: 'Rt::ProjectUnsubscribe' do
+    association :project 
+    reason "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :project_unpublishing, class: 'Rt::ProjectUnpublishing' do
+    reason "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :project_publishing, class: 'Rt::ProjectPublishing' do
+    description "MyText"
+    association :road_type 
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "MyString"
+    borough "MyString"
+    association :district 
+    town "MyString"
+    association :province 
+
+    trait :invalid do
+    end
+  end
+  factory :volunteers_demand, class: 'Rt::VolunteersDemand' do
+    description "MyText"
+    execution_start_date "2017-01-27"
+    execution_end_date "2017-01-28"
+    association :road_type 
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "28045"
+    borough "MyString"
+    association :district 
+    town "MyString"
+    association :province 
+    requested_volunteers_num "MyString"
+    volunteers_profile "MyText"
+    volunteer_functions_1 "MyText"
+    volunteer_functions_2 "MyText"
+    volunteer_functions_3 "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :entity_unsubscribe, class: 'Rt::EntityUnsubscribe' do
+    reason "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :entity_subscribe, class: 'Rt::EntitySubscribe' do
+    name "MyString"
+    description "MyText"
+    vat_number "MyString"
+    email "MyString"
+    representative_name "MyString"
+    representative_last_name "MyString"
+    representative_last_name_alt "MyString"
+    contact_name "MyString"
+    contact_last_name "MyString"
+    contact_last_name_alt "MyString"
+    phone_number "MyString"
+    phone_number_alt "MyString"
+    publish_pictures false
+    annual_survey false
+    association :entity_type
+    comments "MyText"
+    other_subscribe_reason "MyText"
+    association :road_type
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "MyString"
+    borough "MyString"
+    association :district
+    town "MyString"
+    association :province
+
+    trait :invalid do
+    end
+  end
+  factory :volunteer_appointment, class: 'Rt::VolunteerAppointment' do
+    reason "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :volunteer_amendment, class: 'Rt::VolunteerAmendment' do
+    association :road_type
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "MyString"
+    borough "MyString"
+    association :district
+    town "MyString"
+    association :province
+    phone_number "MyString"
+    phone_number_alt "MyString"
+    email "MyString"
+
+    trait :invalid do
+    end
+  end
+  factory :volunteer_unsubscribe, class: 'Rt::VolunteerUnsubscribe' do
+    level 1
+    reason "MyText"
+
+    trait :invalid do
+    end
+  end
+ 
+  
+
   
 end

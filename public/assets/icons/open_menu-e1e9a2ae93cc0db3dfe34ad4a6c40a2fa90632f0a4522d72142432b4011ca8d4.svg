@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="20px" viewBox="0 0 24 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>bttn-listado-INACTIVE</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile---Home" transform="translate(-336.000000, -99.000000)" fill="#3D3D3D">
+            <g id="HEADER">
+                <g id="Group-2" transform="translate(0.000000, 60.000000)">
+                    <g id="Menú" transform="translate(16.000000, 30.000000)">
+                        <g id="bttn-listado-INACTIVE" transform="translate(320.000000, 9.000000)">
+                            <path d="M24,4 L0,4 L0,0 L24,0 L24,4 L24,4 Z M24,8 L0,8 L0,12 L24,12 L24,8 L24,8 Z M24,16 L0,16 L0,20 L24,20 L24,16 L24,16 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
