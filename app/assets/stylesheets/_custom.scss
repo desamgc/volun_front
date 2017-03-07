@@ -23,6 +23,47 @@ ol {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.event-link {
+    display: inline-block;
+    height: 40px;
+    border-radius: 100px;
+    background-color: rgba(255, 102, 0, 0.7);
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    color: #1d1d1d;
+    padding: 0 30px;
+    &.negative {
+        background-color: transparent;
+        height: 38px;
+        line-height: 38px;
+        border: solid 1px rgba(255, 102, 0, 0.5);
+    }
+    &.rightChev {
+        position: relative;
+        padding-right: 43px;
+        &:before {
+            content: "\f105";
+            font-family: FontAwesome;
+            font-size: 20px;
+            position: absolute;
+            right: 25px;
+            font-weight: 400;
+        }
+    }
+    &.big {
+        height: 56px;
+        line-height: 56px;
+        font-size: 18px;
+        padding: 0 45px;
+    }
+}
+
+.right {
+    float: right;
+}
+
 .no-padding-left {
     padding-left: 0;
 }
@@ -374,7 +415,11 @@ h2 {
 .datepicker table tr td.active[disabled] {
     background-color: unset;
 }
-
+    .table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
+    padding: unset;
+        padding-top: 15px;
+        padding-bottom: 10px;
+}
 .datepicker table tr td.active,
 .datepicker table tr td.active.disabled,
 .datepicker table tr td.active.disabled:hover,
@@ -395,6 +440,7 @@ h2 {
 }
 
 .datepicker {
+    background-color: #ffffff;
     thead {
         tr {
             //                th{
@@ -408,12 +454,40 @@ h2 {
                 position: relative;
                 th {
                     border-bottom: solid 1px rgba(29, 29, 29, 0.15);
+                    padding-bottom: 5px;
+                    font-size: 15px;
+                    font-weight: 300;
+                    font-style: normal;
+                    font-stretch: normal;
+                    line-height: 1.27;
+                    letter-spacing: normal;
+                    text-align: center;
+                    color: #1d1d1d;
+                }
+            }
+            &:nth-child(1) {
+                th {
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                    font-size: 16px;
+                    font-weight: 700;
+                    font-style: normal;
+                    font-stretch: normal;
+                    line-height: 1.38;
+                    letter-spacing: 0.8px;
+                    color: #1d1d1d;
                 }
             }
         }
     }
     tbody {
+         td{
+                    padding-top: 10px;
+                }
         tr {
+            &:first-child{
+
+            }
             //            td{
             //                &:first-child{
             //                    text-align: left;
@@ -424,10 +498,12 @@ h2 {
             //            }
         }
     }
+
     td {
         width: 40px;
         height: 40px;
         padding: 0;
+        padding-top: 10px;
     }
     &.datepicker-inline {
         width: unset;
@@ -512,6 +588,7 @@ h2 {
     border: solid 1px rgba(29, 29, 29, 0.3);
     border-left: solid 6px #ff6600;
     margin-bottom: 30px;
+    background-color: #ffffff;
     .fecha {
         font-size: 52px;
         font-weight: 900;
@@ -559,6 +636,34 @@ h2 {
     }
 }
 
+
+/*HOME*/
+
+#actividadesHome {
+    padding-top: 90px;
+    padding-bottom: 120px;
+    background-color: rgba(0, 0, 0, 0.05);
+    h4 {
+        font-size: 18px;
+        font-weight: 700;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.22;
+        letter-spacing: 1.3px;
+        color: #1d1d1d;
+        margin-bottom: 30px;
+    }
+    .actividadWrapper {
+        &:nth-child(3) {
+            display: block;
+        }
+        &:nth-child(2) {
+            display: block;
+        }
+        display: none;
+    }
+}
+
 .destacadosWrapperHome {
     margin-bottom: 90px;
 }
@@ -571,8 +676,8 @@ h2 {
         text-align: center;
         position: relative;
         img {
-            width: auto;
-            height: 400px;
+            width: 150%;
+            height: auto;
             position: absolute;
             left: 50%;
             top: 50%;
@@ -591,6 +696,69 @@ h2 {
             letter-spacing: 1.2px;
             color: #1d1d1d;
         }
+        p {
+            font-size: 14px;
+            font-weight: 400;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.43;
+            letter-spacing: 0.7px;
+            color: rgba(29, 29, 29, 0.8);
+            margin-top: 15px;
+        }
+        .category {
+            display: inline-block;
+            line-height: 40px;
+            text-transform: capitalize;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            color: #1d1d1d;
+        }
+        .event-link {
+            display: inline-block;
+            height: 40px;
+            border-radius: 100px;
+            background-color: rgba(255, 102, 0, 0.7);
+            line-height: 40px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            color: #1d1d1d;
+            padding: 0 30px;
+        }
+    }
+    .ctaGroupPreview {
+        margin-top: 30px;
+    }
+}
+
+#mapWrapper {
+    height: 520px;
+    background-color: rgba(206, 206, 206, 1);
+    h1 {
+        line-height: 520px;
+    }
+}
+
+#blogCta {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    padding-left: 15%;
+    padding-right: 15%;
+    .titlePage {
+        margin-bottom: 15px;
+    }
+    p {
+        font-size: 18px;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.44;
+        letter-spacing: 0.8px;
+        text-align: center;
+        color: #000000;
+        margin-bottom: 30px;
     }
 }
 
@@ -617,6 +785,9 @@ h2 {
 }
 
 @media(max-width:767px) {
+    .gallery-item{
+        margin-bottom: 20px;
+    }
     .section-cont {
         padding: 35px 20px;
         h2 span {

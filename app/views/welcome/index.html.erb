@@ -45,7 +45,7 @@
 <section class="container-fluid">
     <div class="row">
           <div class="col-md-12">
-        <h2 class="titlePage"> Proyectos destacados</h2>
+        <h2 class="titlePage"> Proyectos destacados <div class="right"><%= link_to 'Ver proyectos', index_i_projects_path, class: "event-link negative rightChev" %></div></h2>
   <ul class="row destacadosWrapperHome">
       
       <%= render partial: 'projects/project', collection: @projects_featured  %>
@@ -55,45 +55,47 @@
 
     </div>
 
+
+
+
+
+
+
+
+</section>
+<section id="actividadesHome" class="container-fluid">
+
+       <div class="row">
+           <div class="col-md-12">
+                 <h2 class="titlePage"> Agenda de actividades solidarias <div class="right"><%= link_to 'Ver agenda', index_i_activities_path, class: "event-link negative rightChev" %></div></h2>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-md-4">
+               <div id="fecha">
+
+	            </div>
+           </div>
+           <div class="col-md-8">
 <!--
-<% if @day %>
-	<div id="fecha">
-
-	</div>
-	<br/>
-	<br/>
-	<%= text_area_tag :first_day, @day.html_safe, { style: "display: none;"} %>
-	<div id="day">
-	  <h1> Agenda del dia <%= @day %> </h1> 
-	</div>
-
-	<div id="activities">
-	  <%= render partial: 'activities/activity', collection: @activities %>      
-	</div>
-
-<% end %>
-
+               <div id="day">
+                  <h1> Agenda del dia <%= @day %> </h1>
+                </div>
 -->
 
-<div class="row">
-  <div class="col-md-12">
-     <div id="mapDiv">
-       
-     </div>
-  </div>
-</div>
+                <div id="activities">
+                 <h4>Próximas actividades</h4>
+                  <%= render partial: 'activities/activity', collection: @activities %>
+                </div>
+           </div>
+       </div>
 
-<% content_for :head do %>	
-  <div class="urgenteWrapper">
 
-  <% @project_outstanding.each do |project| %>
-      <h2><%=  project.name %></h2>
-        <p> <%= project.description %></p>
-          <a href=""><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-  <% end %>
 
-  </div>   
-<% end %>
+
+
+
+
 
 
 
@@ -101,3 +103,32 @@
 </section>
 
 
+<section id="mapWrapper" class="container-fluid nopadding">
+    <div class="row">
+  <div class="col-md-12">
+     <div id="mapDiv">
+       <h1 class="text-center">MAPA</h1>
+     </div>
+  </div>
+</div>
+</section>
+<section id="blogCta" class="text-center">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="titlePage">¿Quieres estar al tanto de las últimas noticias de Madrid?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper ante at lectus bibendum, sit amet blandit ante pretium. Praesent malesuada velit tellus, quis eleifend est elementum ac.</p>
+            <a href="" class="event-link big">Ir al blog</a>
+        </div>
+    </div>
+</section>
+<% content_for :head do %>	
+  <div class="urgenteWrapper">
+
+  <% @project_outstanding.each do |project| %>
+      <h2><%=  project.name %></h2>
+        <p> <%= truncate(project.description, length: 180) %></p>
+          <a href=""><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+  <% end %>
+
+  </div>   
+<% end %>

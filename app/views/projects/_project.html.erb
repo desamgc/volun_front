@@ -25,11 +25,11 @@
 
     <div class="main">
         <h3><%=  project.name %></h3>
-        <p><%= truncate(project.description, length: 200) %></p>
+        <p><%= truncate(project.description, length: 120) %></p>
 
-         <div class="row">
-             <div class="col-xs-6">  <%= render partial: 'events/event', collection: project.events %>   </div>
-             <div class="col-xs-6"> <%= link_to  "Leer mas .." , project_path(project), class: "event-link " %> </div>
+         <div class="row ctaGroupPreview">
+             <div class="col-lg-6 col-md-12"> <span  class="category">temática</span>  </div>
+             <div class="col-lg-6 col-md-12 text-right"> <%= link_to  "¿Te interesa?" , project_path(project), class: "event-link " %> </div>
          </div>
 
 
