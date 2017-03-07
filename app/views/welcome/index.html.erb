@@ -8,7 +8,13 @@
 <% end %>
 
 
-
+ <div class="section-cont">
+      <h2 class="section-name">
+        <span class="section-name-title">
+          Comunidad Virtual del Voluntariado y la solidaridad en la Ciudad de Madrid
+        </span>
+      </h2>
+ </div>
 
 
 
@@ -55,7 +61,7 @@
 	</div>
 
 	<div id="activities">
-	  <%= render partial: 'activities/activity', collection: @activities %>      
+	  <%= render partial: 'activities/activity', collection: @activities, locals: {day: @day}  %>      
 	</div>
 
 <% end %>

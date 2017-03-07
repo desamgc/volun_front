@@ -1,24 +1,26 @@
 
+<% @districts = "" %>
 
 
-<% activity.events.each do |event| %>
-<% event.timetables.each do |timetable| %>
+<% year, month, day = day.split('-').map(&:to_i) %>
+<% date_s = DateTime.new(year, month, day) %>
+
+
 <div class="row">
            
               
                     <div class="col-xs-2 no-padding-left">
                         <p class="fecha">
-                            <%= timetable.execution_date.day %>
+                            <%= date_s.day %>
 
-                            <span><%= Date::MONTHNAMES[timetable.execution_date.month] %> <%= timetable.execution_date.year %></span>
+                            <span><%= Date::MONTHNAMES[date_s.month] %> <%= date_s.year %></span>
                         </p>
                     </div>
                     <div class="col-xs-10">
-                        <p class="distrito"><%= event.address.district %></p>
+                        <p class="distrito"><%= @districts %></p>
                         <h3 class="titular"><%= activity.name %></h3>
                     </div>
                
            
 </div>
-<% end %>     
-<% end %>         
+        

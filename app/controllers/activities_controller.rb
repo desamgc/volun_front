@@ -14,7 +14,7 @@ class ActivitiesController < ApplicationController
 
 
   def index_i
-
+    
     params[:q] ||= Activity.ransack_default
     params[:day] ||= Activity.includes(:events, :timetables).activities_present(0.day.ago.to_s).minimum(:execution_date).try :strftime, "%Y-%m-%d"
     @search_q = Activity.includes(:events, :timetables).search({timetables_execution_date_eq: params[:day] })

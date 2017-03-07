@@ -47,11 +47,6 @@ load_geo: function ()
 
                  var infoTemplate = new InfoTemplate();
 
-                //infoTemplate.setTitle(gon.items[i].nombreproyecto);
-                //infoTemplate.setContent("<img src='/assets/" + gon.items[i].description +  "' alt='2'>" +  
-                //    "<h2>" + gon.items[i].description + " </h2><br/>" +
-                //    "<a href='/proyectos/" + gon.items[i].id  + "/edit'>Leer mas..</a>" );
-
 
                  var g = new Graphic(pt,pms);
                  g.setInfoTemplate(infoTemplate);
@@ -68,12 +63,6 @@ load_geo: function ()
                  map.addLayer(graficos);
 
                  var infoTemplate = new InfoTemplate();
-
-                //infoTemplate.setTitle(gon.items[i].nombreproyecto);
-                //infoTemplate.setContent("<img src='/assets/" + gon.items[i].description +  "' alt='2'>" +  
-                //    "<h2>" + gon.items[i].description + " </h2><br/>" +
-                //    "<a href='/proyectos/" + gon.items[i].id  + "/edit'>Leer mas..</a>" );
-
 
                  var g = new Graphic(pt,pms);
                  g.setInfoTemplate(infoTemplate);
