@@ -52,26 +52,26 @@
             </ul>
 -->
             <ul class="nav navbar-nav navbar-right">
-
              <% if current_user %>
-                     <li> <%= link_to 'Inicio', root_path, class: "" %></li> 
-                     <li> <%= link_to 'Quiénes somos', new_user_session_path, class: "" %></li>
-                     <li><%= link_to '¿Que puedes hacer?', volunteers_path, class: "" %></li>
-                     <li> <%= link_to 'Proyectos', index_i_projects_path, class: "" %></li>
-                     <li><%= link_to 'Entidades colaboradoras', entities_path, class: "" %></li>
-                     <li><%= link_to 'Agenda', index_i_activities_path, class: "" %></li>
-                     <li> <%= link_to 'Blog', new_user_session_path, class: "" %></li>
+
+                     <li> <%= nav_link 'Inicio', root_path %></li> 
+                     <li> <%= nav_link 'Quiénes somos', new_user_session_path %></li>
+                     <li><%= nav_link '¿Que puedes hacer?', volunteers_path %></li>
+                     <li> <%= nav_link 'Proyectos', index_i_projects_path %></li>
+                     <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>
+                     <li><%= nav_link 'Agenda', index_i_activities_path %></li>
+                     <li> <%= nav_link 'Blog', "https://voluntariospormadridblog.madrid.es/" %></li>
                      <li>  <%= render 'shared/personal_area' %></li>
           <% else %>
 
-                     <li> <%= link_to 'Inicio', root_path, class: "" %></li>  
-                     <li> <%= link_to 'Quiénes somos', new_user_session_path, class: "" %></li>
-                     <li><%= link_to '¿Que puedes hacer?', volunteers_path, class: "" %></li>
-                     <li> <%= link_to 'Proyectos', index_i_projects_path, class: "" %></li>
-                     <li><%= link_to 'Entidades colaboradoras', entities_path, class: "" %></li>
-                     <li><%= link_to 'Agenda', index_i_activities_path, class: "" %></li>
-                     <li> <%= link_to 'Blog', new_user_session_path, class: "" %></li>
-                     <li><span class="sessionTrigger"><%= link_to 'Iniciar sesión', new_user_session_path, class: "" %></span> </li>
+                     <li> <%= nav_link 'Inicio', root_path %></li>  
+                     <li> <%= nav_link 'Quiénes somos', new_user_session_path %></li>
+                     <li><%= nav_link '¿Que puedes hacer?', volunteers_path %></li>
+                     <li> <%= nav_link 'Proyectos', index_i_projects_path %></li>
+                     <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>
+                     <li><%= nav_link 'Agenda', index_i_activities_path %></li>
+                     <li> <%= nav_link 'Blog', "https://voluntariospormadridblog.madrid.es/" %></li>
+                     <li><span class="sessionTrigger"><%= nav_link 'Iniciar sesión', new_user_session_path %></span> </li>
             </ul>
 
           <% end %>
