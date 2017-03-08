@@ -481,7 +481,7 @@ puts "Creando Proyectos featured"
     }
     
     project.save!
-
+    project.areas << Area.all.sample
     puts "Creando Eventos"
     2.times do
       event = Event.create!(

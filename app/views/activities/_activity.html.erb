@@ -6,6 +6,9 @@
 <% Timetable.activity_with_day(day_s,activity.id).each do |timetable| %>
     <% districts = timetable.event.address.district + ' ' + districts %>
 <% end %>     
+
+
+<div class="actividadWrapper">
 <div class="row">
   <div class="col-xs-2 no-padding-left">
     <p class="fecha">
@@ -18,4 +21,4 @@
     <h3 class="titular"><%= activity.name %></h3>
   </div>
 </div>
-        
+</div>

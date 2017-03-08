@@ -1,3 +1,4 @@
+<!--
 <li class="col-xs-12 col-sm-4 col-md-4">
   <div class="gallery-item">
       <%= render partial: "links/link", collection: project.links.logo %>
@@ -14,4 +15,34 @@
   </div>
 </li>
     
+-->
+
+<li class="col-xs-12 col-sm-4 col-md-4" style="display:inline-block">
+  <div class="gallery-item">
+     <header>
+        <%= render partial: "links/link", collection: project.links.logo %>
+     </header>
+
+    <div class="main">
+        <h3><%=  project.name %></h3>
+        <p><%= truncate(project.description, length: 120) %></p>
+
+         <div class="row ctaGroupPreview">
+             <% project.areas.each do |area| %> 
+                <div class="col-lg-4 col-md-12  col-sm-12 col-xs-4"> <span class="category"><%= area.name %> </span>  
+                </div>
+             <% end %>
+             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right"> <%= link_to  "¿Te interesa?" , project_path(project), class: "event-link " %> </div>
+          </div>
+
+
+
+      <br/>
+
+    </div>
+
+
+  </div>
+</li>
+
 
