@@ -10,13 +10,12 @@ $("#fecha").datepicker({
         //arr_list_days = list_days.split(",");
         //$('#fecha').datepicker('setDates', arr_list_days);  
         $('#fecha').datepicker('setDates', $("#first_day").val());  
-        
         $('#fecha').datepicker().on('changeDate', function() {
                            param_day = '{"timetables_execution_date_eq"' + "=>" + "'" + $('#fecha').datepicker('getFormattedDate') + '"}'
                            jQuery.ajax({
                                       type: "GET",
                                       dataType: "script",
-                                      url: "/activities",
+                                      url: "/activities/index_i",
                                       success: function(data) {
                                           
                                                                            

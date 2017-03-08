@@ -50,20 +50,25 @@
 
 
 <% if @day %>
-	<div id="fecha">
+  <div class="row">
+    <div class="col-md-4">
+            <%= javascript_tag do %>
+          var list_days = <%= raw @list_days.to_json %>;
+            <% end %>
+       <div id="fecha">
 
-	</div>
-	<br/>
-	<br/>
-	<%= text_area_tag :first_day, @day.html_safe, { style: "display: none;"} %>
-	<div id="day">
-	  <h1> Agenda del dia <%= @day %> </h1> 
-	</div>
-
-	<div id="activities">
-	  <%= render partial: 'activities/activity', collection: @activities, locals: {day: @day}  %>      
-	</div>
-
+       </div>
+        <%= text_area_tag :first_day, @day.html_safe, { style: "display: none;"} %>
+    </div>
+    <div class="col-md-8">
+     <div id="activities">
+       <h4 class="numActividades"><span>Proximas actividades</span></h4>
+  	   <div class="actividadWrapper">
+  	     <%= render partial: 'activities/activity', collection: @activities, locals: {day_s: @day} %>	
+       </div>
+ 	  </div>
+   </div>
+  </div>
 <% end %>
 
 
@@ -74,6 +79,8 @@
      </div>
   </div>
 </div>
+
+<li><a href="https://voluntariospormadridblog.madrid.es/">Blog</a>,</li>
 
 <% content_for :head do %>	
   <div class="urgenteWrapper">
