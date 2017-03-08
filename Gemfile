@@ -57,7 +57,7 @@ group :preproduction, :development, :test do
   gem 'bullet'
   gem 'faker'
   gem 'database_cleaner'
-  #gem 'capybara' # integration testing tool for rack based web applications.
+  gem 'capybara' # integration testing tool for rack based web applications.
   gem 'fuubar'   # RSpec progress bar formatter
   gem 'i18n-tasks' #  helps you find and manage missing and unused translations.
   gem 'rspec-rails'
