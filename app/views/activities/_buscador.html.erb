@@ -1,0 +1,76 @@
+
+<%= search_form_for(@search_q, url:"/activities/search", :method => :get, remote: true) do |f| %>
+<div class='form form-electronic'>
+<div class="bg-fluid0">
+                            
+  <div class="panel panel-type1 searcher-diary nofluid">
+    <div class="panel-heading">
+        <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed">Buscar actividades</a>
+    </div>
+    <div class="panel-body collapse in" id="searcher-diary">
+        <form class="form">
+                <legend class="form-legend">¿Qué buscas?</legend>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <span class="labelUp">Descripción <span class="asterisco">*</span></span>
+                              <%= f.text_field :name_or_description_cont %>
+                        </div>
+                    </div>
+                   
+                </div>
+                
+                
+                <legend class="form-legend">¿Dónde?</legend>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                         <div class="form-group">
+                            <span class="labelUp">Distrito <span class="asterisco">*</span></span>
+                            <%= f.select :addresses_district_eq, @districts, include_blank: "", selected: "" %>  
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                         <div class="form-group">
+                            <label for="id_propuesta">
+                            <span class="labelUp">Barrio </span>
+                            <%= f.select :addresses_borough_eq, @boroughs %>
+                            
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+           
+                <legend class="form-legend">Tematica</legend>
+                <div class="row">
+                  <% @areas.each do |area| %>  
+                    <div class="col-sm-6 col-md-2">
+                         <div class="form-group">
+                            <%= check_box_tag "q[area_name_in][]", area.name %> <%= area.name %>
+                        </div>
+                    </div>
+                  <% end %>  
+                </div>
+
+                
+
+        </form>
+
+        <div class="button-group text-right">
+          <%= f.submit "Buscar", class: "button button4 button-icon"  %>
+         
+        </div>
+</div>
+        
+</div>                            
+        
+</div>
+
+
+
+</div>
+
+<% end %>
+
+<!-- en modo cuadricula -->

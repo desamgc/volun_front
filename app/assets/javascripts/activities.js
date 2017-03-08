@@ -24,7 +24,7 @@ $("#fecha").datepicker({
                                           
                                           // mostramos mensaje de error
                                       },
-                                      "data":{q:param_day, day:$('#fecha').datepicker('getFormattedDate') },
+                                      "data":{day:$('#fecha').datepicker('getFormattedDate') },
                                       "async": true,
                                       
                                });
@@ -37,6 +37,36 @@ $("#fecha").datepicker({
            return res
 
         }
+
+
+        $('#q_addresses_district_eq').on('click', function() {
+                           jQuery.ajax({
+                                      type: "GET",
+                                      dataType: "json",
+                                      url: "/activities/boroughs",
+                                      success: function(data) {
+                                          $('#q_addresses_borough_eq').children().remove();
+                                          $.each(data, function(i, location) 
+             
+                                          {
+                                              $('#q_addresses_borough_eq').append('<option value=' + location + '>' + location + '</option>');
+                                           
+                                          });  
+
+
+
+
+                                                                           
+                                      },
+                                      error: function(data){
+                                          
+                                          $('#q_addresses_borough_eq').children().remove();
+                                      },
+                                      "data":{district:$('#q_addresses_district_eq').val() },
+                                      "async": true,
+                                      
+                               });
+        }); 
 
 
 });

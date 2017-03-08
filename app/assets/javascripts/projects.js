@@ -91,14 +91,14 @@ function showCoordinates(evt) {
 
 
 
-//$(document).ready(load_geo);
+
 
 $(document).ready(function(){
 
 
 App.Projects.load_geo();
-//App.Project.load_unigeo();
-$('#q_addresses_district_id_eq').on('click', function() {
+
+$('#q_addresses_district_eq').on('click', function() {
                            jQuery.ajax({
                                       type: "GET",
                                       dataType: "json",
@@ -121,7 +121,7 @@ $('#q_addresses_district_id_eq').on('click', function() {
                                           
                                           $('#q_addresses_borough_eq').children().remove();
                                       },
-                                      "data":{district:$('#q_addresses_district_id_eq').val() },
+                                      "data":{district:$('#q_addresses_district_eq').val() },
                                       "async": true,
                                       
                                });

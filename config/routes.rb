@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   
   resources :activities, only: [:show, :index, :index_i] do
     collection do
-      get :index_i
+      get :index_i, param: :day
+      get :boroughs
+      get :search
     end
   end
 
