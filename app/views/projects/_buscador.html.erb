@@ -10,6 +10,19 @@
     </div>
     <div class="panel-body collapse in" id="searcher-diary">
         <form class="form">
+                
+                <legend class="form-legend">Fecha</legend>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                          <div class="form-group date-field">
+                            <span class="labelUp">Fecha <span class="asterisco">*</span></span>
+                              <%= f.text_field :timetables_execution_date_eq, :class => "form-control-date" %>
+                          </div>    
+                        </div>
+                    </div>
+                </div>
+                
                 <legend class="form-legend">¿Qué buscas?</legend>
                 <div class="row">
                     <div class="col-sm-12">

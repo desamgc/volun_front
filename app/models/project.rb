@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   has_many   :events, as: :eventable
 
   has_many :addresses, through: :events
+  has_many :timetables, through: :events
   #has_many :districts, through: :addresses
   has_and_belongs_to_many :areas, -> { where(active: true).order('areas.name asc') }
 
