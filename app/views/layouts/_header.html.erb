@@ -55,7 +55,7 @@
              <% if current_user %>
 
                      <li> <%= nav_link 'Inicio', root_path %></li> 
-                     <li> <%= nav_link 'Quiénes somos', new_user_session_path %></li>
+                     <li> <%= nav_link 'Quiénes somos', whoami_path %></li>
                      <li><%= nav_link '¿Que puedes hacer?', volunteers_path %></li>
                      <li> <%= nav_link 'Proyectos', index_i_projects_path %></li>
                      <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>
@@ -65,7 +65,7 @@
           <% else %>
 
                      <li> <%= nav_link 'Inicio', root_path %></li>  
-                     <li> <%= nav_link 'Quiénes somos', new_user_session_path %></li>
+                     <li> <%= nav_link 'Quiénes somos', whoami_path %></li>
                      <li><%= nav_link '¿Que puedes hacer?', volunteers_path %></li>
                      <li> <%= nav_link 'Proyectos', index_i_projects_path %></li>
                      <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>
