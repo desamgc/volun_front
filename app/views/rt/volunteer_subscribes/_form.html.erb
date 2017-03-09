@@ -1,3 +1,4 @@
+<!--
 <%= form_for(@rt_volunteer_subscribe) do |f| %>
 <div class="form form-electronic">
  <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_subscribe})%>
@@ -66,3 +67,31 @@
 </div>
 
 <% end %>
+
+
+
+-->
+
+
+<div id="product-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= title %></h4>
+      </div>
+      <%= form_for @rt_volunteer_subscribe, remote: true do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.text_field :name, class: "form-control input-lg", placeholder: "Nombre del producto" %>
+          </div>
+          
+        </div>
+
+        <div class="modal-footer">
+          <%= f.submit class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

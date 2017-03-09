@@ -159,6 +159,12 @@ ol {
     //height: 136px;
 }
 
+
+.modal-dialog {
+ 
+    z-index: 9999;
+}
+
 .section-cont {
     text-align: center;
     padding: 45px 20%;
@@ -1108,3 +1114,5 @@ h3 {
 @media(min-width:1200px) {}
 
 @media(min-width:1300px) {}
+
+

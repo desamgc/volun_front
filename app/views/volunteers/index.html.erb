@@ -158,7 +158,7 @@ Ser voluntario por Madrid es participar en lo que más te gusta: programas socia
           <div class="wrapperColaborar">
               <h3 class="titlePage">Hazte voluntario</h3>
               <p>Si te sientes una persona solidaria y te apetece hacer algo por los demás, puedes hacer mucho más de lo que crees por tu ciudad, por tus vecinos, por tu entorno. En Voluntarios por Madrid te indicamos cómo.</p>
-              <%= link_to 'Quiero ser voluntario', new_rt_volunteer_subscribe_path, class: "event-link big" %>
+              <%= link_to 'Quiero ser voluntario', new_rt_volunteer_subscribe_path, class: "event-link big", :remote => true,  data: {toggle: "modal", target: "#inicioSesion"}  %>
           </div>
            </div>
 
