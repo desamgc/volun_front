@@ -1,19 +1,44 @@
 
 
 <%= search_form_for(@search, url:"/projects/index_i", :method => :get, remote: true) do |f| %>
-<div class='form form-electronic'>
+<div class='form form-electronic buscarProyectos'>
 <div class="bg-fluid0">
-                            
+    <form class="form">
+
   <div class="panel panel-type1 searcher-diary nofluid">
     <div class="panel-heading">
-        <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed">Buscar proyectos</a>
+        <div class="row">
+                  <div class="col-md-2"></div>
+                   <div class="col-md-8">
+                      <div class="cajaBusqueda">
+
+                       <div class="row">
+                           <div class="col-sm-9">
+                        <div class="conjuntoBusqueda">
+
+                              <%= f.text_field :name_or_description_cont, placeholder: "Buscar un proyecto", class: "buscarInput" %>
+                                <%= f.button "", class: "lupa"  %>
+                        </div>
+                    </div>
+                       <div class="col-sm-3 text-right">
+                           <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed verFiltros">Ver filtros</a>
+                       </div>
+
+                       </div>
+                      </div>
+                   </div>
+
+                  <div class="col-md-2"></div>
+
+                </div>
+
     </div>
     <div class="panel-body collapse in" id="searcher-diary">
-        <form class="form">
+
                 
-                <legend class="form-legend">Fecha</legend>
+
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-3">
                         <div class="form-group">
                           <div class="form-group date-field">
                             <span class="labelUp">Fecha <span class="asterisco">*</span></span>
@@ -21,30 +46,14 @@
                           </div>    
                         </div>
                     </div>
-                </div>
-                
-                <legend class="form-legend">¿Qué buscas?</legend>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <span class="labelUp">Descripción <span class="asterisco">*</span></span>
-                              <%= f.text_field :name_or_description_cont %>
-                        </div>
-                    </div>
-                   
-                </div>
-                
-                
-                <legend class="form-legend">¿Dónde?</legend>
-                <div class="row">
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-3">
                          <div class="form-group">
                             <span class="labelUp">Distrito <span class="asterisco">*</span></span>
                             <%= f.select :addresses_district_id_eq, @districts, include_blank: "", selected: "" %>  
                             
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-3">
                          <div class="form-group">
                             <label for="id_propuesta">
                             <span class="labelUp">Barrio </span>
@@ -53,15 +62,19 @@
                             </label>
                         </div>
                     </div>
-                    
                 </div>
-           
+
+
+
                 <legend class="form-legend">Tematica</legend>
                 <div class="row">
                   <% @areas.each do |area| %>  
                     <div class="col-sm-6 col-md-2">
                          <div class="form-group">
-                            <%= check_box_tag "q[areas_name_in][]", area.name %> <%= area.name %>
+                           <label for="">
+                                <%= check_box_tag "q[areas_name_in][]", area.name %> <%= area.name %>
+                           </label>
+
                         </div>
                     </div>
                   <% end %>  
@@ -79,19 +92,16 @@
                 </div>
                 -->
 
-        </form>
 
-        <div class="button-group text-right">
-          <%= f.submit "Buscar", class: "button button4 button-icon"  %>
-         
-        </div>
+
+
 </div>
         
 </div>                            
         
 </div>
 
-
+</form>
 
 </div>
 

@@ -3,9 +3,6 @@
 <% day_s = activity.timetables.order('execution_date').first.execution_date.to_s %>
 <% day, month, year = day_s.split('/').map(&:to_i) %>
 
-<% Timetable.activity_with_day(day_s,activity.id).each do |timetable| %>
-    <% districts = timetable.event.address.district + ' ' + districts %>
-<% end %>     
 
 
 <div class="actividadWrapper">
