@@ -171,7 +171,11 @@ es:
         rt/project_unsubscribe:
           attributes:
             reason:
-              blank: es obligatorio                       
+              blank: es obligatorio
+        rt/entity_unsubscribe:
+          attributes:
+            notes:
+              blank: es obligatorio                               
     attributes:
       request_form:
         request_reason_id: Motivo
@@ -264,4 +268,4 @@ es:
         reason: Motivo
         project: Proyecto  
       rt/entity_unsubscribe:
-        reason: Motivo  
+        notes: Motivo  

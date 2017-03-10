@@ -46,6 +46,6 @@ class Rt::EntityUnsubscribesController < ApplicationController
   protected
 
     def rt_entity_unsubscribe_params
-      params.require(:rt_entity_unsubscribe).permit(:user_id, :reason)
+      params.require(:rt_entity_unsubscribe).permit(:user_id, :notes)
     end
 end

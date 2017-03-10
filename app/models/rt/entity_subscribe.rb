@@ -1,8 +1,6 @@
 class Rt::EntitySubscribe < ActiveRecord::Base
   include RtCommons
-  belongs_to :road_type
-  belongs_to :province
-  belongs_to :entity_type
+   belongs_to :entity_type
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PHONE_NUMBER_REGEX = /\d[0-9]\)*\z/
