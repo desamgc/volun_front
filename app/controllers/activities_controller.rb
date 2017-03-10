@@ -22,7 +22,7 @@ class ActivitiesController < ApplicationController
     @list_days = @list_days.to_json
     @boroughs = ""
     @areas = Area.all
-    @day = params[:day]
+    @day = params[:day].to_json
     @districts = Activity.includes(:addresses).actives.distinct.order("district").pluck('district','district')
     respond_to do |format|
       format.html

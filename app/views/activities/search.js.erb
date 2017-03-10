@@ -1,3 +1,1 @@
-//$('#fecha').datepicker('setDates', '<%= escape_javascript(@day) %>'); 
-$('#day').html('<h1> Agenda del dia <%= @day %> </h1>');
-$('.actividadWrapper').html('<%= escape_javascript(render partial: 'activity', collection: @activities, locals: {day_s: @day}) %>');
+$('#activities').html('<h4 class="numActividades"><span><%= @activities.count %></span> actividades</h4>   <%= escape_javascript(render partial: 'activity', collection: @activities, locals: {day_s: @day}) %>');

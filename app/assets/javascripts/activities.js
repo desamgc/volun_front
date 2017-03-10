@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  alert (day_c)
 $("#fecha").datepicker({
               language:'es',
               todayHighlight: false,
@@ -9,7 +10,7 @@ $("#fecha").datepicker({
         //var arr_list_days = new Array();
         //arr_list_days = list_days.split(",");
         //$('#fecha').datepicker('setDates', arr_list_days);  
-        $('#fecha').datepicker('setDates', $("#first_day").val());  
+        $('#fecha').datepicker('setDates', day_c);  
         $('#fecha').datepicker().on('changeDate', function() {
                            param_day = '{"timetables_execution_date_eq"' + "=>" + "'" + $('#fecha').datepicker('getFormattedDate') + '"}'
                            jQuery.ajax({
