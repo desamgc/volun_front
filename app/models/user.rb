@@ -6,6 +6,5 @@ class User < ActiveRecord::Base
   belongs_to :loggable, polymorphic: true
   belongs_to :notice_type
 
-  scope :count_email, ->(email) { where("email = ?", email).count }
+  scope :count_email, ->(email) { where('email = ?', email).count }
 end
-     

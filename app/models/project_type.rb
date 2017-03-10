@@ -1,5 +1,4 @@
 class ProjectType < ActiveRecord::Base
-
   enum kind: {
     pt_social:     1,
     pt_centre:     2,
@@ -19,8 +18,4 @@ class ProjectType < ActiveRecord::Base
   def extendable?
     kind.classify.sub(/\APt/, 'Pt::').safe_constantize.present?
   end
-
-  def to_s
-    #kind_i18n
-  end	
 end

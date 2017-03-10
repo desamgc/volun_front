@@ -1,6 +1,5 @@
 class RequestType < ActiveRecord::Base
-  
-enum kind: {
+  enum kind: {
     rt_volunteer_subscribe:    1,
     rt_volunteer_unsubscribe:  2,
     rt_volunteer_amendment:    3,
@@ -32,7 +31,4 @@ enum kind: {
   def to_s
     kind_i18n
   end
-
-
-
 end

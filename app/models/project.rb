@@ -10,23 +10,17 @@ class Project < ActiveRecord::Base
 
   has_many :addresses, through: :events
   has_many :timetables, through: :events
-  #has_many :districts, through: :addresses
   has_and_belongs_to_many :areas, -> { where(active: true).order('areas.name asc') }
 
   accepts_nested_attributes_for :events
   accepts_nested_attributes_for :links
 
-  scope :featured, -> { where("projects.publish = true and projects.active = true and projects.outstanding = true") }
-  scope :actives, -> { where("projects.publish = true and projects.active = true and outstanding= false and urgent = false") }
-  scope :urgent, -> { where("projects.publish = true and projects.active = true and projects.urgent = true") }
-  scope :entity_projects, ->(id) { where("entity_id = ?", id) }
-  scope :image_featured, -> { where(links: {kind: 1, active: 1 }) }
-  #scope :images_projects, -> { includes(:links).where("links.kind=1 and links.active=1") }
-  scope :urls_projects, -> { where("links.kind = 2") }
-  scope :videos_projects, -> { where("links.kind = 3") }
+  scope :featured, -> { where('projects.publish = true and projects.active = true and projects.outstanding = true') }
+  scope :actives, -> { where('projects.publish = true and projects.active = true and outstanding= false and urgent = false') }
+  scope :urgent, -> { where('projects.publish = true and projects.active = true and projects.urgent = true') }
+  scope :entity_projects, ->(id) { where('entity_id = ?', id) }
 
   def self.ransack_default
-    {s: 'id desc'}
+    { s: 'id desc' }
   end
-  
 end
