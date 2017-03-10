@@ -16,9 +16,9 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :events
   accepts_nested_attributes_for :links
 
-  scope :featured, -> { where("projects.publish = true and projects.active = true and projects.insured = true") }
-  scope :actives, -> { where("projects.publish = true and projects.active = true and projects.insured = false") }
-  scope :outstanding, -> { where("projects.publish = true and projects.active = true and projects.outstanding = true") }
+  scope :featured, -> { where("projects.publish = true and projects.active = true and projects.outstanding = true") }
+  scope :actives, -> { where("projects.publish = true and projects.active = true and outstanding= false and urgent = false") }
+  scope :urgent, -> { where("projects.publish = true and projects.active = true and projects.urgent = true") }
   scope :entity_projects, ->(id) { where("entity_id = ?", id) }
   scope :image_featured, -> { where(links: {kind: 1, active: 1 }) }
   #scope :images_projects, -> { includes(:links).where("links.kind=1 and links.active=1") }

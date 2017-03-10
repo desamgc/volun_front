@@ -102,7 +102,7 @@
 <% content_for :head do %>	
   <div class="urgenteWrapper">
 
-  <% @project_outstanding.each do |project| %>
+  <% @project_urgent.each do |project| %>
       <h2><%=  project.name %></h2>
         <p> <%= truncate(project.description, length: 180) %></p>
           <a href=""><i class="fa fa-chevron-right" aria-hidden="true"></i></a>

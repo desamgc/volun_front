@@ -34,6 +34,17 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def search
+    params[:q] ||= Project.ransack_default
+    @search = Project.includes(:areas, :addresses).actives.search(params[:q])
+    @projects_actives = @search.result.page(params[:page]).per(6)  
+    @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def boroughs
    @boroughs = Project.includes(:addresses).actives.distinct.where("addresses.district=?", params[:district]).order("addresses.borough").pluck('addresses.borough', 'addresses.borough')
     respond_to do |format|

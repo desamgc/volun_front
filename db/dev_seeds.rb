@@ -368,7 +368,7 @@ end
 #   RequestReason.create!(kind: kind)
 # end
 
-puts "Creando Proyectos outstanding"
+puts "Creando Proyectos urgent"
 (1..PROJECTS_NUM_OUTSTANDING).each do |n|
     project_other = Pt::Other.new()
     project   = Project.new()
@@ -388,7 +388,8 @@ puts "Creando Proyectos outstanding"
       insured:               false,
       active:                true,
       publish:               true,
-      outstanding:           true,  
+      outstanding:           false,  
+      urgent:                true, 
       contact_name:          Faker::Lorem.name,   
       contact_last_name:     Faker::Lorem.name,
       pt_extendable:         project_other 
@@ -474,6 +475,7 @@ puts "Creando Proyectos featured"
       insured:               true,
       active:                true,
       publish:               true,
+      outstanding:           true, 
       contact_name:          Faker::Lorem.name,   
       contact_last_name:     Faker::Lorem.name,
       pt_extendable:         project_other 
@@ -559,6 +561,7 @@ puts "Creando Proyectos"
       insured:               false,
       active:                true,
       publish:               true,
+      outstanding:           false, 
       contact_name:           Faker::Lorem.name,   
       contact_last_name:           Faker::Lorem.name,
       pt_extendable:         project_other    
