@@ -18,49 +18,27 @@
   </div>
 </div>
 </div>
-<!--
-<div class="container-fluid">
-    <div class="row">
 
-
-  <div class="col-md-1 pull-right">
-      <%= link_to  "" , "#", class: "fa fa-list fa-2x", id: "btnRow" %>
-      <%= link_to  "" , "#", class: "fa fa-table fa-2x", id: "btnGrid" %>
-  </div>
-</div>
-</div>
--->
 <div class="container-fluid" style="	background-color: rgba(0, 0, 0, 0.05);
 ">
     <%= render "buscador" %>
 </div>
 
-
-
-
-
-
-
-
-
 <div class="container-fluid">
    <div class="row">
        <div class="col-md-6">
-
        </div>
-         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-     <span class="labelUp">Ordenar </span>
-
-      <select>
-          <option>Fecha</option>
-          <option>Mas demandados</option>
-          <option>Etc.</option>
-      </select>
-
+       <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+         <span class="labelUp">Ordenar </span>
+         <select>
+           <option>Fecha</option>
+           <option>Mas demandados</option>
+           <option>Etc.</option>
+         </select>
+       </div>
    </div>
 
-   </div>
-    <h2 class="titlePage">120 proyectos</h2>
+<h2 class="titlePage"><%= Project.actives.count %> proyectos</h2>
 <!-- en modo cuadricula -->
 <div id="grid">
 <div id = "projects">
@@ -87,7 +65,9 @@
 </div>
 </div>
 
-
+<% if @projects_actives.current_page != @projects_actives.total_pages %>
 <p id="view-more">
- <%= link_to('Ver Más', url_for(page: @projects_actives.current_page + 1), {:remote => true}) %>
+
+   <%= link_to('Ver Más', url_for(page: @projects_actives.current_page + 1), {:remote => true}) %>
 </p>
+<% end%>

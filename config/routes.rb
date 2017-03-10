@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     collection do
       get :index_i
       get :boroughs
+      get :search
     end
     resources :images
     resources :links
@@ -67,7 +68,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get '/whoami' => 'pages#whoami'
-  
+  get '/blog' => redirect("https://voluntariospormadridblog.madrid.es/")  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
