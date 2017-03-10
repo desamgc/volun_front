@@ -9,43 +9,31 @@
 <% end %>
 
 
-
-<div class="row">
+<div class="container-fluid">
+    <div class="row">
   <div class="col-md-12">
      <div id="mapDiv">
        
      </div>
   </div>
 </div>
+</div>
+<!--
+<div class="container-fluid">
+    <div class="row">
 
-<br/>
-<div class="row">
-
-   <div class="col-xs-6 col-sm-6 col-md-6">
-     <span class="labelUp">Ordenar </span>
-      
-      <select>
-          <option>Fecha</option>
-          <option>Mas demandados</option>
-          <option>Etc.</option>
-      </select>
-    
-   </div>    
 
   <div class="col-md-1 pull-right">
       <%= link_to  "" , "#", class: "fa fa-list fa-2x", id: "btnRow" %>
       <%= link_to  "" , "#", class: "fa fa-table fa-2x", id: "btnGrid" %>
   </div>
 </div>
-<%= render "buscador" %>
-
-<h1> PROYECTOS DESTACADOS </h1>
-<div class="gallery nofluid">
-  <ul class="row">
-      
-      <%= render partial: 'project', collection: @projects_featured  %>
-  </ul>
-</div>  
+</div>
+-->
+<div class="container-fluid" style="	background-color: rgba(0, 0, 0, 0.05);
+">
+    <%= render "buscador" %>
+</div>
 
 
 
@@ -55,7 +43,24 @@
 
 
 
-<h1> MAS PROYECTOS </h1>
+<div class="container-fluid">
+   <div class="row">
+       <div class="col-md-6">
+
+       </div>
+         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+     <span class="labelUp">Ordenar </span>
+
+      <select>
+          <option>Fecha</option>
+          <option>Mas demandados</option>
+          <option>Etc.</option>
+      </select>
+
+   </div>
+
+   </div>
+    <h2 class="titlePage">120 proyectos</h2>
 <!-- en modo cuadricula -->
 <div id="grid">
 <div id = "projects">
