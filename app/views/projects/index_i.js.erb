@@ -1,1 +1,6 @@
-$('#projects').html('<%= escape_javascript(render partial: 'project', collection: @projects_actives) %>');
+$('#projects').append('<%= escape_javascript(render partial: 'project', collection: @projects_actives) %>');
+<% if @projects_actives.current_page == @projects_actives.total_pages %>
+ $('#view-more').remove();
+<% else %>
+ $('#view-more').html("<%= j link_to('View More', url_for(page: @projects_actives.current_page + 1)) %>");
+<% end %>

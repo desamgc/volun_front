@@ -81,3 +81,8 @@
 
 </div>
 </div>
+
+
+<p id="view-more">
+ <%= link_to('Ver Más', url_for(page: @projects_actives.current_page + 1), {:remote => true}) %>
+</p>

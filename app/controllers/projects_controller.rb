@@ -19,11 +19,10 @@ class ProjectsController < ApplicationController
 
 
   def index_i
-    
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:links).actives.search(params[:q])
-    @projects_actives = @search.result  
-    @projects_featured = Project.includes(:links).featured
+    @search = Project.includes(:areas, :addresses).actives.search(params[:q])
+    @projects_actives = @search.result.page(params[:page]).per(6)  
+    @projects_featured = Project.includes(:areas).featured
     @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     @districts = Project.includes(:addresses).actives.distinct.order("district").pluck('district','district')
     @boroughs = ""
