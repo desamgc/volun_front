@@ -4,7 +4,7 @@ es:
       models:
         request_form:
           attributes:
-            request_reason_id: 
+            req_reason_id: 
               blank: es obligatorio  
         rt/volunteer_subscribe:
           attributes:
@@ -85,11 +85,11 @@ es:
               blank: es obligatorio  
         rt/volunteer_unsubscribe:
           attributes:
-            reason:
+            notes:
               blank: es obligatorio
         rt/volunteer_appointment:
           attributes:
-            reason:
+            notes:
               blank: es obligatorio 
         rt/volunteers_demand:
           attributes:
@@ -170,7 +170,7 @@ es:
               blank: es obligatoria  
         rt/project_unsubscribe:
           attributes:
-            reason:
+            notes:
               blank: es obligatorio
         rt/entity_unsubscribe:
           attributes:
@@ -178,7 +178,7 @@ es:
               blank: es obligatorio                               
     attributes:
       request_form:
-        request_reason_id: Motivo
+        req_reason_id: Motivo
       rt/volunteer_subscribe:
         name: Nombre
         phone_number: Telefono
@@ -219,9 +219,9 @@ es:
         town: Municipio
         province: Provincia
       rt/volunteer_unsubscribe:
-        reason: Motivo
+        notes: Motivo
       rt/volunteer_appointment:
-        reason: Motivo 
+        notes: Motivo 
       rt/volunteers_demand:
         description: Descripcion
         execution_start_date: Fecha desde

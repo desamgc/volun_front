@@ -6,6 +6,12 @@ FactoryGirl.define do
     active false
   end
 
+  factory :entity_type do
+    description "MyText"
+    name "MyText"
+    active false
+  end
+
   sequence(:document_number) { |n| "#{n.to_s.rjust(8, '0')}X" }
 
 
@@ -20,18 +26,52 @@ FactoryGirl.define do
     end
   end
   
+  
+  factory :req_reason do
+    kind 1
+    description "MyText"
+    active true
+    name "MyText"
+
+    trait :invalid do
+      association :kind
+    end
+  end
+  
+
+  factory :req_rejection_type do
+    kind 1
+    description "MyText"
+    name "MyText"
+    active true
+
+    trait :invalid do
+      association :kind
+    end
+  end
     
  factory :request_form do
     #request_type 1 #RequestType.get_request_form_type(self.rt_extendable_type)
-    sent_at "2016-12-02 12:48:05"
+    #sent_at "2016-12-02 12:48:05"
+    #status 1
+    #status_date "2016-12-02 12:48:05"
+    #rejection_type nil
+    #comments "MyText"
+
+    association :request_type
+    rt_extendable_id 1
+    rt_extendable_type 'Rt::VolunteerSubscribe'
+    association :user
     status 1
-    status_date "2016-12-02 12:48:05"
-    rejection_type nil
+    status_date "2017-01-27 10:42:03"
+    association :req_rejection_type
+    association :req_reason
     comments "MyText"
+
   end
 
 
-  factory :rt_volunteer_subscribe do
+  factory :volunteer_subscribe, class: 'Rt::VolunteerSubscribe' do
     name "MyString"
     last_name "MyString"
     phone_number "915133368"
@@ -54,6 +94,180 @@ FactoryGirl.define do
     latitude              Faker::Address.latitude 
     longitude             Faker::Address.longitude 
   end
+
+
+
+  factory :road_type do
+    name "MyText"
+
+    trait :invalid do
+    end
+  end
+  
+  factory :district do
+    name "MyText"
+
+    trait :invalid do
+    end
+  end
+  
+  factory :province do
+    name "MyText"
+
+    trait :invalid do
+    end
+  end
+   
+
+  factory :other, class: 'Rt::Other' do
+    description "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :activity_unpublishing, class: 'Rt::ActivityUnpublishing' do
+    notes "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :activity_publishing, class: 'Rt::ActivityPublishing' do
+    name "MyString"
+    organizer "MyString"
+    description "MyText"
+    execution_date "2017-01-27"
+    execution_hour "MyString"
+    road_type "ss" 
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "28040"
+    borough "MyString"
+    town "MyString"
+    province "ss"
+    #association :project 
+
+    trait :invalid do
+    end
+  end
+  factory :project_unsubscribe, class: 'Rt::ProjectUnsubscribe' do
+    association :project 
+    reason "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :project_unpublishing, class: 'Rt::ProjectUnpublishing' do
+    notes "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :project_publishing, class: 'Rt::ProjectPublishing' do
+    description "MyText"
+    association :road_type 
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "28041"
+    borough "MyString"
+    district "msms" 
+    town "MyString"
+    province "sddfd" 
+
+    trait :invalid do
+    end
+  end
+  factory :volunteers_demand, class: 'Rt::VolunteersDemand' do
+    description "MyText"
+    execution_start_date "2017-01-27"
+    execution_end_date "2017-01-28"
+    road_type "Ddd" 
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "28045"
+    borough "MyString"
+    district  "SSS"
+    town "MyString"
+    province "ssd" 
+    requested_volunteers_num "MyString"
+    volunteers_profile "MyText"
+    volunteer_functions_1 "MyText"
+    volunteer_functions_2 "MyText"
+    volunteer_functions_3 "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :entity_unsubscribe, class: 'Rt::EntityUnsubscribe' do
+    notes "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :entity_subscribe, class: 'Rt::EntitySubscribe' do
+    name "MyString"
+    description "MyText"
+    vat_number "MyString"
+    email "perezljl@madrid.es"
+    representative_name "MyString"
+    representative_last_name "MyString"
+    representative_last_name_alt "MyString"
+    contact_name "MyString"
+    contact_last_name "MyString"
+    contact_last_name_alt "MyString"
+    phone_number "915133368"
+    phone_number_alt "915133368"
+    publish_pictures false
+    annual_survey false
+    association :entity_type
+    comments "MyText"
+    other_subscribe_reason "MyText"
+    association :road_type
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "28040"
+    borough "MyString"
+    association :district
+    town "MyString"
+    association :province
+
+    trait :invalid do
+    end
+  end
+  factory :volunteer_appointment, class: 'Rt::VolunteerAppointment' do
+    notes "MyText"
+
+    trait :invalid do
+    end
+  end
+  factory :volunteer_amendment, class: 'Rt::VolunteerAmendment' do
+    association :road_type
+    road_name "MyString"
+    number_type "MyString"
+    road_number "MyString"
+    postal_code "28040"
+    borough "MyString"
+    association :district
+    town "MyString"
+    association :province
+    phone_number "915133368"
+    phone_number_alt "915133368"
+    email "perezljl@madrid.es"
+
+    trait :invalid do
+    end
+  end
+  factory :volunteer_unsubscribe, class: 'Rt::VolunteerUnsubscribe' do
+     notes "MyText"
+
+    trait :invalid do
+    end
+  end
+ 
+
   
   factory :entity do
     name Faker::Lorem.name
@@ -108,156 +322,7 @@ FactoryGirl.define do
 
 
 
-  factory :rt_other, class: 'Rt::Other' do
-    description "MyText"
-
-    trait :invalid do
-    end
-  end
-  factory :activity_unpublishing, class: 'Rt::ActivityUnpublishing' do
-    reason "MyText"
-
-    trait :invalid do
-    end
-  end
-  factory :activity_publishing, class: 'Rt::ActivityPublishing' do
-    name "MyString"
-    organizer "MyString"
-    description "MyText"
-    execution_date "2017-01-27"
-    execution_hour "MyString"
-    association :road_type 
-    road_name "MyString"
-    number_type "MyString"
-    road_number "MyString"
-    postal_code "MyString"
-    borough "MyString"
-    association :district 
-    town "MyString"
-    association :province 
-    association :project 
-
-    trait :invalid do
-    end
-  end
-  factory :project_unsubscribe, class: 'Rt::ProjectUnsubscribe' do
-    association :project 
-    reason "MyText"
-
-    trait :invalid do
-    end
-  end
-  factory :project_unpublishing, class: 'Rt::ProjectUnpublishing' do
-    reason "MyText"
-
-    trait :invalid do
-    end
-  end
-  factory :project_publishing, class: 'Rt::ProjectPublishing' do
-    description "MyText"
-    association :road_type 
-    road_name "MyString"
-    number_type "MyString"
-    road_number "MyString"
-    postal_code "MyString"
-    borough "MyString"
-    association :district 
-    town "MyString"
-    association :province 
-
-    trait :invalid do
-    end
-  end
-  factory :volunteers_demand, class: 'Rt::VolunteersDemand' do
-    description "MyText"
-    execution_start_date "2017-01-27"
-    execution_end_date "2017-01-28"
-    association :road_type 
-    road_name "MyString"
-    number_type "MyString"
-    road_number "MyString"
-    postal_code "28045"
-    borough "MyString"
-    association :district 
-    town "MyString"
-    association :province 
-    requested_volunteers_num "MyString"
-    volunteers_profile "MyText"
-    volunteer_functions_1 "MyText"
-    volunteer_functions_2 "MyText"
-    volunteer_functions_3 "MyText"
-
-    trait :invalid do
-    end
-  end
-  factory :entity_unsubscribe, class: 'Rt::EntityUnsubscribe' do
-    reason "MyText"
-
-    trait :invalid do
-    end
-  end
-  factory :entity_subscribe, class: 'Rt::EntitySubscribe' do
-    name "MyString"
-    description "MyText"
-    vat_number "MyString"
-    email "MyString"
-    representative_name "MyString"
-    representative_last_name "MyString"
-    representative_last_name_alt "MyString"
-    contact_name "MyString"
-    contact_last_name "MyString"
-    contact_last_name_alt "MyString"
-    phone_number "MyString"
-    phone_number_alt "MyString"
-    publish_pictures false
-    annual_survey false
-    association :entity_type
-    comments "MyText"
-    other_subscribe_reason "MyText"
-    association :road_type
-    road_name "MyString"
-    number_type "MyString"
-    road_number "MyString"
-    postal_code "MyString"
-    borough "MyString"
-    association :district
-    town "MyString"
-    association :province
-
-    trait :invalid do
-    end
-  end
-  factory :volunteer_appointment, class: 'Rt::VolunteerAppointment' do
-    reason "MyText"
-
-    trait :invalid do
-    end
-  end
-  factory :volunteer_amendment, class: 'Rt::VolunteerAmendment' do
-    association :road_type
-    road_name "MyString"
-    number_type "MyString"
-    road_number "MyString"
-    postal_code "MyString"
-    borough "MyString"
-    association :district
-    town "MyString"
-    association :province
-    phone_number "MyString"
-    phone_number_alt "MyString"
-    email "MyString"
-
-    trait :invalid do
-    end
-  end
-  factory :volunteer_unsubscribe, class: 'Rt::VolunteerUnsubscribe' do
-    level 1
-    reason "MyText"
-
-    trait :invalid do
-    end
-  end
- 
+  
   
 
   

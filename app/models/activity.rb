@@ -10,7 +10,7 @@ class Activity < ActiveRecord::Base
   accepts_nested_attributes_for :events
   accepts_nested_attributes_for :links
   
-  scope :activities_present, ->(day) { where('timetables.execution_date >= ? and events.eventable_type="Activity"', day) }
+  scope :activities_present, ->(day) { where("timetables.execution_date >= ? and events.eventable_type='Activity'", day) }
   scope :actives, -> { where(active:true, publish: true) }
   scope :total, -> { where('active=true') }
   scope :first_event, -> { where('active=true') }

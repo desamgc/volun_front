@@ -35,6 +35,6 @@ class Rt::VolunteerUnsubscribesController < ApplicationController
   protected
 
   def rt_volunteer_unsubscribe_params
-    params.require(:rt_volunteer_unsubscribe).permit(:volunteer_id, :level, :reason)
+    params.require(:rt_volunteer_unsubscribe).permit(:volunteer_id, :level, :notes)
   end
 end

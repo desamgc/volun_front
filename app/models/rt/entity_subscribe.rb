@@ -10,7 +10,7 @@ class Rt::EntitySubscribe < ActiveRecord::Base
   validates :road_type, :road_name, :number_type, :road_number, :postal_code, :province,
             :town, :name, :contact_name,
             :contact_last_name, presence: true
-  validates :other_subscribe_reason, presence: true, if: -> { request_form.request_reason_id == 4 }
+  validates :other_subscribe_reason, presence: true, if: -> { request_form.req_reason_id == 4 }
   VALID_CODIGOPOSTAL_REGEX = /\A(\d{5})\z/
   validates :postal_code, format: { with: VALID_CODIGOPOSTAL_REGEX }
 

@@ -39,6 +39,6 @@ class Rt::EntitySubscribesController < ApplicationController
       end
     end 
     def rt_entity_subscribe_params
-      params.require(:rt_entity_subscribe).permit(:name, :vat_number, :email, :contact_name, :contact_last_name, :contact_last_name_alt, :representative_name, :representative_last_name, :representative_last_name_alt, :phone_number, :phone_number_alt, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :entity_type_id, :other_subscribe_reason,  request_form_attributes: [:request_reason_id] )
+      params.require(:rt_entity_subscribe).permit(:name, :vat_number, :email, :contact_name, :contact_last_name, :contact_last_name_alt, :representative_name, :representative_last_name, :representative_last_name_alt, :phone_number, :phone_number_alt, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :entity_type_id, :other_subscribe_reason,  request_form_attributes: [:req_reason_id] )
     end
 end
