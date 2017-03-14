@@ -1,4 +1,4 @@
-App.Projects = {
+Projects = {
 
 load_geo: function ()
 {
@@ -96,7 +96,7 @@ function showCoordinates(evt) {
 $(document).ready(function(){
 
 
-App.Projects.load_geo();
+Projects.load_geo();
 
 $('#q_addresses_district_eq').on('click', function() {
                            jQuery.ajax({

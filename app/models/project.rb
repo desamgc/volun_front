@@ -17,7 +17,7 @@ class Project < ActiveRecord::Base
 
   scope :featured, -> { where('projects.publish = true and projects.active = true and projects.outstanding = true') }
   scope :actives, -> { where('projects.publish = true and projects.active = true and outstanding= false and urgent = false') }
-  scope :urgent, -> { where('projects.publish = true and projects.active = true and projects.urgent = true') }
+  scope :urgent, -> { where(publish: true , active: true, urgent: true) }
   scope :entity_projects, ->(id) { where('entity_id = ?', id) }
 
   def self.ransack_default

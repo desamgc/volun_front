@@ -16,10 +16,8 @@ class ActivitiesController < ApplicationController
   def index_i
     params[:day] ||= Activity.includes(:events, :timetables).activities_present(0.day.ago.to_s).minimum(:execution_date).try :strftime, "%Y-%m-%d"
     @search_q = Activity.search({timetables_execution_date_eq: params[:day] })
-    @day = params[:day]
     @activities = @search_q.result.page(params[:page]).per(12) 
-    @list_days = Activity.includes(:timetables).distinct.activities_present(0.day.ago.to_s).order('timetables.execution_date').pluck('timetables.execution_date')
-    @list_days = @list_days.to_json
+    @list_days = Activity.includes(:timetables).distinct.activities_present(0.day.ago.to_s).order('timetables.execution_date').pluck('timetables.execution_date').to_json
     @boroughs = ""
     @areas = Area.all
     @day = params[:day].to_json
@@ -32,10 +30,14 @@ class ActivitiesController < ApplicationController
 
 
   def search
-    @day = nil
-    params[:q] ||= Activity.ransack_default
-    @search_q = Activity.search(params[:q])
-    @activities = @search_q.result #.paginate(page: params[:page], per_page: params[:per_page]||15)
+    if params[:day]
+      @search_q = Activity.search({timetables_execution_date_eq: params[:day] })
+    else
+      @day = nil
+      @search_q = Activity.search(params[:q])
+    end  
+    
+    @activities = @search_q.result.page(params[:page]).per(12) 
     respond_to do |format|
       format.html
       format.js

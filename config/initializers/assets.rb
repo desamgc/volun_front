@@ -9,6 +9,8 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+Rails.application.config.assets.precompile += %w( projects.js )
+Rails.application.config.assets.precompile += %w( activities.js )
 Rails.application.config.assets.precompile += %w( js/locale/i18n_es.js )
 Rails.application.config.assets.precompile += %w( js/vendor.js )
 Rails.application.config.assets.precompile += %w( js/ayuntamiento-madrid.js )

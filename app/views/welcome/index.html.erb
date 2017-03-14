@@ -1,10 +1,12 @@
-
+<%= javascript_include_tag 'activities' %>
+<%= javascript_include_tag 'projects' %>
 <%= javascript_tag do %>
   var locations = <%= raw @locations.to_json %>;
   var multiple = true;
   var url_map = "<%= Rails.application.secrets.url_map %>";
   var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
   var list_days = <%= raw @list_days.to_json %>;
+  var day_c = ""
 <% end %>
 
 

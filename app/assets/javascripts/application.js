@@ -14,7 +14,7 @@
 //= require jquery_ujs
 // require turbolinks
 //= require js/locale/i18n_es
-//= require_directory .
+// require_directory .
 
 
 
