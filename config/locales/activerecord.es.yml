@@ -268,4 +268,6 @@ es:
         reason: Motivo
         project: Proyecto  
       rt/entity_unsubscribe:
-        notes: Motivo  
+        notes: Motivo
+      rt/activity_unpublishing:
+        notes: Motivo    
