@@ -10,9 +10,6 @@ class Rt::VolunteerSubscribesController < ApplicationController
 
   def new
     @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new
-    respond_to do |format|
-      format.js
-    end
   end
 
   def edit
