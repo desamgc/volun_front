@@ -15,9 +15,10 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :events
   accepts_nested_attributes_for :links
 
-  scope :featured, -> { where('projects.publish = true and projects.active = true and projects.outstanding = true') }
-  scope :actives, -> { where('projects.publish = true and projects.active = true and outstanding= false and urgent = false') }
-  scope :urgent, -> { where(publish: true , active: true, urgent: true) }
+  default_scope  { where(publish: true , active: true) }
+  scope :featured, -> { where(outstanding: true) }
+  scope :actives, -> { where(outstanding: false, urgent: false) }
+  scope :urgent, -> { where(urgent: true) }
   scope :entity_projects, ->(id) { where('entity_id = ?', id) }
 
   def self.ransack_default

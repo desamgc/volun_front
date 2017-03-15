@@ -5,7 +5,10 @@ class ActivitiesController < ApplicationController
   
 
   def index
-    @activities = Activity.all.page(params[:page]).per(5)
+    params[:q] ||= Ransack.default
+    debugger
+    @search_q = Activity.search(params[:q])
+    @activities = @search_q.result.page(params[:page]).per(12) 
     respond_to do |format|
       format.html
       format.js
@@ -14,6 +17,7 @@ class ActivitiesController < ApplicationController
 
 
   def index_i
+
     params[:day] ||= Activity.includes(:events, :timetables).activities_present(0.day.ago.to_s).minimum(:execution_date).try :strftime, "%Y-%m-%d"
     @search_q = Activity.search({timetables_execution_date_eq: params[:day] })
     @activities = @search_q.result.page(params[:page]).per(12) 
@@ -30,6 +34,7 @@ class ActivitiesController < ApplicationController
 
 
   def search
+    debugger
     if params[:day]
       @search_q = Activity.search({timetables_execution_date_eq: params[:day] })
     else

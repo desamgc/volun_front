@@ -1,61 +1,20 @@
-<div class="row">
-<div class="bg-fluid0">
-  <div class="bg-triangle">
-    <div class="tributes nofluid">
-      <ul>
-        
-        <li>
-          <h3 class="tributes-header"><span class="tributes-title">Actividades</span></h3>
-          <div class="tributes-body tributes-table">
-            <form class="tributes-form">
-              <table class="table">
-                <thead>
-                  <tr class="table-row-transform">
-                    <th>Fecha inicio</th>
-                    <th>Fecha fin</th>
-                    <th>Nombre Actividad</th>
-                    
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <% @activities.each do |activity| %>
-                    <tr class="table-row-transform">
-                      <td class="table-cell-group"><%= activity.start_date %></td>
-                      <td class="table-cell-group"><%= activity.end_date %></td>
-                      <td class="table-cell-group"><%= activity.name %></td>
-                      <td class="table-cell-group"><%= link_to  "Ver" , activity_path(activity) %></td> 
-                      <td class="table-cell-group"><%= link_to "Baja", {controller:"rt/activity_unpublishings", action:"new", activity_id: activity.id} %> </td>  
-
-
-                      </tr>
-                  <% end %>
-                </tbody>
-                
-              </table>
-              
-              
-            </form>
-          </div>
-        </li>
-      </ul>
-     
+<%= javascript_include_tag 'activities' %>
+<div class="container-fluid">
+  <h1 class="titlePage">Agenda de actividades solidarias</h1>
+  <div class="row">
+    
+    <div class="col-md-12">
+            <div id="activities">
+            <h4 class="numActividades"><span><%= @activities.count %></span> actividades</h4>
+                <%= render partial: 'activity', collection: @activities %>  
+            </div>
     </div>
   </div>
 </div>
-</div>
 
+<% if @activities.current_page != @activities.total_pages %>
+<p id="view-more">
 
-
-<%= paginate @activities, locals: {modelo: @activities} %>
-
-<%= page_entries_info @activities %>
-
-<div class="row">
-
- <div class="button-group text-right">
-    <%= link_to 'Publicar actividad', new_rt_activity_publishing_path, class: "button button4" %>
-        
- </div> 
-
-</div>
+   <%= link_to('Ver Más', url_for(page: @activities.current_page + 1), {:remote => true}) %>
+</p>
+<% end%>

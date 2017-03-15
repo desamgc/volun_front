@@ -6,11 +6,9 @@ class ProjectsController < ApplicationController
 
   
   def index
-    #@search = Project.includes(:project_type).search(params[:q])
-    #@projects = @search.result   #.paginate(page: params[:page], per_page: params[:per_page] || 5)
-    
-    @projects = Project.includes(:project_type).all.page(params[:page]).per(5)
-    
+    params[:q] ||= Project.ransack_default
+    @search = Project.includes(:areas, :addresses).actives.search(params[:q])
+    @projects_actives = @search.result.page(params[:page]).per(6)  
     respond_to do |format|
       format.html
       format.js
@@ -22,12 +20,13 @@ class ProjectsController < ApplicationController
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses).actives.search(params[:q])
     @projects_actives = @search.result.page(params[:page]).per(6)  
-    @projects_featured = Project.includes(:areas).featured
     @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
-    @districts = Project.includes(:addresses).actives.distinct.order("district").pluck('district','district')
-    @boroughs = ""
-    @areas = Area.all
-    @grid = true
+    if (params[:page].blank?)
+      #@projects_featured = Project.includes(:areas).featured
+      @districts = Project.includes(:addresses).actives.distinct.order("district").pluck('district','district')
+      @boroughs = ""
+      @areas = Area.all
+    end  
     respond_to do |format|
       format.html
       format.js
