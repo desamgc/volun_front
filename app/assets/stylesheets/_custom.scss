@@ -22,17 +22,21 @@ ol {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.button-group{
-    & > *{
+
+.button-group {
+    & > * {
         margin-left: 30px;
     }
 }
-.pb90{
+
+.pb90 {
     padding-bottom: 90px;
 }
-.mt45{
+
+.mt45 {
     margin-top: 45px;
 }
+
 a {
     &.link {
         font-family: Lato;
@@ -79,10 +83,10 @@ a {
             position: absolute;
             right: 25px;
             font-weight: 400;
-                color: #ff6600;
+            color: #ff6600;
         }
     }
-    &.noborder{
+    &.noborder {
         border: 0px;
     }
     &.big {
@@ -420,6 +424,33 @@ h3 {
         letter-spacing: 1.2px;
         color: #1d1d1d;
         margin-bottom: 45px;
+    }
+}
+
+
+/*AVISOS*/
+
+#avisos {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 55px;
+    line-height: 55px;
+    background-color: rgb(243, 243, 243);
+    padding: 0 45px;
+    font-family: 'Lato';
+    font-size: 20px;
+    font-weight: 900;
+    z-index: 99999;
+    .close {
+        float: right;
+        font-size: 21px;
+        font-weight: 900;
+        line-height: 55px;
+        color: #000000;
+        text-shadow: 0 1px 0 #ffffff;
+        opacity: 0.2;
+        filter: alpha(opacity=20);
     }
 }
 
@@ -937,7 +968,7 @@ select:-webkit-autofill:focus {
 }
 
 .form {
-    hr{
+    hr {
         margin-top: 45px;
         margin-bottom: 45px;
         border-top: solid 1px rgba(29, 29, 29, 0.15);
@@ -1020,6 +1051,41 @@ select:-webkit-autofill:focus {
     label {
         display: block;
     }
+}
+
+
+/*DETALLE*/
+
+.single {
+    padding-top: 42px;
+    .summary-title {
+        font-family: 'Merriweather';
+        font-size: 28px;
+        font-weight: 900;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        letter-spacing: 1.2px;
+        color: #1d1d1d;
+    }
+}
+
+.carousel-control {
+    &.right,
+    &.left {
+        background-image: unset;
+    }
+}
+
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    width: 100%;
 }
 
 @media(max-width:410px) {

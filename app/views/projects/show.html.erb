@@ -11,12 +11,16 @@
   var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
 <% end %>
 
+<div  class="container-fluid single">
+    <div class="row">
+
 <div class="col-md-8">
 
 <h3 class="summary-title"><%= @project.name %></h3>
 
 
 <div role="tabpanel" class="tab-pane active" id="tpi-tab2">
+<!--
   <ul class="row">
                <% @project.links.logo.each do |link| %>
                 <li class="col-md-3 col-sm-3 col-xs-12">
@@ -42,6 +46,55 @@
                 </li>
                <% end %> 
   </ul>
+
+
+-->
+
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+     <% @project.links.logo.each do |link| %>
+      <div class="item active">
+
+
+                      <%= render partial: "links/link", locals: { link: link} %>
+
+
+
+      </div>
+       <% end %>
+                 <% @project.links.image.each do |link| %>
+      <div class="item">
+
+
+
+                <%= render partial: "links/link", locals: { link: link} %>
+
+
+      </div>
+
+     <% end %>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 </div>
 
 
@@ -115,4 +168,5 @@
 
 
 
-
+    </div>
+</div>

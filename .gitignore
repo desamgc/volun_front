@@ -12,3 +12,4 @@
 !/log/.keep
 /tmp/*
 /app/assets/javascripts/js/projects.js.erb
+/app/assets/javascripts/welcome.js.coffee

@@ -6,7 +6,6 @@ class ActivitiesController < ApplicationController
 
   def index
     params[:q] ||= Ransack.default
-    debugger
     @search_q = Activity.search(params[:q])
     @activities = @search_q.result.page(params[:page]).per(12) 
     respond_to do |format|
