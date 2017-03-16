@@ -28,7 +28,7 @@ class Rt::ActivityUnpublishingsController < ApplicationController
   def create
     @rt_activity_unpublishing = Rt::ActivityUnpublishing.new(rt_activity_unpublishing_params)
     if @rt_activity_unpublishing.save
-      redirect_to projects_url, notice: t('rt_activity_unpublishing.response')
+      redirect_to index_i_projects_path, notice: t('rt_activity_unpublishing.response')
     else
       respond_with(@rt_activity_unpublishing)
     end

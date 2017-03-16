@@ -4,7 +4,7 @@ es:
     menu: Menú
     title: Voluntariado
     submit: Enviar
-   volunteer_subscribe:
+   rt_volunteer_subscribe:
     new: Registrarse
     title: Solicitud de participación como voluntario
     response: "Solicitud recibida de forma correcta, en breve nos pondremos en contacto para realizarle una entrevista."
@@ -38,7 +38,10 @@ es:
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."    
    rt_activity_publishing:
     title: Solicitud de publicitación de actividad
-    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."     
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
+   rt_activity_unpublishing:
+    title: Solicitud de baja de publicación de actividad
+    response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."      
    rt_other:
     title: Otro tipo de solicitud
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."      

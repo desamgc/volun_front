@@ -1,6 +1,5 @@
 class Rt::ProjectPublishing < ActiveRecord::Base
   include RtCommons
-  belongs_to :entity
   belongs_to :project
   validates :description, :road_type, :road_name, :number_type, :road_number, :postal_code, :province,
             :town, presence: true
