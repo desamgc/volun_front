@@ -11,6 +11,8 @@ class Project < ActiveRecord::Base
   has_many :addresses, through: :events
   has_many :timetables, through: :events
   has_and_belongs_to_many :areas, -> { where(active: true).order('areas.name asc') }
+  has_and_belongs_to_many :volunteers
+  
 
   accepts_nested_attributes_for :events
   accepts_nested_attributes_for :links

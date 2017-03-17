@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   def index
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses).actives.search(params[:q])
-    @projects_actives = @search.result.page(params[:page]).per(6)  
+    @projects_actives = @search.result.page(params[:page]).per(6) 
     respond_to do |format|
       format.html
       format.js

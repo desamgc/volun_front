@@ -1,15 +1,38 @@
 <div class="container-fluid">
-   
+ <% if current_user.loggable_type=="Entity" %>
+ 		<p><%= current_user.loggable.name %></p>
+	  <p><%= current_user.loggable.phone_number %>  </p>
+ 		<p> <%= current_user.loggable.email %> </p>
+ 		<%= link_to 'Modificar contraseña', edit_user_registration_path, class: "event-link " %> 
+    <%= link_to 'Hacer una solicitud', new_rt_other_path, class: "event-link " %>
+    <%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class: "event-link ") %> 
+    <hr>
+    <li><%= link_to 'Mis Actividades', entity_activities_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id), remote: true %></li>
+	 <li><%= link_to 'Mis proyectos', projects_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id), remote: true %>
+ <% else %>
+    <p><%= current_user.loggable.name %> <%= current_user.loggable.last_name %> <%= current_user.loggable.last_name_alt %></p>
+	  <p><%= current_user.loggable.phone_number %>  </p>
+ 		<p> <%= current_user.loggable.email %> </p>
+    <%= link_to 'Mi perfil', new_rt_volunteer_amendment_path, class: "event-link " %> 
+    <%= link_to 'Solicitud de cita', new_rt_volunteer_appointment_path, class: "event-link " %>
+    <%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class: "event-link ") %>
+    <hr>
+                           
+ <% end %>		
 <h2 class="titlePage"><%= Project.actives.count %> proyectos</h2>
-<div id="grid">
-<div id = "projects">
- <% @projects_actives.each_slice(3) do |group| %>
-   <ul class="row">
-      <%= render partial: 'project', collection: group %>
-   </ul>
- <% end %> 
-</div>
-</div>
+	<ul class="row">
+		<div id = "projects">
+		  <% @projects_actives.each_slice(3) do |group| %>
+			  <%= render partial: 'project', collection: group %>
+		  <% end %> 
+		</div>
+	</ul>
+
+	<ul class="row">
+		<div id = "activities">
+	    <%= render partial: 'activities/activity', collection: @activities %>
+		</div>
+	</ul>
 </div>
 
 <% if @projects_actives.current_page != @projects_actives.total_pages %>

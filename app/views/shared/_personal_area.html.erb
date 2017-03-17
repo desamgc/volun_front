@@ -8,46 +8,18 @@
                         <% if current_user.loggable_type=="Entity" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                               
-                              <li><%= link_to 'Modificar contraseña', edit_user_registration_path %> </li>  
-                              
-                              
-                              <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Mis proyectos', projects_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id) %></li>
+                              <li><%= link_to 'Mi area', projects_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id) %></li>
+                              <li><%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class:  "fa fa-power-off") %></li>
 
-                              <li><%= link_to 'Demandar voluntarios', new_rt_volunteers_demand_path %></li>
-
-                              <li><%= link_to 'Difundir proyecto', new_rt_project_publishing_path %></li>
-
-                              <li><%= link_to 'Publicar actividad', new_rt_activity_publishing_path %></li>
-
-                              <li><%= link_to 'Otras solicitudes', new_rt_other_path %></li>
-
-                              <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Mis Actividades', entity_activities_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id) %></li>
-
-                              <li role="separator" class="divider"></li>
-                              <li><%= link_to 'Solicitar baja de la plataforma', new_rt_entity_unsubscribe_path %></li>
-                              
-                              
-                              <li role="separator" class="divider"></li>
-                                <%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class:  "fa fa-power-off") %>
                             </ul>
                         <% end %>
                         
                         <% if current_user.loggable_type=="Volunteer" %>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                              <li><%= link_to 'Modificar contraseña', edit_user_registration_path %> </li>  
                               
-                              <li><%= link_to 'Mi perfil', new_rt_volunteer_amendment_path %> </li>  
-                              
-                              <li><%= link_to 'Mis proyectos', projects_path %> </li>  
-                              
-                              <li><%= link_to 'Solicitud baja de la plataforma', new_rt_volunteer_unsubscribe_path %> </li>  
-                              
-                              <li><%= link_to 'Solicitud de cita', new_rt_volunteer_appointment_path %> </li>  
-                              
-                              
-                                <%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class:  "fa fa-power-off") %>
+                              <li><%= link_to 'Mi area', volunteer_projects_path(q: {volunteers_id_in: current_user.loggable_id}, volunteer_id: current_user.loggable_id) %></li>
+                              <li><%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class:  "fa fa-power-off") %></li>
+
                             </ul>
                         <% end %>
 

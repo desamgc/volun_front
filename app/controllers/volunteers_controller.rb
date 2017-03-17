@@ -4,6 +4,7 @@ class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
   def index
+    params[:q] ||= Volunteer.ransack_default
     @volunteers = Volunteer.all
   end
 
@@ -61,6 +62,8 @@ class VolunteersController < ApplicationController
     end
   end
 
+
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_volunteer
