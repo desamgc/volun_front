@@ -41,18 +41,20 @@
 <h2 class="titlePage"><%= Project.actives.count %> proyectos</h2>
 <!-- en modo cuadricula -->
 <div id="grid">
+<ul class="row">
 <div id = "projects">
+  
 <!-- <div class="gallery nofluid"> -->
  <% @projects_actives.each_slice(3) do |group| %>
-  <ul class="row">
+ 
 
     
       <%= render partial: 'project', collection: group %>
    
-  </ul>
-
+  
   <% end %> 
- </div>
+</div>
+</ul>
  </div>
  </div>
 
