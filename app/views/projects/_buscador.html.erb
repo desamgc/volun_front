@@ -1,5 +1,4 @@
 
-
 <%= search_form_for(@search, url:"/projects/search", :method => :get, remote: true) do |f| %>
 <div class='form form-electronic buscarProyectos'>
 <div class="bg-fluid0">
@@ -38,46 +37,54 @@
                 
 
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-12">
                         <div class="form-group">
                           <div class="form-group date-field">
-                            <span class="labelUp">Fecha <span class="asterisco">*</span></span>
-                              <%= f.text_field :timetables_execution_date_eq, :class => "form-control-date" %>
+                            <label class="labelUp">Fecha</label>
+                              <%= f.text_field :timetables_execution_date_eq, :class => "form-control-date small"  %>
                           </div>    
                         </div>
-                    </div>
-                    <div class="col-sm-3">
+
+
                          <div class="form-group">
-                            <span class="labelUp">Distrito <span class="asterisco">*</span></span>
-                            <%= f.select :addresses_district_eq, @districts, include_blank: "", selected: "" %>  
+                            <label class="labelUp">Distrito</label>
+                            <%= f.select :addresses_district_eq, @districts, {include_blank: "", selected: ""},  class: 'big'   %>
                             
                         </div>
-                    </div>
-                    <div class="col-sm-3">
+
+
                          <div class="form-group">
                             <label for="id_propuesta">
-                            <span class="labelUp">Barrio </span>
-                            <%= f.select :addresses_borough_eq, @boroughs %>
-                            
-                            </label>
+                            <label class="labelUp">Barrio </label>
+                            <%= f.select :addresses_borough_eq, @boroughs, {include_blank: "", selected: ""},  class: 'big' %>
+
+
                         </div>
                     </div>
                 </div>
 
 
 
-                <legend class="form-legend">Tematica</legend>
+
                 <div class="row">
+                 <div class="col-md-12">
+                  <legend class="form-legend">Tematica <span>(Seleciona una o más categorías)</span></legend>
                   <% @areas.each do |area| %>  
-                    <div class="col-sm-6 col-md-2">
-                         <div class="form-group">
-                           <label for="">
-                                <%= check_box_tag "q[areas_name_in][]", area.name %> <%= area.name %>
+
+                        <div class="form-group tagW">
+                           <label>
+                                <%= check_box_tag "q[areas_name_in][]", area.name %>
+                                <span class="tag"><i class="fa fa-bicycle" aria-hidden="true"></i>
+<%= area.name %></span>
+
                            </label>
 
                         </div>
-                    </div>
+
+
+
                   <% end %>  
+                   </div>
                 </div>
 
                 <!--
@@ -106,8 +113,6 @@
 </div>
 
 <% end %>
-
-<!-- en modo cuadricula -->
 
 
 
