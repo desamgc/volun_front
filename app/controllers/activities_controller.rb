@@ -33,7 +33,6 @@ class ActivitiesController < ApplicationController
 
 
   def search
-    debugger
     if params[:day]
       @search_q = Activity.search({timetables_execution_date_eq: params[:day] })
     else

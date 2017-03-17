@@ -1,9 +1,3 @@
-<!--
-<%= javascript_tag do %>
-  $(document).ready(load_geo_project);
-<% end %>
--->
-
 <%= javascript_tag do %>
   var locations = <%= raw @locations_project.to_json %>;
   var multiple = false;
@@ -20,37 +14,6 @@
 
 
 <div role="tabpanel" class="tab-pane active" id="tpi-tab2">
-<!--
-  <ul class="row">
-               <% @project.links.logo.each do |link| %>
-                <li class="col-md-3 col-sm-3 col-xs-12">
-                  <div class="element_info_relevant element_info_relevant-type2">
-                    <div class="info_relevant_img">
-                      <%= render partial: "links/link", locals: { link: link} %>
-                      
-                    </div>
-                    
-                  </div>
-                </li>
-               <% end %> 
-
-               <% @project.links.image.each do |link| %>
-                <li class="col-md-3 col-sm-3 col-xs-12">
-                  <div class="element_info_relevant element_info_relevant-type2">
-                    <div class="info_relevant_img">
-                      <%= render partial: "links/link", locals: { link: link} %>
-                      
-                    </div>
-                    
-                  </div>
-                </li>
-               <% end %> 
-  </ul>
-
-
--->
-
-
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -62,26 +25,15 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-     <% @project.links.logo.each do |link| %>
+    <% @project.links.logo.each do |link| %>
       <div class="item active">
-
-
-                      <%= render partial: "links/link", locals: { link: link} %>
-
-
-
+        <%= render partial: "links/link", locals: { link: link} %>
       </div>
-       <% end %>
-                 <% @project.links.image.each do |link| %>
+    <% end %>
+    <% @project.links.image.each do |link| %>
       <div class="item">
-
-
-
-                <%= render partial: "links/link", locals: { link: link} %>
-
-
+            <%= render partial: "links/link", locals: { link: link} %>
       </div>
-
      <% end %>
     </div>
 
@@ -117,9 +69,6 @@
 
   </div>
 </div>
-
-
-
 
 <div class="bg-fluid5 nofluid">
   <div class="videoplayer row">
@@ -165,8 +114,5 @@
     </div>
  </div>   
 </div>
-
-
-
-    </div>
+</div>
 </div>
