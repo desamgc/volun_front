@@ -40,8 +40,10 @@ Rails.application.routes.draw do
     resources :links
   end
 
-  resources :volunteers
-
+  resources :volunteers do
+    resources :projects, only:[:index, :show], param: :q
+    
+  end 
   #resources :entity_types
   #resources :project_types
   
