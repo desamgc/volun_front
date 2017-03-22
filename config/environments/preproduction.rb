@@ -61,7 +61,7 @@ Rails.application.configure do
   # config.action_controller.asset_host = 'http://assets.example.com'
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-      :address => "correo.munimadrid.es"
+      :address => Rails.application.secrets.server_name_mail
   }
 
 

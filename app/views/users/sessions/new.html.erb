@@ -1,57 +1,14 @@
-<!--<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<div id="loginContainer" class="container-fluid" style="padding: 0px; background-color: rgba(0, 0, 0, 0.05)">
+     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="col-sm-6">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
--->
+           <div class="row" style="background-color: #fff">
+               <div class="col-lg-9 col-md-12 col-sm-12 pull-right form-container">
 
 
-  <div class="mc-acceso nofluid">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="panel panel-type1">
-            <div class="panel-heading">
-                <h3 class="panel-title">Accede a tu carpeta</h3>
-                <span class="panel-subtitle">Identifícate y comienza a realizar ahora todos tus trámites de la Sede Electrónica</span>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-6 hidden-xs">
-                        <div class="mc-acceso-item">
-                            <div class="content">
-                                <h4 class="legend legend-cert">Certificado electrónico</h4>
-                                 <p class="info">Por favor, instale su certificado digital y a continuación pulse en "Acceder con mi certificado electrónico".</p>
-                            </div>
-                            <div class="buttons">
-                               <a href="#" class="button button4 button-icon">Acceder con certificado electrónico <i class="button-icon-arrowright"></i></a>
-                               <p><a href="#">Certificados electrónicos admitidos</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="mc-acceso-item login">
-                            <div class="content">
-                                <h4 class="legend legend-user">Usuario y contraseña para acceder a voluntariado</h4>
-                                    <div class="form-group first">
+               <h2>Iniciar sesión</h2>
+                <div class="form-group first">
                                         <label for="correoelectronico">Correo electrónico</label>
                                        <!-- <input type="text" class="form-control" id="correoelectronico" name="correoelectronico" placeholder="Correo electrónico" /> -->
                                         <%= f.email_field :email, autofocus: true %>
@@ -61,20 +18,30 @@
                                         <!-- <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Contraseña" /> -->
                                         <%= f.password_field :password, autocomplete: "off" %>
                                     </div>
-                                    <div class="buttons">
-                                        <button class="button button4 button-icon">Acceder <i class="button-icon-arrowright"></i></button>
+                                     <div class="buttons">
+                                        <%= render "users/shared/links" %>
+                                        <button class="event-link big pull-right">Iniciar sesión</button>
 
-                                        <ul class="list-inline">
-                                            <!--<li><a href="#">Regístrate ahora</a></li>
-                                            <li><a href="#">Olvidé mi contraseña</a></li> -->
-                                            <%= render "users/shared/links" %>
-                                        </ul>
+
                                     </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+               </div>
+           </div>
+
         </div>
-    <% end %>
+        <div class="col-sm-6" style="">
+
+             <div class="row">
+               <div class="col-lg-9 col-md-12 col-sm-12 pull-left form-container">
+                 <h2>¿Aun no estás registrado?</h2>
+                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum odio lectus, volutpat vitae metus lacinia.</p>
+
+                   <%= link_to 'Quiero ser voluntario', new_rt_volunteer_subscribe_path, class: "event-link negative dark" %>
+                 <br>
+                 <%= link_to 'Soy una entidad', new_rt_entity_subscribe_path, class: "event-link negative dark" %>
+
+                 </div>
+           </div>
+
+        </div>
+     <% end %>
 </div>

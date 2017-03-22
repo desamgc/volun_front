@@ -36,7 +36,9 @@ ol {
 .mt45 {
     margin-top: 45px;
 }
-
+.d-block{
+    display: block;
+}
 a {
     &.link {
         font-family: Lato;
@@ -72,6 +74,10 @@ a {
         height: 38px;
         line-height: 38px;
         border: solid 1px rgba(255, 102, 0, 0.5);
+    }
+    &.dark{
+            border: solid 1px rgba(29, 29, 29, 0.5);
+
     }
     &.rightChev {
         position: relative;
@@ -842,10 +848,113 @@ h3 {
 }
 
 
+/*LOGIN*/
+
+#loginContainer {
+    .event-link{
+        margin-bottom: 30px;
+    }
+    p {
+        font-size: 14px;
+        line-height: 1.43;
+        letter-spacing: 0.7px;
+        margin-bottom: 45px;
+    }
+    .list-inline {
+    margin-left: 0px;
+}
+    .buttons {
+
+        a {
+            line-height: 56px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            color: rgba(29, 29, 29, 0.8);
+            text-decoration: underline;
+        }
+        * {
+            display: inline-block;
+        }
+    }
+    .form-container {
+        padding-top: 60px;
+        padding-left: 60px;
+        padding-right: 60px;
+        padding-bottom: 120px;
+        h2 {
+            font-size: 28px;
+            font-weight: 900;
+            line-height: 1.43;
+            letter-spacing: 1.2px;
+            margin-bottom: 45px;
+        }
+    }
+    .form-group {
+        width: 100%;
+    }
+    input {
+        appearance: none;
+        -moz-appearance: none;
+        /* Firefox */
+        -webkit-appearance: none;
+        /* Safari and Chrome */
+        height: 48px;
+        border-radius: 6px;
+        background-color: #f2f2f2;
+        border: solid 1px rgba(29, 29, 29, 0.1);
+        padding-left: 20px;
+        font-size: 14px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.29;
+        letter-spacing: 0.7px;
+        color: #1d1d1d;
+        margin-bottom: 30px;
+        width: 100%;
+        &:focus {
+            outline: none;
+            border: solid 1px rgba(255, 102, 0, 0.3);
+        }
+    }
+    .form-group {
+        display: inline-block;
+        margin: 0;
+        margin-right: 30px;
+        .field_with_errors {
+            input,
+            select {
+                border: solid 1px #d0011b;
+                background-color: rgba(208, 1, 26, 0.05);
+            }
+        }
+        label {
+            font-size: 14px;
+            font-weight: 700;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.29;
+            letter-spacing: 0.7px;
+            color: #1d1d1d;
+            margin-bottom: 10px;
+            .asterisco {
+                color: #fc4f08;
+                padding-left: 2px;
+            }
+        }
+    }
+    label {
+        display: block;
+    }
+}
+
+
 /*VOLUNTARIOS*/
 
 #voluntariosNoLoginWrapper,
-#entidadessNoLoginWrapper {
+#entidadessNoLoginWrapper,
+#quienesSomos {
     padding-top: 60px;
     padding-bottom: 120px;
     background-color: rgba(0, 0, 0, 0.05);
@@ -858,6 +967,62 @@ h3 {
         letter-spacing: 1px;
         color: rgba(29, 29, 29, 0.8);
         margin-bottom: 10px;
+    }
+    h3.dataGroup {
+        font-size: 18px;
+        line-height: 1.44;
+        letter-spacing: 1px;
+        color: rgba(29, 29, 29, 0.8);
+        margin-bottom: 25px;
+        margin-top: 45px;
+    }
+    h4 {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.43;
+        letter-spacing: 0.7px;
+        color: rgba(29, 29, 29, 0.8);
+        margin-bottom: 5px;
+        margin-top: 20px;
+    }
+    hr {
+        margin: 0;
+        margin-top: 60px;
+        border-top: solid 1px rgba(29, 29, 29, 0.15);
+    }
+    p.data {
+        font-size: 14px;
+        color: rgba(29, 29, 29, 0.8);
+        line-height: 1.43;
+        letter-spacing: 0.7px;
+        a {
+            font-size: 14px;
+            line-height: 1.43;
+            letter-spacing: 0.7px;
+            color: rgba(29, 29, 29, 0.8);
+            text-decoration: underline;
+        }
+    }
+    .redes {
+        margin-top: 42px;
+        li {
+            i {
+                font-size: 17px;
+                width: 40px;
+                height: 40px;
+                border-radius: 100px;
+                border: solid 1px rgba(29, 29, 29, 0.3);
+                text-align: center;
+                line-height: 40px;
+                margin-right: 24px;
+                color: rgba(29, 29, 29, 0.8);
+            }
+            &:last-child {
+                i {
+                    margin-right: 0;
+                }
+            }
+        }
     }
     .wrapperColaborar {
         padding: 60px 12%;
@@ -884,6 +1049,18 @@ h3 {
 
 /*PROYECTOS*/
 
+#view-more {
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    a {
+        display: block;
+        text-align: center;
+        line-height: 40px;
+        color: rgba(29, 29, 29, .5)
+    }
+}
+
 .buscarProyectos {
     .panel {
         margin-top: -125px;
@@ -894,8 +1071,8 @@ h3 {
             padding-top: 60px;
         }
     }
-    .form-group{
-        &.tagW{
+    .form-group {
+        &.tagW {
             margin-right: 10px;
         }
     }
@@ -921,7 +1098,7 @@ h3 {
             width: 362px;
         }
     }
-    input[type="checkbox"]{
+    input[type="checkbox"] {
         position: fixed;
         top: -1000000000000px;
     }
@@ -939,8 +1116,7 @@ h3 {
         padding-right: 15px;
         padding-left: 15px;
         text-transform: lowercase;
-
-        i{
+        i {
             margin-right: 5px;
         }
         &:focus {
@@ -948,8 +1124,8 @@ h3 {
         }
     }
     input:checked+span.tag {
-            background-color: rgba(29, 29, 29, 0.7);
-    border: solid 1px #1d1d1d;
+        background-color: rgba(29, 29, 29, 0.7);
+        border: solid 1px #1d1d1d;
         color: #ffffff;
     }
     .form-legend {
@@ -963,7 +1139,6 @@ h3 {
         padding-bottom: 10px;
         border-bottom: solid 1px rgba(29, 29, 29, 0.3);
         margin-top: 30px;
-
         span {
             font-size: 14px;
             font-weight: normal;
@@ -1191,6 +1366,41 @@ select:-webkit-autofill:focus {
 }
 
 @media(max-width:767px) {
+
+    #loginContainer{
+        text-align: center;
+        .form-group{
+            margin-right: 0;
+        }
+        .event-link.big{
+            width: 100%;
+        }
+        .buttons *{
+            display: block;
+        }
+        .buttons{
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+        .list-inline{
+                display: block;
+            width: 100%;
+            a{
+                display: block;
+            }
+        }
+        .form-container{
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-bottom: 40px;
+        }
+        label{
+            text-align: left;
+        }
+        .pull-right{
+            float: none !important;
+        }
+    }
     #actividadesHome {
         h4 {
             margin-top: 27px;
@@ -1251,6 +1461,13 @@ select:-webkit-autofill:focus {
 
 @media(min-width:768px) {
     .navbar-nav > li > a {}
+}
+@media(max-width:942px) {
+    #loginContainer{
+        .pull-right{
+            float: none !important;
+        }
+    }
 }
 
 @media(min-width:768px) and (max-width:992px) {

@@ -67,9 +67,16 @@
 </div>
 </div>
 
-<% if @projects_actives.current_page != @projects_actives.total_pages %>
-<p id="view-more">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <% if @projects_actives.current_page != @projects_actives.total_pages %>
+ <p id="view-more">
+ 
 
-   <%= link_to('Ver Más', url_for(page: @projects_actives.current_page + 1), {:remote => true}) %>
-</p>
-<% end%>
+   <%= link_to('Cargar más proyectos', url_for(page: @projects_actives.current_page + 1), {:remote => true}) %>
+ </p>
+ <% end%>
+        </div>
+    </div>
+</div>
