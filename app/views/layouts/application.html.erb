@@ -23,26 +23,27 @@
     };
     </script>
 
-    
-    
-  
-  
+
+
+
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   <link rel="stylesheet" href="//sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/esri/css/esri.css">
     <script type="text/javascript">
-    var dojoConfig = { 
+    var dojoConfig = {
         paths: {
           extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras"
         }
       };
-   </script>   
+
+   </script>
    <script src="//sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/init.js"></script>
-  
-  
+
+
 </head>
-<body>
+<body class="<%=controller_name %>">
    <div id="wrapper">
       <%= render 'layouts/header' %>
       <!--[if lt IE 9]>
@@ -63,8 +64,8 @@
       <![endif]-->
 
    <% if true==false %>
-    <%= render 'layouts/migas' %> 
-   <% end %>   
+    <%= render 'layouts/migas' %>
+   <% end %>
 
 
     <%= render 'layouts/avisos' %>
