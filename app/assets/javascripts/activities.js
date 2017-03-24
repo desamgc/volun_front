@@ -7,9 +7,6 @@ $("#fecha").datepicker({
               beforeShowDay: DisableDays
 
         });
-        //var arr_list_days = new Array();
-        //arr_list_days = list_days.split(",");
-        //$('#fecha').datepicker('setDates', arr_list_days);
         $('#fecha').datepicker('setDates', day_c);
         $('#fecha').datepicker().on('changeDate', function() {
                            param_day = '{"timetables_execution_date_eq"' + "=>" + "'" + $('#fecha').datepicker('getFormattedDate') + '"}'

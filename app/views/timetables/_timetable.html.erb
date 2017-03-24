@@ -1,0 +1,14 @@
+<div class="actividadWrapper">
+<div class="row">
+  <div class="col-xs-2 no-padding-left">
+    <p class="fecha">
+       <%= timetable.execution_date.day %>
+       <span><%= Date::MONTHNAMES[timetable.execution_date.month] %> <%= timetable.execution_date.year %></span>
+    </p>
+  </div>
+  <div class="col-xs-10">
+    <p class="distrito"><%= timetable.event.address.district %></p>
+    <h3 class="titular"><%= timetable.event.activity.name %></h3>
+  </div>
+</div>
+</div>
