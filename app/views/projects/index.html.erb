@@ -1,42 +1,135 @@
-<div class="container-fluid">
- <% if current_user.loggable_type=="Entity" %>
- 		<p><%= current_user.loggable.name %></p>
-	  <p><%= current_user.loggable.phone_number %>  </p>
- 		<p> <%= current_user.loggable.email %> </p>
- 		<%= link_to 'Modificar contraseña', edit_user_registration_path, class: "event-link " %> 
-    <%= link_to 'Hacer una solicitud', new_rt_other_path, class: "event-link " %>
-    <%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class: "event-link ") %> 
-    <hr>
-    <li><%= link_to 'Mis Actividades', entity_activities_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id), remote: true %></li>
-	 <li><%= link_to 'Mis proyectos', projects_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id), remote: true %>
- <% else %>
-    <p><%= current_user.loggable.name %> <%= current_user.loggable.last_name %> <%= current_user.loggable.last_name_alt %></p>
-	  <p><%= current_user.loggable.phone_number %>  </p>
- 		<p> <%= current_user.loggable.email %> </p>
-    <%= link_to 'Mi perfil', new_rt_volunteer_amendment_path, class: "event-link " %> 
-    <%= link_to 'Solicitud de cita', new_rt_volunteer_appointment_path, class: "event-link " %>
-    <%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class: "event-link ") %>
-    <hr>
-                           
- <% end %>		
-<h2 class="titlePage"><%= Project.actives.count %> proyectos</h2>
-	<ul class="row">
-		<div id = "projects">
-		  <% @projects_actives.each_slice(3) do |group| %>
-			  <%= render partial: 'project', collection: group %>
-		  <% end %> 
-		</div>
-	</ul>
+<section class="container-fluid profileW">
+<div class="row">
+    <div class="col-md-12">
+        <div class="profile">
 
-	<ul class="row">
-		<div id = "activities">
-	    <%= render partial: 'activities/activity', collection: @activities %>
-		</div>
-	</ul>
+               <% if current_user.loggable_type=="Entity" %>
+
+               <div class="row">
+                   <div class="col-md-6 centerMobile"> <h3 class="userName">
+                  <svg width="27px" height="25px" viewBox="44 228 27 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Group-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(45.000000, 229.000000)">
+        <path d="M12.4285714,0.357142857 C15.0274286,0.357142857 17.1428571,3.09657143 17.1428571,6.46428571 C17.1428571,9.83285714 15.0274286,12.5714286 12.4285714,12.5714286 C9.82971429,12.5714286 7.71428571,9.83285714 7.71257143,6.46428571 C7.71257143,3.09657143 9.828,0.357142857 12.4285714,0.357142857 Z" id="Path" stroke="#FF6600" stroke-width="2.5"></path>
+        <path d="M17.8277143,13.4285714 C17.3537143,13.4285714 16.9705714,13.8117143 16.9705714,14.2857143 C16.9705714,14.7597143 17.3537143,15.1428571 17.8277143,15.1428571 C20.7582857,15.1428571 23.1428571,17.5274286 23.1428571,20.4588571 C23.1428571,20.8351429 22.8351429,21.1428571 22.4562857,21.1428571 L2.39914286,21.1428571 C2.022,21.1428571 1.71428571,20.8368571 1.71428571,20.4588571 C1.71428571,17.5274286 4.098,15.1428571 7.02771429,15.1428571 C7.50171429,15.1428571 7.88485714,14.7597143 7.88485714,14.2857143 C7.88485714,13.8117143 7.50171429,13.4285714 7.02771429,13.4285714 C3.15257143,13.4285714 0,16.5828571 0,20.4588571 C0,21.7814286 1.07657143,22.8571429 2.39914286,22.8571429 L22.4562857,22.8571429 C23.7797143,22.8571429 24.8571429,21.7814286 24.8571429,20.4588571 C24.8571429,16.5828571 21.7028571,13.4285714 17.8277143,13.4285714 Z" id="Path" stroke="#FF6600" stroke-width="0.8" fill="#FF6600"></path>
+    </g>
+</svg><%= current_user.loggable.name %>
+              </h3></div>
+                   <div class="col-md-6 centerMobile text-right"><%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class: "event-link negative dark") %> </div>
+               </div>
+
+                <p class="centerMobile contacto"><span>1234567X</span> / <span> <%= current_user.loggable.email %></span> </p>
+
+              <p class="centerMobile contacto"><span>Silvia Gil Moreno</span> / <span> 60000000 <%= current_user.loggable.phone_number %></span> </p>
+              <p><span>Calle Serrano 16 1º, 28001 Madrid, Madrid</span></p>
+              <div class="botones">
+                  <%= link_to 'Cambiar contraseña', edit_user_registration_path, class: "event-link mr30" %>
+    <%= link_to 'Hacer una solicitud', new_rt_other_path, class: "event-link negative mr30" %>
+    <a class="link" href="">Darme de baja</a>
+              </div>
+
+
+
+
+ <% else %>
+
+
+
+
+<div class="row">
+    <div class="col-sm-6 centerMobile"> <h3 class="userName">
+<svg width="27px" height="25px" viewBox="44 228 27 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Group-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(45.000000, 229.000000)">
+        <path d="M12.4285714,0.357142857 C15.0274286,0.357142857 17.1428571,3.09657143 17.1428571,6.46428571 C17.1428571,9.83285714 15.0274286,12.5714286 12.4285714,12.5714286 C9.82971429,12.5714286 7.71428571,9.83285714 7.71257143,6.46428571 C7.71257143,3.09657143 9.828,0.357142857 12.4285714,0.357142857 Z" id="Path" stroke="#FF6600" stroke-width="2.5"></path>
+        <path d="M17.8277143,13.4285714 C17.3537143,13.4285714 16.9705714,13.8117143 16.9705714,14.2857143 C16.9705714,14.7597143 17.3537143,15.1428571 17.8277143,15.1428571 C20.7582857,15.1428571 23.1428571,17.5274286 23.1428571,20.4588571 C23.1428571,20.8351429 22.8351429,21.1428571 22.4562857,21.1428571 L2.39914286,21.1428571 C2.022,21.1428571 1.71428571,20.8368571 1.71428571,20.4588571 C1.71428571,17.5274286 4.098,15.1428571 7.02771429,15.1428571 C7.50171429,15.1428571 7.88485714,14.7597143 7.88485714,14.2857143 C7.88485714,13.8117143 7.50171429,13.4285714 7.02771429,13.4285714 C3.15257143,13.4285714 0,16.5828571 0,20.4588571 C0,21.7814286 1.07657143,22.8571429 2.39914286,22.8571429 L22.4562857,22.8571429 C23.7797143,22.8571429 24.8571429,21.7814286 24.8571429,20.4588571 C24.8571429,16.5828571 21.7028571,13.4285714 17.8277143,13.4285714 Z" id="Path" stroke="#FF6600" stroke-width="0.8" fill="#FF6600"></path>
+    </g>
+</svg>
+<%= current_user.loggable.name %> <%= current_user.loggable.last_name %> <%= current_user.loggable.last_name_alt %> </h3>
+
+</div>
+    <div class="col-sm-6 centerMobile text-right"><%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class: "event-link negative dark") %></div>
 </div>
 
-<% if @projects_actives.current_page != @projects_actives.total_pages %>
+
+      <p class="centerMobile contacto"><span><%= current_user.loggable.phone_number %></span> / <span> <%= current_user.loggable.email %></span> </p>
+      <div class="botones">
+           <%= link_to 'Modificar perfil', new_rt_volunteer_amendment_path, class: "event-link mr30" %>
+    <%= link_to 'Solicitud de cita', new_rt_volunteer_appointment_path, class: "event-link negative" %>
+
+      </div>
+
+
+                           
+ <% end %>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+</section>
+      <% if current_user.loggable_type=="Entity" %>
+<div class="container-fluid">
+
+
+  <div class="row">
+      <div class="col-md-12">
+          <ul class="pestaniasActividadProyecto">
+
+            <li><%= link_to 'Tus proyectos', projects_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id), remote: true %></li>
+             <li><%= link_to 'Tus Actividades', entity_activities_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id), remote: true %></li>
+</ul>
+      </div>
+  </div>
+
+
+
+</div>
+ <% end %>
+    <section class="container-fluid projectW">
+
+ <div class="row">
+     <div class="col-md-12">
+         <% if current_user.loggable_type=="Entity" %>
+          <% else %>
+         <h2 class="titlePage">Tus proyectos asignados</h2>
+         <% end %>
+         <h4 class="projectNumber"><%= Project.actives.count %> proyectos</h4>
+     </div>
+ </div>
+
+
+    <ul class="row">
+        <div id = "projects">
+          <% @projects_actives.each_slice(3) do |group| %>
+              <%= render partial: 'project', collection: group %>
+          <% end %> 
+        </div>
+    </ul>
+
+    <ul class="row">
+        <div id = "activities">
+        <%= render partial: 'activities/activity', collection: @activities %>
+        </div>
+    </ul>
+</section>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <% if @projects_actives.current_page != @projects_actives.total_pages %>
 <p id="view-more">
    <%= link_to('Ver Más', url_for(page: @projects_actives.current_page + 1), {:remote => true}) %>
 </p>
 <% end%>
+        </div>
+    </div>
+</div>

@@ -4,11 +4,11 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show]
   respond_to :html, :js, :json
 
-  
+
   def index
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:areas, :addresses).actives.search(params[:q])
-    @projects_actives = @search.result.page(params[:page]).per(6) 
+    @search = Project.unscoped.includes(:areas, :addresses).search(params[:q])
+    @projects_actives = @search.result.page(params[:page]).per(6)
     respond_to do |format|
       format.html
       format.js
@@ -19,14 +19,14 @@ class ProjectsController < ApplicationController
   def index_i
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses).actives.search(params[:q])
-    @projects_actives = @search.result.page(params[:page]).per(6)  
+    @projects_actives = @search.result.page(params[:page]).per(6)
     @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     if (params[:page].blank?)
       #@projects_featured = Project.includes(:areas).featured
       @districts = Project.includes(:addresses).actives.distinct.order("district").pluck('district','district')
       @boroughs = ""
       @areas = Area.all
-    end  
+    end
     respond_to do |format|
       format.html
       format.js
@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
   def search
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses).actives.search(params[:q])
-    @projects_actives = @search.result.page(params[:page]).per(6)  
+    @projects_actives = @search.result.page(params[:page]).per(6)
     @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     respond_to do |format|
       format.html
@@ -48,16 +48,16 @@ class ProjectsController < ApplicationController
    @boroughs = Project.includes(:addresses).actives.distinct.where("addresses.district=?", params[:district]).order("addresses.borough").pluck('addresses.borough', 'addresses.borough')
     respond_to do |format|
       format.json { render json: @boroughs }
-    end  
+    end
 
-  end if  
+  end if
 
-  
+
   # GET /projects/1
   # GET /projects/1.json
   def show
     @locations_project = @project.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
-    
+
   end
 
   private

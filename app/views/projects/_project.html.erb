@@ -1,5 +1,4 @@
 
-
 <li class="col-xs-12 col-sm-4 col-md-4" style="display:inline-block">
   <div class="gallery-item">
      <header>
@@ -8,11 +7,14 @@
 
     <div class="main">
         <h3><%=  project.name %></h3>
-        <p><%= truncate(project.description, length: 120) %></p>
+        <p><%= truncate(project.description, length: 145) %></p>
 
          <div class="row ctaGroupPreview">
-             <% project.areas.each do |area| %> 
-                <div class="col-lg-4 col-md-12  col-sm-12 col-xs-4"> <span class="category"><%= area.name %> </span>  
+             <% project.areas.each do |area| %>
+                <div class="col-lg-4 col-md-12  col-sm-12 col-xs-4">
+
+                <p style="margin:0"><span class="category"><%= area.name %></span></p>
+
                 </div>
              <% end %>
              <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right"> <%= link_to  "¿Te interesa?" , project_path(project), class: "event-link " %> </div>
@@ -27,5 +29,4 @@
 
   </div>
 </li>
-
 

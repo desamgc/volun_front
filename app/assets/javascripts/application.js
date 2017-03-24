@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.dotdotdot.min
 // require turbolinks
 //= require js/locale/i18n_es
 // require_directory .
@@ -23,7 +24,7 @@ var initialize_modules = function() {
   //App.Projects.load_geo();
   //App.ayuntamiento;
   //App.vendor;
-  
+
 };
 
 $(function(){
@@ -55,7 +56,7 @@ $(document).ready(function(){
         if ($("#rt_entity_subscribe_request_form_attributes_req_reason_id").val()==4)
             $('#other_motive').show();
         else
-            $('#other_motive').hide();  
+            $('#other_motive').hide();
 
         $("#btnGrid").click(function(){
             $('#row').hide();
@@ -68,20 +69,20 @@ $(document).ready(function(){
 
         $("#rt_entity_subscribe_request_form_attributes_req_reason_id").change(function(){
             if ($("#rt_entity_subscribe_request_form_attributes_req_reason_id").val() == 4)
-            {    
+            {
               $('#other_motive').show();
               $('#rt_entity_subscribe_other_subscribe_reason').val("");
             }
             else
-            {    
+            {
               $('#other_motive').hide();
               $('#rt_entity_subscribe_other_subscribe_reason').val("");
-            }    
+            }
         });
 
-        
-                       
-          
+
+
+
 
 
 
