@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses).actives.search(params[:q])
     @projects_actives = @search.result.page(params[:page]).per(6)
-    @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    @locations = Project.includes(:addresses).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     if (params[:page].blank?)
       #@projects_featured = Project.includes(:areas).featured
       @districts = Project.includes(:addresses).actives.distinct.order("district").pluck('district','district')
