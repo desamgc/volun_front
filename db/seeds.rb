@@ -16,7 +16,6 @@ PROPOSAL_NUM      = 10
 ENTITY_NUM        = 10
 RACKING_NUM       = 10
 ISSUE_NUM         = 10
-ACTIVITIES_NUM    = 5
 TIMETABLE_NUM     = 5
 EVENTS_NUM        = 5
 DOCUMENT_NUM      = 5
@@ -40,7 +39,7 @@ REQUEST_TYPES = {
 
 PROJECT_TYPES = {
   1 => 'Servicios Sociales'
-  
+
 }
 
 REQUEST_REASONS = {
@@ -52,7 +51,7 @@ REQUEST_REASONS = {
 
 REQUEST_STATUS = {
   1 => 'Pending'
-  
+
 }
 
 AREA_NAMES = [
@@ -261,20 +260,6 @@ end
 
 
 
-puts "Creando Distritos"
-DISTRICTS.each do |code, name|
-  District.create!(code: code, name: name)
-end
-
-puts "Creando Provincias"
-PROVINCES.each do |code, name|
-  Province.create!(code: code, name: name)
-end
-
-puts "Creando Tipos de vías"
-ROAD_TYPES.each do |name, code|
-  RoadType.create!(name: name, code: code)
-end
 
 
 puts "Creando Tipos de razones"
@@ -291,7 +276,7 @@ end
 
 REJECTION_TYPES = {
   1 => 'No procede',
-  
+
 }
 
 puts "Creando Tipos de rechazos"
@@ -299,5 +284,30 @@ REJECTION_TYPES.each do |code, name|
   ReqRejectionType.create!(description: name, name: name)
 end
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

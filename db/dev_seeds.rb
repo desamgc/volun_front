@@ -1,7 +1,7 @@
 
-require 'database_cleaner'
+#require 'database_cleaner'
 
-DatabaseCleaner.clean_with :truncation
+#DatabaseCleaner.clean_with :truncation
 Faker::Config.locale = I18n.locale
 
 ACTIVITIES_NUM    = 10
@@ -24,75 +24,7 @@ DOCUMENT_NUM      = 5
 SKILLS_NUM        = 5
 LINKS_NUM      = 4
 
-REQUEST_TYPES = {
-  1  => 'rt_volunteer_subscribe',
-  2  => 'rt_volunteer_unsubscribe',
-  3  => 'rt_volunteer_amendment',
-  4  => 'rt_volunteer_appointment',
-  5  => 'rt_entity_subscribe',
-  6  => 'rt_entity_unsubscribe',
-  7  => 'rt_volunteers_demand',
-  8  => 'rt_project_publishing',
-  9  => 'rt_project_unpublishing',
-  10 => 'rt_activity_publishing',
-  11 => 'rt_activity_unpublishing',
-  12 => 'rt_other'
-}
 
-PROJECT_TYPES = {
-  1 => 'Servicios Sociales'
-  
-}
-
-REQUEST_REASONS = {
-  0 => 'Difusión de proyectos',
-  1 => 'Solicitud voluntarios',
-  2 => 'Publicación actividad en agenda',
-  3 => 'Otros'
-}
-
-REQUEST_STATUS = {
-  1 => 'Pending'
-  
-}
-
-AREA_NAMES = [
-  'Derechos Sociales',
-  'Ambiental',
-  'Cultural',
-  'Deportivo',
-  'Educativo',
-  'Socio-sanitario',
-  'Ocio y tiempo libre',
-  'Comunitario y/o de ciudad',
-  'Animales',
-  'Participación',
-  'On line',
-  'Cuidados a las personas',
-  'Sensibilización',
-  'Comunicación',
-  'Cooperación',
-  'Responsabilidad social',
-  'Emergencias',
-  'Otros'
-]
-
-COLLECTIVE_NAMES = [
-  'Menores',
-  'Jóvenes',
-  'Mayores',
-  'Diversidad funcional',
-  'Mujer',
-  'Inmigrantes',
-  'Refugiados',
-  'Personas sin hogar',
-  'Reclusos y exreclusos',
-  'Personas enfermas',
-  'Exclusión social',
-  'Voluntariado',
-  'Toda la población',
-  'Otros'
-]
 
 DISTRICTS = {
 
@@ -211,55 +143,6 @@ ROAD_TYPES = {
     'TRAVESIA'   => '1007',
 }
 
-PROPOSALS = %w(subvencionado desistido desestimado excluido)
-
-ENTITY_TYPES = {
-  0 => 'Organización',
-  1 => 'Empresa',
-  2 => 'Asociación'
-}
-
-NOTICE_TYPES = {
-  0 => 'email',
-  1 => 'sms',
-  2 => 'papel'
-}
-
-
-puts "Creando Medios de comunicación"
-NOTICE_TYPES.each do |kind , name|
-  NoticeType.create!(kind: kind, description: name)
-end
-
-
-AREAS = {
-  1 => 'EDUCACION',
-  2 => 'CULTURA',
-  3 => 'EMPLEO',
-  4 => 'OTRA'
-}
-
-puts "Creando Areas"
-AREAS.each do |kind , name|
-  Area.create!(name: name, description: name, active: true)
-end
-
-
-puts "Creando Tipos de solicitudes"
-REQUEST_TYPES.each do |kind , name|
-  RequestType.create!(kind: kind, description: name)
-end
-
-puts "Creando Tipos de entidades"
-ENTITY_TYPES.each do |kind , name|
-  EntityType.create!(name: name, description: name)
-end
-
-puts "Creando Tipos de proyectos"
-ProjectType.kinds.each do |kind_name , kind_num|
-  ProjectType.create!(id: kind_num, kind: kind_num, description: kind_name)
-end
-
 
 
 puts "Creando Distritos"
@@ -272,32 +155,10 @@ PROVINCES.each do |code, name|
   Province.create!(code: code, name: name)
 end
 
+
 puts "Creando Tipos de vías"
 ROAD_TYPES.each do |name, code|
   RoadType.create!(name: name, code: code)
-end
-
-
-puts "Creando Tipos de razones"
-REQUEST_REASONS.each do |code, name|
-  ReqReason.create!(name: name, description: name)
-end
-
-
-puts "Creando Tipos de status"
-REQUEST_STATUS.each do |code, name|
-  ReqStatus.create!(kind: code, description: name)
-end
-
-
-REJECTION_TYPES = {
-  1 => 'No procede',
-  
-}
-
-puts "Creando Tipos de rechazos"
-REJECTION_TYPES.each do |code, name|
-  ReqRejectionType.create!(description: name, name: name)
 end
 
 
@@ -317,64 +178,53 @@ puts "Creando Direcciones"
     province:              Province.all.sample.name,
     country:               "España",
     town:                  "Madrid",
-    latitude:              441900 + rand(100), 
-    longitude:             4479566 + rand(100), 
+    latitude:              441900 + rand(100),
+    longitude:             4479566 + rand(100),
     district:              District.all.sample.name,
-    borough:               Faker::Address.state 
+    borough:               Faker::Address.state,
+    normalize:             true
   )
 end
 
 puts "Creando entidades"
 (1..ENTITIES_NUM).each do |n|
   entity = Entity.create!(
-    name: "#{Entity.model_name.human} #{n}", 
-    email:Faker::Internet.email, 
-    representative_name:Faker::Lorem.name, 
-    representative_last_name:Faker::Lorem.name, 
-    contact_name:Faker::Lorem.name, 
+    name: "#{Entity.model_name.human} #{n}",
+    email:Faker::Internet.email,
+    representative_name:Faker::Lorem.name,
+    representative_last_name:Faker::Lorem.name,
+    contact_name:Faker::Lorem.name,
     contact_last_name:Faker::Lorem.name,
-    entity_type_id:EntityType.all.sample.id, 
-    address_id:Address.all.sample.id  )
+    entity_type_id:1,
+    address_id:Address.where(normalize: true).sample.id  )
 
   puts "Creando links"
     (1..1).each do |n|
       link = Link.create!(
-        description:   Faker::Lorem.sentence,
+        description:   "#link entidad #{n}",
         kind: 1,
         url: "assets/" + rand(1..16).to_s + ".jpg",
         linkable: entity
     )
   end
-end  
+end
+
+
+ puts "Creating voluntarios"
+    Volunteer.create(name: 'Jose Luis', last_name: 'perez', address_id: 1, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Angel', last_name: 'perez', address_id: 2, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
+    Volunteer.create(name: 'Alberto', last_name: 'perez', address_id: 3, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
 
 
 
-
-
-
-
-
-
-# puts "Creando Motivos de solicitud"
-# REQUEST_REASONS.each do |kind , name|
-#   RequestReason.create!(kind: kind)
-# end
-
-
-
-
-# puts "Creando Motivos de solicitud"
-# REQUEST_REASONS.each do |kind , name|
-#   RequestReason.create!(kind: kind)
-# end
 
 puts "Creando Proyectos urgent"
 (1..PROJECTS_NUM_OUTSTANDING).each do |n|
     project_other = Pt::Other.new()
     project   = Project.new()
     project.attributes = {
-      name:                  "#{Faker::App.name}  #{n}",
-      description:           "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
+      name:                  "Nombre del proyecto urgente #{n}",
+      description:           "Descripción proyecto urgente #{n}",
       functions:             Faker::Lorem.sentence,
       comments:              Faker::Lorem.sentence,
       entity_id:             Entity.all.sample.id,
@@ -388,20 +238,20 @@ puts "Creando Proyectos urgent"
       insured:               false,
       active:                true,
       publish:               true,
-      outstanding:           false,  
-      urgent:                true, 
-      contact_name:          Faker::Lorem.name,   
+      outstanding:           false,
+      urgent:                true,
+      contact_name:          Faker::Lorem.name,
       contact_last_name:     Faker::Lorem.name,
-      pt_extendable:         project_other 
+      pt_extendable:         project_other
 
     }
-    
+
     project.save!
 
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
-        address:    Address.all.sample,
+        address:    Address.where(normalize: true).sample,
         eventable:  project,
       )
 
@@ -421,15 +271,15 @@ puts "Creando Proyectos urgent"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 1,
-        url: "assets/" + rand(1..16).to_s + ".jpg",
+        url:  rand(1..16).to_s + ".jpg",
         linkable: project
     )
-    end  
+    end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 2,
-        url: "assets/#{n}.jpg",
+        url: "#{n}.jpg",
         linkable: project
     )
     end
@@ -439,17 +289,17 @@ puts "Creando Proyectos urgent"
         kind: 3,
         url: "http://www.marca.com",
         linkable: project
-    )  
-    end  
+    )
+    end
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 4,
         url: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: project
-    )  
-    end    
-    
+    )
+    end
+
 end
 
 
@@ -460,8 +310,8 @@ puts "Creando Proyectos featured"
     project_other = Pt::Other.new()
     project   = Project.new()
     project.attributes = {
-      name:                  "#{Faker::App.name}  #{n}",
-      description:           "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
+      name:                  "Nombre del proyecto destacado #{n}",
+      description:           "Descripción del proyecto destacado #{n}",
       functions:             Faker::Lorem.sentence,
       comments:              Faker::Lorem.sentence,
       entity_id:             Entity.all.sample.id,
@@ -475,19 +325,20 @@ puts "Creando Proyectos featured"
       insured:               true,
       active:                true,
       publish:               true,
-      outstanding:           true, 
-      contact_name:          Faker::Lorem.name,   
+      outstanding:           true,
+      contact_name:          Faker::Lorem.name,
       contact_last_name:     Faker::Lorem.name,
-      pt_extendable:         project_other 
+      pt_extendable:         project_other
 
     }
-    
+
     project.save!
     project.areas << Area.all.sample
+
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
-        address:    Address.all.sample,
+        address:    Address.where(normalize: true).sample,
         eventable:  project,
       )
 
@@ -507,15 +358,15 @@ puts "Creando Proyectos featured"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 1,
-        url: "assets/" + rand(1..16).to_s + ".jpg",
+        url:  rand(1..16).to_s + ".jpg",
         linkable: project
     )
-    end  
+    end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 2,
-        url: "assets/#{n}.jpg",
+        url: "#{n}.jpg",
         linkable: project
     )
     end
@@ -525,17 +376,17 @@ puts "Creando Proyectos featured"
         kind: 3,
         url: "http://www.marca.com",
         linkable: project
-    )  
-    end  
+    )
+    end
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 4,
         url: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: project
-    )  
-    end    
-    
+    )
+    end
+
 end
 
 
@@ -546,8 +397,8 @@ puts "Creando Proyectos"
     project_other = Pt::Other.new()
     project   = Project.new()
     project.attributes = {
-      name:                  "#{Faker::App.name}  #{n}",
-      description:          "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
+      name:                  "Nombre del proyecto ... #{n}",
+      description:           "Descripción del proyecto .. #{n}",
       functions:             Faker::Lorem.sentence,
       comments:              Faker::Lorem.sentence,
       entity_id:             Entity.all.sample.id,
@@ -561,20 +412,20 @@ puts "Creando Proyectos"
       insured:               false,
       active:                true,
       publish:               true,
-      outstanding:           false, 
-      contact_name:           Faker::Lorem.name,   
+      outstanding:           false,
+      contact_name:           Faker::Lorem.name,
       contact_last_name:           Faker::Lorem.name,
-      pt_extendable:         project_other    
+      pt_extendable:         project_other
     }
-    
+
     project.save!
 
     project.areas << Area.all.sample
-    
+    project.volunteers << Volunteer.find(1)
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
-        address:    Address.all.sample,
+        address:    Address.where(normalize: true).sample,
         eventable:  project,
       )
 
@@ -594,35 +445,35 @@ puts "Creando Proyectos"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 1,
-        url: "assets/" + rand(1..16).to_s  + ".jpg",
+        url:  rand(1..16).to_s  + ".jpg",
         linkable: project
     )
-    end  
+    end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 2,
-        url: "assets/#{n}.jpg",
+        url: "#{n}.jpg",
         linkable: project
     )
-    end  
+    end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 3,
         url: "http://www.marca.com",
         linkable: project
-    )  
-    end  
+    )
+    end
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 4,
         url: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: project
-    )  
-    end  
-    
+    )
+    end
+
 end
 
 
@@ -633,21 +484,21 @@ puts "Creando actividades"
 (1..ACTIVITIES_NUM).each do |n|
     activity   = Activity.new()
     activity.attributes = {
-      name:                  Faker::Lorem.name + "#{n}" ,
-      description:           "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>",
+      name:                  "Actividad #{n}" ,
+      description:           "Descripción actividad #{n}",
       start_date:   Time.now,
       end_date:     Time.now,
       transport: Faker::Lorem.name,
       entity: Entity.all.sample
-      
+
     }
-    
+
     activity.save!
 
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
-        address:    Address.all.sample,
+        address:    Address.where(normalize: true).sample,
         eventable:  activity,
       )
 
@@ -670,7 +521,7 @@ puts "Creando actividades"
         url: "assets/" + rand(1..16).to_s  + ".jpg",
         linkable: activity
     )
-    end  
+    end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
@@ -685,17 +536,17 @@ puts "Creando actividades"
         kind: 3,
         url: "http://www.marca.com",
         linkable: activity
-    )  
-    end  
+    )
+    end
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         kind: 4,
         url: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: activity
-    )  
-    end    
-    
+    )
+    end
+
 
 end
 
@@ -705,10 +556,6 @@ end
     #Entity.create(name: 'Universidad Carlos III', id_tipoente: '3', id_tipo_via: '1', vial:'Lezo', planta:'Baja', telefono: '915133368', email: 'universidad@madrid.es', estado: 'A'   )
     #Entity.create(name: 'Fundación Real Madrid', id_tipoente: '4', id_tipo_via: '1', vial:'Lezo', planta:'Baja', telefono: '915133368', email: 'empresa@madrid.es', estado: 'A'   )
 
-    puts "Creating voluntarios"
-    Volunteer.create(name: 'Jose Luis', last_name: 'perez', address_id: 1, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
-    Volunteer.create(name: 'Angel', last_name: 'perez', address_id: 2, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
-    Volunteer.create(name: 'Alberto', last_name: 'perez', address_id: 3, phone_number: 'xxxxx', email: 'perezljl@madrid.es')
 
 
     puts "Creating usuarios"
@@ -719,7 +566,7 @@ end
                          password_confirmation: 'Wordpass1',
                          notice_type: NoticeType.all.sample).save!
 
-    User.create( email: 'voluntario@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Volunteer",
+    User.create( email: 'perezljl@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Volunteer",
                          notice_type: NoticeType.all.sample)
     User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Entity",
                          notice_type: NoticeType.all.sample)
