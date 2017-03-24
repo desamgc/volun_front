@@ -1,0 +1,42 @@
+
+            <h4 class="numActividades"><span><%= events.uniq.count %></span> <%= Activity.model_name.human(count: events.uniq.count) %></h4>
+            <% if @day.present? %>
+              <% events.group_by(&:activity).each do |activity, events| %>
+                     <div class="actividadWrapper">
+                      <div class="row">
+                        <div class="col-xs-2 no-padding-left">
+                          <p class="fecha">
+                             <% execution_date = Date.parse(@day) %>
+                             <%= execution_date.day %>
+                             <span><%= Date::MONTHNAMES[execution_date.month] %> <%= execution_date.year %></span>
+                          </p>
+                        </div>
+                        <div class="col-xs-10">
+                          <p class="distrito"><%= events.map{ |event| event.address.district }.to_sentence(:last_word_connector => ' y ') %></p>
+                          <h3 class="titular"><%= activity.name %></h3>
+                        </div>
+                      </div>
+                      </div>
+              <% end %>
+            <% else %>
+              <% events.map(&:timetables).flatten.group_by{ |timetable| timetable.execution_date }
+                   .sort_by{|execution_date, _| execution_date }.each do |execution_date, timetables| %>
+                  <% timetables.map(&:event).group_by(&:activity).each do |activity, events| %>
+                    <div class="actividadWrapper">
+                      <div class="row">
+                        <div class="col-xs-2 no-padding-left">
+                          <p class="fecha">
+                             <%= execution_date.day %>
+                             <span><%= Date::MONTHNAMES[execution_date.month] %> <%= execution_date.year %></span>
+                          </p>
+                        </div>
+                        <div class="col-xs-10">
+                          <p class="distrito"><%= events.map{ |event| event.address.district }.to_sentence(:last_word_connector => ' y ') %></p>
+                          <h3 class="titular"><%= activity.name %></h3>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+              <% end %>
+            <% end %>
+

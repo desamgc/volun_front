@@ -1,63 +1,67 @@
 es:
   activerecord:
+    models:
+     activity:
+      one:   Actividad
+      other: Actividades
     errors:
       models:
         request_form:
           attributes:
-            req_reason_id: 
-              blank: es obligatorio  
+            req_reason_id:
+              blank: es obligatorio
         rt/volunteer_subscribe:
           attributes:
             email:
               password_already_set: "Este usuario ya tiene una clave asociada"
               invalid: es invalido
               taken: Ya existe una solicitud con esa dirección de correo electronico
-            last_name: 
+            last_name:
               blank: es obligatorio
-            name: 
+            name:
               blank: es obligatorio
             phone_number:
-              invalid: es invalido  
+              invalid: es invalido
             phone_number_alt:
-              invalid: es invalido  
+              invalid: es invalido
         rt/entity_subscribe:
           attributes:
             email:
               password_already_set: "Este usuario ya tiene una clave asociada"
               invalid: es invalido
               taken: Ya existe una solicitud con esa dirección de correo electronico
-            contact_last_name: 
+            contact_last_name:
               blank: es obligatorio
-            contact_name: 
-              blank: es obligatorio  
-            name: 
+            contact_name:
+              blank: es obligatorio
+            name:
               blank: es obligatorio
             phone_number:
-              invalid: es invalido  
+              invalid: es invalido
             phone_number_alt:
               invalid: es invalido
-            entity_type_id: 
-              blank: es obligatorio  
-            vat_num: 
-              blank: es obligatorio  
-              invalid: formato incorrecto
-            road_type: 
-              blank: es obligatorio  
-            number_type: 
-              blank: es obligatorio  
-            road_number: 
+            entity_type_id:
               blank: es obligatorio
-            road_name: 
-              blank: es obligatorio  
-            postal_code: 
+            vat_num:
+              blank: es obligatorio
+              invalid: formato incorrecto
+            road_type:
+              blank: es obligatorio
+            number_type:
+              blank: es obligatorio
+            road_number:
+              blank: es obligatorio
+            road_name:
+              blank: es obligatorio
+            postal_code:
               blank: es obligatorio
               invalid: es incorrecto
-            town: 
-              blank: es obligatorio  
-            province: 
-              blank: es obligatorio  
-            other_subscribe_reason: 
-              blank: es obligatorio  
+            town:
+              blank: es obligatorio
+            province:
+              blank: es obligatorio
+            other_subscribe_reason:
+              blank: es obligatorio
         rt/volunteer_amendment:
           attributes:
             email:
@@ -65,24 +69,24 @@ es:
               invalid: es invalido
               taken: Ya existe una solicitud con esa dirección de correo electronico
             phone_number:
-              invalid: es invalido  
+              invalid: es invalido
             phone_number_alt:
               invalid: es invalido
-            road_type: 
-              blank: es obligatorio  
-            number_type: 
-              blank: es obligatorio  
-            road_number: 
+            road_type:
               blank: es obligatorio
-            road_name: 
-              blank: es obligatorio  
-            postal_code: 
-              blank: es obligatorio 
-              invalid: formato invalido   
-            town: 
-              blank: es obligatorio  
-            province: 
-              blank: es obligatorio  
+            number_type:
+              blank: es obligatorio
+            road_number:
+              blank: es obligatorio
+            road_name:
+              blank: es obligatorio
+            postal_code:
+              blank: es obligatorio
+              invalid: formato invalido
+            town:
+              blank: es obligatorio
+            province:
+              blank: es obligatorio
         rt/volunteer_unsubscribe:
           attributes:
             notes:
@@ -90,84 +94,84 @@ es:
         rt/volunteer_appointment:
           attributes:
             notes:
-              blank: es obligatorio 
+              blank: es obligatorio
         rt/volunteers_demand:
           attributes:
-            description: 
+            description:
               blank: es obligatoria
-            execution_start_date: 
+            execution_start_date:
               blank: es obligatoria
-            requested_volunteers_num: 
+            requested_volunteers_num:
               blank: es obligatorio
-            volunteers_profile: 
+            volunteers_profile:
               blank: es obligatorio
-            volunteer_functions_1: 
+            volunteer_functions_1:
               blank: es obligatoria
-            road_type: 
-              blank: es obligatorio  
-            number_type: 
-              blank: es obligatorio  
-            road_number: 
+            road_type:
               blank: es obligatorio
-            road_name: 
-              blank: es obligatorio  
-            postal_code: 
-              blank: es obligatorio 
-              invalid: formato invalido   
-            town: 
-              blank: es obligatorio  
-            province: 
-              blank: es obligatorio   
+            number_type:
+              blank: es obligatorio
+            road_number:
+              blank: es obligatorio
+            road_name:
+              blank: es obligatorio
+            postal_code:
+              blank: es obligatorio
+              invalid: formato invalido
+            town:
+              blank: es obligatorio
+            province:
+              blank: es obligatorio
         rt/project_publishing:
           attributes:
-            description: 
+            description:
               blank: es obligatoria
-            road_type: 
-              blank: es obligatorio  
-            number_type: 
-              blank: es obligatorio  
-            road_number: 
+            road_type:
               blank: es obligatorio
-            road_name: 
-              blank: es obligatorio  
-            postal_code: 
+            number_type:
               blank: es obligatorio
-              invalid: formato invalido    
-            town: 
-              blank: es obligatorio  
-            province: 
+            road_number:
+              blank: es obligatorio
+            road_name:
+              blank: es obligatorio
+            postal_code:
+              blank: es obligatorio
+              invalid: formato invalido
+            town:
+              blank: es obligatorio
+            province:
               blank: es obligatorio
         rt/activity_publishing:
           attributes:
-            description: 
+            description:
               blank: es obligatoria
-            name: 
+            name:
               blank: es obligatorio
-            organizer: 
+            organizer:
               blank: es obligatorio
-            execution_date: 
+            execution_date:
               blank: es obligatoria
-            execution_hour: 
+            execution_hour:
               blank: es obligatoria
-            road_type: 
-              blank: es obligatorio  
-            number_type: 
-              blank: es obligatorio  
-            road_number: 
+            road_type:
               blank: es obligatorio
-            road_name: 
-              blank: es obligatorio  
-            postal_code: 
+            number_type:
               blank: es obligatorio
-              invalid: formato invalido    
-            town: 
-              blank: es obligatorio  
-            province: 
-              blank: es obligatorio 
+            road_number:
+              blank: es obligatorio
+            road_name:
+              blank: es obligatorio
+            postal_code:
+              blank: es obligatorio
+              invalid: formato invalido
+            town:
+              blank: es obligatorio
+            province:
+              blank: es obligatorio
         rt/other:
           attributes:
             description:
-              blank: es obligatoria  
+              blank: es obligatoria
         rt/project_unsubscribe:
           attributes:
             notes:
@@ -175,7 +179,7 @@ es:
         rt/entity_unsubscribe:
           attributes:
             notes:
-              blank: es obligatorio                               
+              blank: es obligatorio
     attributes:
       request_form:
         req_reason_id: Motivo
@@ -189,8 +193,8 @@ es:
       rt/entity_subscribe:
         name: Nombre
         contact_name: Nombre contacto
-        contact_last_name: Primer apellido 
-        contact_last_name_alt: Segundo apellido 
+        contact_last_name: Primer apellido
+        contact_last_name_alt: Segundo apellido
         representative_name: Nombre representante
         representative_last_name: Primer apellido
         representative_last_name_alt: Segundo apellido
@@ -221,7 +225,7 @@ es:
       rt/volunteer_unsubscribe:
         notes: Motivo
       rt/volunteer_appointment:
-        notes: Motivo 
+        notes: Motivo
       rt/volunteers_demand:
         description: Descripcion
         execution_start_date: Fecha desde
@@ -246,7 +250,7 @@ es:
         number_type: Tipo de numero
         postal_code: Codigo postal
         town: Municipio
-        province: Provincia  
+        province: Provincia
       rt/activity_publishing:
         description: Descripcion
         execution_date: Fecha
@@ -260,14 +264,14 @@ es:
         number_type: Tipo de numero
         postal_code: Codigo postal
         town: Municipio
-        province: Provincia 
+        province: Provincia
         project_id: Proyecto
       rt/other:
-        description: Motivo 
+        description: Motivo
       rt/project_unsubscribe:
         reason: Motivo
-        project: Proyecto  
+        project: Proyecto
       rt/entity_unsubscribe:
         notes: Motivo
       rt/activity_unpublishing:
-        notes: Motivo    
+        notes: Motivo

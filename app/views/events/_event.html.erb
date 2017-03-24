@@ -1,15 +1,16 @@
-
 <div class="actividadWrapper">
 <div class="row">
   <div class="col-xs-12 no-padding-left">
     <h3 class="titular"><%= event.address.district %></h2>
-    <p class="distrito"><%= event.address.road_type %>  <%= event.address.road_name %>  <%= event.address.road_number %></p>  
+    <p class="distrito"><%= event.address.road_type %>  <%= event.address.road_name %>  <%= event.address.road_number %></p>
     <p class="distrito">
     <% event.timetables.each do |timetable| %>
       <%= timetable.execution_date %>
     <% end %>
     </p>
-    
+
   </div>
 </div>
 </div>
+
+

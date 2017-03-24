@@ -1,2 +1,2 @@
 //$('#fecha').datepicker('setDates', '<%= escape_javascript(@day) %>'); 
-$('#activities').append('<h4 class="numActividades"><span><%= @activities.count %></span> actividades</h4>   <%= escape_javascript(render partial: 'activity', collection: @activities, locals: {day_s: @day}) %>');
+$('#activities').append('<h4 class="numActividades"><span><%= @timetables.count %></span> actividades</h4>   <%= escape_javascript(render partial: 'timetables/timetable', collection: @timetables, locals: {day_s: @day}) %>');

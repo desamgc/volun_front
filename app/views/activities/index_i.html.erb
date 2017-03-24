@@ -14,21 +14,21 @@
     </div>
     <div class="col-md-8">
             <div id="activities">
-            <h4 class="numActividades"><span><%= @activities.count %></span> actividades</h4>
-  	          	<%= render partial: 'activity', collection: @activities %>	
+            <%= render partial: 'events/search', locals: {events: @events}  %>
+
 						</div>
     </div>
   </div>
 </div>
 
-<%= render "buscador" %>
+ <%= render "buscador" %>
 
-<% if @activities.current_page != @activities.total_pages %>
+<%# if @events_q.current_page != @events_q.total_pages %>
 <p id="view-more">
 
-   <%= link_to('Ver Más', url_for(page: @activities.current_page + 1), {:remote => true}) %>
+   <%#= link_to('Ver Más', url_for(page: @events_q.current_page + 1), {:remote => true}) %>
 </p>
-<% end%>
+<%# end%>
 
 
 
