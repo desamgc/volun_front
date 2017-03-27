@@ -8,18 +8,19 @@
 
 <fieldset>
     <div class="row">
-      <div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group all">
           <label class="labelUp"><%= Rt::Other.human_attribute_name(:description) %> <span class="asterisco">*</span></label>
-          <%= f.text_field :description, { class: 'big' } %>
+          <%= f.text_area :description, { class: 'all' } %>
         </div>
       </div>
     </div>
  </fieldset>
 
 </div>
-
+<hr>
 <div class="button-group text-right">
+  <%= link_to 'Cancelar', projects_path, class: "event-link negative big" %>
   <%= f.button t('application.submit'), :class => 'event-link big' %>
 </div>
 <% end %>

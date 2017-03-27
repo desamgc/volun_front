@@ -1,36 +1,36 @@
 <%= form_for(@rt_volunteer_amendment, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_amendment})%>
-  <legend class="parrafo"><%= main_title(t("rt_volunteer_amendment.title", model: Rt::VolunteerAmendment.model_name.human)) %></legend>
-  
-  <p class="notes">
+   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-  
+  <fieldset>
     <div class="row">
-      <div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= Rt::VolunteerAmendment.human_attribute_name(:email) %> <span class="asterisco">*</span></span>
+     <div class="col-md-9">
+        <div class="form-group">
+
+          <label class="labelUp"><%= Rt::VolunteerAmendment.human_attribute_name(:email) %> <span class="asterisco">*</span></label>
           <%= f.text_field :email %>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= Rt::VolunteerAmendment.human_attribute_name(:phone_number) %> <span class="asterisco">*</span></span>
+        <div class="form-group">
+          <label class="labelUp"><%= Rt::VolunteerAmendment.human_attribute_name(:phone_number) %> <span class="asterisco">*</span></label>
           <%= f.text_field :phone_number %>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <span class="labelUp"><%= Rt::VolunteerAmendment.human_attribute_name(:phone_number_alt) %> <span class="asterisco">*</span></span>
+        <div class="form-group">
+          <label class="labelUp"><%= Rt::VolunteerAmendment.human_attribute_name(:phone_number_alt) %> </label>
           <%= f.text_field :phone_number_alt %>
         </div>
       </div>
     </div>
-
+   </fieldset>
     <%= render partial: 'shared/addressInternet', locals: {f: f} %>
 
 </div>
-
+<hr>
 <div class="button-group text-right">
-  <%= f.button t('application.submit'), :class => 'button button4' %>
+  <%= link_to 'Cancelar', volunteer_projects_path(q: {volunteers_id_in: current_user.loggable_id}, volunteer_id: current_user.loggable_id), class: "event-link negative big" %>
+  <%= f.button t('application.submit'), :class => 'event-link big' %>
 </div>
 <% end %>

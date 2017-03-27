@@ -2,7 +2,7 @@
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_activity_publishing})%>
 
-  
+
 <!--
   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
@@ -54,7 +54,7 @@
   <hr>
 
 
-    
+
     <%= render partial: 'shared/addressInternet', locals: {f: f} %>
 
     <hr>
@@ -63,7 +63,7 @@
 </div>
 
 <div class="button-group text-right pb80">
- <%= link_to 'Cancelar', new_user_session_path, class: "event-link negative big" %>
+ <%= link_to 'Mi area', projects_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id), class: "event-link negative big" %></li>
   <%= f.button t('application.submit'), :class => 'event-link big' %>
 </div>
 <% end %>

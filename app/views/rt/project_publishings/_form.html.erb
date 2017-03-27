@@ -1,25 +1,26 @@
 <%= form_for(@rt_project_publishing, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_project_publishing})%>
-  <legend class="parrafo"><%= main_title(t("rt_project_publishing.title", model: Rt::ProjectPublishing.model_name.human)) %></legend>
-  
+
   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-  
+  <fieldset>
     <div class="row">
-      <div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-          <span class="labelUp"><%= Rt::ProjectPublishing.human_attribute_name(:description) %> <span class="asterisco">*</span></span>
-          <%= f.text_field :description %>
+      <div class="col-md-9">
+        <div class="form-group all">
+          <label class="labelUp"><%= Rt::ProjectPublishing.human_attribute_name(:description) %> <span class="asterisco">*</span></label>
+          <%= f.text_field :description, {class: 'all'} %>
         </div>
       </div>
     </div>
-
+  </fieldset>
+  <hr>
     <%= render partial: 'shared/addressInternet', locals: {f: f} %>
 </div>
-
+ <hr>
 <div class="button-group text-right">
-  <%= f.button t('application.submit'), :class => 'button button4' %>
+   <%= link_to 'Mi area', projects_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id), class: "event-link negative big" %></li>
+  <%= f.button t('application.submit'), :class => 'event-link big' %>
 </div>
 <% end %>
