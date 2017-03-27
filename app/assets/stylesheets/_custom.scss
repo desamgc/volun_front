@@ -1514,6 +1514,26 @@ select:-webkit-autofill:focus {
 .info-actividad{
     padding: 30px;
 }
+.volverArrow{
+    width: 22px;
+	height: 22px;
+	border-radius: 100px;
+	background-color: rgba(29, 29, 29, 0.05);
+    text-align: center;
+    line-height: 22px;
+    font-size: 14px;
+    	color: rgba(29, 29, 29, 0.3);
+
+
+}
+.volver{
+    font-size: 14px;
+	font-weight: bold;
+	line-height: 1.43;
+	letter-spacing: 0.7px;
+    color: #000000;
+    padding-left: 15px;
+}
 .redesWrapProject {
     margin-bottom: 75px;
     h4 {
