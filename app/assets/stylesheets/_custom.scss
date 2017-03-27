@@ -33,6 +33,10 @@ ol {
     padding-bottom: 90px;
 }
 
+.pt60 {
+    padding-top: 60px;
+}
+
 .mr30 {
     margin-right: 30px;
 }
@@ -42,11 +46,20 @@ ol {
 }
 
 body {
-    &.projects_show , &.pages_whoami, &.volunteers_index{
+    &.projects_show,
+    &.pages_whoami,
+    &.volunteers_index {
         #HeaderWrapper {
             background-image: none !important;
             height: unset;
             border-bottom: solid 1px rgba(29, 29, 29, 0.3);
+        }
+    }
+    &.projects_index_i {
+        #HeaderWrapper {
+            background-image: none !important;
+            background-color: #efefef;
+            border-bottom: solid 1px  rgba(0, 0, 0, 0.3);
         }
     }
 }
@@ -1098,6 +1111,27 @@ h3 {
     }
 }
 
+.selectOrdenar {
+    appearance: none;
+    -moz-appearance: none;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Safari and Chrome */
+    border: 0;
+    background-color: #fff;
+    width: 330px;
+    border-bottom: solid 1px rgba(29, 29, 29, 0.5);
+    border-radius: 0px;
+    padding-bottom: 10px;
+    padding-top: 12px;
+    background-image: url(/assets/icons/down.svg);
+    background-repeat: no-repeat;
+    background-position: right 20px;
+    &:focus {
+        outline: none;
+    }
+}
+
 .numVolum {
     font-size: 16px;
     letter-spacing: 0.8px;
@@ -1153,6 +1187,27 @@ h3 {
         }
         &.big {
             width: 362px;
+        }
+    }
+    select {
+        background-image: url(/assets/icons/down.svg);
+        background-repeat: no-repeat;
+        background-position: right;
+        background-origin: content-box;
+        padding-right: 20px;
+    }
+    .date-field {
+        input {
+            padding-left: 60px;
+            background-image: url(/assets/icons/calendar.svg);
+            background-repeat: no-repeat;
+            background-position: 30px center;
+            cursor: default;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.29;
+            letter-spacing: 0.7px;
+            color: #1d1d1d;
         }
     }
     input[type="checkbox"] {
@@ -1386,9 +1441,6 @@ select:-webkit-autofill:focus {
     margin-bottom: 30px;
 }
 
-
-
-
 .carousel-control {
     &.right,
     &.left {
@@ -1410,18 +1462,17 @@ select:-webkit-autofill:focus {
     }
 }
 
-
-.videoWrapper{
+.videoWrapper {
     margin-top: 45px;
-    	border: solid 1px rgba(29, 29, 29, 0.3);
-
+    border: solid 1px rgba(29, 29, 29, 0.3);
 }
 
-.wraperData{
+.wraperData {
     padding-top: 44px;
     padding-bottom: 35px;
     padding-right: 30px;
 }
+
 .item.noTitle {
     h3 {
         font-size: 14px;
