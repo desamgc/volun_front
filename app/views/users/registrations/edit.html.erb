@@ -1,4 +1,7 @@
-<div class="mc-acceso nofluid">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mc-acceso nofluid">
 <%= render(partial: 'shared/errors', locals: {model_name: @user})%>
 
 <%= form_for(resource, as: resource_name, url: user_registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -57,3 +60,7 @@
 <% end %>
 </div>
 
+
+        </div>
+    </div>
+</div>
