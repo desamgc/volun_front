@@ -38,8 +38,7 @@ load_geo: function ()
              {
                  $.each(locations, function(i, location)
                  {
-
-                 var pt = new Point(location.addresses[1].latitude,location.addresses[1].longitude,map.spatialReference);
+                 var pt = new Point((location.addresses[1].latitude/100).toFixed(0),(location.addresses[1].longitude/100).toFixed(0),map.spatialReference);
 
 
                  var graficos = new GraphicsLayer();
@@ -56,7 +55,8 @@ load_geo: function ()
               }
               else
               {
-                 var pt = new Point(locations.addresses[1].latitude,locations.addresses[1].longitude,map.spatialReference);
+
+                 var pt = new Point((locations.addresses[1].latitude/100).toFixed(0),(locations.addresses[1].longitude/100).toFixed(0),map.spatialReference);
 
 
                  var graficos = new GraphicsLayer();

@@ -64,7 +64,7 @@
       </div>
 
 
-                           
+
  <% end %>
         </div>
 
@@ -97,22 +97,15 @@
  <% end %>
     <section class="container-fluid projectW">
 
- <div class="row">
-     <div class="col-md-12">
-         <% if current_user.loggable_type=="Entity" %>
-          <% else %>
-         <h2 class="titlePage">Tus proyectos asignados</h2>
-         <% end %>
-         <h4 class="projectNumber"><%= Project.actives.count %> proyectos</h4>
-     </div>
- </div>
+
 
 
     <ul class="row">
+
         <div id = "projects">
           <% @projects_actives.each_slice(3) do |group| %>
               <%= render partial: 'project', collection: group %>
-          <% end %> 
+          <% end %>
         </div>
     </ul>
 
