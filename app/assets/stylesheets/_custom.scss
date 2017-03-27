@@ -42,7 +42,7 @@ ol {
 }
 
 body {
-    &.projects_show {
+    &.projects_show , &.pages_whoami{
         #HeaderWrapper {
             background-image: none !important;
             height: unset;
