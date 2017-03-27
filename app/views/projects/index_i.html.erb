@@ -25,12 +25,13 @@
 </div>
 
 <div class="container-fluid">
-   <div class="row">
+   <div class="row pt60">
        <div class="col-md-6">
+       <h2 class="titlePage"><%= Project.actives.count %> proyectos</h2>
        </div>
        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-         <span class="labelUp">Ordenar </span>
-         <select>
+<!--         <span class="labelUp">Ordenar </span>-->
+         <select class="selectOrdenar">
            <option>Fecha</option>
            <option>Mas demandados</option>
            <option>Etc.</option>
@@ -38,7 +39,7 @@
        </div>
    </div>
 
-<h2 class="titlePage"><%= Project.actives.count %> proyectos</h2>
+
 <!-- en modo cuadricula -->
 <div id="grid">
 <ul class="row">
