@@ -57,6 +57,7 @@ body {
     &.activity_publishings_new,
     &.entity_subscribes_new,
     &.volunteer_subscribes_new,
+    &.activities_index_i,
     &.sessions_new
     {
         #HeaderWrapper {
@@ -68,8 +69,8 @@ body {
     &.projects_index_i {
         #HeaderWrapper {
             background-image: none !important;
-            background-color: #efefef;
-            border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+            height: unset;
+            border-bottom: solid 1px rgba(29, 29, 29, 0.3);
         }
     }
 }
