@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 
   def index
     params[:q] ||= Project.ransack_default
-    @search = Project.unscoped.includes(:areas, :addresses).search(params[:q])
+    @search = Project.includes(:areas, :addresses).search(params[:q])
     @projects_actives = @search.result.page(params[:page]).per(6)
     respond_to do |format|
       format.html
