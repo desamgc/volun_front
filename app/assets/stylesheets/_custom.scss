@@ -54,7 +54,10 @@ body {
     &.pages_whoami,
     &.volunteers_index,
     &.entities_index,
-    &.activity_publishings_new {
+    &.activity_publishings_new,
+    &.entity_subscribes_new,
+    &.volunteer_subscribes_new
+    {
         #HeaderWrapper {
             background-image: none !important;
             height: unset;
