@@ -20,7 +20,15 @@ load_geo: function ()
              var map = new Map("mapDiv", {
                      center: centro,
                      spatialReference: sr,
-                     zoom: zoom});
+                     zoom: 2,
+                     smartNavigation: false
+             });
+             map.on("load", function() {
+              map.disablePan();
+              map.hideZoomSlider();
+              map.disableScrollWheelZoom() ;
+              map.disableMapNavigation();
+             });
              var mapabase = new ArcGISTiledMapServiceLayer(url_map ,{
                                                                "spatialReference": sr});
              var rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{
