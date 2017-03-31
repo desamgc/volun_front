@@ -10,11 +10,7 @@ class UsersController < ApplicationController
     respond_with(@users)
   end
 
-  def show
-    respond_with(@user) do |format|
-      format.js { render 'shared/popup' }
-    end
-  end
+
 
   def new
     @user = User.new
@@ -22,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-     @resource = User.find_by_id (current_user.id) 
+     @resource = User.find_by_id (current_user.id)
      render 'users/edit', locals: {resource: @resource}
   end
 
@@ -41,9 +37,60 @@ class UsersController < ApplicationController
     respond_with(@user)
   end
 
+  def show
+    load_available_activity if valid_access?
+  end
+
+
+  def search_activities
+     load_activities
+     respond_to do |format|
+      format.html
+      format.js {render :action => 'activities.js.erb'}
+    end
+  end
+
+  def search_projects
+    load_projects
+    respond_to do |format|
+      format.html
+      format.js {render :action => 'projects.js.erb'}
+    end
+  end
+
+
+
   protected
 
     def user_params
       params.require(:user).permit(:locale, :profileable_id)
     end
+
+    def load_available_activity
+        load_projects
+        #load_activities
+    end
+
+    def load_projects
+      params[:q] ||= Project.ransack_default
+      @search = Project.includes(:areas, :addresses).search(params[:q])
+      @projects_actives = @search.result
+    end
+
+    def load_activities
+      params[:q] ||= Ransack.default
+      @search_q = Activity.search(params[:q])
+      @activities = @search_q.result
+    end
+
+
+    def valid_access?
+      authorized_current_user?
+    end
+
+    def authorized_current_user?
+      @authorized_current_user ||= current_user
+    end
+
+
 end

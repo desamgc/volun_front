@@ -1,10 +1,10 @@
 class ActivitiesController < ApplicationController
-  before_filter :authenticate_user!, only: [:index]
+  before_filter :authenticate_user!, only: [:my_area]
   before_action :set_activity, only: [:show]
   respond_to :html, :js, :json
 
 
-  def index
+  def my_area
     params[:q] ||= Ransack.default
     @search_q = Activity.search(params[:q])
     @activities = @search_q.result.page(params[:page]).per(12)
@@ -14,10 +14,21 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  def index_i
+
+  def index_ant
+    params[:q] ||= Ransack.default
+    @search_q = Activity.search(params[:q])
+    @activities = @search_q.result.page(params[:page]).per(12)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def index
      params[:day] ||= Activity.includes(:events, :timetables).activities_present(0.day.ago.to_s).minimum(:execution_date).try :strftime, "%Y-%m-%d"
      @search_q = Event.includes(:address, :timetables, activity: [:area]).where(eventable_type: Activity.name).search({timetables_execution_date_eq: params[:day] })
-     @events = @search_q.result.uniq.page(params[:page]).per(12)
+     @events = @search_q.result.uniq.page(params[:page]).per(6)
      @list_days = Activity.includes(:timetables).distinct.activities_present(0.day.ago.to_s).order('timetables.execution_date').pluck('timetables.execution_date').to_json
      @boroughs = ""
      @areas = Area.all
@@ -25,7 +36,7 @@ class ActivitiesController < ApplicationController
      @districts = Activity.includes(:addresses).actives.distinct.order("district").pluck('district','district')
      respond_to do |format|
        format.html
-       format.js
+       format.js {render :action => 'search.js.erb'}
      end
   end
 
@@ -37,7 +48,7 @@ class ActivitiesController < ApplicationController
       @day = nil
       @search_q = Event.includes(:address, :timetables, activity: [:area]).where(eventable_type: Activity.name).search(params[:q])
     end
-    @events = @search_q.result.uniq.page(params[:page]).per(12)
+    @events = @search_q.result.uniq.page(params[:page]).per(6)
     respond_to do |format|
       format.js
     end

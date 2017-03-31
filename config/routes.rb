@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
 
   namespace :rt do
     resources :others
@@ -16,10 +16,10 @@ Rails.application.routes.draw do
     resources :volunteer_unsubscribes
     resources :volunteer_subscribes
   end
-  
-  resources :activities, only: [:show, :index, :index_i] do
+
+  resources :activities, only: [:show, :index ] do
     collection do
-      get :index_i, param: :day
+      get :my_area
       get :boroughs
       get :search
     end
@@ -30,9 +30,9 @@ Rails.application.routes.draw do
     resources :activities, only:[:index, :show], param: :q
   end
 
-  resources :projects, only: [:show, :index, :index_i] do
+  resources :projects, only: [:show, :index] do
     collection do
-      get :index_i
+      get :my_area
       get :boroughs
       get :search
     end
@@ -42,11 +42,11 @@ Rails.application.routes.draw do
 
   resources :volunteers do
     resources :projects, only:[:index, :show], param: :q
-    
-  end 
+
+  end
   #resources :entity_types
   #resources :project_types
-  
+
   #resources :districts
   #resources :links
   #resources :images
@@ -55,22 +55,28 @@ Rails.application.routes.draw do
   #resources :timetable
   #resources :volunteers
   #resources :districts_projects
-  
+
 
   devise_for :users, controllers: {
                        sessions: 'users/sessions',
                        passwords: 'users/passwords'
-                     }, :skip => [:registrations]                                          
+                     }, :skip => [:registrations]
   as :user do
-    get 'users/edit' => 'users/registrations#edit', :as => 'edit_user_registration', :defaults => { :format => 'html' }    
-    put 'users' => 'users/registrations#update', :as => 'user_registration', :defaults => { :format => 'html' }                
+    get 'users/edit' => 'users/registrations#edit', :as => 'edit_user_registration', :defaults => { :format => 'html' }
+    put 'users' => 'users/registrations#update', :as => 'user_registration', :defaults => { :format => 'html' }
   end
 
-                    
+  resources :users, only: [:show] do
+    collection do
+      get :search_activities
+      get :search_projects
+    end
+  end
+
   get 'welcome/index'
 
   get '/whoami' => 'pages#whoami'
-  get '/blog' => redirect("https://voluntariospormadridblog.madrid.es/")  
+  get '/blog' => redirect("https://voluntariospormadridblog.madrid.es/")
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

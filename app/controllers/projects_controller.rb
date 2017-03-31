@@ -1,11 +1,11 @@
 # controller de projects
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!, only: [:index]
+  before_filter :authenticate_user!, only: [:my_area]
   before_action :set_project, only: [:show]
   respond_to :html, :js, :json
 
 
-  def index
+  def my_area
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses).search(params[:q])
     @projects_actives = @search.result.page(params[:page]).per(6)
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   end
 
 
-  def index_i
+  def index
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses).actives.search(params[:q])
     @projects_actives = @search.result.page(params[:page]).per(6)
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.js
+      format.js {render :action => 'search.js.erb'}
     end
   end
 

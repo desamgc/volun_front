@@ -1,0 +1,5 @@
+$('#projects').hide()
+$('#activities').show()
+$('#activities').html('<%= escape_javascript(render partial: 'activities/activity', collection: @activities) %>');
+
+

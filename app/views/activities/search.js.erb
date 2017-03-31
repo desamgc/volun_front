@@ -1,1 +1,6 @@
-$('#activities').html('<%= escape_javascript(render partial: 'events/search', locals: {events: @events}) %>');
+<% if @events.current_page > 1 %>
+  $('#activities').append('<%= escape_javascript(render partial: 'events/search', locals: {events: @events})  %>');
+<% else %>
+  $('#activities').html('<%= escape_javascript(render partial: 'events/search', locals: {events: @events}) %>');
+<% end %>
+$('#scroll_activities').html('<%= escape_javascript(render partial: 'shared/scroll_infinite', locals: {records: @events}) %>');

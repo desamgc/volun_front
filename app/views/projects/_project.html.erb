@@ -4,29 +4,32 @@
      <header>
         <%= render partial: "links/link", collection: project.links.logo %>
      </header>
-
-    <div class="main">
-        <h3><%=  project.name %></h3>
+     <div class="main">
+        <h3><%= project.name %></h3>
         <p><%= truncate(project.description, length: 145) %></p>
-
-         <div class="row ctaGroupPreview">
+        <div class="row ctaGroupPreview">
              <% project.areas.each do |area| %>
                 <div class="col-lg-4 col-md-12  col-sm-12 col-xs-4">
-
-                <p style="margin:0"><span class="category"><%= area.name %></span></p>
-
+                  <p style="margin:0"><span class="category"><%= area.name %></span></p>
                 </div>
              <% end %>
-             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right"> <%= link_to  "¿Te interesa?" , project_path(project), class: "event-link " %> </div>
+             <% if current_user %>
+               <% if current_user.loggable_type=="Entity" %>
+
+                   <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right"> <%= link_to  "Dar de baja" , new_rt_project_unpublishing_path, class: "event-link " %> </div>
+               <% end %>
+             <% else %>
+               <% if !project.volunteers.where("projects_volunteers.volunteer_id = $1", current_user.loggable_id ).exists? %>
+                 <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right">
+                   <%= link_to  "¿Te interesa?" , project_path(project), class: "event-link " %>
+                 </div>
+               <% end %>
+             <% end %>
           </div>
-
-
-
       <br/>
-
     </div>
-
-
   </div>
 </li>
+
+
 

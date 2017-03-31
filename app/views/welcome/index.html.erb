@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'activities' %>
+<%= javascript_include_tag 'activities_home' %>
 <%= javascript_include_tag 'projects' %>
 <%= javascript_tag do %>
   var locations = <%= raw @locations.to_json %>;
@@ -9,109 +9,75 @@
   var day_c = ""
 <% end %>
 
-
- <div class="section-cont">
-      <h2 class="section-name">
-        <span class="section-name-title">
-          Comunidad Virtual del Voluntariado y la solidaridad en la Ciudad de Madrid
-        </span>
-      </h2>
- </div>
-
-
-
-
-<div class="container-fluid" style="display: none">
-    <div class="row">
-
-   <div class="col-xs-6 col-sm-6 col-md-6">
-     <span class="labelUp">Ordenar </span>
-
-      <select>
-          <option>Fecha</option>
-          <option>Mas demandados</option>
-          <option>Etc.</option>
-      </select>
-
-   </div>
-
-  <div class="col-md-1 pull-right">
-      <%= link_to  "" , "#", class: "fa fa-list fa-2x", id: "btnRow" %>
-      <%= link_to  "" , "#", class: "fa fa-table fa-2x", id: "btnGrid" %>
-  </div>
-</div>
-
-
+<div class="section-cont">
+  <h2 class="section-name">
+    <span class="section-name-title">
+      Comunidad Virtual del Voluntariado y la solidaridad en la Ciudad de Madrid
+    </span>
+  </h2>
 </div>
 
 <section class="container-fluid">
   <div class="row">
-          <div class="col-md-12">
-        <h2 class="titlePage"> Proyectos destacados <div class="right"><%= link_to 'Ver proyectos', index_i_projects_path, class: "event-link negative rightChev" %></div></h2>
-  <ul class="row destacadosWrapperHome">
-
-      <%= render partial: 'projects/project', collection: @projects_featured  %>
-  </ul>
+    <div class="col-md-12">
+       <h2 class="titlePage"> Proyectos destacados <div class="right"><%= link_to 'Ver proyectos', projects_path, class: "event-link negative rightChev" %></div></h2>
+       <ul class="row destacadosWrapperHome">
+          <%= render partial: 'projects/project', collection: @projects_featured  %>
+       </ul>
     </div>
-
-
-    </div>
+  <div>
 </section>
+
 <section id="actividadesHome" class="container-fluid">
-
-       <div class="row">
-           <div class="col-md-12">
-                 <h2 class="titlePage"> Agenda de actividades solidarias <div class="right"><%= link_to 'Ver agenda', index_i_activities_path, class: "event-link negative rightChev" %></div></h2>
-           </div>
-       </div>
-       <div class="row">
-           <div class="col-md-4">
-               <div id="fecha">
-
-	            </div>
-           </div>
-           <div class="col-md-8">
-                <div id="activities">
-                 <h4>Próximas 2 actividades</h4>
-                  <%#= render partial: 'events/search', locals: {events: @events}  %>
-                  <%#= render partial: 'activities/activity', collection: @activities %>
-                  <%= render partial: 'timetables/timetable', collection: @timetables %>
-                </div>
-           </div>
-       </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="titlePage"> Agenda de actividades solidarias <div class="right"><%= link_to 'Ver agenda', activities_path, class: "event-link negative rightChev" %></div></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div id="fecha">
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div id="activities">
+        <h4>Próximas 2 actividades</h4>
+        <%#= render partial: 'events/search', locals: {events: @events}  %>
+        <%#= render partial: 'activities/activity', collection: @activities %>
+        <%= render partial: 'timetables/timetable', collection: @timetables %>
+      </div>
+    </div>
+  </div>
 </section>
 
 
 <section id="mapWrapper" class="container-fluid nopadding">
 <div class="row">
   <div class="col-md-12">
-
-     <div id="mapDiv">
-      <!-- <h1 class="text-center">MAPA</h1> -->
-     </div>
+    <div id="mapDiv">
+    </div>
   </div>
-
 </div>
 </section>
+
 <section id="blogCta" class="text-center">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="titlePage">¿Quieres estar al tanto de las últimas noticias de Madrid?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper ante at lectus bibendum, sit amet blandit ante pretium. Praesent malesuada velit tellus, quis eleifend est elementum ac.</p>
-            <a href="https://voluntariospormadridblog.madrid.es/" class="event-link big">Ir al blog</a>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="titlePage">¿Quieres estar al tanto de las últimas noticias de Madrid?</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper ante at lectus bibendum, sit amet blandit ante pretium. Praesent malesuada velit tellus, quis eleifend est elementum ac.</p>
+      <a href="https://voluntariospormadridblog.madrid.es/" class="event-link big">Ir al blog</a>
     </div>
+  </div>
 </section>
 
+<% if @project_urgent.size > 0 %>
 <% content_for :head do %>
-  <div class="urgenteWrapper">
-
   <% @project_urgent.each do |project| %>
+    <div class="urgenteWrapper">
       <h2><%=  project.name %></h2>
         <p> <%= truncate(project.description, length: 180) %></p>
         <i><%= link_to  "" , project_path(project), class: "fa fa-chevron-right" %> </i>
-
+    </div>
   <% end %>
-
-  </div>
+<% end %>
 <% end %>

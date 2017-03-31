@@ -1,6 +1,6 @@
-$('#projects').html('<%= escape_javascript(render partial: 'project', collection: @projects_actives) %>');
-<% if @projects_actives.current_page == @projects_actives.total_pages %>
- $('#view-more').remove();
+<% if @projects_actives.current_page > 1 %>
+  $('#projects').append('<%= escape_javascript(render partial: 'project', collection: @projects_actives) %>');
 <% else %>
- $('#view-more').html("<%= j link_to('View More', url_for(page: @projects_actives.current_page + 1)) %>");
+  $('#projects').html('<%= escape_javascript(render partial: 'project', collection: @projects_actives) %>');
 <% end %>
+$('#scroll_projects').html('<%= escape_javascript(render partial: 'shared/scroll_infinite', locals: {records: @projects_actives}) %>');
