@@ -1,6 +1,7 @@
 # class for volunteer unsubscribe
 class Rt::VolunteerUnsubscribesController < ApplicationController
   before_filter :authenticate_user!
+  before_action :set_project
   respond_to :html, :js, :json
 
   def index
@@ -20,7 +21,7 @@ class Rt::VolunteerUnsubscribesController < ApplicationController
     @rt_volunteer_unsubscribe = Rt::VolunteerUnsubscribe.new(rt_volunteer_unsubscribe_params)
     @rt_volunteer_unsubscribe.request_form.user_id = current_user.id
     if @rt_volunteer_unsubscribe.save
-      redirect_to index_i_projects_path, notice: t('rt_volunteer_unsubscribe.response')
+      redirect_to user_path(current_user), notice: t('volunteer_unsubscribe.response')
     else
       respond_with(@rt_volunteer_unsubscribe)
     end
@@ -33,6 +34,10 @@ class Rt::VolunteerUnsubscribesController < ApplicationController
   end
 
   protected
+
+  def set_project
+    @project = Project.find_by_id (params[:project])
+  end
 
   def rt_volunteer_unsubscribe_params
     params.require(:rt_volunteer_unsubscribe).permit(:volunteer_id, :level, :notes)

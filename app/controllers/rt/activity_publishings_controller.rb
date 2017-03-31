@@ -19,7 +19,7 @@ class Rt::ActivityPublishingsController < ApplicationController
     @rt_activity_publishing = Rt::ActivityPublishing.new(rt_activity_publishing_params)
     @rt_activity_publishing.request_form.user_id = current_user.id
     if @rt_activity_publishing.save
-      redirect_to index_i_projects_path, notice: t('rt_activity_publishing.response')
+      redirect_to user_path(current_user), notice: t('activity_publishing.response')
     else
       respond_with(@rt_activity_publishing)
     end

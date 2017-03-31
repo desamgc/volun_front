@@ -26,7 +26,7 @@ class Rt::ProjectUnpublishingsController < ApplicationController
   def create
     @rt_project_unpublishing = Rt::ProjectUnpublishing.new(rt_project_unpublishing_params)
     if @rt_project_unpublishing.save
-      redirect_to index_i_projects_path, notice: t('rt_project_unpublishing.response')
+      redirect_to user_path(current_user), notice: t('project_unpublishing.response')
     else
       respond_with(@rt_project_unpublishing)
     end

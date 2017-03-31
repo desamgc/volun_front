@@ -19,7 +19,7 @@ class Rt::VolunteerAppointmentsController < ApplicationController
     @rt_volunteer_appointment = Rt::VolunteerAppointment.new(rt_volunteer_appointment_params)
     @rt_volunteer_appointment.request_form.user_id = current_user.id
     if @rt_volunteer_appointment.save
-      redirect_to index_i_projects_path, notice: t('rt_volunteer_appointment.response')
+      redirect_to user_path(current_user), notice: t('volunteer_appointment.response')
     else
       respond_with(@rt_volunteer_appointment)
     end

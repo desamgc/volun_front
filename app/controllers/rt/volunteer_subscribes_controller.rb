@@ -18,7 +18,7 @@ class Rt::VolunteerSubscribesController < ApplicationController
   def create
     @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new(rt_volunteer_subscribe_params)
     if @rt_volunteer_subscribe.save
-      redirect_to index_i_projects_path, notice: t('volunteer_subscribe.response')
+      redirect_to projects_path(current_user), notice: t('volunteer_subscribe.response')
     else
       respond_with(@rt_volunteer_subscribe)
     end
@@ -33,14 +33,14 @@ class Rt::VolunteerSubscribesController < ApplicationController
   protected
 
   def unique_email
-    if User.where(email: rt_volunteer_subscribe_params[:email]).exists? 
+    if User.where(email: rt_volunteer_subscribe_params[:email]).exists?
       #@rt_volunteer_subscribe = RtVolunteerSubscribe.new(rt_volunteer_subscribe_params)
       #flash.now[:alert] = "Ya existe un usuario con ese email. Desea recordar constraseña?"
-      #flash.now[:alert] =|| link_to "Olvide mi contraseña", new_password_path("user") 
+      #flash.now[:alert] =|| link_to "Olvide mi contraseña", new_password_path("user")
       #render action: 'new'
-      redirect_to new_password_path("user"), alert:"Ya existe un usuario con ese email. Desea recordar constraseña?"  
+      redirect_to new_password_path("user"), alert:"Ya existe un usuario con ese email. Desea recordar constraseña?"
     end
-  end 
+  end
 
   def set_rt_volunteer_subscribe
     @rt_volunteer_subscribe = Rt::VolunteerSubscribe.find(params[:id])

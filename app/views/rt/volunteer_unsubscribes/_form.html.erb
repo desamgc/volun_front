@@ -1,26 +1,29 @@
 <%= form_for(@rt_volunteer_unsubscribe, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_unsubscribe})%>
-  <legend class="parrafo"><%= main_title(t("rt_volunteer_unsubscribe.title", model: Rt::VolunteerUnsubscribe.model_name.human)) %></legend>
-  
+
+
   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-  
-    
+
+  <fieldset>
     <div class="row">
-      <div class="form-group">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-          <span class="labelUp"><%= Rt::VolunteerUnsubscribe.human_attribute_name(:notes) %>   <span class="asterisco">*</span></span>
-          <%= f.text_area :notes %>
+     <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="form-group all">
+          <label class="labelUp"><%= Rt::VolunteerUnsubscribe.human_attribute_name(:notes) %>   <span class="asterisco">*</span></label>
+          <%= f.text_area :notes, class: 'big all'  %>
         </div>
       </div>
     </div>
-
+  </fieldset>
 
 </div>
 
 <div class="button-group text-right">
-  <%= f.button t('application.submit'), :class => 'button button4' %>
+  <%= link_to 'Cancelar', user_path(q: {volunteers_id_in: current_user.loggable_id}, id: current_user.id), class: "event-link negative big" %>
+  <%= f.button t('application.submit'), :class => 'event-link big' %>
 </div>
 <% end %>
+
+<br>

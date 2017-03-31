@@ -20,7 +20,7 @@ class Rt::ProjectPublishingsController < ApplicationController
     @rt_project_publishing = Rt::ProjectPublishing.new(rt_project_publishing_params)
     @rt_project_publishing.request_form.user_id = current_user.id
     if @rt_project_publishing.save
-      redirect_to index_i_projects_path, notice: t('rt_project_publishing.response')
+      redirect_to user_path(current_user), notice: t('project_publishing.response')
     else
       respond_with(@rt_project_publishing)
     end

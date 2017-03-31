@@ -27,7 +27,7 @@ class Rt::EntityUnsubscribesController < ApplicationController
     @rt_entity_unsubscribe = Rt::EntityUnsubscribe.new(rt_entity_unsubscribe_params)
     @rt_entity_unsubscribe.request_form.user_id = current_user.id
     if @rt_entity_unsubscribe.save
-      redirect_to index_i_projects_path, notice: t('rt_entity_unsubscribe.response')
+      redirect_to user_path(current_user), notice: t('entity_unsubscribe.response')
     else
       respond_with(@rt_entity_unsubscribe)
     end

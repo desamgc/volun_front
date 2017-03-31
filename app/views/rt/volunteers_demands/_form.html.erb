@@ -74,7 +74,7 @@
 </div>
 <hr>
 <div class="button-group text-right">
-   <%= link_to 'Cancelar', projects_path(q: {entity_id_eq: current_user.loggable_id}, entity_id: current_user.loggable_id), class: "event-link negative big" %></li>
+   <%= link_to 'Cancelar', user_path(q: {volunteers_id_in: current_user.loggable_id}, id: current_user.id), class: "event-link negative big" %>
   <%= f.button t('application.submit'), :class => 'event-link big' %>
 </div>
 <% end %>

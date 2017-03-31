@@ -19,7 +19,7 @@ class Rt::ActivityUnpublishingsController < ApplicationController
   def new
     @rt_activity_unpublishing = Rt::ActivityUnpublishing.new
     @rt_activity_unpublishing.activity = Activity.find_by_id(params[:activity_id])
-    
+
   end
 
   def edit
@@ -28,7 +28,7 @@ class Rt::ActivityUnpublishingsController < ApplicationController
   def create
     @rt_activity_unpublishing = Rt::ActivityUnpublishing.new(rt_activity_unpublishing_params)
     if @rt_activity_unpublishing.save
-      redirect_to index_i_projects_path, notice: t('rt_activity_unpublishing.response')
+      redirect_to user_path(current_user), notice: t('activity_unpublishing.response')
     else
       respond_with(@rt_activity_unpublishing)
     end

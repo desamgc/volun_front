@@ -188,7 +188,7 @@ es:
         phone_number: Telefono
         phone_number_alt: Otro telefono
         last_name: Primer apellido
-        last_name_alt: Primer apellido
+        last_name_alt: Segundo apellido
         email: Correo electronico
       rt/entity_subscribe:
         name: Nombre
