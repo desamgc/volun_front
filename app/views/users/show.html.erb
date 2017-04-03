@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="profile">
-      <% if current_user.loggable_type=="Entity" %>
+      <% if current_user.loggable_type == "Entity" %>
          <div class="row">
            <div class="col-md-6 centerMobile">
             <h3 class="userName">
@@ -20,14 +20,14 @@
          <div class="col-md-6 centerMobile text-right"><%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class: "event-link negative dark") %> </div>
           </div>
             <p class="centerMobile contacto"><span><%= current_user.loggable.vat_number %></span> / <span> <%= current_user.loggable.email %></span> </p>
-            <p class="centerMobile contacto"><span>Silvia Gil Moreno</span> / <span> <%= current_user.loggable.phone_number %></span> </p>
-            <p><span><%= current_user.loggable.address.road_type %> <%= current_user.loggable.address.road_name %> <%= current_user.loggable.address.road_numbre_type %> <%= current_user.loggable.address.road_number %> 1º, <%= current_user.loggable.address.postal_code %> <%= current_user.loggable.address.town %>, <%= current_user.loggable.address.province %></span></p>
+            <p class="centerMobile contacto"><span><%= current_user.loggable.name %> </span> / <span> <%= current_user.loggable.phone_number %></span> </p>
+            <p><span><%= current_user.loggable.address.road_type %> <%= current_user.loggable.address.road_name %> <%= current_user.loggable.address.road_number_type %> <%= current_user.loggable.address.road_number %> 1º, <%= current_user.loggable.address.postal_code %> <%= current_user.loggable.address.town %>, <%= current_user.loggable.address.province %></span></p>
             <div class="botones">
               <%= link_to 'Cambiar contraseña', edit_user_registration_path, class: "event-link mr30" %>
               <%= link_to 'Difusión actividad en agenda', new_rt_activity_publishing_path, class: "event-link negative mr30" %>
               <%= link_to 'Demanda de voluntarios', new_rt_volunteers_demand_path, class: "event-link negative mr30" %>
               <%= link_to 'Publicación de proyecto', new_rt_project_publishing_path, class: "event-link negative mr30" %>
-              <%= link_to 'Hacer una solicitud', new_rt_other_path, class: "event-link negative mr30" %>
+              <%= link_to 'Otra solicitud', new_rt_other_path, class: "event-link negative mr30" %>
               <%= link_to 'Darme de baja', new_rt_entity_unsubscribe_path, class: "link" %>
             </div>
         <% else %>

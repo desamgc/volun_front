@@ -1,6 +1,7 @@
 class Rt::ProjectUnpublishingsController < ApplicationController
 
   respond_to :html, :js, :json
+  before_action :set_project
 
   def index
     params[:q] ||= Rt::ProjectUnpublishing.ransack_default
@@ -43,6 +44,10 @@ class Rt::ProjectUnpublishingsController < ApplicationController
   end
 
   protected
+
+    def set_project
+      @project = Project.find_by_id (params[:project])
+    end
 
     def rt_project_unpublishing_params
       params.require(:rt_project_unpublishing).permit(:notes)

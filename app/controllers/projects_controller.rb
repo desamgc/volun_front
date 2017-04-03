@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 
   def my_area
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:areas, :addresses).search(params[:q])
+    @search = Project.includes(:areas, :addresses, :entity).search(params[:q])
     @projects_actives = @search.result.page(params[:page]).per(6)
     respond_to do |format|
       format.html
@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
 
   def index
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:areas, :addresses).actives.search(params[:q])
+    @search = Project.includes(:areas, :addresses, :entity).actives.search(params[:q])
     @projects_actives = @search.result.page(params[:page]).per(6)
     @locations = Project.includes(:addresses).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     if (params[:page].blank?)
@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
 
   def search
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:areas, :addresses).actives.search(params[:q])
+    @search = Project.includes(:areas, :addresses, :entity).actives.search(params[:q])
     @projects_actives = @search.result.page(params[:page]).per(6)
     @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     respond_to do |format|
