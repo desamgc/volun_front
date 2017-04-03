@@ -85,7 +85,7 @@
         <h3 class="">Enlaces</h3>
         <dl class="dl-horz">
           <% @project.links.url.each do |link| %>
-              <dd><a href="<%= link.url %>"><%= link.description %></a></dd>
+              <dd><a href="<%= link.path %>"><%= link.description %></a></dd>
           <% end %>
         </dl>
     </div>
@@ -101,7 +101,7 @@
       <div class="col-md-5">
 
 
-      <div class="currentvideo" data-height="" data-width="100%" data-url="" data-expressInstallSwfurl="" data-file="" data-logo="" data-image="" data-urlhtml5= "<%= link.url %>" >
+      <div class="currentvideo" data-height="" data-width="100%" data-url="" data-expressInstallSwfurl="" data-file="" data-logo="" data-image="" data-urlhtml5= "<%= link.path %>" >
       </div>
 
 
