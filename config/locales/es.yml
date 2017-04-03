@@ -45,7 +45,7 @@ es:
    other:
     title: Otro tipo de solicitud
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
-   project_unsubscribe:
+   project_unpublishing:
     title: solicitud de baja de proyecto
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
    entity_unsubscribe:
