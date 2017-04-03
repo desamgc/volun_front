@@ -72,7 +72,11 @@ class UsersController < ApplicationController
     end
 
     def load_projects
-      params[:q] = {entity_id_eq: current_user.loggable_id}
+      if current_user.loggable_type == 'Entity'
+        params[:q] = {entity_id_eq: current_user.loggable_id}
+      else
+        params[:q] = {volunteers_id_in: current_user.loggable_id}
+      end
       @search = Project.includes(:areas, :addresses).search(params[:q])
       @projects_actives = @search.result
     end
