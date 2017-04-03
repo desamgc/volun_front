@@ -484,7 +484,7 @@ puts "Creando actividades"
 (1..ACTIVITIES_NUM).each do |n|
     activity   = Activity.new()
     activity.attributes = {
-      name:                  "Actividad #{n}" ,
+      name:                  "Actividad de agenda #{n}" ,
       description:           "Descripción actividad #{n}",
       start_date:   Time.now,
       end_date:     Time.now,
@@ -502,7 +502,7 @@ puts "Creando actividades"
         eventable:  activity,
       )
 
-      puts "Creando Horarios para evento #{event.id}"
+      puts "Creando Horarios para evento de actividad #{event.id}"
       2.times do
         Timetable.create!(
           event: event,
@@ -566,7 +566,7 @@ end
                          password_confirmation: 'Wordpass1',
                          notice_type: NoticeType.all.sample).save!
 
-    User.create( email: 'perezljl@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Volunteer",
+    User.create( email: 'voluntario@madrid.es', password: pwd, password_confirmation: pwd, loggable: Volunteer.all.sample,
                          notice_type: NoticeType.all.sample)
-    User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, loggable_id: '1', loggable_type: "Entity",
+    User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, loggable: Entity.all.sample,
                          notice_type: NoticeType.all.sample)

@@ -43,9 +43,9 @@ PROJECT_TYPES = {
 }
 
 REQUEST_REASONS = {
-  0 => 'Difusión de proyectos',
-  1 => 'Solicitud voluntarios',
-  2 => 'Publicación actividad en agenda',
+  0 => 'Publicar proyectos',
+  1 => 'Demandar voluntarios',
+  2 => 'Difundir actividad en agenda',
   3 => 'Otros'
 }
 

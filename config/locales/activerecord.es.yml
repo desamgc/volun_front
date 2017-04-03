@@ -126,6 +126,8 @@ es:
           attributes:
             description:
               blank: es obligatoria
+            notes:
+              blank: es obligatorio
             road_type:
               blank: es obligatorio
             number_type:
@@ -172,7 +174,7 @@ es:
           attributes:
             description:
               blank: es obligatoria
-        rt/project_unsubscribe:
+        rt/project_unpublishing:
           attributes:
             notes:
               blank: es obligatorio
@@ -244,6 +246,7 @@ es:
         province: Provincia
       rt/project_publishing:
         description: Descripcion
+        notes: Nombre
         road_type: Tipo de calle
         road_number: Numero de calle
         road_name: Calle
@@ -268,8 +271,8 @@ es:
         project_id: Proyecto
       rt/other:
         description: Motivo
-      rt/project_unsubscribe:
-        reason: Motivo
+      rt/project_unpublishing:
+        notes: Motivo
         project: Proyecto
       rt/entity_unsubscribe:
         notes: Motivo
