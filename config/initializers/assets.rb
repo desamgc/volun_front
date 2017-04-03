@@ -11,6 +11,7 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( projects.js )
 Rails.application.config.assets.precompile += %w( activities.js )
+Rails.application.config.assets.precompile += %w( activities_home.js )
 Rails.application.config.assets.precompile += %w( jquery.dotdotdot.min.js )
 Rails.application.config.assets.precompile += %w( js/locale/i18n_es.js )
 Rails.application.config.assets.precompile += %w( js/vendor.js )
