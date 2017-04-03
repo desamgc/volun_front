@@ -6,13 +6,13 @@
     </button>
     <% if current_user.loggable_type=="Entity" %>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-       <li><%= link_to 'Mi area', user_path(q: {entity_id_eq: current_user.loggable_id}, id: current_user.id) %></li>
+       <li><%= link_to 'Mi area', user_path(current_user.id) %></li>
        <li><%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class:  "fa fa-power-off") %></li>
       </ul>
     <% end %>
     <% if current_user.loggable_type=="Volunteer" %>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><%= link_to 'Mi area', user_path(q: {volunteers_id_in: current_user.loggable_id}, id: current_user.id) %></li>
+        <li><%= link_to 'Mi area', user_path(current_user.id) %></li>
         <li><%= link_to(" Cerrar sesión", destroy_user_session_path, method: :delete, class:  "fa fa-power-off") %></li>
       </ul>
     <% end %>

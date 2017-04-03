@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     end
 
     def load_projects
-      params[:q] ||= Project.ransack_default
+      params[:q] = {entity_id_eq: current_user.loggable_id}
       @search = Project.includes(:areas, :addresses).search(params[:q])
       @projects_actives = @search.result
     end

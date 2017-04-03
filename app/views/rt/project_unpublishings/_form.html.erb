@@ -5,7 +5,9 @@
   <p class="notes">
    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
+  <%= f.hidden_field :project_id %>
   <fieldset>
+
     <div class="row">
      <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group all">
@@ -19,7 +21,7 @@
 </div>
 <hr/>
 <div class="button-group text-right">
-  <%= link_to 'Cancelar', user_path(q: {entity_id_eq: current_user.loggable_id}, id: current_user.id), class: "event-link negative big"  %>
+  <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
   <%= f.button t('application.submit'), class: 'event-link big' %>
 </div>
 <% end %>

@@ -38,7 +38,7 @@
 
            </div>
 
-           <div class="form-group">
+           <div class="form-group date-field">
                <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:execution_date) %> <span class="asterisco">*</span></label>
           <%= f.text_field :execution_date, :class => "form-control-date small" %>
            </div>
@@ -63,7 +63,7 @@
 </div>
 
 <div class="button-group text-right pb80">
-  <%= link_to 'Cancelar', user_path(q: {entity_id_eq: current_user.loggable_id}, id: current_user.id), class: "event-link negative big"  %>
+  <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
   <%= f.button t('application.submit'), :class => 'event-link big' %>
 </div>
 <% end %>

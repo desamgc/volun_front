@@ -34,10 +34,10 @@ es:
     title: Solicitud de demanda de voluntarios
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
    project_publishing:
-    title: Solicitud de publicitación de nuevo proyecto
+    title: Solicitud de publicación de nuevo proyecto
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
    activity_publishing:
-    title: Solicitud de publicitación de actividad
+    title: Solicitud de difusión de actividad
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
    activity_unpublishing:
     title: Solicitud de baja de publicación de actividad
@@ -46,7 +46,7 @@ es:
     title: Otro tipo de solicitud
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
    project_unpublishing:
-    title: solicitud de baja de proyecto
+    title: Solicitud de baja de proyecto
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
    entity_unsubscribe:
     title: solicitud de baja de la plataforma

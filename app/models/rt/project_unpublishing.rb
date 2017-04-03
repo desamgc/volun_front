@@ -1,4 +1,5 @@
 class Rt::ProjectUnpublishing < ActiveRecord::Base
-  include RtCommons	
-  validates :notes, presence: true	
+  include RtCommons
+  belongs_to :project
+  validates :notes, presence: true
 end

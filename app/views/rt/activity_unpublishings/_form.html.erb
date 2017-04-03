@@ -20,7 +20,7 @@
 </div>
 
 <div class="button-group text-right">
-  <%= link_to 'Cancelar', user_path(q: {entity_id_eq: current_user.loggable_id}, id: current_user.id), class: "event-link negative big"  %>
+  <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
   <%= f.button t('application.submit'), :class => 'button button4' %>
 </div>
 <% end %>
