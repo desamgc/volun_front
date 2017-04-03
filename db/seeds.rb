@@ -49,6 +49,14 @@ REQUEST_REASONS = {
   3 => 'Otros'
 }
 
+LINK_TYPES = {
+  1 => 'logo',
+  2 => 'image',
+  3 => 'url',
+  4 => 'video',
+  5 => 'document'
+}
+
 REQUEST_STATUS = {
   1 => 'Pending'
 
@@ -236,6 +244,13 @@ AREAS = {
   3 => 'EMPLEO',
   4 => 'OTRA'
 }
+
+
+puts "Creando Links"
+LINK_TYPES.each do |kind , name|
+  LinkType.create!(kind: kind, description: name)
+end
+
 
 puts "Creando Areas"
 AREAS.each do |kind , name|

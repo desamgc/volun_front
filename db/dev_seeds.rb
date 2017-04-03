@@ -4,7 +4,7 @@
 #DatabaseCleaner.clean_with :truncation
 Faker::Config.locale = I18n.locale
 
-ACTIVITIES_NUM    = 10
+ACTIVITIES_NUM    = 50
 ADDRESSES_NUM     = 20
 PROJECTS_NUM      = 10
 PROJECTS_NUM_FEATURED = 3
@@ -178,8 +178,8 @@ puts "Creando Direcciones"
     province:              Province.all.sample.name,
     country:               "España",
     town:                  "Madrid",
-    latitude:              441900 + rand(100),
-    longitude:             4479566 + rand(100),
+    latitude:              (441900 * 100) + rand(100),
+    longitude:             (4479566 * 100)+ rand(100),
     district:              District.all.sample.name,
     borough:               Faker::Address.state,
     normalize:             true
@@ -202,8 +202,8 @@ puts "Creando entidades"
     (1..1).each do |n|
       link = Link.create!(
         description:   "#link entidad #{n}",
-        kind: 1,
-        url: "assets/" + rand(1..16).to_s + ".jpg",
+        link_type_id: 1,
+        path: rand(1..16).to_s + ".jpg",
         linkable: entity
     )
   end
@@ -270,32 +270,32 @@ puts "Creando Proyectos urgent"
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 1,
-        url:  rand(1..16).to_s + ".jpg",
+        link_type_id: 1,
+        path:  rand(1..16).to_s + ".jpg",
         linkable: project
     )
     end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 2,
-        url: "#{n}.jpg",
+        link_type_id: 2,
+        path: "#{n}.jpg",
         linkable: project
     )
     end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 3,
-        url: "http://www.marca.com",
+        link_type_id: 3,
+        path: "http://www.marca.com",
         linkable: project
     )
     end
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 4,
-        url: "http://vjs.zencdn.net/v/oceans.mp4",
+        link_type_id: 4,
+        path: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: project
     )
     end
@@ -357,32 +357,32 @@ puts "Creando Proyectos featured"
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 1,
-        url:  rand(1..16).to_s + ".jpg",
+        link_type_id: 1,
+        path:  rand(1..16).to_s + ".jpg",
         linkable: project
     )
     end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 2,
-        url: "#{n}.jpg",
+        link_type_id: 2,
+        path: "#{n}.jpg",
         linkable: project
     )
     end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 3,
-        url: "http://www.marca.com",
+        link_type_id: 3,
+        path: "http://www.marca.com",
         linkable: project
     )
     end
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 4,
-        url: "http://vjs.zencdn.net/v/oceans.mp4",
+        link_type_id: 4,
+        path: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: project
     )
     end
@@ -444,32 +444,32 @@ puts "Creando Proyectos"
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 1,
-        url:  rand(1..16).to_s  + ".jpg",
+        link_type_id: 1,
+        path:  rand(1..16).to_s  + ".jpg",
         linkable: project
     )
     end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 2,
-        url: "#{n}.jpg",
+        link_type_id: 2,
+        path: "#{n}.jpg",
         linkable: project
     )
     end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 3,
-        url: "http://www.marca.com",
+        link_type_id: 3,
+        path: "http://www.marca.com",
         linkable: project
     )
     end
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 4,
-        url: "http://vjs.zencdn.net/v/oceans.mp4",
+        link_type_id: 4,
+        path: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: project
     )
     end
@@ -517,32 +517,32 @@ puts "Creando actividades"
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 1,
-        url: "assets/" + rand(1..16).to_s  + ".jpg",
+        link_type_id: 1,
+        path: "assets/" + rand(1..16).to_s  + ".jpg",
         linkable: activity
     )
     end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 2,
-        url: "assets/#{n}.jpg",
+        link_type_id: 2,
+        path: "assets/#{n}.jpg",
         linkable: activity
     )
     end
     (2..LINKS_NUM).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 3,
-        url: "http://www.marca.com",
+        link_type_id: 3,
+        path: "http://www.marca.com",
         linkable: activity
     )
     end
     (1..1).each do |n|
       link = Link.create!(
         description:   Faker::Lorem.sentence,
-        kind: 4,
-        url: "http://vjs.zencdn.net/v/oceans.mp4",
+        link_type_id: 4,
+        path: "http://vjs.zencdn.net/v/oceans.mp4",
         linkable: activity
     )
     end
