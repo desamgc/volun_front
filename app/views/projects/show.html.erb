@@ -1,13 +1,14 @@
 
-
+<%= javascript_include_tag 'project_show' %>
 
 
 <%= javascript_tag do %>
-  var locations = <%= raw @locations_project.to_json %>;
-  var multiple = false;
-  var url_map = "<%= Rails.application.secrets.url_map %>";
-  var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
+  var list_days = <%= raw @list_days_project.to_json %>;
+  var day_c = <%= raw @day.to_json %>
+  var id = <%= @project.id %>
 <% end %>
+
+
 <div class="container-fluid">
     <div class="row">
 
@@ -159,22 +160,31 @@
 <% end %>
 
 <div class="gallery-item">
-  <div class="info-actividad">
-      <div class="item ">
-        <h3 class="place title9">Direcciónes</h3>
-        <%= render partial: 'events/event', collection: @project.events %>
+    <div class="info-actividad">
+        <div id="fecha">
 
-      </div>
+        </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-         <div id="mapDiv">
+    <div id="timetables">
+      <%= render partial: "timetables/timetables_by_date_project", locals: {timetable: @timetables, day: @day} %>
 
-         </div>
-      </div>
+    </div>
+
+
+    <div id="actividades asociadas">
+      <h1> Actividades asociadas </h1>
+      <% @project.activities.each do |activity| %>
+        <%= activity.name %>
+        <%= link_to 'Leer mas ..', activity_path(activity),class: "event-link big" %>
+      <% end %>
+
     </div>
  </div>
+</div>
+
+
+
 </div>
 </div>
 </div>

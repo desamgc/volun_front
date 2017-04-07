@@ -20,7 +20,7 @@ load_geo: function ()
              var map = new Map("mapDiv", {
                      center: centro,
                      spatialReference: sr,
-                     zoom: 2,
+                     zoom: 1,
                      smartNavigation: false
              });
              map.on("load", function() {

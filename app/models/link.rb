@@ -3,7 +3,8 @@ class Link < ActiveRecord::Base
     logo:  1,
     image: 2,
     url:   3,
-    video: 4
+    video: 4,
+    document: 5
   }
   belongs_to :linkable, polymorphic: true
 end

@@ -1,14 +1,23 @@
+<% timetables = @events %>
+<% timetables.group_by{ |timetable| timetable.execution_date }.sort_by{|execution_date, _| execution_date }.each do |execution_date, timetables| %>
+  <% timetables.map(&:event).group_by(&:activity).each do |activity, events| %>
+
 <div class="actividadWrapper">
-<div class="row">
-  <div class="col-xs-2 no-padding-left">
-    <p class="fecha">
-       <%= timetable.execution_date.day %>
-       <span><%= Date::MONTHNAMES[timetable.execution_date.month] %> <%= timetable.execution_date.year %></span>
-    </p>
-  </div>
-  <div class="col-xs-10">
-    <p class="distrito"><%= timetable.event.address.district %></p>
-    <h3 class="titular"><%= timetable.event.activity.name %></h3>
+  <div class="row">
+      <div class="col-xs-2 no-padding-left">
+                          <p class="fecha">
+                             <%= timetable.execution_date.day %>
+                             <span><%= Date::MONTHNAMES[timetable.execution_date.month] %> <%= timetable.execution_date.year %></span>
+                          </p>
+                        </div>
+                        <div class="col-xs-8">
+                          <p class="distrito"><%= events.map{ |event| event.address.district }.to_sentence(:last_word_connector => ' y ') %></p>
+                          <h3 class="titular"><%= activity.name %></h3>
+                        </div>
+
   </div>
 </div>
-</div>
+
+  <% end %>
+<% end %>
+

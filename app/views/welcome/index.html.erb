@@ -44,7 +44,8 @@
         <h4>Próximas 2 actividades</h4>
         <%#= render partial: 'events/search', locals: {events: @events}  %>
         <%#= render partial: 'activities/activity', collection: @activities %>
-        <%= render partial: 'timetables/timetable', collection: @timetables %>
+        <%= render partial: 'timetables/timetable', collection: @events  %>
+
       </div>
     </div>
   </div>

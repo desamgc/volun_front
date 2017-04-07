@@ -21,8 +21,8 @@ class WelcomeController < ApplicationController
 
     #version con timetables
     params[:day] ||= Time.now #Activity.includes(:timetables).activities_present(0.day.ago.to_s).minimum(:execution_date).try :strftime, "%Y-%m-%d"
-    @search_q = Timetable.joins(event: [:activity]).distinct(:execution_date).where("events.eventable_type='Activity'").order(:execution_date).search({execution_date_gteq: params[:day] })
-    @timetables = @search_q.result.limit(2)
+    @search_q = Timetable.joins(:activity, event: [:activity]).distinct(:execution_date).where("events.eventable_type='Activity'").order(:execution_date).search({execution_date_gteq: params[:day] })
+    @events = @search_q.result.limit(2)
     @list_days = Activity.includes(:timetables).distinct.activities_present(0.day.ago.to_s).order('timetables.execution_date').pluck('timetables.execution_date').to_json
 
     respond_to do |format|

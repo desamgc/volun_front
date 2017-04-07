@@ -1,20 +1,9 @@
-
-<% districts = "" %>
-<% day_s = activity.timetables.order('execution_date').first.execution_date.to_s %>
-<% day, month, year = day_s.split('/').map(&:to_i) %>
-
-
-
 <div class="actividadWrapper">
 <div class="row">
-  <div class="col-xs-2 no-padding-left">
-    <p class="fecha">
-       <%= day %>
-       <span><%= Date::MONTHNAMES[month] %> <%= year %></span>
-    </p>
-  </div>
   <div class="col-xs-10">
-    <p class="distrito"><%= activity.addresses.first.district %></p>
+  <% activity.addresses.each do |address| %>
+    <p class="distrito"><%= address.district %></p>
+  <% end %>
     <h3 class="titular"><%= activity.name %></h3>
   </div>
 </div>

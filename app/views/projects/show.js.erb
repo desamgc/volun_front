@@ -1,0 +1,1 @@
+  $('#timetables').html('<%= escape_javascript(render partial: 'timetables/timetables_by_date_project', locals: {events: @timetables, day:@day}) %>');

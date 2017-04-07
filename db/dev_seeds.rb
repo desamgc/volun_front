@@ -178,8 +178,8 @@ puts "Creando Direcciones"
     province:              Province.all.sample.name,
     country:               "España",
     town:                  "Madrid",
-    latitude:              (441900 * 100) + rand(100),
-    longitude:             (4479566 * 100)+ rand(100),
+    latitude:              (441900 * 100) + rand(1000),
+    longitude:             (4479566 * 100)+ rand(1000),
     district:              District.all.sample.name,
     borough:               Faker::Address.state,
     normalize:             true
@@ -218,13 +218,96 @@ end
 
 
 
+puts "Creando actividades"
+(1..ACTIVITIES_NUM).each do |n|
+    activity   = Activity.new()
+    activity.attributes = {
+      name:                  "Actividad de agenda #{n}" ,
+      description:           "Descripción actividad #{n}",
+      start_date:   Time.now,
+      end_date:     rand(100).days.since.to_date,
+      transport: Faker::Lorem.name,
+      entity: Entity.all.sample
+
+    }
+
+    activity.save!
+
+    puts "Creando Eventos"
+    2.times do
+      event = Event.create!(
+        address:    Address.where(normalize: true).sample,
+        eventable:  activity,
+      )
+
+      puts "Creando Horarios para evento de actividad #{event.id}"
+      2.times do
+        Timetable.create!(
+          event: event,
+          execution_date:  rand(100).days.since.to_date,
+          start_hour: '11:11',
+          end_hour:   '12:12'
+        )
+      end
+    end
+
+    puts "Creando links"
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        link_type_id: 1,
+        path: "#{n}.jpg",
+        linkable: activity
+    )
+    end
+    (2..LINKS_NUM).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        link_type_id: 2,
+        path: "#{n}.jpg",
+        linkable: activity
+    )
+    end
+    (2..LINKS_NUM).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        link_type_id: 3,
+        path: "http://www.marca.com",
+        linkable: activity
+    )
+    end
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        link_type_id: 4,
+        path: "http://vjs.zencdn.net/v/oceans.mp4",
+        linkable: activity
+    )
+    end
+
+    (1..1).each do |n|
+      link = Link.create!(
+        description:   Faker::Lorem.sentence,
+        link_type_id: 5,
+        path: "#{n}.pdf",
+        linkable: activity
+    )
+    end
+
+
+end
+
+
+
+
+
 puts "Creando Proyectos urgent"
 (1..PROJECTS_NUM_OUTSTANDING).each do |n|
     project_other = Pt::Other.new()
     project   = Project.new()
     project.attributes = {
-      name:                  "Nombre del proyecto urgente #{n}",
-      description:           "Descripción proyecto urgente #{n}",
+      name:                  "Texto libre #{n}",
+      description:           "Mas texto libre  #{n}",
       functions:             Faker::Lorem.sentence,
       comments:              Faker::Lorem.sentence,
       entity_id:             Entity.all.sample.id,
@@ -422,6 +505,7 @@ puts "Creando Proyectos"
 
     project.areas << Area.all.sample
     project.volunteers << Volunteer.find(1)
+    project.activities << Activity.all.sample
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
@@ -480,75 +564,8 @@ end
 
 
 
-puts "Creando actividades"
-(1..ACTIVITIES_NUM).each do |n|
-    activity   = Activity.new()
-    activity.attributes = {
-      name:                  "Actividad de agenda #{n}" ,
-      description:           "Descripción actividad #{n}",
-      start_date:   Time.now,
-      end_date:     Time.now,
-      transport: Faker::Lorem.name,
-      entity: Entity.all.sample
-
-    }
-
-    activity.save!
-
-    puts "Creando Eventos"
-    2.times do
-      event = Event.create!(
-        address:    Address.where(normalize: true).sample,
-        eventable:  activity,
-      )
-
-      puts "Creando Horarios para evento de actividad #{event.id}"
-      2.times do
-        Timetable.create!(
-          event: event,
-          execution_date:  rand(100).days.since.to_date,
-          start_hour: '11:11',
-          end_hour:   '12:12'
-        )
-      end
-    end
-
-    puts "Creando links"
-    (1..1).each do |n|
-      link = Link.create!(
-        description:   Faker::Lorem.sentence,
-        link_type_id: 1,
-        path: "assets/" + rand(1..16).to_s  + ".jpg",
-        linkable: activity
-    )
-    end
-    (2..LINKS_NUM).each do |n|
-      link = Link.create!(
-        description:   Faker::Lorem.sentence,
-        link_type_id: 2,
-        path: "assets/#{n}.jpg",
-        linkable: activity
-    )
-    end
-    (2..LINKS_NUM).each do |n|
-      link = Link.create!(
-        description:   Faker::Lorem.sentence,
-        link_type_id: 3,
-        path: "http://www.marca.com",
-        linkable: activity
-    )
-    end
-    (1..1).each do |n|
-      link = Link.create!(
-        description:   Faker::Lorem.sentence,
-        link_type_id: 4,
-        path: "http://vjs.zencdn.net/v/oceans.mp4",
-        linkable: activity
-    )
-    end
 
 
-end
 
     #puts "Creating entidades"
     #Entity.create(name: 'Ayuntamiento de Madrid', id_tipoente: '1', id_tipo_via: '1', vial:'Maria Molina', planta:'Baja', telefono: '915133368', email: 'ayuntamiento@madrid.es', estado: 'A'   )

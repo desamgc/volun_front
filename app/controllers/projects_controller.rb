@@ -56,14 +56,24 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @locations_project = @project.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+
+    params[:day] ||= @project.timetables.minimum(:execution_date).try :strftime, "%Y-%m-%d"
+    @timetables = @project.timetables.where(timetables: {execution_date: params[:day]})
+
+    @list_days_project = @project.timetables.pluck('timetables.execution_date').to_json
+    @date = params[:day]
+    @day = params[:day].to_json
+    respond_to do |format|
+       format.html
+       format.js
+     end
 
   end
 
   private
 
   def set_project
-    @project = Project.includes(:links).find(params[:id])
+    @project = Project.find(params[:id])
   end
 
   def project_params

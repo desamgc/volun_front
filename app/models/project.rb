@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
 
   default_scope  { where(publish: true , active: true) }
   scope :featured, -> { where(outstanding: true) }
-  scope :actives, -> {  }
+  scope :actives, -> { where(urgent: false) }
   scope :urgent, -> { where(urgent: true) }
   scope :entity_projects, ->(id) { where('entity_id = ?', id) }
 

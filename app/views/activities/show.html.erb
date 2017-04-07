@@ -1,11 +1,18 @@
+<%= javascript_include_tag 'activities_show' %>
 
 <%= javascript_tag do %>
   var locations = <%= raw @locations_activity.to_json %>;
-  var multiple = false;
+  var multiple = true;
   var url_map = "<%= Rails.application.secrets.url_map %>";
   var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
+
+  var list_days = <%= raw @list_days_activity.to_json %>;
+  var day_c = <%= raw @day.to_json %>
+  var id = <%= @activity.id %>
 <% end %>
 
+
+<div  class="container-fluid single">
 <div class="col-md-8">
 <h3 class="summary-title"><%= @activity.name %></h3>
 <div role="tabpanel" class="tab-pane active" id="tpi-tab2">
@@ -15,24 +22,24 @@
                   <div class="element_info_relevant element_info_relevant-type2">
                     <div class="info_relevant_img">
                       <%= render partial: "links/link", locals: { link: link} %>
-                      
+
                     </div>
-                    
+
                   </div>
                 </li>
-               <% end %> 
+               <% end %>
 
                <% @activity.links.image.each do |link| %>
                 <li class="col-md-3 col-sm-3 col-xs-12">
                   <div class="element_info_relevant element_info_relevant-type2">
                     <div class="info_relevant_img">
                       <%= render partial: "links/link", locals: { link: link} %>
-                      
+
                     </div>
-                    
+
                   </div>
                 </li>
-               <% end %>  
+               <% end %>
               </ul>
 </div>
 
@@ -43,13 +50,13 @@
           <p> <%= @activity.description %> </p>
       </div>
     </div>
-    
+
     <div class="item noTitle">
         <h3 class="">Enlaces</h3>
         <dl class="dl-horz">
           <% @activity.links.url.each do |link| %>
-              <dd><a href="<%= link.url %>"><%= link.description %></a></dd>
-          <% end %>    
+              <dd><a href="<%= link.path %>"><%= link.description %></a></dd>
+          <% end %>
         </dl>
     </div>
 
@@ -66,7 +73,7 @@
     </div>
     <% @activity.links.video.each do |link| %>
     <div class="col-sm-12">
-      <div class="currentvideo" data-height="308" data-width="450" data-url="" data-expressInstallSwfurl="" data-file="" data-logo="" data-image="" data-urlhtml5= "<%= link.url %>" >
+      <div class="currentvideo" data-height="308" data-width="450" data-url="" data-expressInstallSwfurl="" data-file="" data-logo="" data-image="" data-urlhtml5= "<%= link.path %>" >
       </div>
     </div>
     <% end %>
@@ -76,27 +83,67 @@
 
 
  <div class="button-group">
-    <%= link_to 'volver', index_i_activities_path,class: "button button4" %>
+    <%= link_to 'volver', activities_path,class: "button button4" %>
  </div>
 </div>
 
 
 <div class="col-md-4">
 <div class="gallery-item">
-  <div class="info-actividad">
-      <div class="item ">
-        <h3 class="place title9">Direcciónes</h3>
-        <%= render partial: 'events/event', collection: @activity.events %>
-        
+
+    <div id="fechas">
+
+      <%= @activity.start_date.strftime('%d/%m/%Y') %>
+      <% if @activity.start_date.strftime('%d/%m/%Y') != @activity.end_date.strftime('%d/%m/%Y') %>
+         - <%= @activity.end_date.strftime('%d/%m/%Y') %>
+      <% end %>
+    </div>
+
+
+    <div class="info-actividad">
+        <div id="fecha">
+
+        </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+           <div id="mapDiv">
+
+           </div>
+        </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-         <div id="mapDiv">
-           
-         </div>
-      </div>
+    <div id="timetables">
+      <%= render partial: "timetables/timetables_by_date_activity", locals: {timetable: @timetables, day: @day} %>
+
     </div>
- </div>   
+
+    <div id="entidad">
+      <%= render partial: "links/link", collection: @activity.entity.links.logo %>
+      <hr>
+      <%= @activity.entity.name %>
+
+    </div>
+
+    <div id="documentacion">
+      <h1> Documentación </h1>
+      <%= @activity.links.path %>
+
+    </div>
+
+    <div id="Proyectos asociados">
+      <h1> Proyecto asociado </h1>
+      <% if @activity.project.present? %>
+        <%= render partial: "links/link", collection: @activity.project.links.logo %>
+        <%= @activity.project.name %>
+        <%= link_to 'Leer mas ..', project_path(@activity.project),class: "event-link big" %>
+      <% end %>
+
+    </div>
+ </div>
+</div>
+
+
 </div>

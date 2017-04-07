@@ -3,6 +3,7 @@ class Activity < ActiveRecord::Base
   has_many   :events, as: :eventable
   belongs_to :entity
   belongs_to :area
+  belongs_to :project
 
   has_many :timetables, through: :events  #, -> { order('timetables.execution_date asc')}
   has_many :addresses, through: :events
