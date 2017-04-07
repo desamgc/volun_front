@@ -1,5 +1,15 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  include Downloadable
+  before_action :set_link, only: [:show, :edit, :update, :destroy, :download ]
+
+
+
+
+  def download
+    send_to_user filepath: 'http://localhost:3000/' + Rails.application.secrets.nas_images + @link.path
+
+  end
+
 
   # GET /links
   # GET /links.json
@@ -69,6 +79,6 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:name, :url, :project_id)
+      params.require(:link).permit(:name, :path, :project_id)
     end
 end

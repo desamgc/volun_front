@@ -127,11 +127,17 @@
 
     </div>
 
-    <div id="documentacion">
-      <h1> Documentación </h1>
-      <%= @activity.links.path %>
+    <% if @activity.links.document.present? %>
+      <div id="documentacion">
+        <h1> Documentación </h1>
+        <% @activity.links.document.each do |link| %>
+          <%= link.description %>
+          <%= link_to 'Descargar', download_link_path(link.id) %>
+        <% end %>
 
-    </div>
+      </div>
+    <% end %>
+
 
     <div id="Proyectos asociados">
       <h1> Proyecto asociado </h1>

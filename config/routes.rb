@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  concern :downloadable do
+    get 'download', on: :member
+  end
 
   namespace :rt do
     resources :others
@@ -40,10 +43,16 @@ Rails.application.routes.draw do
     resources :links
   end
 
+  resources :links, concerns: :downloadable
+
   resources :volunteers do
     resources :projects, only:[:index, :show], param: :q
 
   end
+
+
+
+
   #resources :entity_types
   #resources :project_types
 
