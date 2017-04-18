@@ -6,7 +6,7 @@ class LinksController < ApplicationController
 
 
   def download
-    send_to_user filepath: 'http://localhost:3000/' + Rails.application.secrets.nas_images + @link.path
+    send_to_user filepath: request.host_with_port + Rails.application.secrets.nas_images + @link.path
 
   end
 
