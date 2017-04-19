@@ -28,6 +28,7 @@ gem 'kaminari'
 # Use ActiveModel has_secure_password
 # Use Unicorn as the app server
 gem 'unicorn'
+gem 'savon'
 
 group :preproduction, :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,6 +42,7 @@ group :preproduction, :development, :test do
   gem 'i18n-tasks' #  helps you find and manage missing and unused translations.
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'rubocop'
 end
 
 group :development do
