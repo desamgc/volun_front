@@ -1980,6 +1980,10 @@ select:-webkit-autofill:focus {
 
 @media(min-width:768px) {
     .navbar-nav > li > a {}
+    .navbar-default .navbar-nav > li a.selected {
+    border-bottom: solid 8px #ff6600;
+    padding-bottom: 12px;
+}
 }
 
 @media(max-width:942px) {
