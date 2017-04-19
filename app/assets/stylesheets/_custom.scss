@@ -58,8 +58,7 @@ body {
     &.entity_subscribes_new,
     &.volunteer_subscribes_new,
     &.activities_index,
-    &.sessions_new
-    {
+    &.sessions_new {
         #HeaderWrapper {
             background-image: none !important;
             height: unset;
@@ -234,6 +233,10 @@ a {
     }
     a {
         color: rgba(29, 29, 29, 0.5);
+        line-height: 56px;
+        &:hover {
+            text-decoration: none;
+        }
     }
     i {
         width: 56px;
@@ -719,6 +722,7 @@ h3 {
     border-left: solid 6px #ff6600;
     margin-bottom: 30px;
     background-color: #ffffff;
+    position: relative;
     .fecha {
         font-size: 52px;
         font-weight: 900;
@@ -763,6 +767,28 @@ h3 {
         text-overflow: ellipsis;
         max-width: 90%;
         overflow: hidden;
+    }
+    i {
+        width: 56px;
+        height: 56px;
+        text-align: center;
+        border-radius: 100px;
+        background-color: rgba(29, 29, 29, 0.15);
+        font-size: 30px;
+        position: absolute;
+        right: 45px;
+        top: 50%;
+        transform: translateY(-50%);
+        a {
+            color: rgba(29, 29, 29, 0.5);
+            line-height: 56px;
+            &:hover{
+                text-decoration: none;
+            }
+        }
+        &:before {
+            line-height: 56px;
+        }
     }
 }
 
@@ -1703,9 +1729,28 @@ select:-webkit-autofill:focus {
             }
         }
     }
+    .actividadWrapper {
+        .fecha {
+            padding-right: 10px;
+        }
+    }
 }
 
 @media(max-width:767px) {
+    .actividadWrapper {
+        .fecha {
+            font-size: 36px;
+            span {
+                font-size: 14px;
+            }
+        }
+        .distrito {
+            font-size: 10px;
+        }
+        h3.titular {
+            font-size: 16px;
+        }
+    }
     .centerMobile {
         text-align: center !important;
     }

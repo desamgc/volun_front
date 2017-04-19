@@ -5,20 +5,20 @@
                     <% if execution_date == Date.parse(@day) || !@day.present? %>
                      <div class="actividadWrapper">
                       <div class="row">
-                        <div class="col-xs-2 no-padding-left">
+                        <div class="col-sm-2 col-xs-3 no-padding-left">
                           <p class="fecha">
                              <%= execution_date.day %>
                              <span><%= Date::MONTHNAMES[execution_date.month] %> <%= execution_date.year %></span>
                           </p>
                         </div>
-                        <div class="col-xs-8">
+                        <div class="col-sm-8 col-xs-7">
                           <p class="distrito"><%= events.map{ |event| event.address.district }.flatten.to_sentence(:last_word_connector => ' y ') %></p>
                           <h3 class="titular"><%= activity.name %></h3>
                         </div>
-                        <div class="col-xs-2">
+
                                <i><%= link_to  " " , activity_path(activity), class: "fa fa-chevron-right" %> </i>
 
-                        </div>
+
                       </div>
                       </div>
                   <% end %>

@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   host: localhost
   pool: 5
-  username: IAM
+  username: postgres
   password: IAM
 
 development: &development
