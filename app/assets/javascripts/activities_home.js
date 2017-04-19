@@ -21,4 +21,10 @@ function DisableDays(date){
 
 }
 
+
+    $('#fecha .prev').remove();
+$('#fecha .next').remove();
+$('#fecha thead tr:nth-child(1)').append('<th class="prev"><i class="fa fa-chevron-left"></i></th>')
+$('#fecha thead tr:nth-child(1)').append('<th class="next"><i class="fa fa-chevron-right"></i></th>')
+
 });
