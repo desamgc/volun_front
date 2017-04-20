@@ -20,8 +20,39 @@
 </div>
 <div  class="container-fluid single">
     <div class="row">
+<div class="col-md-4 col-md-push-8">
 
-<div class="col-md-8">
+<% if @project.volunteers_allowed %>
+  <div class="ctaVoluntarios">
+      <h3>Se necesitan voluntarios</h3>
+       <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id),class: "event-link big" %>
+  </div>
+<% end %>
+
+<div class="gallery-item">
+    <div class="info-actividad">
+        <div id="fecha">
+
+        </div>
+    </div>
+
+    <div id="timetables">
+      <%= render partial: "timetables/timetables_by_date_project", locals: {timetable: @timetables, day: @day} %>
+
+    </div>
+
+
+    <div id="actividades asociadas">
+      <h1> Actividades asociadas </h1>
+      <% @project.activities.each do |activity| %>
+        <%= activity.name %>
+        <%= link_to 'Leer mas ..', activity_path(activity),class: "event-link big" %>
+      <% end %>
+
+    </div>
+ </div>
+</div>
+<div class="col-md-8 col-md-pull-4">
 
 <h3 class="summary-title"><%= @project.name %></h3>
 
@@ -150,41 +181,9 @@
 
 </div>
 
-<div class="col-md-4">
-
-<% if @project.volunteers_allowed %>
-  <div class="ctaVoluntarios">
-      <h3>Se necesitan voluntarios</h3>
-       <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id),class: "event-link big" %>
-  </div>
-<% end %>
-
-<div class="gallery-item">
-    <div class="info-actividad">
-        <div id="fecha">
-
-        </div>
-    </div>
-
-    <div id="timetables">
-      <%= render partial: "timetables/timetables_by_date_project", locals: {timetable: @timetables, day: @day} %>
-
-    </div>
-
-
-    <div id="actividades asociadas">
-      <h1> Actividades asociadas </h1>
-      <% @project.activities.each do |activity| %>
-        <%= activity.name %>
-        <%= link_to 'Leer mas ..', activity_path(activity),class: "event-link big" %>
-      <% end %>
-
-    </div>
- </div>
-</div>
 
 
 
-</div>
+
 </div>
 </div>

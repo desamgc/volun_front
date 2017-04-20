@@ -23,6 +23,11 @@ ol {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.flex {
+    display: -webkit-flex;
+    display: flex;
+}
+
 .button-group {
     & > * {
         margin-left: 30px;
@@ -159,6 +164,10 @@ a {
 
 .no-padding-left {
     padding-left: 0;
+}
+
+.no-padding-right {
+    padding-right: 0;
 }
 
 #headerTop {
@@ -909,6 +918,88 @@ h3 {
         }
     }
 }
+
+.actividadSingle {
+    .bloque {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        background-color: rgba(0, 0, 0, 0.05);
+        margin-bottom: 30px;
+        &.first {
+            padding-top: 45px;
+        }
+        #fechas {
+            text-align: center;
+            .rangoFechas {
+                h3 {
+                    font-family: 'Lato';
+                    font-size: 24px;
+                    font-weight: 900;
+                    line-height: 1.43;
+                    letter-spacing: 1.2px;
+                    text-align: center;
+                }
+            }
+            #timetables {
+                h4 {
+                    font-family: 'Lato';
+                    font-size: 18px;
+                    font-weight: normal;
+                    font-style: normal;
+                    font-stretch: normal;
+                    line-height: 1.44;
+                    letter-spacing: 0.8px;
+                    text-align: center;
+                }
+            }
+        }
+        #mapaW,
+        #meta,
+        #documentacion,
+        #proyectosAsociados {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        h5 {
+            font-family: 'Lato';
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.43;
+            letter-spacing: 0.3px;
+        }
+        .cardProyectoAsociado {
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.05);
+            figure {
+                position: relative;
+                height: 83px;
+                overflow: hidden;
+            }
+            img {
+                position: absolute;
+                width: 130px;
+                height: auto;
+            }
+            h3 {
+                font-family: 'Lato';
+                font-size: 18px;
+                font-weight: 900;
+                letter-spacing: 1px;
+            }
+            .flex {
+                -webkit-align-items: center;
+                align-items: center;
+                height: 83px;
+            }
+        }
+    }
+    #timetables {}
+    .tags {
+        margin-top: 30px;
+    }
+}
+
+.rangoFechas {}
 
 
 /*HOME*/
@@ -1981,9 +2072,9 @@ select:-webkit-autofill:focus {
 @media(min-width:768px) {
     .navbar-nav > li > a {}
     .navbar-default .navbar-nav > li a.selected {
-    border-bottom: solid 8px #ff6600;
-    padding-bottom: 12px;
-}
+        border-bottom: solid 8px #ff6600;
+        padding-bottom: 12px;
+    }
 }
 
 @media(max-width:942px) {
