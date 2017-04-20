@@ -3,7 +3,7 @@ class SMSApi
   attr_accessor :client
 
   def initialize
-    @client = Savon.client(wsdl: 'http://mensajeriasms.munimadrid.es/ServicioSMSMenTes')
+    @client = Savon.client(wsdl: url)
   end
 
   def url
@@ -30,7 +30,9 @@ class SMSApi
   end
 
   def success?(response)
-    response.body[:respuesta_sms][:respuesta_servicio_externo][:texto_respuesta] == "Success"
+    debugger
+    #response.body[:enviar_sms_simples_return][:respuesta_servicio_externo][:texto_respuesta] == "Success"
+    response.body[:enviar_sms_simples_response][:enviar_sms_simples_return][:respuesta_se][:texto_respuesta] == "Success"
   end
 
   def end_point_available?
