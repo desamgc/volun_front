@@ -1,55 +1,76 @@
 
 <%= search_form_for(@search_q, url:"/activities/search", :method => :get, remote: true) do |f| %>
-<div class='form form-electronic'>
+<div id="buscarAtividades" class='form form-electronic'>
+<!--
    <div class="panel-heading">
         <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed">Buscar actividades</a>
     </div>
+-->
     <div class="panel-body collapse in" id="searcher-diary">
         <form class="form">
-                <legend class="form-legend">¿Qué buscas?</legend>
+<!--                <legend class="form-legend">¿Qué buscas?</legend>-->
+
+                <fieldset>
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="form-group">
-                            <span class="labelUp">Descripción <span class="asterisco">*</span></span>
-                            <%= f.text_field :activity_name_or_activity_description_cont %>
+                        <div class="form-group searchW">
+                            <label class="labelUp" readonly>Descripción <span class="asterisco">*</span></label>
+                            <%= f.text_field :activity_name_or_activity_description_cont, placeholder: "Buscar una actividad" %>
                         </div>
                     </div>
 
                 </div>
+            </fieldset>
 
-
-                <legend class="form-legend">¿Dónde?</legend>
+<!--                <legend class="form-legend">¿Dónde?</legend>-->
+               <fieldset>
                 <div class="row">
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-12 col-md-12">
+                         <div class="form-group " style="margin-bottom:20px">
+                            <label class="labelUp" readonly>Distrito <span class="asterisco">*</span></label>
+                            <%= f.select :address_district_eq, @districts, include_blank: "Distrito", selected: "" %>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                          <div class="col-sm-12 col-md-12">
                          <div class="form-group">
-                            <span class="labelUp">Distrito <span class="asterisco">*</span></span>
-                            <%= f.select :address_district_eq, @districts, include_blank: "", selected: "" %>
+
+                            <label class="labelUp" readonly>Barrio <span class="asterisco">*</span></label>
+                            <%= f.select :address_borough_eq, @boroughs, include_blank: "Barrio", selected: ""  %>
+
 
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-6">
-                         <div class="form-group">
-                            <label for="id_propuesta">
-                            <span class="labelUp">Barrio </span>
-                            <%= f.select :address_borough_eq, @boroughs %>
-
-                            </label>
-                        </div>
                     </div>
 
-                </div>
 
-                <legend class="form-legend">Tematica</legend>
+
+            </fieldset>
+<!--                <legend class="form-legend">Tematica</legend>-->
+
+               <fieldset>
                 <div class="row">
+                 <div class="col-md-12">
+                  <legend class="form-legend">Tematica <span>(Seleciona una o más categorías)</span></legend>
                   <% @areas.each do |area| %>
-                    <div class="col-sm-6 col-md-2">
-                         <div class="form-group">
-                            <%= check_box_tag "q[activity_area_name_in][]", area.name %> <%= area.name %>
-                        </div>
-                    </div>
-                  <% end %>
-                </div>
 
+                        <div class="form-group tagW">
+                           <label>
+                                <%= check_box_tag "q[areas_name_in][]", area.name %>
+                                <span class="tag"><i class="fa fa-bicycle" aria-hidden="true"></i>
+<%= area.name %></span>
+
+                           </label>
+
+                        </div>
+
+
+
+                  <% end %>
+                   </div>
+                </div>
+            </fieldset>
 
 
         </form>

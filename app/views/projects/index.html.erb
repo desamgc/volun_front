@@ -42,16 +42,18 @@
 
 <!-- en modo cuadricula -->
 <div id="grid">
-  <ul class="row">
+
     <div id = "projects">
      <% @projects_actives.each_slice(3) do |group| %>
+         <ul class="row">
           <%= render partial: 'project', collection: group %>
+          </ul>
       <% end %>
     </div>
     <div id="scroll_projects">
        <%= render partial: 'shared/scroll_infinite', locals: { records: @projects_actives} %>
     </div>
-  </ul>
+
  </div>
  </div>
 
