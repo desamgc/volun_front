@@ -22,7 +22,7 @@
     <div class="col-md-12">
        <h2 class="titlePage"> Proyectos destacados <div class="right"><%= link_to 'Ver proyectos', projects_path, class: "event-link negative rightChev" %></div></h2>
        <ul class="row destacadosWrapperHome">
-          <%= render partial: 'projects/project', collection: @projects_featured  %>
+          <%= render partial: 'projects/project', locals: { records: @projects_featured }  %>
        </ul>
     </div>
     </div>

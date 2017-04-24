@@ -44,11 +44,8 @@
 <div id="grid">
 
     <div id = "projects">
-     <% @projects_actives.each_slice(3) do |group| %>
-         <ul class="row">
-          <%= render partial: 'project', collection: group %>
-          </ul>
-      <% end %>
+          <%= render partial: 'project', locals: { records: @projects_actives} %>
+
     </div>
     <div id="scroll_projects">
        <%= render partial: 'shared/scroll_infinite', locals: { records: @projects_actives} %>
@@ -58,10 +55,4 @@
  </div>
 
 
-<!-- en modo fila -->
-<div id="row" style="display:none">
-<div class="tiny-text">
-  <%= render partial: 'row_project', collection: @projects_actives, as: :project %>
 
-</div>
-</div>

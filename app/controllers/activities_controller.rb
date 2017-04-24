@@ -18,7 +18,7 @@ class ActivitiesController < ApplicationController
   def index
      params[:day] ||= Activity.includes(:timetables).activities_present(Time.now).minimum(:execution_date).try :strftime, "%Y-%m-%d"
      # version con eventos
-     @search_q = Event.includes(:address, :timetables, :activity, project: [:links]).where(eventable_type: Activity.name).search({timetables_execution_date_eq: params[:day] })
+     @search_q = Event.includes(:address, :timetables, :activity).where(eventable_type: Activity.name).search({timetables_execution_date_gteq: params[:day] })
      @events = @search_q.result.uniq.page(params[:page]).per(6)
 
      # version con timetables
@@ -28,7 +28,7 @@ class ActivitiesController < ApplicationController
      @list_days = Activity.includes(:timetables).distinct.activities_present(Time.now).order('timetables.execution_date').pluck('timetables.execution_date').to_json
      @boroughs = ""
      @areas = Area.all
-     @day = params[:day].to_json
+     @day = nil
      @districts = Activity.includes(:addresses).actives.distinct.order("district").pluck('district','district')
      respond_to do |format|
        format.html

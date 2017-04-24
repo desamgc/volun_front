@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
 
   def index
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:areas, :addresses, :entity).actives.search(params[:q])
+    @search = Project.includes(:areas, :addresses).actives.search(params[:q])
     @projects_actives = @search.result.page(params[:page]).per(6)
     @locations = Project.includes(:addresses).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     if (params[:page].blank?)
@@ -59,10 +59,10 @@ class ProjectsController < ApplicationController
 
     params[:day] ||= @project.timetables.minimum(:execution_date).try :strftime, "%Y-%m-%d"
     @timetables = @project.timetables.where(timetables: {execution_date: params[:day]})
-
-    @list_days_project = @project.timetables.pluck('timetables.execution_date').to_json
-    @date = params[:day]
-    @day = params[:day].to_json
+    @locations = @project.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+     #@list_days_project = @project.timetables.pluck('timetables.execution_date').to_json
+    #@date = params[:day]
+    #@day = params[:day].to_json
     respond_to do |format|
        format.html
        format.js
@@ -73,7 +73,7 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.includes(:addresses).find(params[:id])
   end
 
   def project_params
