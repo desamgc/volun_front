@@ -77,12 +77,12 @@ class UsersController < ApplicationController
       else
         params[:q] = {volunteers_id_in: current_user.loggable_id}
       end
-      @search = Project.includes(:areas, :addresses).search(params[:q])
+      @search = Project.includes(:areas,:entity).search(params[:q])
       @projects_actives = @search.result
     end
 
     def load_activities
-      params[:q] ||= Ransack.default
+      params[:q] = {entity_id_eq: current_user.loggable_id}
       @search_q = Activity.search(params[:q])
       @activities = @search_q.result
     end

@@ -88,7 +88,7 @@
     <h4 class="numVolum"><%= @project.volunteers.count %> voluntarios</h4>
     <div class="tags">
       <% @project.areas.each do |area| %>
-        <span class="tag"><i></i><%= area.name %></span>
+        <span class="tag"><i></i><%= area.name.downcase %></span>
       <% end %>
     </div>
 

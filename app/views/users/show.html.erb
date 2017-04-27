@@ -63,8 +63,8 @@
     <div class="row">
       <div class="col-md-12">
           <ul class="pestaniasActividadProyecto">
-            <li><%= link_to 'Tus Proyectos', search_projects_users_path(q: {entity_id_eq: current_user.loggable_id}, id: current_user.id), remote: true %></li>
-            <li><%= link_to 'Tus Actividades', search_activities_users_path(q: {entity_id_eq: current_user.loggable_id}, id: current_user.id), remote: true %></li>
+            <li><%= link_to 'Tus Proyectos', search_projects_users_path(id: current_user.id), remote: true %></li>
+            <li><%= link_to 'Tus Actividades', search_activities_users_path(id: current_user.id), remote: true %></li>
           </ul>
       </div>
     </div>
@@ -74,9 +74,7 @@
 <section class="container-fluid projectW">
     <ul class="row">
         <div id = "projects">
-          <% @projects_actives.each_slice(3) do |group| %>
-              <%= render partial: 'projects/project', collection: group %>
-          <% end %>
+              <%= render partial: 'projects/project', locals: { records: @projects_actives} %>
         </div>
 
     </ul>
