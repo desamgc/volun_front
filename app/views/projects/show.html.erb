@@ -23,56 +23,67 @@
 <div class="row">
 
   <div class="col-md-4 col-md-push-8">
-
-    <% if @project.volunteers_allowed %>
+    <div class="sidebarProyecto">
+    <div class="bloque first">
+         <% if @project.volunteers_allowed %>
       <div class="ctaVoluntarios">
           <h3>Se necesitan voluntarios</h3>
            <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id), class: "event-link big" %>
       </div>
     <% end %>
 
-    <div class="gallery-item">
-      <div id="mapaW">
+       <hr>
+         <div id="mapaW">
         <div id="mapDiv">
         </div>
       </div>
-      <br>
-      <div id="timetables">
+        <div id="timetables">
        <% @project.addresses do |address| %>
           <%= address.district %>
        <% end %>
 
       </div>
-      <br>
-      <div id="meta">
+        </div>
 
-          <%= render partial: "links/link", collection: @project.entity.links.logo %>
-          <hr>
-          <h5><%= @project.entity.name %></h5>
+
+
+
+
+            <div class="bloque">
+                <div id="meta">
+                <div class="brand">
+                        <div class="logoW">
+                     <%= render partial: "links/link", collection: @project.entity.links.logo %>
+
+                </div>
+                <h5><%= @project.entity.name %></h5>
+                </div>
+
+
+
+
+
 
       </div>
-      <br>
+            </div>
+
       <div class="bloque">
-        <div id="proyectosAsociados">
-          <h5> Proyecto asociado </h5>
+        <div id="actividadesAsociadas">
+          <h5> Actividades asociadas </h5>
           <% if @project.activities.present? %>
            <% @project.activities.each do |activity| %>
             <%= link_to activity_path(activity) do %>
-             <div class="cardProyectoAsociado">
-                <div class="row" style="margin:0">
-                  <div class="col-xs-4 no-padding-left no-padding-right">
-                  <figure>
-                       <%= render partial: "links/link", collection: activity.links.logo %>
-                  </figure>
-                 </div>
-                  <div class="col-xs-8">
+             <div class="cardActividadAsociada">
+
+
+
                   <div class="flex">
                     <h3>
                       <%= activity.name %>
                     </h3>
                   </div>
-                  </div>
-              </div>
+
+
              </div>
             <% end %>
             <% end %>
@@ -80,7 +91,11 @@
 
         </div>
        </div>
-    </div>
+          </div>
+
+
+
+
   </div>
 
   <div class="col-md-8 col-md-pull-4">

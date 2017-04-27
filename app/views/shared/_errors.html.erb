@@ -1,16 +1,22 @@
 <% if model_name.errors.any? %>
-    <div id="errores" class="nofluid">
-       <div class="info-seccion">
-          <div class="modal-alert modal-error">
-            <h2 class="title-modal">Existen errores en el formulario</h2>
-            <a href="#" onclick='closeErrores()' class="close" title="<%= t("application.close") %>">&times;</a>
-            <h2><%= pluralize(model_name.errors.count, "error") %> </h2>
+   <div class="row">
+       <div class="col-md-12">
+            <div id="errores" class="nofluid">
+       <div>
+
+            <h2 class="title-modal"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+ <span>Se han detectado <%= pluralize(model_name.errors.count, "error") %></span></h2>
+<!--            <a href="#" onclick='closeErrores()' class="close" title="<%= t("application.close") %>">&times;</a>-->
+
             <ul>
               <% model_name.errors.full_messages.each do |message| %>
               <li><%= message %></li>
               <% end %>
             </ul>
-       </div>
+
       </div>      
     </div>
+       </div>
+   </div>
+
 <% end %>

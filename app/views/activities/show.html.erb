@@ -42,38 +42,61 @@
       </div>
     </div>
 
-    <div id="timetables">
-        <h4>
-            <%= render partial: "timetables/timetables_by_date_activity", locals: {timetable: @timetables, day: @day} %>
-        </h4>
-    </div>
-
-  </div>
 
   <div id="mapaW">
     <div id="mapDiv">
     </div>
   </div>
 
-  <div id="meta">
 
-      <%= render partial: "links/link", collection: @activity.entity.links.logo %>
-      <hr>
-      <h5><%= @activity.entity.name %></h5>
+
+
+       <div id="timetables">
+        <ul class="direcciones">
+             <%= render partial: "timetables/timetables_by_date_activity", locals: {timetable: @timetables, day: @day} %>
+
+        </ul>
+
+    </div>
 
   </div>
+
+
+
+
+
 </div>
 
+ <div class="bloque">
+                <div id="meta">
+                <div class="brand">
+                        <div class="logoW">
+                     <%= render partial: "links/link", collection: @activity.entity.links.logo %>
 
+                </div>
+                <h5><%= @activity.entity.name %></h5>
+                </div>
+
+
+
+
+
+
+      </div>
+            </div>
 <div class="bloque">
 
      <% if @activity.links.document.present? %>
       <div id="documentacion">
         <h5> Documentación </h5>
         <% @activity.links.document.each do |link| %>
-          <%= link.description %>
 
-          <%= link_to 'Descargar', download_link_path(link.id) %>
+         <p> <%= link.description %></p>
+
+<div class="text-right">
+    <%= link_to 'Descargar', download_link_path(link.id), class: "event-link negative" %>
+</div>
+
         <% end %>
 
       </div>

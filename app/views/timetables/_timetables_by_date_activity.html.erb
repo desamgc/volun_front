@@ -1,12 +1,24 @@
 
 <% @timetables.group_by(&:address).each do |address, timetables| %>
-    <hr>
-    <% timetables.each do |timetable| %>
+   <li>
+        <p class="hora">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+
+         <% timetables.each do |timetable| %>
          <%= timetable.start_hour %> - <%= timetable.end_hour %> <% if !timetables.last %> / <% end %>
     <% end %>
-    <hr>
-    <%= address.road_type %> <%= address.road_name %> <%= address.road_number_type %> <%= address.road_number %>
+    </p>
+
+   <p class="direccion">
+       <i class="fa fa-map-marker" aria-hidden="true"></i>
+<%= address.road_type %> <%= address.road_name %> <%= address.road_number_type %> <%= address.road_number %>
     <%= address.postal_code %> <%= address.town %>
+   </p>
+    <hr>
+   </li>
+
+
+
 <% end %>
 
 

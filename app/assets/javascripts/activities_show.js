@@ -170,7 +170,7 @@ var map;
 var mapabase;
 var rotulacion;
 
-Projects.load_geo();
+//Projects.load_geo();
 
 
 $("#fecha").datepicker({
