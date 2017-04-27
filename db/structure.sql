@@ -2847,7 +2847,13 @@ CREATE TABLE users (
     current_sign_in_at timestamp without time zone,
     last_sign_in_at timestamp without time zone,
     current_sign_in_ip inet,
-    last_sign_in_ip inet
+    last_sign_in_ip inet,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    confirmation_token timestamp character varying,
+    unconfirmation_email timestamp character varying,
+    terms_of_service boolean DEFAULT false NOT NULL
+
 );
 
 

@@ -20,6 +20,12 @@ Rails.application.routes.draw do
     resources :volunteer_subscribes
   end
 
+  resources :addresses do
+    get 'bdc_search_towns', on: :collection
+    get 'bdc_search_roads', on: :collection
+    get 'bdc_search_road_numbers', on: :collection
+  end
+
   resources :activities, only: [:show, :index ] do
     collection do
       get :my_area
@@ -28,7 +34,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :entities, only:[:index,:show] do
+  resources :entities, only:[:index,:show,:new,:create] do
     resources :projects, only:[:index, :show], param: :q
     resources :activities, only:[:index, :show], param: :q
   end
@@ -68,12 +74,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
                        sessions: 'users/sessions',
-                       passwords: 'users/passwords'
-                     }, :skip => [:registrations]
-  as :user do
-    get 'users/edit' => 'users/registrations#edit', :as => 'edit_user_registration', :defaults => { :format => 'html' }
-    put 'users' => 'users/registrations#update', :as => 'user_registration', :defaults => { :format => 'html' }
-  end
+                       passwords: 'users/passwords',
+                       registrations: 'users/registrations'
+
+                     }
 
   resources :users, only: [:show] do
     collection do
@@ -85,7 +89,9 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get '/whoami' => 'pages#whoami'
+  #get '/conditions' => 'pages#conditions'
   get '/blog' => redirect("https://voluntariospormadridblog.madrid.es/")
+  resources :pages, path: '/', only: [:show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
