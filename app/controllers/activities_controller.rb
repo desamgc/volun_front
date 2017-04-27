@@ -66,8 +66,7 @@ class ActivitiesController < ApplicationController
   def show
     params[:day] ||= @activity.timetables.minimum(:execution_date).try :strftime, "%Y-%m-%d"
     @timetables = @activity.timetables.where(timetables: {execution_date: params[:day]})
-    @locations_activity = @activity.timetables.includes(:address).where(timetables: {execution_date: params[:day]}).as_json(only: [:id, :description], include: [:address, {address: {only:[:latitude, :longitude]}}])
-
+    @locations_activity = @activity.timetables.includes(:address).where(timetables: {execution_date: params[:day]}).as_json(only: [:id, :description, :name], include: [:address, {address: {only:[:latitude, :longitude]}}])
     @list_days_activity = @activity.timetables.pluck('timetables.execution_date').to_json
     @date = params[:day]
     @day = params[:day].to_json

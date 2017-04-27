@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= csrf_meta_tags %>
     <title><%= content_for?(:title) ? yield(:title) : "Voluntariado" %></title>
-
   <script>
     var aytmad = {};
     aytmad.config = {
@@ -39,7 +38,7 @@
       };
 
    </script>
-   <script src="//sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/init.js"></script>
+
 
 
 </head>
@@ -74,8 +73,13 @@
                 </main>
 
     <%= render 'layouts/footer' %>
-    <%= javascript_include_tag "js/vendor" %>
-    <%= javascript_include_tag "js/ayuntamiento-madrid" %>
+    <%#= javascript_include_tag "js/vendor" %>
+    <%#= javascript_include_tag "js/ayuntamiento-madrid" %>
+    <%= javascript_include_tag "datepicker" %>
+    <%= javascript_include_tag "datepicker_es.min" %>
+     <script src="//sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/init.js"></script>
+
+
 </div>
   </body>
 </html>

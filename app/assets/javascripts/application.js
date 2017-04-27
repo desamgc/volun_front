@@ -10,15 +10,24 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// require modernizr-custom
 
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
-// require bootstrap-datetimepicker
+//= require datepicker
+//= require datepicker_es.min
+//= require bootstrap.min
 //= require jquery.dotdotdot.min
-//= require turbolinks
+// require turbolinks
 //= require js/locale/i18n_es
+//= require video.min
+//= require videojsYoutube.min
+
 // require_directory .
+// require vendor
+
+
 
 
 
@@ -56,6 +65,8 @@ function closeAvisos()
 
 
 $(document).ready(function(){
+        $(".form-control").datepicker({});
+
         if ($("#rt_entity_subscribe_request_form_attributes_req_reason_id").val()==4)
             $('#other_motive').show();
         else

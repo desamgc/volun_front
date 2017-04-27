@@ -20,7 +20,7 @@ load_geo: function ()
              map = new Map("mapDiv", {
                      center: centro,
                      spatialReference: sr,
-                     zoom: 1
+                     zoom: 2
 
              });
 
@@ -35,7 +35,7 @@ load_geo: function ()
              map.infoWindow.resize(500, 200);
 
              var picBaseUrl = "/assets/";
-             var pms = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 64, 64).setOffset(0, 15);
+             var pms = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 24, 24).setOffset(0, 15);
 
              if (multiple == true)
              {
@@ -49,6 +49,11 @@ load_geo: function ()
 
                  var infoTemplate = new InfoTemplate();
 
+
+                 infoTemplate.setTitle(location.name);
+                 infoTemplate.setContent("<img src='/assets/1.jpg' alt='2'>" +
+                "<h2>" + location.description + " </h2><br/>" +
+                "<a href='/projects/" + location.id  + "/edit'>Leer mas..</a>" );
 
                  var g = new Graphic(pt,pms);
                  g.setInfoTemplate(infoTemplate);
@@ -99,7 +104,7 @@ function load_coordenadas ()
      {
              var picBaseUrl = "/assets/";
              var sr = new SpatialReference({wkid:25830});
-             var pms = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 64, 64).setOffset(0, 15);
+             var pms = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 20, 20).setOffset(0, 15);
              map.removeAllLayers();
              mapabase = new ArcGISTiledMapServiceLayer(url_map ,{
                                                               "spatialReference": sr});
@@ -170,7 +175,7 @@ var map;
 var mapabase;
 var rotulacion;
 
-//Projects.load_geo();
+Projects.load_geo();
 
 
 $("#fecha").datepicker({

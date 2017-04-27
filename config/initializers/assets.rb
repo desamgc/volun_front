@@ -19,4 +19,7 @@ Rails.application.config.assets.precompile += %w( jquery.dotdotdot.min.js )
 Rails.application.config.assets.precompile += %w( js/locale/i18n_es.js )
 Rails.application.config.assets.precompile += %w( js/vendor.js )
 Rails.application.config.assets.precompile += %w( js/ayuntamiento-madrid.js )
+Rails.application.config.assets.precompile += %w( inputCalendario.js )
+Rails.application.config.assets.precompile += %w( datepicker.js )
+Rails.application.config.assets.precompile += %w( datepicker_es.min.js )
 

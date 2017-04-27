@@ -1,29 +1,24 @@
 <div class="container-fluid mt45">
-   <div class="row">
-       <div class="col-md-6">
-           <h2 class="titlePage">Hazte entidad colaboradora</h2>
-       </div>
-
-   </div>
-
-<%= form_for(@entity) do |f| %>
-<div class="form form-electronic">
-  <%= render(partial: 'shared/errors', locals: {model_name: @entity})%>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="titlePage">Hazte entidad colaboradora</h2>
+    </div>
+  </div>
+  <%= form_for(@entity) do |f| %>
+  <div class="form form-electronic">
+    <%= render(partial: 'shared/errors', locals: {model_name: @entity})%>
     <fieldset>
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-              <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:email) %> <span class="asterisco">*</span></label>
-              <%= f.text_field :email, { class: 'big' } %>
-
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:email) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :email, { class: 'big' } %>
           </div>
-       <%= f.fields_for(:user_attributes, @entity.user) do |f_u| %>
-
+          <%= f.fields_for(:user_attributes, @entity.user) do |f_u| %>
           <div class="form-group">
             <label class="labelUp">Contraseña<span class="asterisco">*</span></label>
-               <%= f_u.password_field :password, autocomplete: "off" , class:  "medium" ,placeholder:"Contraseña para entrar a este sitio web" %>
+            <%= f_u.password_field :password, autocomplete: "off" , class:  "medium" ,placeholder:"Contraseña para entrar a este sitio web" %>
           </div>
-
           <div class="form-group">
             <label class="labelUp">Confirmación contraseña<span class="asterisco">*</span></label>
             <%= f_u.password_field :password_confirmation, autocomplete: "off",placeholder:"Escriba la contraseña anterior", class:  "medium" %>
@@ -31,116 +26,90 @@
         </div>
       </div>
     </fieldset>
-  <% end %>
-
-   <fieldset>
-       <div class="row">
-           <div class="col-md-12">
-                 <div class="form-group">
-                 <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:name) %><span class="asterisco">*</span></label>
-                  <%= f.text_field :name, { class: 'medium' } %>
-                 </div>
-
-                 <div class="form-group">
-                     <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:entity_type) %><span class="asterisco">*</span></label>
-                      <%= f.select :entity_type_id, entity_types_select_options, {include_blank: "", selected: f.object.entity_type_id || ""}, { class: 'medium' } %>
-                 </div>
-                 <div class="form-group">
-                     <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:vat_number) %> <span class="asterisco">*</span></label>
-                     <%= f.text_field :vat_number, { class: 'small' } %>
-                 </div>
-
-
-
-             </div>
-
-             <div class="col-md-12">
-                 <div class="form-group">
-          <label class="labelUp"><%= RequestForm.human_attribute_name(:req_reason_id) %> <span class="asterisco">*</span></label>
-
-              <%= f.select :req_reason_id, request_reasons_select_options, {include_blank: "", selected: f.object.req_reason_id || ""} %>
-
+    <% end %>
+    <fieldset>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:name) %><span class="asterisco">*</span></label>
+            <%= f.text_field :name, { class: 'medium' } %>
+          </div>
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:entity_type) %><span class="asterisco">*</span></label>
+            <%= f.select :entity_type_id, entity_types_select_options, {include_blank: "", selected: f.object.entity_type_id || ""}, { class: 'medium' } %>
+          </div>
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:vat_number) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :vat_number, { class: 'small' } %>
+          </div>
         </div>
-             <div class="form-group" id="other_motive">
-          <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:other_subscribe_reason) %> <span class="asterisco">*</span></label>
-          <%= f.text_field :other_subscribe_reason, { class: 'big' } %>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="labelUp"><%= RequestForm.human_attribute_name(:req_reason_id) %> <span class="asterisco">*</span></label>
+            <%= f.select :req_reason_id, request_reasons_select_options, {include_blank: "", selected: f.object.req_reason_id || ""} %>
+          </div>
+          <div class="form-group" id="other_motive">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:other_subscribe_reason) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :other_subscribe_reason, { class: 'big' } %>
+          </div>
         </div>
-             </div>
-
-       </div>
-
-   </fieldset>
-   <hr>
-
-   <fieldset>
-       <div class="row">
-           <div class="col-md-9">
-               <div class="form-group">
-                   <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:contact_name) %> <span class="asterisco">*</span></label>
-          <%= f.text_field :contact_name, { class: 'medium' } %>
-               </div>
-
-               <div class="form-group">
-                   <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:contact_last_name) %><span class="asterisco">*</span></label>
-          <%= f.text_field :contact_last_name, { class: 'medium' } %>
-               </div>
-               <div class="form-group">
-
-          <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:contact_last_name_alt) %> </label>
-          <%= f.text_field :contact_last_name_alt, { class: 'medium' } %>
-               </div>
-
-           </div>
-              <div class="col-md-9">
-               <div class="form-group">
-                   <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:representative_name) %> <span class="asterisco">*</span></label>
-          <%= f.text_field :representative_name, { class: 'medium' } %>
-
-
-               </div>
-               <div class="form-group">
-                   <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:representative_last_name) %> <span class="asterisco">*</span></label>
-          <%= f.text_field :representative_last_name, { class: 'medium' } %>
-               </div>
-               <div class="form-group">
-                   <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:representative_last_name_alt) %> </label>
-          <%= f.text_field :representative_last_name_alt, { class: 'medium' } %>
-               </div>
-                </div>
-              <div class="col-md-9">
-               <div class="form-group">
-                    <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:phone_number) %> <span class="asterisco">*</span></label>
-          <%= f.text_field :phone_number, { class: 'small' } %>
-
-               </div>
-               <div class="form-group">
-              <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:phone_number_alt) %> </label>
-          <%= f.text_field :phone_number_alt, { class: 'small' } %>
-               </div>
-
-           </div>
-       </div>
-   </fieldset>
-   <hr>
-   <fieldset>
-       <%= f.fields_for(:address_attributes, @entity.address) do |f_a| %>
-
-          <%= render partial: 'shared/addressBDC', locals: {f: f_a } %>
-       <% end %>
-   </fieldset>
-
+      </div>
+    </fieldset>
     <hr>
-
-
-      <%= render partial: 'shared/protection', locals: {f: f} %>
-
-
-</div>
-
-<div class="button-group text-right pb90">
-<%= link_to 'Ya estoy registrado', new_user_session_path, class: "link" %>
-  <%= f.button t('application.submit'), :class => 'event-link big', :value => 'Registrarme' %>
-</div>
-<% end %>
-
+    <fieldset>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:contact_name) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :contact_name, { class: 'medium' } %>
+          </div>
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:contact_last_name) %><span class="asterisco">*</span></label>
+            <%= f.text_field :contact_last_name, { class: 'medium' } %>
+          </div>
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:contact_last_name_alt) %> </label>
+            <%= f.text_field :contact_last_name_alt, { class: 'medium' } %>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:representative_name) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :representative_name, { class: 'medium' } %>
+          </div>
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:representative_last_name) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :representative_last_name, { class: 'medium' } %>
+          </div>
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:representative_last_name_alt) %> </label>
+            <%= f.text_field :representative_last_name_alt, { class: 'medium' } %>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:phone_number) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :phone_number, { class: 'small' } %>
+          </div>
+          <div class="form-group">
+            <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:phone_number_alt) %> </label>
+            <%= f.text_field :phone_number_alt, { class: 'small' } %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+      <%= f.fields_for(:address_attributes, @entity.address) do |f_a| %>
+      <%= render partial: 'shared/addressBDC', locals: {f: f_a } %>
+      <% end %>
+    </fieldset>
+    <hr>
+    <%= render partial: 'shared/protection', locals: {f: f} %>
+  </div>
+  <div class="button-group text-right pb90">
+    <%= link_to 'Ya estoy registrado', new_user_session_path, class: "link" %>
+    <%= f.button t('application.submit'), :class => 'event-link big', :value => 'Registrarme' %>
+  </div>
+  <% end %>
 </div>
