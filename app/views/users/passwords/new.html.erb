@@ -22,61 +22,101 @@
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post}) do |f| %>
 
-    	
-  <% if resource.errors.any? %>
-    <div id="errores" class="nofluid">
-       <div class="info-seccion">
-          <div class="modal-alert modal-error">
-            <h2 class="title-modal">Existen errores en el formulario</h2>
-<!--            <a href="#" onclick='closeErrores()' class="close" title="<%= t("application.close") %>">&times;</a>-->
-            <h2><%= pluralize(resource.errors.count, "error") %> </h2>
 
-            <ul>
-              <% resource.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-            </ul>
-       </div>
-      </div>      
-    </div>
-  <% end %>
+        <% if resource.errors.any? %>
+            <div id="errores" class="nofluid">
+                <div class="info-seccion">
+                    <div class="modal-alert modal-error">
+                        <h2 class="title-modal">Existen errores en el formulario</h2>
+                        <!--            <a href="#" onclick='closeErrores()' class="close" title="<%= t("application.close") %>">&times;</a>-->
+                        <h2>
+                            <%= pluralize(resource.errors.count, "error") %>
+                        </h2>
 
-  <p class="notes">
-        Los campos marcados con <em class="asterisco">*</em> son obligatorios.
-    </p>
-        <div class="panel panel-type1">
-            <div class="panel-heading">
-                <h3 class="panel-title">Olvidé mi contraseña</h3>
-                
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    
-                    <div class="col-sm-6 col-xs-6 col-md-12">
-                        <div class="mc-acceso-item login">
-                            <div class="content">
-                                <h4 class="legend legend-user">Datos a rellenar</h4>
-                                    <div class="form-group first">
-                                        <span class="labelUp">Correo electrónico <span class="asterisco">*</span></span>
-                                       <!-- <input type="text" class="form-control" id="correoelectronico" name="correoelectronico" placeholder="Correo electrónico" /> -->
-                                        <%= f.email_field :email, autofocus: true, placeholder:"email", class:  "form-control" %>
-                                    </div>
-                                   <div class="buttons">
-                                        <button class="button button4 button-icon">Recibir instrucciones <i class="button-icon-arrowright"></i></button> 
-                                                                      
-                                        <ul class="list-inline">
-                                            <!--<li><a href="#">Regístrate ahora</a></li>
-                                            <li><a href="#">Olvidé mi contraseña</a></li> -->
-                                            
-                                        </ul>
-                                    </div> 	
-                                
-                            </div>
-                        </div>
+                        <ul>
+                            <% resource.errors.full_messages.each do |message| %>
+                                <li>
+                                    <%= message %>
+                                </li>
+                                <% end %>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    <% end %>
-</div>
+            <% end %>
 
+                <div class="container-fluid">
+
+                    <div class="row pt60">
+                        
+                        <div class="col-md-12">
+                            <h3 class="titlePage">Olvidé mi contraseña</h3>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                      
+                        <div class="col-md-12">
+
+                            <div class="form form-electronic">
+                                <p class="notes mb20">
+                                    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+                                </p>
+                                <fieldset>
+
+
+
+
+
+                                    <div class="mc-acceso-item login">
+                                        <div class="content">
+
+                                            <div class="form-group first">
+                                                <label class="labelUp">Correo electrónico <span class="asterisco">*</span></label>
+                                                <!-- <input type="text" class="form-control" id="correoelectronico" name="correoelectronico" placeholder="Correo electrónico" /> -->
+                                                <%= f.email_field :email, autofocus: true, placeholder:"email", class:  "big" %>
+                                            </div>
+                                           
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+                                </fieldset>
+                            </div>
+
+
+
+                        </div>
+                        
+
+                    </div>
+                        <div class="row">
+                        
+                            <div class="col-md 12">
+                            
+                                <fieldset>
+                                <hr>
+                                 <div class="button-group text-right pb80">
+                                                <button class="event-link big">Recibir instrucciones <i class=""></i></button>
+
+
+                                            </div>
+                                
+                                </fieldset>
+                            </div>
+                        
+                        </div>
+
+                </div>
+
+
+
+                <% end %>
+</div>
