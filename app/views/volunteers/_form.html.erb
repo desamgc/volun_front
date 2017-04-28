@@ -1,37 +1,35 @@
 <%= form_for(@volunteer) do |f| %>
-  <% if @volunteer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@volunteer.errors.count, "error") %> prohibited this volunteer from being saved:</h2>
-
-      <ul>
-      <% @volunteer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :first_surname %><br>
-    <%= f.text_field :first_surname %>
-  </div>
-  <div class="field">
-    <%= f.label :second_surname %><br>
-    <%= f.text_field :second_surname %>
-  </div>
-  <div class="field">
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
-  </div>
-  <div class="field">
-    <%= f.label :id_number %><br>
-    <%= f.text_field :id_number %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% if @volunteer.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@volunteer.errors.count, "error") %> prohibited this volunteer from being saved:</h2>
+  <ul>
+    <% @volunteer.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="field">
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :first_surname %><br>
+  <%= f.text_field :first_surname %>
+</div>
+<div class="field">
+  <%= f.label :second_surname %><br>
+  <%= f.text_field :second_surname %>
+</div>
+<div class="field">
+  <%= f.label :age %><br>
+  <%= f.number_field :age %>
+</div>
+<div class="field">
+  <%= f.label :id_number %><br>
+  <%= f.text_field :id_number %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>

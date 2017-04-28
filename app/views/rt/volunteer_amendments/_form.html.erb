@@ -1,32 +1,28 @@
 <%= form_for(@rt_volunteer_amendment, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_amendment})%>
-   <p class="notes mb20">
-   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+  <p class="notes mb20">
+    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
   <fieldset>
     <div class="row">
-     <div class="col-md-9">
+      <div class="col-md-9">
         <div class="form-group">
-
           <label class="labelUp"><%= Rt::VolunteerAmendment.human_attribute_name(:email) %> <span class="asterisco">*</span></label>
           <%= f.text_field :email %>
         </div>
-
         <div class="form-group">
           <label class="labelUp"><%= Rt::VolunteerAmendment.human_attribute_name(:phone_number) %> <span class="asterisco">*</span></label>
           <%= f.text_field :phone_number %>
         </div>
-
         <div class="form-group">
           <label class="labelUp"><%= Rt::VolunteerAmendment.human_attribute_name(:phone_number_alt) %> </label>
           <%= f.text_field :phone_number_alt %>
         </div>
       </div>
     </div>
-   </fieldset>
-    <%= render partial: 'shared/addressInternet', locals: {f: f} %>
-
+  </fieldset>
+  <%= render partial: 'shared/addressInternet', locals: {f: f} %>
 </div>
 <hr>
 <div class="button-group text-right">

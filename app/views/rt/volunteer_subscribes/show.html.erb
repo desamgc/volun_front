@@ -1,7 +1,5 @@
 <%= main_title(t("action.show", model: RtVolunteerSubscribe.model_name.human)) %>
-
 <dl class="dl-horizontal">
-
   <dt><%= RtVolunteerSubscribe.human_attribute_name(:id) %>:</dt>
   <dd><%= @rt_volunteer_subscribe.id %></dd>
   <dt><%= RtVolunteerSubscribe.human_attribute_name(:name) %>:</dt>
@@ -18,7 +16,6 @@
   <dd><%= @rt_volunteer_subscribe.email %></dd>
   <dt><%= RtVolunteerSubscribe.human_attribute_name(:created_at) %>:</dt>
   <dd><%= show_simple_date(@rt_volunteer_subscribe.created_at) %></dd>
-
 </dl>
 <% unless request.xhr? %>
 <%= button_to_back %>

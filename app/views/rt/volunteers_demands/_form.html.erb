@@ -1,80 +1,64 @@
 <%= form_for(@rt_volunteers_demand, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteers_demand})%>
-
   <p class="notes mb20">
-   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
   <fieldset>
     <div class="row">
-       <div class="col-md-9">
-
+      <div class="col-md-9">
         <div class="form-group all">
-            <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:description) %> <span class="asterisco">*</span></label>
-            <%= f.text_area :description, { class: 'all' } %>
-        </div>
-
-
-        <div class="form-group">
-           <div class="form-group date-field">
-              <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:execution_start_date) %> <span class="asterisco">*</span></label>
-              <%= f.text_field :execution_start_date, :class => "form-control-date small" %>
-           </div>
+          <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:description) %> <span class="asterisco">*</span></label>
+          <%= f.text_area :description, { class: 'all' } %>
         </div>
         <div class="form-group">
-           <div class="form-group date-field">
-              <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:execution_end_date) %><span class="asterisco">*</span></label>
-              <%= f.text_field :execution_end_date, :class => "form-control-date small" %>
-           </div>
+          <div class="form-group date-field">
+            <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:execution_start_date) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :execution_start_date, :class => "form-control-date small" %>
+          </div>
         </div>
-
-         <div class="form-group all">
+        <div class="form-group">
+          <div class="form-group date-field">
+            <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:execution_end_date) %><span class="asterisco">*</span></label>
+            <%= f.text_field :execution_end_date, :class => "form-control-date small" %>
+          </div>
+        </div>
+        <div class="form-group all">
           <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:requested_volunteers_num) %> <span class="asterisco">*</span></label>
-         <%= f.text_field :requested_volunteers_num, { class: 'medium' } %>
+          <%= f.text_field :requested_volunteers_num, { class: 'medium' } %>
+        </div>
       </div>
-
-     </div>
-     </div>
-
+    </div>
   </fieldset>
   <hr>
-
   <fieldset>
     <div class="row">
-     <div class="col-md-9">
-
-      <div class="form-group all">
+      <div class="col-md-9">
+        <div class="form-group all">
           <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:volunteers_profile) %> <span class="asterisco">*</span></label>
           <%= f.text_field :volunteers_profile, { class: 'all' } %>
         </div>
-
-
-      <div class="form-group all">
+        <div class="form-group all">
           <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:volunteer_functions_1) %> <span class="asterisco">*</span></label>
           <%= f.text_field :volunteer_functions_1, { class: 'all' } %>
-      </div>
-
-      <div class="form-group all">
+        </div>
+        <div class="form-group all">
           <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:volunteer_functions_2) %> </label>
           <%= f.text_field :volunteer_functions_2, { class: 'all' } %>
-
-      </div>
-
-      <div class="form-group all">
+        </div>
+        <div class="form-group all">
           <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:volunteer_functions_3) %></label>
           <%= f.text_field :volunteer_functions_3, { class: 'all' } %>
-
+        </div>
       </div>
-
-   </div>
-   </div>
+    </div>
   </fieldset>
   <hr>
   <%= render partial: 'shared/addressInternet', locals: {f: f} %>
 </div>
 <hr>
 <div class="button-group text-right">
-   <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big" %>
+  <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big" %>
   <%= f.button t('application.submit'), :class => 'event-link big' %>
 </div>
 <% end %>

@@ -1,7 +1,7 @@
 <%= form_for(@rt_volunteer_subscribe) do |f| %>
 <div class="form form-electronic">
- <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_subscribe})%>
-  
+  <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_subscribe})%>
+
   <fieldset>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
@@ -9,21 +9,20 @@
           <label class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:name) %> <span class="asterisco">*</span></label>
           <%= f.text_field :name, { class: 'medium' } %>
         </div>
-     
-    
+
+
         <div class="form-group">
           <label class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:last_name) %> <span class="asterisco">*</span></label>
           <%= f.text_field :last_name, { class: 'medium' } %>
         </div>
-      
+
         <div class="form-group">
           <label class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:last_name_alt) %> </label>
           <%= f.text_field :last_name_alt, { class: 'medium' } %>
         </div>
+      </div>
     </div>
-   </div> 
   </fieldset>
-
   <fieldset>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
@@ -31,28 +30,23 @@
           <label class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:phone_number) %> <span class="asterisco">*</span></label>
           <%= f.text_field :phone_number, { class: 'medium' } %>
         </div>
-      
+
         <div class="form-group">
           <label class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:phone_number_alt) %> </label>
           <%= f.text_field :phone_number_alt, { class: 'medium' } %>
         </div>
-    
+
         <div class="form-group">
           <label class="labelUp"><%= Rt::VolunteerSubscribe.human_attribute_name(:email) %> <span class="asterisco">*</span></label>
           <%= f.text_field :email, { class: 'medium' } %>
         </div>
       </div>
     </div>
-  </fieldset> 
-    <%= render partial: 'shared/protection' %> 
-    <hr>
-    <div class="button-group text-right pb90">
-      <%= f.button t('application.submit'), :class => 'event-link big', :value => 'Registrarme' %>
+  </fieldset>
+  <%= render partial: 'shared/protection' %>
+  <hr>
+  <div class="button-group text-right pb90">
+    <%= f.button t('application.submit'), :class => 'event-link big', :value => 'Registrarme' %>
+  </div>
 </div>
-</div>
-
-
-
 <% end %>
-
-

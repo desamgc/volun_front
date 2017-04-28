@@ -3,33 +3,23 @@
   <h1 class="titlePage">Agenda de actividades solidarias</h1>
   <div class="row">
     <div class="col-md-4">
-        <%= javascript_tag do %>
-          var list_days = <%= raw @list_days.to_json %>;
-          var multiple = true;
-          var day_c = <%= raw @day.to_json %>
-        <% end %>
-        <div id="fecha">
-
-        </div>
-
-        <%= render "buscador" %>
+      <%= javascript_tag do %>
+      var list_days = <%= raw @list_days.to_json %>;
+      var multiple = true;
+      var day_c = <%= raw @day.to_json %>
+      <% end %>
+      <div id="fecha">
+      </div>
+      <%= render "buscador" %>
     </div>
     <div class="col-md-8">
-          <div id="activities">
-             <%= render partial: 'events/search', locals: {events: @events}  %>
-
-                  <%#= render partial: 'timetables/timetable', collection: @events   %>
-
-          </div>
-          <div id ="scroll_activities">
-             <%= render partial: 'shared/scroll_infinite', locals: { records: @events} %>
-          </div>
+      <div id="activities">
+        <%= render partial: 'events/search', locals: {events: @events}  %>
+        <%#= render partial: 'timetables/timetable', collection: @events   %>
+      </div>
+      <div id ="scroll_activities">
+        <%= render partial: 'shared/scroll_infinite', locals: { records: @events} %>
+      </div>
     </div>
-
   </div>
 </div>
-
-
-
-
-

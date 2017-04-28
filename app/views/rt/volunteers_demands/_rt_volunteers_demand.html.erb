@@ -1,16 +1,14 @@
 <tr id="<%= dom_id(rt_volunteers_demand) %>" class="table-row-transform" >
-
   <% project.main_attributes.each do |attr_name| %>
   <td class="table-cell-group"><%= show_attr(rt_volunteers_demand.public_send attr_name) %></td>
   <% end %>
-
   <td class="table-cell-group">
     <%= link_to_show(rt_volunteers_demand) %>
     <%= link_to_edit(rt_volunteers_demand) %>
-<% if rt_volunteers_demand.try(:archived?) %>
+    <% if rt_volunteers_demand.try(:archived?) %>
     <%= link_to_recover(rt_volunteers_demand) %>
-<% else %>
+    <% else %>
     <%= link_to_destroy(rt_volunteers_demand) %>
-<% end %>
+    <% end %>
   </td>
 </tr>

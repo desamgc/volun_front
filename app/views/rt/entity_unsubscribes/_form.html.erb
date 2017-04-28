@@ -1,27 +1,24 @@
 <%= form_for(@rt_entity_unsubscribe, default_form_options) do |f| %>
 <div class="form form-electronic">
-<%= render(partial: 'shared/errors', locals: {model_name: @rt_entity_unsubscribe})%>
-
+  <%= render(partial: 'shared/errors', locals: {model_name: @rt_entity_unsubscribe})%>
   <p class="notes mb20">
-   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-
   <fieldset>
     <div class="row">
-     <div class="col-md-9">
-       <div class="form-group all">
+      <div class="col-md-9">
+        <div class="form-group all">
           <label class="labelUp"><%= Rt::EntityUnsubscribe.human_attribute_name(:notes) %> <span class="asterisco">*</span></label>
           <%= f.text_area :notes, {class: 'all'} %>
         </div>
       </div>
     </div>
   </fieldset>
-<hr>
-<div class="button-group text-right pb80">
-  <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
-  <%= f.button t('application.submit'), :class => 'event-link big' %>
+  <hr>
+  <div class="button-group text-right pb80">
+    <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
+    <%= f.button t('application.submit'), :class => 'event-link big' %>
+  </div>
 </div>
-</div>
-
 <% end %>
 <br/>

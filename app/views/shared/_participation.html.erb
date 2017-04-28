@@ -1,10 +1,9 @@
 <div id="participation">
   <% if current_user && current_user.loggable.class=="Entity" %>
-    <%= link_to t('volunteer_subscribe.interest'), projects_path(@project.id), class: "event-link " %>
+  <%= link_to t('volunteer_subscribe.interest'), projects_path(@project.id), class: "event-link " %>
   <% else %>
-    <span> <%= t('volunteer_subscribe.participation') %> <%= link_to t('devise_views.sessions.new.submit'), new_user_session_path %> o <%= link_to t('volunteer_subscribe.new'), new_rt_volunteer_subscribe_path %></span>
-              
-  <% end %>    
-</div>        
-<br>
+  <span> <%= t('volunteer_subscribe.participation') %> <%= link_to t('devise_views.sessions.new.submit'), new_user_session_path %> o <%= link_to t('volunteer_subscribe.new'), new_rt_volunteer_subscribe_path %></span>
 
+  <% end %>
+</div>
+<br>

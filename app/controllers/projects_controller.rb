@@ -53,8 +53,6 @@ class ProjectsController < ApplicationController
   end if
 
 
-  # GET /projects/1
-  # GET /projects/1.json
   def show
 
     params[:day] ||= @project.timetables.minimum(:execution_date).try :strftime, "%Y-%m-%d"

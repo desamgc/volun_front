@@ -1,16 +1,14 @@
 <tr id="<%= dom_id(rt_entity_unsubscribe) %>" class="table-row-transform" >
-
   <% project.main_attributes.each do |attr_name| %>
   <td class="table-cell-group"><%= show_attr(rt_entity_unsubscribe.public_send attr_name) %></td>
   <% end %>
-
   <td class="table-cell-group">
     <%= link_to_show(rt_entity_unsubscribe) %>
     <%= link_to_edit(rt_entity_unsubscribe) %>
-<% if rt_entity_unsubscribe.try(:archived?) %>
+    <% if rt_entity_unsubscribe.try(:archived?) %>
     <%= link_to_recover(rt_entity_unsubscribe) %>
-<% else %>
+    <% else %>
     <%= link_to_destroy(rt_entity_unsubscribe) %>
-<% end %>
+    <% end %>
   </td>
 </tr>

@@ -1,7 +1,5 @@
 <%= main_title(t("action.show", model: RtEntitySubscribe.model_name.human)) %>
-
 <dl class="dl-horizontal">
-
   <dt><%= RtEntitySubscribe.human_attribute_name(:id) %>:</dt>
   <dd><%= @rt_entity_subscribe.id %></dd>
   <dt><%= RtEntitySubscribe.human_attribute_name(:name) %>:</dt>
@@ -44,7 +42,6 @@
   <dd><%= @rt_entity_subscribe.request_reason %></dd>
   <dt><%= RtEntitySubscribe.human_attribute_name(:created_at) %>:</dt>
   <dd><%= show_simple_date(@rt_entity_subscribe.created_at) %></dd>
-
 </dl>
 <% unless request.xhr? %>
 <%= button_to_back %>

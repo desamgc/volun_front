@@ -1,85 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= csrf_meta_tags %>
     <title><%= content_for?(:title) ? yield(:title) : "Voluntariado" %></title>
-  <script>
+    <script>
     var aytmad = {};
     aytmad.config = {
-        routes:{
-            menu:'data/menu.json',
-            menuTramites:'data/menu_tramites.json',
-            calendar:'04-buscador-agenda.html?vgnextchannel=27dfb4f19cce3210VgnVCM10000026205a0aRCRD&amp;cuando=cuandoDia&amp;enviar=Buscar&amp;newSearch=true&amp;fechaAccesible=',
-            taxonomias:'data/XMLAutocompletarTaxonomias.xml'
-        },
-        constants:{
-            numVisibleLinks:3,
-            API_KEY: "AIzaSyBiYQM0X20DOGmT3IQ6sj4OrUeC3nEuvDs"
-        }
+    routes:{
+    menu:'data/menu.json',
+    menuTramites:'data/menu_tramites.json',
+    calendar:'04-buscador-agenda.html?vgnextchannel=27dfb4f19cce3210VgnVCM10000026205a0aRCRD&amp;cuando=cuandoDia&amp;enviar=Buscar&amp;newSearch=true&amp;fechaAccesible=',
+    taxonomias:'data/XMLAutocompletarTaxonomias.xml'
+    },
+    constants:{
+    numVisibleLinks:3,
+    API_KEY: "AIzaSyBiYQM0X20DOGmT3IQ6sj4OrUeC3nEuvDs"
+    }
     };
     </script>
-
-
-
-
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
-  <link rel="stylesheet" href="//sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/esri/css/esri.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <link rel="stylesheet" href="//sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/esri/css/esri.css">
     <script type="text/javascript">
     var dojoConfig = {
-        paths: {
-          extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras"
-        }
-      };
-
-   </script>
-
-
-
-</head>
-<body class="<%=controller_name %>_<%=action_name %>">
-   <div id="wrapper">
+    paths: {
+    extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras"
+    }
+    };
+    </script>
+  </head>
+  <body class="<%=controller_name %>_<%=action_name %>">
+    <div id="wrapper">
       <%= render 'layouts/header' %>
       <!--[if lt IE 9]>
       <% if browser.ie? && cookies['ie_alert_closed'] != 'true' %>
-        <div data-alert class="alert-box info ie-alert-box">
-          <a href="#" class="close ie-alert-box-close-js">&times;</a>
-          <h2><%= t("layouts.application.ie_title") %></h2>
-          <p>
-            <%= t("layouts.application.ie",
-            chrome: link_to(
-                    t("layouts.application.chrome"), "https://www.google.com/chrome/browser/desktop/", target: "_blank"),
-            firefox: link_to(
-                     t("layouts.application.firefox"), "https://www.mozilla.org/firefox", target: "_blank")
-            ).html_safe %>
-          </p>
-        </div>
+      <div data-alert class="alert-box info ie-alert-box">
+        <a href="#" class="close ie-alert-box-close-js">&times;</a>
+        <h2><%= t("layouts.application.ie_title") %></h2>
+        <p>
+          <%= t("layouts.application.ie",
+          chrome: link_to(
+          t("layouts.application.chrome"), "https://www.google.com/chrome/browser/desktop/", target: "_blank"),
+          firefox: link_to(
+          t("layouts.application.firefox"), "https://www.mozilla.org/firefox", target: "_blank")
+          ).html_safe %>
+        </p>
+      </div>
       <% end %>
       <![endif]-->
-
-   <% if true==false %>
-    <%= render 'layouts/migas' %>
-   <% end %>
-
-
-    <%= render 'layouts/avisos' %>
-                <main>
-                  <%= yield %>
-                </main>
-
-    <%= render 'layouts/footer' %>
-    <%#= javascript_include_tag "js/vendor" %>
-    <%#= javascript_include_tag "js/ayuntamiento-madrid" %>
-    <%= javascript_include_tag "datepicker" %>
-    <%= javascript_include_tag "datepicker_es.min" %>
-     <script src="//sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/init.js"></script>
-
-
-</div>
+      <% if true==false %>
+      <%= render 'layouts/migas' %>
+      <% end %>
+      <%= render 'layouts/avisos' %>
+      <main>
+      <%= yield %>
+      </main>
+      <%= render 'layouts/footer' %>
+      <%#= javascript_include_tag "js/vendor" %>
+      <%#= javascript_include_tag "js/ayuntamiento-madrid" %>
+      <%= javascript_include_tag "datepicker" %>
+      <%= javascript_include_tag "datepicker_es.min" %>
+      <script src="//sigmapre.madrid.es/arcgis_js_api/library/3.14/3.14/init.js"></script>
+    </div>
   </body>
 </html>

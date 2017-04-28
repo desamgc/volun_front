@@ -1,33 +1,30 @@
 <%= javascript_include_tag 'activities_home' %>
 <%= javascript_include_tag 'projects' %>
 <%= javascript_tag do %>
-  var locations = <%= raw @locations.to_json %>;
-  var multiple = true;
-  var url_map = "<%= Rails.application.secrets.url_map %>";
-  var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
-  var list_days = <%= raw @list_days.to_json %>;
-  var day_c = ""
+var locations = <%= raw @locations.to_json %>;
+var multiple = true;
+var url_map = "<%= Rails.application.secrets.url_map %>";
+var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
+var list_days = <%= raw @list_days.to_json %>;
+var day_c = ""
 <% end %>
-
 <div class="section-cont">
   <h2 class="section-name">
-    <span class="section-name-title">
-      Comunidad Virtual del Voluntariado y la solidaridad en la Ciudad de Madrid
-    </span>
+  <span class="section-name-title">
+    Comunidad Virtual del Voluntariado y la solidaridad en la Ciudad de Madrid
+  </span>
   </h2>
 </div>
-
 <section class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-       <h2 class="titlePage"> Proyectos destacados <div class="right"><%= link_to 'Ver proyectos', projects_path, class: "event-link negative rightChev" %></div></h2>
-       <ul class="row destacadosWrapperHome">
-          <%= render partial: 'projects/project', locals: { records: @projects_featured }  %>
-       </ul>
+      <h2 class="titlePage"> Proyectos destacados <div class="right"><%= link_to 'Ver proyectos', projects_path, class: "event-link negative rightChev" %></div></h2>
+      <ul class="row destacadosWrapperHome">
+        <%= render partial: 'projects/project', locals: { records: @projects_featured }  %>
+      </ul>
     </div>
-    </div>
+  </div>
 </section>
-
 <section id="actividadesHome" class="container-fluid">
   <div class="row">
     <div class="col-md-12">
@@ -45,22 +42,18 @@
         <%#= render partial: 'events/search', locals: {events: @events}  %>
         <%#= render partial: 'activities/activity', collection: @activities %>
         <%= render partial: 'timetables/timetable', collection: @events  %>
-
       </div>
     </div>
   </div>
 </section>
-
-
 <section id="mapWrapper" class="container-fluid nopadding">
-<div class="row">
-  <div class="col-md-12">
-    <div id="mapDiv">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="mapDiv">
+      </div>
     </div>
   </div>
-</div>
 </section>
-
 <section id="blogCta" class="text-center">
   <div class="row">
     <div class="col-md-12">
@@ -70,15 +63,14 @@
     </div>
   </div>
 </section>
-
 <% if @project_urgent.size > 0 %>
 <% content_for :head do %>
-  <% @project_urgent.each do |project| %>
-    <div class="urgenteWrapper">
-      <h2><%=  project.name %></h2>
-        <p> <%= truncate(project.description, length: 180) %></p>
-        <i><%= link_to  "" , project_path(project), class: "fa fa-chevron-right" %> </i>
-    </div>
-  <% end %>
+<% @project_urgent.each do |project| %>
+<div class="urgenteWrapper">
+  <h2><%=  project.name %></h2>
+  <p> <%= truncate(project.description, length: 180) %></p>
+  <i><%= link_to  "" , project_path(project), class: "fa fa-chevron-right" %> </i>
+</div>
+<% end %>
 <% end %>
 <% end %>

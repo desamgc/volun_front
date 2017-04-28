@@ -1,43 +1,30 @@
 <fieldset>
-<div class="row">
-  <div class="col-md-9">
-    <div class="form-group">
-
-	<label class="labelUp">Autorizo la divulgación de mi imagen captada en actos públicos de voluntariado a través de medios de comunicación o medios de difusión municipales. (Ver aviso legal) <span class="asterisco">*</span></label>
-	<%= f.label :publish_pictures %><br />
-	<%= f.label :publish_pictures, "Si", :value => "true"  %>
-	<%= f.radio_button :publish_pictures, true %>
-	<%= f.label :publish_pictures, "No", :value => "false" %>
-	<%= f.radio_button :publish_pictures, false, :checked => true %>
-
-	<div class="form-group">
-		<p class="labelUp" id="textoInformativo" >Desde el Programa Municipal de Voluntariado del Ayuntamiento de Madrid &#8220;Voluntarios por Madrid&#8221;, le ofrecemos toda la informaci&#243;n sobre voluntariado de la ciudad de Madrid, as&#237; como sobre los proyectos de voluntariado en los que puede colaborar. Datos de contacto: 900 777 888 (tel&#233;fono gratuito) Horario de atenci&#243;n: lunes a jueves de 9:00 a 19:00 horas viernes de 9:00 a 18:00 horas Correo electr&#243;nico: voluntariospormadrid@madrid.es </p>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="form-group">
+        <label class="labelUp">Autorizo la divulgación de mi imagen captada en actos públicos de voluntariado a través de medios de comunicación o medios de difusión municipales. (Ver aviso legal) <span class="asterisco">*</span></label>
+        <%= f.label :publish_pictures %><br />
+        <%= f.label :publish_pictures, "Si", :value => "true"  %>
+        <%= f.radio_button :publish_pictures, true %>
+        <%= f.label :publish_pictures, "No", :value => "false" %>
+        <%= f.radio_button :publish_pictures, false, :checked => true %>
+        <div class="form-group">
+          <p class="labelUp" id="textoInformativo" >Desde el Programa Municipal de Voluntariado del Ayuntamiento de Madrid &#8220;Voluntarios por Madrid&#8221;, le ofrecemos toda la informaci&#243;n sobre voluntariado de la ciudad de Madrid, as&#237; como sobre los proyectos de voluntariado en los que puede colaborar. Datos de contacto: 900 777 888 (tel&#233;fono gratuito) Horario de atenci&#243;n: lunes a jueves de 9:00 a 19:00 horas viernes de 9:00 a 18:00 horas Correo electr&#243;nico: voluntariospormadrid@madrid.es </p>
+        </div>
+        <p class="labelUp" id="textoEncuesta" >Le informamos que anualmente la Direcci&#243;n General de Calidad y Atenci&#243;n al Ciudadano del Ayuntamiento de Madrid realiza una encuesta de satisfacci&#243;n entre los diferentes usuarios de la Web municipal madrid.es con el objeto de mejorar la calidad de los servicios municipales que se prestan a trav&#233;s de este medio electr&#243;nico. Para ello, se realiza una selecci&#243;n aleatoria entre todos los correos electr&#243;nicos que aportan los usuarios. En el caso que usted no quiera que el dato de su correo electr&#243;nico sea utilizado en la selecci&#243;n de la muestra de la encuesta, ind&#237;quelo marcando la casilla que figura a estos efectos en el formulario. </p>
+        <%= f.check_box :annual_survey, label: false  %>
+        <span>No quiero que el dato de mi correo electrónico sea utilizado con esta finalidad</span>
+        <p><em><strong>AVISO LEGAL&nbsp;</strong></em></p>
+        <p><em>Los datos personales ser&aacute;n&nbsp;recogidos y tratados por la Direcci&oacute;n General de Participaci&oacute;n Ciudadana &nbsp;con la finalidad de su incorporaci&oacute;n al fichero de la Escuela de Voluntarios y gestionar los cursos o actividadeses&nbsp;en las que participan los solicitantes.&nbsp;Estos datos podr&aacute;n ser cedidos de conformidad con lo previsto&nbsp;en el art&iacute;culo 11 de la Ley Org&aacute;nica 15/1999, de 13 de diciembre, de Proteci&oacute;n de Datos de Car&aacute;cter Personal. </em><em>El &oacute;rgano responsable del tratamiento es la Direcci&oacute;n General de Participaci&oacute;n Ciudadana y Voluntariado con direcci&oacute;n en la calle Alcal&aacute;, 45, 28014 Madrid, ante la que el/la persona interesada podr&aacute; ejercer los derechos de acceso, rectificaci&oacute;n, cancelaci&oacute;n y oposici&oacute;n, todo lo cual se informa en cumplimiento del art&iacute;culo 5 de la referida Ley Org&aacute;nica 15/1999.</em></p>
+        <p><em>Se informa que la imagen captada en actos p&uacute;blicos de voluntariado se podr&aacute; divulgar a trav&eacute;s de medios de comunicaci&oacute;n o medios de difusi&oacute;n municipales a menos que marque la no autorizaci&oacute;n en la casilla al efecto de este formulario.</em></p>
+        <%= f.fields_for(:user_attributes) do |f_u| %>
+        <%= f_u.check_box :terms_of_service, label: false %>
+        <span class="checkbox">
+          <%= t("devise_views.users.registrations.new.terms",
+          terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/conditions", target: "_blank")).html_safe %>
+        </span>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-	<p class="labelUp" id="textoEncuesta" >Le informamos que anualmente la Direcci&#243;n General de Calidad y Atenci&#243;n al Ciudadano del Ayuntamiento de Madrid realiza una encuesta de satisfacci&#243;n entre los diferentes usuarios de la Web municipal madrid.es con el objeto de mejorar la calidad de los servicios municipales que se prestan a trav&#233;s de este medio electr&#243;nico. Para ello, se realiza una selecci&#243;n aleatoria entre todos los correos electr&#243;nicos que aportan los usuarios. En el caso que usted no quiera que el dato de su correo electr&#243;nico sea utilizado en la selecci&#243;n de la muestra de la encuesta, ind&#237;quelo marcando la casilla que figura a estos efectos en el formulario. </p>
-	<%= f.check_box :annual_survey, label: false  %>
-	<span>No quiero que el dato de mi correo electrónico sea utilizado con esta finalidad</span>
-	<p><em><strong>AVISO LEGAL&nbsp;</strong></em></p>
-  <p><em>Los datos personales ser&aacute;n&nbsp;recogidos y tratados por la Direcci&oacute;n General de Participaci&oacute;n Ciudadana &nbsp;con la finalidad de su incorporaci&oacute;n al fichero de la Escuela de Voluntarios y gestionar los cursos o actividadeses&nbsp;en las que participan los solicitantes.&nbsp;Estos datos podr&aacute;n ser cedidos de conformidad con lo previsto&nbsp;en el art&iacute;culo 11 de la Ley Org&aacute;nica 15/1999, de 13 de diciembre, de Proteci&oacute;n de Datos de Car&aacute;cter Personal. </em><em>El &oacute;rgano responsable del tratamiento es la Direcci&oacute;n General de Participaci&oacute;n Ciudadana y Voluntariado con direcci&oacute;n en la calle Alcal&aacute;, 45, 28014 Madrid, ante la que el/la persona interesada podr&aacute; ejercer los derechos de acceso, rectificaci&oacute;n, cancelaci&oacute;n y oposici&oacute;n, todo lo cual se informa en cumplimiento del art&iacute;culo 5 de la referida Ley Org&aacute;nica 15/1999.</em></p>
-  <p><em>Se informa que la imagen captada en actos p&uacute;blicos de voluntariado se podr&aacute; divulgar a trav&eacute;s de medios de comunicaci&oacute;n o medios de difusi&oacute;n municipales a menos que marque la no autorizaci&oacute;n en la casilla al efecto de este formulario.</em></p>
-
-  <%= f.fields_for(:user_attributes) do |f_u| %>
-	   <%= f_u.check_box :terms_of_service, label: false %>
-     <span class="checkbox">
-     <%= t("devise_views.users.registrations.new.terms",
-              terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/conditions", target: "_blank")).html_safe %>
-     </span>
-  <% end %>
-
-</div>
-</div>
-</div>
 </fieldset>
-
-
-
-
-
-
-
-

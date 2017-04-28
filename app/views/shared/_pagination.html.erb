@@ -3,12 +3,12 @@
     <li class="pull-left"><%= will_paginate(collection, renderer: BootstrapPagination::Rails, params: local_assigns[:params]) %></li>
     <li class="pull-right" id="per-page">
       <% if collection.size >= params.fetch(:per_page_list, [0]).min.to_i %>
-          <ul class="form-group list-inline">
-            <li><%= content_tag :label, t('items_per_page'), for: 'pages-select' %></li>
-            <li><%= select_tag :per_page, options_for_select(params[:per_page_list], params[:per_page]),
-                               onchange: "if(this.value){$('#per_page').prop('value',this.value)}; $('.search-form').submit()",
-                               class: 'form-control', id: 'pages-select' %></li>
-          </ul>
+      <ul class="form-group list-inline">
+        <li><%= content_tag :label, t('items_per_page'), for: 'pages-select' %></li>
+        <li><%= select_tag :per_page, options_for_select(params[:per_page_list], params[:per_page]),
+          onchange: "if(this.value){$('#per_page').prop('value',this.value)}; $('.search-form').submit()",
+        class: 'form-control', id: 'pages-select' %></li>
+      </ul>
       <% end %>
     </li>
   </ul>

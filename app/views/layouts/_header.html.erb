@@ -1,38 +1,33 @@
 <header>
- <div id="headerTop" class="container-fluid">
-  <div class="container-fluid">
+  <div id="headerTop" class="container-fluid">
+    <div class="container-fluid">
       <div class="row">
-       <div class="col-xs-6 text-left">
-           <span>Voluntarios X Madrid</span>
-       </div>
-       <div class="col-xs-6 text-right">
-           <%= image_tag("logo_black_min.svg") %>
-       </div>
-   </div>
+        <div class="col-xs-6 text-left">
+          <span>Voluntarios X Madrid</span>
+        </div>
+        <div class="col-xs-6 text-right">
+          <%= image_tag("logo_black_min.svg") %>
+        </div>
+      </div>
+    </div>
   </div>
-
-
-</div>
-
-
-<div id="HeaderWrapper" class="container-fluid" style='background-image: url(<%= asset_path("destacado-home.jpg") %>);'>
-  <div id="menuWrapper" class="container-fluid">
+  <div id="HeaderWrapper" class="container-fluid" style='background-image: url(<%= asset_path("destacado-home.jpg") %>);'>
+    <div id="menuWrapper" class="container-fluid">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-<!--
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
--->
+            <!--
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            -->
             </button>
-
             <a class="navbar-brand" href="<%= root_path %>">  <%= image_tag("LOGO_VOLUNTARIOS_ALTA.svg") %></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-<!--
+            <!--
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#">About</a></li>
@@ -50,78 +45,43 @@
                 </ul>
               </li>
             </ul>
--->
+            -->
             <ul class="nav navbar-nav navbar-right">
-             <% if current_user %>
-
-<!--                     <li> <%= nav_link 'Inicio', root_path %></li> -->
-                     <li> <%= nav_link 'Quiénes somos', whoami_path %></li>
-                     <li><%= nav_link '¿Que puedes hacer?', volunteers_path %></li>
-                     <li> <%= nav_link 'Proyectos', projects_path %></li>
-                     <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>
-                     <li><%= nav_link 'Agenda', activities_path %></li>
-                     <li> <%= nav_link 'Blog', "https://voluntariospormadridblog.madrid.es/" %></li>
-                     <li>  <%= render 'shared/personal_area' %></li>
-          <% else %>
-
-<!--                     <li> <%= nav_link 'Inicio', root_path %></li>  -->
-                     <li> <%= nav_link 'Quiénes somos', whoami_path %></li>
-                     <li><%= nav_link '¿Que puedes hacer?', volunteers_path %></li>
-                     <li> <%= nav_link 'Proyectos', projects_path %></li>
-                     <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>
-                     <li><%= nav_link 'Agenda', activities_path %></li>
-                     <li> <%= nav_link 'Blog', "https://voluntariospormadridblog.madrid.es/" %></li>
-                     <li><span class="sessionTrigger"><%= nav_link 'Iniciar sesión', new_user_session_path %></span> </li>
-
-
+              <% if current_user %>
+              <!--                     <li> <%= nav_link 'Inicio', root_path %></li> -->
+              <li> <%= nav_link 'Quiénes somos', whoami_path %></li>
+              <li><%= nav_link '¿Que puedes hacer?', volunteers_path %></li>
+              <li> <%= nav_link 'Proyectos', projects_path %></li>
+              <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>
+              <li><%= nav_link 'Agenda', activities_path %></li>
+              <li> <%= nav_link 'Blog', "https://voluntariospormadridblog.madrid.es/" %></li>
+              <li>  <%= render 'shared/personal_area' %></li>
+              <% else %>
+              <!--                     <li> <%= nav_link 'Inicio', root_path %></li>  -->
+              <li> <%= nav_link 'Quiénes somos', whoami_path %></li>
+              <li><%= nav_link '¿Que puedes hacer?', volunteers_path %></li>
+              <li> <%= nav_link 'Proyectos', projects_path %></li>
+              <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>
+              <li><%= nav_link 'Agenda', activities_path %></li>
+              <li> <%= nav_link 'Blog', "https://voluntariospormadridblog.madrid.es/" %></li>
+              <li><span class="sessionTrigger"><%= nav_link 'Iniciar sesión', new_user_session_path %></span> </li>
             </ul>
-
-          <% end %>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
-
-
-
-
-
-
-
-  </div>
-
-  <div class="container containerHeaderOverlay">
-
-
-
-
-
-<!--
-    <div class="section-cont">
-      <h2 class="section-name">
-        <span class="section-name-title">
-          Comunidad Virtual del Voluntariado y la solidaridad en la Ciudad de Madrid
-        </span>
-      </h2>
-    </div>
--->
-
-
-
-
-        <%= yield :head %>
-
-
-
-
-
-  </div>
-  </div>
-
-
-
-
-
-
-
-</header>
-
+            <% end %>
+            </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+          </nav>
+        </div>
+        <div class="container containerHeaderOverlay">
+          <!--
+          <div class="section-cont">
+            <h2 class="section-name">
+            <span class="section-name-title">
+              Comunidad Virtual del Voluntariado y la solidaridad en la Ciudad de Madrid
+            </span>
+            </h2>
+          </div>
+          -->
+          <%= yield :head %>
+        </div>
+      </div>
+    </header>

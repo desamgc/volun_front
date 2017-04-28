@@ -1,23 +1,19 @@
 <%= form_for(@rt_volunteer_appointment, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_appointment})%>
-
   <p class="notes mb20">
-   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-
-
   <fieldset>
     <div class="row">
-     <div class="col-md-9">
-      <div class="form-group all">
+      <div class="col-md-9">
+        <div class="form-group all">
           <label class="labelUp"><%= Rt::VolunteerAppointment.human_attribute_name(:notes) %> <span class="asterisco">*</span></label>
           <%= f.text_area :notes, {class: 'all'} %>
         </div>
       </div>
     </div>
   </fieldset>
-
 </div>
 <hr>
 <div class="button-group text-right">

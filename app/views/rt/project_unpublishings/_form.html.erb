@@ -1,23 +1,20 @@
 <%= form_for(@rt_project_unpublishing, default_form_options) do |f| %>
 <div class="form form-electronic">
-<%= render(partial: 'shared/errors', locals: {model_name: @rt_project_unpublishing})%>
-
+  <%= render(partial: 'shared/errors', locals: {model_name: @rt_project_unpublishing})%>
   <p class="notes">
-   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
   <%= f.hidden_field :project_id %>
   <fieldset>
-
     <div class="row">
-     <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group all">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group all">
           <label class="labelUp"><%= Rt::ProjectUnpublishing.human_attribute_name(:notes) %> <span class="asterisco">*</span></label>
-              <%= f.text_area :notes, class: 'big all'  %>
+          <%= f.text_area :notes, class: 'big all'  %>
         </div>
       </div>
     </div>
-</fieldset>
-
+  </fieldset>
 </div>
 <hr/>
 <div class="button-group text-right">

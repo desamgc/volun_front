@@ -1,12 +1,10 @@
 <%= form_for(@rt_other, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_other})%>
-
   <p class="notes mb20">
-   Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-
-<fieldset>
+  <fieldset>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group all">
@@ -15,13 +13,12 @@
         </div>
       </div>
     </div>
- </fieldset>
-<hr>
-<div class="button-group text-right pb80">
-  <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
-  <%= f.button t('application.submit'), :class => 'event-link big' %>
+  </fieldset>
+  <hr>
+  <div class="button-group text-right pb80">
+    <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
+    <%= f.button t('application.submit'), :class => 'event-link big' %>
+  </div>
 </div>
-</div>
-
 <% end %>
 <br/>

@@ -1,7 +1,5 @@
 <%= main_title(t("action.show", model: RtVolunteerAppointment.model_name.human)) %>
-
 <dl class="dl-horizontal">
-
   <dt><%= RtVolunteerAppointment.human_attribute_name(:id) %>:</dt>
   <dd><%= @rt_volunteer_appointment.id %></dd>
   <dt><%= RtVolunteerAppointment.human_attribute_name(:volunteer_id) %>:</dt>
@@ -10,7 +8,6 @@
   <dd><%= @rt_volunteer_appointment.reason %></dd>
   <dt><%= RtVolunteerAppointment.human_attribute_name(:created_at) %>:</dt>
   <dd><%= show_simple_date(@rt_volunteer_appointment.created_at) %></dd>
-
 </dl>
 <% unless request.xhr? %>
 <%= button_to_back %>

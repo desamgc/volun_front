@@ -1,7 +1,5 @@
 <%= main_title(t("action.show", model: RtVolunteersDemand.model_name.human)) %>
-
 <dl class="dl-horizontal">
-
   <dt><%= RtVolunteersDemand.human_attribute_name(:id) %>:</dt>
   <dd><%= @rt_volunteers_demand.id %></dd>
   <dt><%= RtVolunteersDemand.human_attribute_name(:description) %>:</dt>
@@ -36,7 +34,6 @@
   <dd><%= @rt_volunteers_demand.volunteer_functions_3 %></dd>
   <dt><%= RtVolunteersDemand.human_attribute_name(:created_at) %>:</dt>
   <dd><%= show_simple_date(@rt_volunteers_demand.created_at) %></dd>
-
 </dl>
 <% unless request.xhr? %>
 <%= button_to_back %>

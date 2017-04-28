@@ -1,121 +1,75 @@
 <%= search_form_for(@search, url:"/projects/search", :method => :get, remote: true) do |f| %>
 <div class='form form-electronic buscarProyectos'>
-<div class="bg-fluid0">
-   <form class="form">
-     <div class="panel panel-type1 searcher-diary nofluid">
-      <div class="panel-heading">
-        <div class="row">
-                  <div class="col-md-2"></div>
-                   <div class="col-md-8">
-                      <div class="cajaBusqueda">
-
-                       <div class="row">
-                           <div class="col-sm-9">
-                        <div class="conjuntoBusqueda">
-
-                              <%= f.text_field :name_or_description_cont, placeholder: "Buscar un proyecto", class: "buscarInput" %>
-                                <%= f.button "", class: "lupa"  %>
-                        </div>
+  <div class="bg-fluid0">
+    <form class="form">
+      <div class="panel panel-type1 searcher-diary nofluid">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="cajaBusqueda">
+                <div class="row">
+                  <div class="col-sm-9">
+                    <div class="conjuntoBusqueda">
+                      <%= f.text_field :name_or_description_cont, placeholder: "Buscar un proyecto", class: "buscarInput" %>
+                      <%= f.button "", class: "lupa"  %>
                     </div>
-                       <div class="col-sm-3 text-right">
-                           <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed verFiltros">Ver filtros</a>
-                       </div>
-
-                       </div>
-                      </div>
-                   </div>
-
-                  <div class="col-md-2"></div>
-
+                  </div>
+                  <div class="col-sm-3 text-right">
+                    <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed verFiltros">Ver filtros</a>
+                  </div>
                 </div>
-
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+        </div>
+        <div class="panel-body collapse in" id="searcher-diary">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="form-group date-field">
+                  <label class="labelUp">Fecha</label>
+                  <%= f.text_field :timetables_execution_date_eq, :class => "form-control-date small"  %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="labelUp">Distrito</label>
+                <%= f.select :addresses_district_eq, @districts, {include_blank: "", selected: ""},  class: 'big'   %>
+              </div>
+              <div class="form-group">
+                <label class="labelUp">Barrio </label>
+                <%= f.select :addresses_borough_eq, @boroughs, {include_blank: "", selected: ""},  class: 'big' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <legend class="form-legend">Tematica <span>(Seleciona una o más categorías)</span></legend>
+              <% @areas.each do |area| %>
+              <div class="form-group tagW">
+                <label>
+                  <%= check_box_tag "q[areas_name_in][]", area.name %>
+                  <span class="tag"><i class="fa fa-bicycle" aria-hidden="true"></i>
+                  <%= area.name %></span>
+                </label>
+              </div>
+              <% end %>
+            </div>
+          </div>
+          <!--
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <span class="labelUp">Descripción <span class="asterisco">*</span></span>
+                <%= f.text_field :areas_name_in %>
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+      </div>
     </div>
-    <div class="panel-body collapse in" id="searcher-diary">
-
-
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                          <div class="form-group date-field">
-                            <label class="labelUp">Fecha</label>
-                              <%= f.text_field :timetables_execution_date_eq, :class => "form-control-date small"  %>
-                          </div>
-                        </div>
-
-
-                         <div class="form-group">
-                            <label class="labelUp">Distrito</label>
-                            <%= f.select :addresses_district_eq, @districts, {include_blank: "", selected: ""},  class: 'big'   %>
-
-                        </div>
-
-
-                         <div class="form-group">
-
-                            <label class="labelUp">Barrio </label>
-                            <%= f.select :addresses_borough_eq, @boroughs, {include_blank: "", selected: ""},  class: 'big' %>
-
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="row">
-                 <div class="col-md-12">
-                  <legend class="form-legend">Tematica <span>(Seleciona una o más categorías)</span></legend>
-                  <% @areas.each do |area| %>
-
-                        <div class="form-group tagW">
-                           <label>
-                                <%= check_box_tag "q[areas_name_in][]", area.name %>
-                                <span class="tag"><i class="fa fa-bicycle" aria-hidden="true"></i>
-<%= area.name %></span>
-
-                           </label>
-
-                        </div>
-
-
-
-                  <% end %>
-                   </div>
-                </div>
-
-                <!--
-                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <span class="labelUp">Descripción <span class="asterisco">*</span></span>
-                              <%= f.text_field :areas_name_in %>
-                        </div>
-                    </div>
-
-                </div>
-                -->
-
-
-
-
+  </form>
 </div>
-
-</div>
-
-</div>
-
-</form>
-
-</div>
-
 <% end %>
-
-
-
-
-
-
-
-

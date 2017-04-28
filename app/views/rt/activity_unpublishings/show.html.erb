@@ -1,14 +1,11 @@
 <%= main_title(t("action.show", model: RtActivityUnpublishing.model_name.human)) %>
-
 <dl class="dl-horizontal">
-
   <dt><%= RtActivityUnpublishing.human_attribute_name(:id) %>:</dt>
   <dd><%= @rt_activity_unpublishing.id %></dd>
   <dt><%= RtActivityUnpublishing.human_attribute_name(:reason) %>:</dt>
   <dd><%= @rt_activity_unpublishing.reason %></dd>
   <dt><%= RtActivityUnpublishing.human_attribute_name(:created_at) %>:</dt>
   <dd><%= show_simple_date(@rt_activity_unpublishing.created_at) %></dd>
-
 </dl>
 <% unless request.xhr? %>
 <%= button_to_back %>
