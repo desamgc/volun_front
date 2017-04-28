@@ -29,7 +29,7 @@ ol {
 }
 
 .button-group {
-    & > * {
+    &>* {
         margin-left: 30px;
     }
 }
@@ -91,7 +91,7 @@ body {
     display: block;
 }
 
-.navbar-default .navbar-nav > li {
+.navbar-default .navbar-nav>li {
     a {
         &.selected {
             border-bottom: solid 8px #ff6600;
@@ -112,7 +112,6 @@ body {
 
 a {
     &.link {
-
         font-family: Lato;
         font-size: 14px;
         font-weight: 700;
@@ -587,12 +586,12 @@ h3 {
     background-color: unset;
 }
 
-.table-condensed > thead > tr > th,
-.table-condensed > tbody > tr > th,
-.table-condensed > tfoot > tr > th,
-.table-condensed > thead > tr > td,
-.table-condensed > tbody > tr > td,
-.table-condensed > tfoot > tr > td {
+.table-condensed>thead>tr>th,
+.table-condensed>tbody>tr>th,
+.table-condensed>tfoot>tr>th,
+.table-condensed>thead>tr>td,
+.table-condensed>tbody>tr>td,
+.table-condensed>tfoot>tr>td {
     padding: unset;
     padding-top: 15px;
     padding-bottom: 10px;
@@ -981,8 +980,8 @@ h3 {
                 }
             }
         }
-        #mapaW{
-                margin-bottom: 30px;
+        #mapaW {
+            margin-bottom: 30px;
         }
         #mapaW,
         #meta,
@@ -1406,23 +1405,148 @@ h3 {
     }
 }
 
-.aviso {
-    p {
-        font-family: 'Lato';
-        font-size: 18px;
-        font-weight: 300;
-        line-height: 1.44;
-        letter-spacing: 0.8px;
-        color: #000000;
+#legalWrapper {
+    hr {
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 }
 
+.autorizar {
+    p {
+        font-family: Lato;
+        font-size: 14px;
+        line-height: 1.43;
+        letter-spacing: 0.7px;
+        color: #1d1d1d;
+        margin-top: 30px;
+    }
+}
+
+.aviso {
+    h3 {
+        font-family: 'Lato';
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.5;
+        letter-spacing: 0.6px;
+        color: rgba(29, 29, 29, 0.8);
+        margin-bottom: 5px;
+    }
+    p {
+        font-family: 'Lato';
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 0.6px;
+        color: rgba(29, 29, 29, 0.8);
+    }
+}
+
+.radioCustom {
+    display: inline-block !important;
+    padding-right: 30px;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 49px;
+    cursor: pointer;
+    margin-top: 15px;
+    &:hover .inner {
+        opacity: .5;
+    }
+    // Native input control and checked events
+    input {
+        opacity: 0; // Hide input, but leave it available for tabbing
+        &:checked+.outer .inner {
+            opacity: 1;
+            width: 16px;
+            height: 16px;
+            background-color: #ff6600;
+        }
+        &:checked+.outer {}
+        &:focus+.outer .inner {
+            opacity: 1;
+        }
+    }
+    // Outer ring of custom radio
+    .outer {
+        display: block;
+        float: left;
+        margin: 10px -5px 0px 0px;
+        border: solid 1px rgba(29, 29, 29, 0.1);
+        border-radius: 50%;
+        background-color: #fff;
+        width: 24px;
+        height: 24px;
+        background-color: #f2f2f2;
+    }
+    // Inner ring of custom radio
+    .inner {
+        display: block;
+        margin: 3px;
+        border-radius: 50%;
+        opacity: 0;
+    }
+}
+
+.checkCustom {
+    width: 24px;
+    position: relative;
+    margin: 20px 0;
+    display: inline-block;
+    label {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #f2f2f2;
+        border-radius: 4px;
+        border: solid 1px rgba(29, 29, 29, 0.1);
+        margin-bottom: 0px;
+        top: -3px;
+        &:after {
+            content: '';
+            width: 11px;
+            height: 7px;
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            border: 3px solid #ff6600;
+            border-top: none;
+            border-right: none;
+            background: transparent;
+            opacity: 0;
+            transform: rotate(-45deg);
+        }
+        &:hover::after {
+            opacity: 0.3;
+        }
+    }
+    input[type=checkbox] {
+        visibility: hidden;
+        &:checked+label:after {
+            opacity: 1;
+        }
+    }
+}
+
+span.textCheckbox {
+    font-family: 'Lato';
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 24px;
+    letter-spacing: 0.7px;
+    color: #1d1d1d;
+    padding-left: 10px;
+}
 
 ul#ui-id-1 {
     padding: 15px;
     background-color: #fff;
     border: solid 1px orange;
-    li{
+    li {
         display: block;
     }
 }
@@ -2027,10 +2151,10 @@ select:-webkit-autofill:focus {
 }
 
 .img-responsive,
-.thumbnail > img,
-.thumbnail a > img,
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
+.thumbnail>img,
+.thumbnail a>img,
+.carousel-inner>.item>img,
+.carousel-inner>.item>a>img {
     display: block;
     max-width: 100%;
     height: auto;
@@ -2263,8 +2387,8 @@ select:-webkit-autofill:focus {
 }
 
 @media(min-width:768px) {
-    .navbar-nav > li > a {}
-    .navbar-default .navbar-nav > li a.selected {
+    .navbar-nav>li>a {}
+    .navbar-default .navbar-nav>li a.selected {
         border-bottom: solid 8px #ff6600;
         padding-bottom: 12px;
     }
@@ -2372,7 +2496,7 @@ select:-webkit-autofill:focus {
     .collapse.in {
         display: block !important;
     }
-    .navbar-default .navbar-nav > li {
+    .navbar-default .navbar-nav>li {
         margin-left: 0;
         text-align: center;
         a {
@@ -2391,10 +2515,10 @@ select:-webkit-autofill:focus {
         left: 0px;
         z-index: 99;
     }
-    .container > .navbar-header,
-    .container-fluid > .navbar-header,
-    .container > .navbar-collapse,
-    .container-fluid > .navbar-collapse {
+    .container>.navbar-header,
+    .container-fluid>.navbar-header,
+    .container>.navbar-collapse,
+    .container-fluid>.navbar-collapse {
         margin-right: 0px;
         margin-left: 0px;
     }
@@ -2427,7 +2551,7 @@ select:-webkit-autofill:focus {
             vertical-align: top;
             float: none;
             height: 30px;
-            & > a {
+            &>a {
                 line-height: 30px !important;
             }
             &:first-child {
