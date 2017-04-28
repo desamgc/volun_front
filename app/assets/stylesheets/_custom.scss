@@ -1683,7 +1683,7 @@ ul#ui-id-1 {
     border-radius: 0px;
     padding-bottom: 10px;
     padding-top: 12px;
-    background-image: url(/assets/icons/down.svg);
+    background-image: url(/assets/icons/down.png);
     background-repeat: no-repeat;
     background-position: right 20px;
     &:focus {
@@ -1749,7 +1749,7 @@ ul#ui-id-1 {
         }
     }
     select {
-        background-image: url(/assets/icons/down.svg);
+        background-image: url(/assets/icons/down.png);
         background-repeat: no-repeat;
         background-position: right;
         background-origin: content-box;
@@ -1944,7 +1944,7 @@ select:-webkit-autofill:focus {
             &.all {
                 width: 100%;
             }
-            background-image: url(/assets/icons/down.svg);
+            background-image: url(/assets/icons/down.png);
             background-repeat: no-repeat;
             background-position: right;
             padding-right: 20px;
