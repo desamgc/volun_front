@@ -1,58 +1,47 @@
 <%= javascript_include_tag 'projects' %>
-
 <%= javascript_tag do %>
-  var locations = <%= raw @locations.to_json %>;
-  var multiple = true;
-  var url_map = "<%= Rails.application.secrets.url_map %>";
-  var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
-  var day_c =""
+var locations = <%= raw @locations.to_json %>;
+var multiple = true;
+var url_map = "<%= Rails.application.secrets.url_map %>";
+var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
+var day_c =""
 <% end %>
-
-
 <div class="container-fluid no-padding-left no-padding-right">
-    <div class="row">
-  <div class="col-md-12">
-     <div id="mapDiv">
-
-     </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="mapDiv">
+      </div>
+    </div>
   </div>
 </div>
+<div class="container-fluid" style="  background-color: rgba(0, 0, 0, 0.05);
+  ">
+  <%= render "buscador" %>
 </div>
-
-<div class="container-fluid" style="	background-color: rgba(0, 0, 0, 0.05);
-">
-    <%= render "buscador" %>
-</div>
-
 <div class="container-fluid">
-   <div class="row pt60">
-       <div class="col-md-6">
-       <h2 class="titlePage"><%= Project.actives.count %> proyectos</h2>
-       </div>
-       <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-<!--         <span class="labelUp">Ordenar </span>-->
-         <select class="selectOrdenar">
-           <option>Fecha</option>
-           <option>Mas demandados</option>
-           <option>Etc.</option>
-         </select>
-       </div>
-   </div>
+  <div class="row pt60">
+    <div class="col-md-6">
+      <h2 class="titlePage"><%= Project.actives.count %> proyectos</h2>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+      <!--         <span class="labelUp">Ordenar </span>-->
+      <select class="selectOrdenar">
+        <option>Fecha</option>
+        <option>Mas demandados</option>
+        <option>Etc.</option>
 
 
-<!-- en modo cuadricula -->
-<div id="grid">
-
+      </select>
+      <%= sort_link @search, :created_at, "Fecha creación" %>
+    </div>
+  </div>
+  <!-- en modo cuadricula -->
+  <div id="grid">
     <div id = "projects">
-          <%= render partial: 'project', locals: { records: @projects_actives} %>
-
+      <%= render partial: 'project', locals: { records: @projects_actives} %>
     </div>
     <div id="scroll_projects">
-       <%= render partial: 'shared/scroll_infinite', locals: { records: @projects_actives} %>
+      <%= render partial: 'shared/scroll_infinite', locals: { records: @projects_actives} %>
     </div>
-
- </div>
- </div>
-
-
-
+  </div>
+</div>
