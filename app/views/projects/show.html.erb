@@ -1,172 +1,145 @@
 <%= javascript_include_tag 'project_show' %>
-
 <%= javascript_tag do %>
-  var locations = <%= raw @locations.to_json %>;
-  var multiple = true;
-  var url_map = "<%= Rails.application.secrets.url_map %>";
-  var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
-
+var locations = <%= raw @locations.to_json %>;
+var multiple = true;
+var url_map = "<%= Rails.application.secrets.url_map %>";
+var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
 <% end %>
-
-
 <div class="container-fluid">
-    <div class="row">
-
-        <div class="col-md-12 mt45" >
-            <i class="fa fa-chevron-left volverArrow" aria-hidden="true"></i>
-       <%= link_to 'Proyectos', projects_path,class: "volver" %>
-        </div>
+  <div class="row">
+    <div class="col-md-12 mt45" >
+      <i class="fa fa-chevron-left volverArrow" aria-hidden="true"></i>
+      <%= link_to 'Proyectos', projects_path,class: "volver" %>
     </div>
-</div>
-
-<div  class="container-fluid single">
-<div class="row">
-
-  <div class="col-md-4 col-md-push-8">
-    <div class="sidebarProyecto">
-    <div class="bloque first">
-         <% if @project.volunteers_allowed %>
-      <div class="ctaVoluntarios">
-          <h3>Se necesitan voluntarios</h3>
-           <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id), class: "event-link big" %>
-      </div>
-    <% end %>
-
-       <hr>
-         <div id="mapaW">
-        <div id="mapDiv">
-        </div>
-      </div>
-        <div id="timetables">
-       <% @project.addresses do |address| %>
-          <%= address.district %>
-       <% end %>
-
-      </div>
-        </div>
-
-
-
-
-
-            <div class="bloque">
-                <div id="meta">
-                <div class="brand">
-                        <div class="logoW">
-                     <%= render partial: "links/link", collection: @project.entity.links.logo %>
-
-                </div>
-                <h5><%= @project.entity.name %></h5>
-                </div>
-
-
-
-
-
-
-      </div>
-            </div>
-
-      <div class="bloque">
-        <div id="actividadesAsociadas">
-          <h5> Actividades asociadas </h5>
-          <% if @project.activities.present? %>
-           <% @project.activities.each do |activity| %>
-            <%= link_to activity_path(activity) do %>
-             <div class="cardActividadAsociada">
-
-
-
-                  <div class="flex">
-                    <h3>
-                      <%= activity.name %>
-                    </h3>
-                  </div>
-
-
-             </div>
-            <% end %>
-            <% end %>
-          <% end %>
-
-        </div>
-       </div>
-          </div>
-
-
-
-
   </div>
-
-  <div class="col-md-8 col-md-pull-4">
-    <h3 class="summary-title"><%= @project.name %></h3>
-    <h4 class="numVolum"><%= @project.volunteers.count %> voluntarios</h4>
-    <div class="tags">
-      <% @project.areas.each do |area| %>
-        <span class="tag"><i></i><%= area.name.downcase %></span>
-      <% end %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane active carousel" id="tpi-tab2">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-          <li data-target="#myCarousel" data-slide-to="3"></li>
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-        <% @project.links.logo.each do |link| %>
-          <div class="item active">
-            <%= render partial: "links/link", locals: { link: link} %>
+</div>
+<div  class="container-fluid single">
+  <div class="row">
+    <div class="col-md-4 col-md-push-8">
+      <div class="sidebarProyecto">
+        <div class="bloque first">
+          <% if current_user %>
+            <% if current_user.loggable_type=="Volunteer" %>
+              <% if !@project.volunteers.where("projects_volunteers.volunteer_id = ? and projects_volunteers.project_id = ?", current_user.loggable_id, @project.id ).exists? %>
+                <% if @project.volunteers_allowed %>
+                    <div class="ctaVoluntarios">
+                      <h3>Se necesitan voluntarios</h3>
+                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id), class: "event-link big" %>
+                    </div>
+                <% end %>
+              <% end %>
+            <% else %>
+                    <div class="ctaVoluntarios">
+                      <h3>Se necesitan voluntarios</h3>
+                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id), class: "event-link big" %>
+                    </div>
+             <% end %>
+          <% else %>
+                    <div class="ctaVoluntarios">
+                      <h3>Se necesitan voluntarios</h3>
+                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id), class: "event-link big" %>
+                    </div>
+          <% end %>
+          <hr>
+          <div id="mapaW">
+            <div id="mapDiv">
+            </div>
           </div>
-        <% end %>
-        <% @project.links.image.each do |link| %>
-          <div class="item">
-                <%= render partial: "links/link", locals: { link: link} %>
+          <div id="timetables">
+            <% @project.addresses do |address| %>
+            <%= address.district %>
+            <% end %>
           </div>
-         <% end %>
         </div>
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span class="sr-only">Next</span>
-        </a>
+        <div class="bloque">
+          <div id="meta">
+            <div class="brand">
+              <div class="logoW">
+                <%= render partial: "links/link", collection: @project.entity.links.logo %>
+              </div>
+              <h5><%= @project.entity.name %></h5>
+            </div>
+          </div>
+        </div>
+        <div class="bloque">
+          <div id="actividadesAsociadas">
+            <h5> Actividades asociadas </h5>
+            <% if @project.activities.present? %>
+            <% @project.activities.each do |activity| %>
+            <%= link_to activity_path(activity) do %>
+            <div class="cardActividadAsociada">
+              <div class="flex">
+                <h3>
+                <%= activity.name %>
+                </h3>
+              </div>
+            </div>
+            <% end %>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-
-
-    <div class="detalle">
-      <div class="nofluid">
-        <div class="tramites-content">
-         <div class="tiny-text">
-              <p> <%= @project.description %> </p>
+    <div class="col-md-8 col-md-pull-4">
+      <h3 class="summary-title"><%= @project.name %></h3>
+      <h4 class="numVolum"><%= @project.volunteers.count %> voluntarios</h4>
+      <div class="tags">
+        <% @project.areas.each do |area| %>
+        <span class="tag"><i></i><%= area.name.downcase %></span>
+        <% end %>
+      </div>
+      <div role="tabpanel" class="tab-pane active carousel" id="tpi-tab2">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+          </ol>
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <% @project.links.logo.each do |link| %>
+            <div class="item active">
+              <%= render partial: "links/link", locals: { link: link} %>
+            </div>
+            <% end %>
+            <% @project.links.image.each do |link| %>
+            <div class="item">
+              <%= render partial: "links/link", locals: { link: link} %>
+            </div>
+            <% end %>
           </div>
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-
-        <div class="item noTitle">
+      </div>
+      <div class="detalle">
+        <div class="nofluid">
+          <div class="tramites-content">
+            <div class="tiny-text">
+              <p> <%= @project.description %> </p>
+            </div>
+          </div>
+          <div class="item noTitle">
             <h3 class="">Enlaces</h3>
             <dl class="dl-horz">
               <% @project.links.url.each do |link| %>
-                  <dd><a href="<%= link.path %>"><%= link.description %></a></dd>
+              <dd><a href="<%= link.path %>"><%= link.description %></a></dd>
               <% end %>
             </dl>
+          </div>
         </div>
-
       </div>
-    </div>
-
-
-
-    <% @project.links.video.each do |link| %>
+      <% @project.links.video.each do |link| %>
       <!-- <div class="videoWrapper">
         <div class="row">
           <div class="col-md-5">
@@ -180,53 +153,42 @@
           </div>
         </div>
       </div> -->
-
-
-
-
-        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-  poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-    <source src="<%= link.path %>" type='video/mp4'>
-    <source src="<%= link.path %>" type='video/webm'>
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-  </video>
-
-
-  <video
-  id="vid1"
-  class="video-js vjs-default-skin"
-  controls
-  width="640" height="264"
-  data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "<%= link.path %>"}], "youtube": { "customVars": { "wmode": "transparent" } } }'
->
-</video>
-
-
-   <h3 class="videoTitle"><%= link.description %></h3>
-    <% end %>
-
-    <div class="row">
+      <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+        poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+        <source src="<%= link.path %>" type='video/mp4'>
+        <source src="<%= link.path %>" type='video/webm'>
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a web browser that
+          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+      </video>
+      <video
+        id="vid1"
+        class="video-js vjs-default-skin"
+        controls
+        width="640" height="264"
+        data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "<%= link.path %>"}], "youtube": { "customVars": { "wmode": "transparent" } } }'
+        >
+      </video>
+      <h3 class="videoTitle"><%= link.description %></h3>
+      <% end %>
+      <div class="row">
         <div class="col-md-12">
-            <hr>
+          <hr>
         </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <nav class="redesWrapProject">
-          <h4>Compartir en:</h4>
-          <ul class="redes">
-            <li><a href="https://www.facebook.com/voluntariospormadrid/" target:="" "blank"=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-            <li><a href="https://twitter.com/voluntmadrid" ,="" target:="" "blank"=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.instagram.com/voluntariosxmadrid/" target:="" "_blank"=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-          </ul>
-        </nav>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="redesWrapProject">
+            <h4>Compartir en:</h4>
+            <ul class="redes">
+              <li><a href="https://www.facebook.com/voluntariospormadrid/" target:="" "blank"=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+              <li><a href="https://twitter.com/voluntmadrid" ,="" target:="" "blank"=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.instagram.com/voluntariosxmadrid/" target:="" "_blank"=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
-
-</div>
 </div>

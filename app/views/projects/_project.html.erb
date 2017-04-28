@@ -1,50 +1,46 @@
-
 <% records.each_slice(3) do |group| %>
 <ul class="row">
-    <% group.each do |project| %>
-        <li class="col-xs-12 col-sm-4 col-md-4" style="display:inline-block">
-        <div class="gallery-item">
-           <header>
-              <%= render partial: "links/link", collection: project.links.logo %>
-           </header>
-           <div class="main">
-              <h3><%= project.name %></h3>
-              <p><%= truncate(project.description, length: 145) %></p>
-              <div class="row ctaGroupPreview">
-                   <% project.areas.each do |area| %>
-                      <div class="col-lg-4 col-md-12  col-sm-12 col-xs-4">
-                        <p style="margin:0"><span class="category"><%= area.name.downcase %></span></p>
-                      </div>
-                   <% end %>
-                   <% if current_user %>
-                     <% if current_user.loggable_type=="Volunteer" %>
-                         <% if !project.volunteers.where("projects_volunteers.volunteer_id = ? and projects_volunteers.project_id = ?", current_user.loggable_id, project.id ).exists? %>
-                           <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right">
-                             <%= link_to  "Leer mas .." , project_path(project), class: "event-link" %>
-                           </div>
-                         <% end %>
-                     <% else current_user.loggable_type=="Entity" %>
-                        <% if project.entity.id == current_user.loggable_id %>
-                           <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right">
-                              <%= link_to  "Dar de baja" , new_rt_project_unpublishing_path(project: project.id), class: "event-link" %>
-                           </div>
-                        <% else %>
-                           <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right">
-                             <%= link_to  "Leer mas .." , project_path(project), class: "event-link" %>
-                           </div>
-                        <% end %>
-                     <% end %>
-                   <% else %>
-                      <%= link_to  "Leer mas", project_path(project), class: "event-link" %>
-                   <% end %>
-                </div>
-            <br/>
+  <% group.each do |project| %>
+  <li class="col-xs-12 col-sm-4 col-md-4" style="display:inline-block">
+    <div class="gallery-item">
+      <header>
+        <%= render partial: "links/link", collection: project.links.logo %>
+      </header>
+      <div class="main">
+        <h3><%= project.name %></h3>
+        <p><%= truncate(project.description, length: 145) %></p>
+        <div class="row ctaGroupPreview">
+          <% project.areas.each do |area| %>
+          <div class="col-lg-4 col-md-12  col-sm-12 col-xs-4">
+            <p style="margin:0"><span class="category"><%= area.name.downcase %></span></p>
           </div>
+          <% end %>
+          <% if current_user %>
+            <% if current_user.loggable_type=="Volunteer" %>
+              <%# if !project.volunteers.where("projects_volunteers.volunteer_id = ? and projects_volunteers.project_id = ?", current_user.loggable_id, project.id ).exists? %>
+                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right">
+                  <%= link_to  "Leer mas .." , project_path(project), class: "event-link" %>
+                </div>
+              <%# end %>
+            <% else current_user.loggable_type=="Entity" %>
+              <% if project.entity.id == current_user.loggable_id %>
+              <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right">
+                <%= link_to  "Dar de baja" , new_rt_project_unpublishing_path(project: project.id), class: "event-link" %>
+              </div>
+              <% else %>
+                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-8 text-right">
+                  <%= link_to  "Leer mas .." , project_path(project), class: "event-link" %>
+                </div>
+              <% end %>
+            <% end %>
+          <% else %>
+          <%= link_to  "Leer mas", project_path(project), class: "event-link" %>
+          <% end %>
         </div>
-      </li>
-    <% end %>
+        <br/>
+      </div>
+    </div>
+  </li>
+  <% end %>
 </ul>
 <% end %>
-
-
-
