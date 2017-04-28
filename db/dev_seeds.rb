@@ -182,21 +182,22 @@ puts "Creando Direcciones"
     longitude:             (4479566 * 100)+ rand(1000),
     district:              District.all.sample.name,
     borough:               Faker::Address.state,
-    normalize:             true
+    normalize:             false
   )
 end
 
 puts "Creando entidades"
 (1..ENTITIES_NUM).each do |n|
   entity = Entity.create!(
-    name: "#{Entity.model_name.human} #{n}",
-    email:Faker::Internet.email,
-    representative_name:Faker::Lorem.name,
-    representative_last_name:Faker::Lorem.name,
-    contact_name:Faker::Lorem.name,
-    contact_last_name:Faker::Lorem.name,
-    entity_type_id:1,
-    address_id:Address.where(normalize: true).sample.id  )
+    name:                     "#{Entity.model_name.human} #{n}",
+    email:                    Faker::Internet.email,
+    representative_name:      Faker::Name.name,
+    representative_last_name: Faker::Name.last_name,
+    contact_name:             Faker::Name.name,
+    contact_last_name:        Faker::Name.last_name,
+    entity_type:              EntityType.all.sample,
+    address:                  Address.all.sample,
+    vat_number:               %w(Z8383769K 38741046F).sample)
 
   puts "Creando links"
     (1..1).each do |n|
@@ -227,7 +228,7 @@ puts "Creando actividades"
       start_date:   Time.now,
       end_date:     rand(100).days.since.to_date,
       transport: Faker::Lorem.name,
-      entity: Entity.all.sample
+      entity: Entity.first
 
     }
 
@@ -236,7 +237,7 @@ puts "Creando actividades"
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
-        address:    Address.where(normalize: true).sample,
+        address:    Address.where(normalize: false).sample,
         eventable:  activity,
       )
 
@@ -334,7 +335,7 @@ puts "Creando Proyectos urgent"
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
-        address:    Address.where(normalize: true).sample,
+        address:    Address.where(normalize: false).sample,
         eventable:  project,
       )
 
@@ -421,7 +422,7 @@ puts "Creando Proyectos featured"
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
-        address:    Address.where(normalize: true).sample,
+        address:    Address.where(normalize: false).sample,
         eventable:  project,
       )
 
@@ -504,12 +505,12 @@ puts "Creando Proyectos"
     project.save!
 
     project.areas << Area.all.sample
-    project.volunteers << Volunteer.find(1)
+    project.volunteers << Volunteer.first
     project.activities << Activity.all.sample
     puts "Creando Eventos"
     2.times do
       event = Event.create!(
-        address:    Address.where(normalize: true).sample,
+        address:    Address.where(normalize: false).sample,
         eventable:  project,
       )
 
@@ -578,12 +579,43 @@ end
     puts "Creating usuarios"
     pwd = '12345678'
     puts "Creando usuario administrador..."
-    User.first_or_initialize(email: 'admin@madrid.es',
-                         password: 'Wordpass1',
-                         password_confirmation: 'Wordpass1',
-                         notice_type: NoticeType.all.sample).save!
 
-    User.create( email: 'voluntario@madrid.es', password: pwd, password_confirmation: pwd, loggable: Volunteer.all.sample,
-                         notice_type: NoticeType.all.sample)
-    User.create( email: 'entidad@madrid.es', password: pwd, password_confirmation: pwd, loggable: Entity.all.sample,
-                         notice_type: NoticeType.all.sample)
+    puts "#{I18n.t('creating')} entity user"
+    attributes = {
+      login: 'entity',
+      email: 'entidad@madrid.es',
+      password: pwd,
+      password_confirmation: pwd,
+      loggable: Entity.first,
+      notice_type: NoticeType.all.sample,
+      terms_of_service: true
+    }
+    user = User.find_or_initialize_by(login: attributes[:login])
+
+    if user.new_record?
+      user.attributes = attributes
+      user.save!
+    else
+      user.update_attributes!(attributes)
+    end
+
+    puts "#{I18n.t('creating')} voluntary user"
+    attributes = {
+      email:                 'voluntario@madrid.es',
+      login:                 'volunteering',
+      password:              pwd,
+      password_confirmation: pwd,
+      loggable:              Volunteer.first,
+      notice_type:           NoticeType.all.sample,
+      terms_of_service: true
+    }
+    user = User.find_or_initialize_by(login: attributes[:login])
+
+    if user.new_record?
+      user.attributes = attributes
+      user.save!
+    else
+      user.update_attributes!(attributes)
+    end
+
+
