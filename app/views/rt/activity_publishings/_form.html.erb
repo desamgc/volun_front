@@ -1,12 +1,6 @@
 <%= form_for(@rt_activity_publishing, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_activity_publishing})%>
-  <!--
-  <p class="notes">
-    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
-  </p>
-  -->
-  <%= javascript_include_tag 'inputCalendario.js' %>
   <fieldset>
     <div class="row">
       <div class="col-md-9">
@@ -27,18 +21,19 @@
           <%= f.text_field :organizer, { class: 'all' } %>
         </div>
         <div class="form-group date-field">
-          <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:execution_date) %> <span class="asterisco">*</span></label>
-          <%= f.text_field :execution_date, :class => "form-control small" %>
+            <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:execution_date) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :execution_date, :class => "form-control small" %>
         </div>
         <div class="form-group">
-          <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:execution_hour) %> <span class="asterisco">*</span></label>
-          <%= f.text_field :execution_hour, { class: 'small' } %>
+            <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:execution_hour) %> <span class="asterisco">*</span></label>
+            <%= f.text_field :execution_hour, { class: 'small' } %>
         </div>
+
       </div>
     </div>
   </fieldset>
   <hr>
-  <%= render partial: 'shared/addressInternet', locals: {f: f} %>
+  <%= render partial: 'shared/addressInternetNT', locals: {f: f} %>
   <hr>
 </div>
 <div class="button-group text-right pb80">

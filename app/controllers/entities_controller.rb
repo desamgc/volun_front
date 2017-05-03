@@ -14,7 +14,6 @@ class EntitiesController < ApplicationController
   def create
     @entity = Entity.new(entity_params)
     set_user
-    debugger
     if @entity.save
       #create_and_assign_user_to_entity!(@entity,nil)
       redirect_to entities_path, notice: t('entity_subscribe.response')

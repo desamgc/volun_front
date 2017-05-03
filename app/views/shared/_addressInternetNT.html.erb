@@ -10,8 +10,8 @@
                 <%= f.text_field :road_name, { class: 'big' } %>
             </div>
             <div class="form-group">
-                <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_number_type) %><span class="asterisco">*</span></label>
-                <%= f.select :road_number_type, number_types_select_options, {include_blank: "", selected: f.object.road_number_type || ""},  class: 'small' %>
+                <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:number_type) %><span class="asterisco">*</span></label>
+                <%= f.select :number_type, number_types_select_options, {include_blank: "", selected: f.object.number_type || ""},  class: 'small' %>
             </div>
             <div class="form-group">
                 <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_number) %> <span class="asterisco">*</span></label>

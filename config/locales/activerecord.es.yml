@@ -4,8 +4,86 @@ es:
      activity:
       one:   Actividad
       other: Actividades
+     address:
+      one: Dirección
+      other: Direcciones
     errors:
       models:
+        user:
+          attributes:
+            email:
+              blank: es obligatorio
+            password:
+              blank: es obligatoria
+            password_confirmation:
+              blank: es obligatoria
+            terms_of_service:
+              blank: tiene que aceptarlos
+              presence: tiene que aceptarlos
+        address:
+          attributes:
+            road_type:
+              blank: es obligatorio
+            road_number:
+              blank: es obligatorio
+            road_number_type:
+              blank: es obligatorio
+            road_name:
+              blank: es obligatorio
+            postal_code:
+              blank: es obligatorio
+              invalid: es incorrecto
+            town:
+              blank: es obligatorio
+            province:
+              blank: es obligatorio
+        entity:
+          attributes:
+            email:
+              blank: es obligatorio
+              password_already_set: "Este usuario ya tiene una clave asociada"
+              invalid: es invalido
+              taken: Ya existe una solicitud con esa dirección de correo electronico
+            contact_last_name:
+              blank: es obligatorio
+            contact_name:
+              blank: es obligatorio
+            name:
+              blank: es obligatorio
+            phone_number:
+              invalid: es invalido
+            phone_number_alt:
+              invalid: es invalido
+            entity_type_id:
+              blank: es obligatorio
+            vat_number:
+              blank: es obligatorio
+              invalid: formato incorrecto
+            road_type:
+              blank: es obligatorio
+            road_number_type:
+              blank: es obligatorio
+            road_number:
+              blank: es obligatorio
+            road_name:
+              blank: es obligatorio
+            postal_code:
+              blank: es obligatorio
+              invalid: es incorrecto
+            town:
+              blank: es obligatorio
+            province:
+              blank: es obligatorio
+            other_subscribe_reason:
+              blank: es obligatorio
+            req_reason_id:
+              blank: es obligatorio
+            representative_name:
+              blank: es obligatorio
+            representative_last_name:
+              blank: es obligatorio
+            entity_type_id:
+              blank: es obligatorio
         request_form:
           attributes:
             req_reason_id:
@@ -48,6 +126,8 @@ es:
             road_type:
               blank: es obligatorio
             number_type:
+              blank: es obligatorio
+            road_number_type:
               blank: es obligatorio
             road_number:
               blank: es obligatorio
@@ -183,6 +263,41 @@ es:
             notes:
               blank: es obligatorio
     attributes:
+      address:
+        road_type: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        road_number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province: Provincia
+      entity:
+        name: Nombre
+        contact_name: Persona contacto
+        contact_last_name: Primer apellido
+        contact_last_name_alt: Segundo apellido
+        representative_name: Nombre representante
+        representative_last_name: Primer apellido
+        representative_last_name_alt: Segundo apellido
+        phone_number: Telefono
+        phone_number_alt: Otro telefono
+        vat_number: CIF
+        email: Correo electronico
+        road_type: Tipo de calle
+        road_number: Numero de calle
+        road_name: Calle
+        road_number_type: Tipo de numero
+        postal_code: Codigo postal
+        town: Municipio
+        province: Provincia
+        other_subscribe_reason: Otro motivo
+        entity_type_id: Tipo de entidad
+        req_reason_id: Motivo
+      user:
+        terms_of_service: Terminos del servicio
+        email: Correo electronico
+        passowrd: Contraseña
+        passowrd_confirmation: Confirmación contraseña
       request_form:
         req_reason_id: Motivo
       rt/volunteer_subscribe:
@@ -194,7 +309,7 @@ es:
         email: Correo electronico
       rt/entity_subscribe:
         name: Nombre
-        contact_name: Nombre contacto
+        contact_name: Persona contacto
         contact_last_name: Primer apellido
         contact_last_name_alt: Segundo apellido
         representative_name: Nombre representante
@@ -208,6 +323,7 @@ es:
         road_number: Numero de calle
         road_name: Calle
         number_type: Tipo de numero
+        road_number_type: Tipo de numero
         postal_code: Codigo postal
         town: Municipio
         province: Provincia

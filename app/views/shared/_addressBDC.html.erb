@@ -10,7 +10,7 @@
     <fieldset>
       <div class="form-group">
         <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:country) %> <span class="asterisco">*</span></label>
-        <%= f.text_field :country, as: :string,  value: ("ESPAÑA" ), readonly: true, class: 'js-country', wrapper_html: { class: 'col-md-3' } %>
+        <%= f.text_field :country, as: :string,  value: ("ESPAÑA" ), readonly: true, class: 'js-country'%>
       </div>
       <div class="form-group">
         <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:province) %> <span class="asterisco">*</span></label>
@@ -21,24 +21,44 @@
         <%= f.text_field :town, data: { 'js-search-towns-url' => bdc_search_towns_addresses_url }, class: 'js-town' %>
       </div>
     </fieldset>
-    <div class="row row-4-1">
-      <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_type) %> <span class="asterisco">*</span></label>
-      <%= f.select :road_type, road_types_select_options, {include_blank: "", selected: ""},  class: 'small'  %>
-      <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_name) %> <span class="asterisco">*</span></label>
-      <%= f.text_field :road_name, class: 'js-road_name', data: { 'js-search-road-names-url' => bdc_search_roads_addresses_url } , wrapper_html: { class: 'road_name col-md-9' } %>
-    </div>
-    <div class="row row-4-2">
-      <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_number_type) %> <span class="asterisco">*</span></label>
-      <%= f.text_field :road_number_type, class: 'm-width250 js-road_number_type', readonly: normalize , wrapper_html: { class: 'col-md-3' } %>
-      <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_number) %> <span class="asterisco">*</span></label>
-      <%= f.text_field :road_number, collection: [f.object.road_number || ''],  class: 'm-width250 js-road_number-select', disabled: !normalize , wrapper_html: { class: 'col-md-3 js-road_number-select-wrapper', hidden: !normalize } %>
-      <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_number) %> <span class="asterisco">*</span></label>
-      <%= f.text_field :road_number, class: 'm-width250 js-road_number-input', data: { 'js-search-road-numbers-url' => bdc_search_road_numbers_addresses_url }, disabled: normalize, wrapper_html: { class: 'col-md-3 js-road_number-input-wrapper', hidden: normalize } %>
-      <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:grader) %> <span class="asterisco">*</span></label>
-      <%= f.text_field :grader, class: 'm-width80 js-grader', readonly: normalize , wrapper_html: { class: 'col-md-3' } %>
-      <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:postal_code) %> <span class="asterisco">*</span></label>
-      <%= f.text_field :postal_code, class: 'js-postal_code', readonly: normalize, data: { mask: '99999'} , wrapper_html: { class: 'postal_code col-md-3' } %>
-    </div>
+
+    <fieldset>
+        <div class="form-group">
+          <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_type) %> <span class="asterisco">*</span></label>
+          <%= f.select :road_type, road_types_select_options, {include_blank: "", selected: ""},  class: 'small'  %>
+        </div>
+        <div class="form-group">
+          <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_name) %> <span class="asterisco">*</span></label>
+          <%= f.text_field :road_name, class: 'js-road_name', data: { 'js-search-road-names-url' => bdc_search_roads_addresses_url } %>
+        </div>
+        <div class="form-group">
+          <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_number_type) %> <span class="asterisco">*</span></label>
+          <%= f.text_field :road_number_type, class: 'm-width250 js-road_number_type', readonly: normalize  %>
+       </div>
+       <div class="form-group">
+         <% if !normalize %>
+          <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_number) %> <span class="asterisco">*</span></label>
+          <%= f.text_field :road_number, collection: [f.object.road_number || ''],  class: 'm-width250 js-road_number-select'%>
+         <% end %>
+       </div>
+       <div class="form-group">
+         <% if normalize %>
+          <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:road_number) %> <span class="asterisco">*</span></label>
+          <%= f.text_field :road_number, class: 'm-width250 js-road_number-input', data: { 'js-search-road-numbers-url' => bdc_search_road_numbers_addresses_url }%>
+         <% end %>
+       </div>
+
+       <div class="form-group">
+          <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:postal_code) %> <span class="asterisco">*</span></label>
+          <%= f.text_field :postal_code, class: 'js-postal_code', readonly: normalize, data: { mask: '99999'} , wrapper_html: { class: 'postal_code col-md-3' } %>
+       </div>
+
+    </fieldset>
+
+    <div class="form-group">
+          <label class="labelUp"><%= Rt::EntitySubscribe.human_attribute_name(:grader) %> <span class="asterisco">*</span></label>
+          <%= f.text_field :grader, class: 'm-width80 js-grader', readonly: normalize , wrapper_html: { class: 'col-md-3' } %>
+       </div>
     <div class="row row-4-3">
       <%= f.text_field :stairs,  class: 'm-width250 js-stairs'  %>
       <%= f.text_field :floor,  class: 'm-width250 js-floor'  %>

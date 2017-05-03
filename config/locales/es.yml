@@ -4,6 +4,9 @@ es:
     menu: Menú
     title: Voluntariado
     submit: Enviar
+    checkdos: No
+    checky: Sí
+    validate: validar
    volunteer_subscribe:
     new: Registrarse
     title: Solicitud de participación como voluntario
