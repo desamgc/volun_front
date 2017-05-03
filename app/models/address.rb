@@ -3,5 +3,5 @@ class Address < ActiveRecord::Base
 
   ROAD_NUMBER_TYPES = %w(num km.)
   GRADERS = [*'A'..'Z']
-  validates :road_name, :road_number, :postal_code, :town, presence: true
+  validates :road_number_type, :road_type, :road_name, :road_number, :postal_code, :town, :province, presence: true
 end
