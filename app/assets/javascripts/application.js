@@ -19,7 +19,7 @@
 //= require datepicker_es.min
 //= require bootstrap.min
 //= require jquery.dotdotdot.min
-// require turbolinks
+//= require turbolinks
 //= require js/locale/i18n_es
 //= require video.min
 //= require videojsYoutube.min
@@ -65,7 +65,11 @@ function closeAvisos()
 
 
 $(document).ready(function(){
-        $(".form-control").datepicker({});
+        $(".form-control").datepicker({
+          language:'es',
+          todayHighlight: false,
+          format: 'dd/mm/yyyy',
+        });
 
         if ($("#rt_entity_subscribe_request_form_attributes_req_reason_id").val()==4)
             $('#other_motive').show();
@@ -94,6 +98,36 @@ $(document).ready(function(){
             }
         });
 
+
+
+
+
+        if ($("#entity_req_reason_id").val()==4)
+            $('#other_motive').show();
+        else
+            $('#other_motive').hide();
+
+        $("#btnGrid").click(function(){
+            $('#row').hide();
+            $('#grid').show();
+         });
+        $("#btnRow").click(function(){
+            $('#grid').hide();
+            $('#row').show();
+        });
+
+        $("#entity_req_reason_id").change(function(){
+            if ($("#entity_req_reason_id").val() == 4)
+            {
+              $('#other_motive').show();
+              $('#entity_other_subscribe_reason').val("");
+            }
+            else
+            {
+              $('#other_motive').hide();
+              $('#entity_other_subscribe_reason').val("");
+            }
+        });
 
 
 
