@@ -45,7 +45,7 @@
 
         <hr>
       </fieldset>
-      <%= render partial: 'shared/protection' %>
+      <%= render partial: 'shared/protection', locals: {f: f} %>
         <hr>
         <div class="button-group text-right pb90">
           <%= f.button t('application.submit'), :class => 'event-link big', :value => 'Registrarme' %>

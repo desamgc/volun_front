@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
+before_filter :authenticate_user!, only: [:create]
+before_filter :configure_sign_up_params, only: [:create]
 #before_filter :configure_account_update_params, only: [:update]
 #before_action :configure_permitted_parameters, if: :devise_controller?
   respond_to :html, :js, :json
@@ -21,11 +22,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
       if @user.update(user_params)
-        redirect_to projects_url, notice: t('modificacionOk')
+        redirect_to projects_path, notice: t('application.modificacionOk')
       else
         render action: 'edit'
       end
-    
+
   end
 
   # DELETE /resource
@@ -66,8 +67,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:user) { |u| 
-      u.permit(:password, :password_confirmation) 
+    devise_parameter_sanitizer.for(:user) { |u|
+      u.permit(:password, :password_confirmation)
     }
   end
 

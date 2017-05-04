@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <% if records.current_page != records.total_pages %>
+    <% if records.current_page != records.total_pages && records.current_page < records.total_pages %>
     <p id="view-more">
       <%= link_to('Ver Más', url_for(page: records.current_page + 1), {:remote => true}) %>
     </p>

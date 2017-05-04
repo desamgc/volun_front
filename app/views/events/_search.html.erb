@@ -1,4 +1,3 @@
-<h4 class="numActividades"><span><%= events.uniq.count %></span> <%= Activity.model_name.human(count: events.uniq.count) %></h4>
 <% if @day.present? %>
 <% events.group_by(&:activity).each do |activity, events| %>
 <div class="actividadWrapper">

@@ -19,7 +19,7 @@
 //= require datepicker_es.min
 //= require bootstrap.min
 //= require jquery.dotdotdot.min
-//= require turbolinks
+// require turbolinks
 //= require js/locale/i18n_es
 //= require video.min
 //= require videojsYoutube.min
@@ -107,14 +107,6 @@ $(document).ready(function(){
         else
             $('#other_motive').hide();
 
-        $("#btnGrid").click(function(){
-            $('#row').hide();
-            $('#grid').show();
-         });
-        $("#btnRow").click(function(){
-            $('#grid').hide();
-            $('#row').show();
-        });
 
         $("#entity_req_reason_id").change(function(){
             if ($("#entity_req_reason_id").val() == 4)

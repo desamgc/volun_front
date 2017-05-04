@@ -15,8 +15,11 @@ es:
               blank: es obligatorio
             password:
               blank: es obligatoria
+              too_short: demasiado corta
             password_confirmation:
               blank: es obligatoria
+              confirmation: debe confirmarlo
+              too_short: demasiado corta
             terms_of_service:
               blank: tiene que aceptarlos
               presence: tiene que aceptarlos
@@ -43,7 +46,7 @@ es:
               blank: es obligatorio
               password_already_set: "Este usuario ya tiene una clave asociada"
               invalid: es invalido
-              taken: Ya existe una solicitud con esa dirección de correo electronico
+              taken: Ya existe una solicitud con esa dirección de correo electrónico
             contact_last_name:
               blank: es obligatorio
             contact_name:
@@ -93,7 +96,7 @@ es:
             email:
               password_already_set: "Este usuario ya tiene una clave asociada"
               invalid: es invalido
-              taken: Ya existe una solicitud con esa dirección de correo electronico
+              taken: Ya existe una solicitud con esa dirección de correo electrónico
             last_name:
               blank: es obligatorio
             name:
@@ -107,7 +110,7 @@ es:
             email:
               password_already_set: "Este usuario ya tiene una clave asociada"
               invalid: es invalido
-              taken: Ya existe una solicitud con esa dirección de correo electronico
+              taken: Ya existe una solicitud con esa dirección de correo electrónico
             contact_last_name:
               blank: es obligatorio
             contact_name:
@@ -147,7 +150,7 @@ es:
             email:
               password_already_set: "Este usuario ya tiene una clave asociada"
               invalid: es invalido
-              taken: Ya existe una solicitud con esa dirección de correo electronico
+              taken: Ya existe una solicitud con esa dirección de correo electrónico
             phone_number:
               invalid: es invalido
             phone_number_alt:
@@ -265,10 +268,10 @@ es:
     attributes:
       address:
         road_type: Tipo de calle
-        road_number: Numero de calle
+        road_number: número de calle
         road_name: Calle
-        road_number_type: Tipo de numero
-        postal_code: Codigo postal
+        road_number_type: Tipo de número
+        postal_code: código postal
         town: Municipio
         province: Provincia
       entity:
@@ -279,15 +282,15 @@ es:
         representative_name: Nombre representante
         representative_last_name: Primer apellido
         representative_last_name_alt: Segundo apellido
-        phone_number: Telefono
-        phone_number_alt: Otro telefono
+        phone_number: teléfono
+        phone_number_alt: Otro teléfono
         vat_number: CIF
-        email: Correo electronico
+        email: Correo electrónico
         road_type: Tipo de calle
-        road_number: Numero de calle
+        road_number: número de calle
         road_name: Calle
-        road_number_type: Tipo de numero
-        postal_code: Codigo postal
+        road_number_type: Tipo de número
+        postal_code: código postal
         town: Municipio
         province: Provincia
         other_subscribe_reason: Otro motivo
@@ -295,18 +298,18 @@ es:
         req_reason_id: Motivo
       user:
         terms_of_service: Terminos del servicio
-        email: Correo electronico
-        passowrd: Contraseña
-        passowrd_confirmation: Confirmación contraseña
+        email: Correo electrónico
+        password: Contraseña
+        password_confirmation: Confirmación contraseña
       request_form:
         req_reason_id: Motivo
       rt/volunteer_subscribe:
         name: Nombre
-        phone_number: Telefono
-        phone_number_alt: Otro telefono
+        phone_number: teléfono
+        phone_number_alt: Otro teléfono
         last_name: Primer apellido
         last_name_alt: Segundo apellido
-        email: Correo electronico
+        email: Correo electrónico
       rt/entity_subscribe:
         name: Nombre
         contact_name: Persona contacto
@@ -315,29 +318,29 @@ es:
         representative_name: Nombre representante
         representative_last_name: Primer apellido
         representative_last_name_alt: Segundo apellido
-        phone_number: Telefono
-        phone_number_alt: Otro telefono
+        phone_number: teléfono
+        phone_number_alt: Otro teléfono
         vat_number: CIF
-        email: Correo electronico
+        email: Correo electrónico
         road_type: Tipo de calle
-        road_number: Numero de calle
+        road_number: número de calle
         road_name: Calle
-        number_type: Tipo de numero
-        road_number_type: Tipo de numero
-        postal_code: Codigo postal
+        number_type: Tipo de número
+        road_number_type: Tipo de número
+        postal_code: código postal
         town: Municipio
         province: Provincia
         other_subscribe_reason: Otro motivo
         entity_type: Tipo de entidad
       rt/volunteer_amendment:
-        phone_number: Telefono
-        phone_number_alt: Otro telefono
-        email: Correo electronico
+        phone_number: teléfono
+        phone_number_alt: Otro teléfono
+        email: Correo electrónico
         road_type: Tipo de calle
-        road_number: Numero de calle
+        road_number: número de calle
         road_name: Calle
-        number_type: Tipo de numero
-        postal_code: Codigo postal
+        number_type: Tipo de número
+        postal_code: código postal
         town: Municipio
         province: Provincia
       rt/volunteer_unsubscribe:
@@ -345,43 +348,43 @@ es:
       rt/volunteer_appointment:
         notes: Motivo
       rt/volunteers_demand:
-        description: Descripcion
+        description: Descripción
         execution_start_date: Fecha desde
         execution_end_date: Fecha hasta
-        requested_volunteers_num: Numero de voluntarios
+        requested_volunteers_num: número de voluntarios
         volunteers_profile: Perfil de los voluntarios
         volunteer_functions_1: Funcion 1
         volunteer_functions_2: Funcion 2
         volunteer_functions_3: Funcion 3
         road_type: Tipo de calle
-        road_number: Numero de calle
+        road_number: número de calle
         road_name: Calle
-        number_type: Tipo de numero
-        postal_code: Codigo postal
+        number_type: Tipo de número
+        postal_code: código postal
         town: Municipio
         province: Provincia
       rt/project_publishing:
-        description: Descripcion
+        description: Descripción
         notes: Nombre
         road_type: Tipo de calle
-        road_number: Numero de calle
+        road_number: número de calle
         road_name: Calle
-        number_type: Tipo de numero
-        postal_code: Codigo postal
+        number_type: Tipo de número
+        postal_code: código postal
         town: Municipio
         province: Provincia
       rt/activity_publishing:
-        description: Descripcion
+        description: Descripción
         execution_date: Fecha
         execution_hour: Hora
         name: Denominación
         description: Descripción
         organizer: Organizador
         road_type: Tipo de calle
-        road_number: Numero de calle
+        road_number: número de calle
         road_name: Calle
-        number_type: Tipo de numero
-        postal_code: Codigo postal
+        number_type: Tipo de número
+        postal_code: código postal
         town: Municipio
         province: Provincia
         project_id: Proyecto

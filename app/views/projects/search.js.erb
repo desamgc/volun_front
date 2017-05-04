@@ -1,6 +1,6 @@
 <% if @projects_actives.current_page > 1 %>
-$('#projects').append('<%= escape_javascript(render partial: 'project', locals: { records: @projects_actives} ) %>');
+  $('#projects').append('<%= escape_javascript(render partial: 'project', locals: { records: @projects_actives} ) %>');
 <% else %>
-$('#projects').html('<%= escape_javascript(render partial: 'project', locals: { records: @projects_actives} ) %>');
+  $('#projects').html('<%= escape_javascript(render partial: 'project', locals: { records: @projects_actives} ) %>');
 <% end %>
 $('#scroll_projects').html('<%= escape_javascript(render partial: 'shared/scroll_infinite', locals: {records: @projects_actives}) %>');

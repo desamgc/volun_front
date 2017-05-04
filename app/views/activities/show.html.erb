@@ -39,7 +39,7 @@ var id = <%= @activity.id %>
               </div>
             </div>
             <div id="timetables">
-              <ul class="direcciones">
+              <ul id="timetables_by_date" class="direcciones">
                 <%= render partial: "timetables/timetables_by_date_activity", locals: {timetable: @timetables, day: @day} %>
               </ul>
             </div>
@@ -161,22 +161,8 @@ var id = <%= @activity.id %>
           <div class="currentvideo" data-height="308" data-width="450" data-url="" data-expressInstallSwfurl="" data-file="" data-logo="" data-image="" data-urlhtml5= "<%= link.path %>" >
           </div>
         </div> -->
-        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-          poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-          <source src="<%= link.path %>" type='video/mp4'>
-          <source src="<%= link.path %>" type='video/webm'>
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a web browser that
-            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-        </video>
-        <video
-          id="vid1"
-          class="video-js vjs-default-skin"
-          controls
-          width="640" height="264"
-          data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "<%= link.path %>"}], "youtube": { "customVars": { "wmode": "transparent" } } }'
-          >
+
+        <video id="vid1" class="video-js vjs-default-skin" controls width="640" height="264" data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "<%= link.path %>"}], "youtube": { "customVars": { "wmode": "transparent" } } }'>
         </video>
         <h3 class="videoTitle"><%= link.description %></h3>
         <% end %>

@@ -4,17 +4,17 @@
       o medios de difusión municipales. (Ver aviso legal) <span class="asterisco">*</span></p>
       <label class="radioCustom"><%= f.radio_button :publish_pictures, true %><span class="outer"><span class="inner"></span></span> <%=  t("application.checky") %></label>
       <label class="radioCustom"><%= f.radio_button :publish_pictures, false %><span class="outer"><span class="inner"></span></span>No</label>
-      <p>Desde el Programa Municipal de Voluntariado del Ayuntamiento de Madrid &#8220;Voluntarios por Madrid&#8221;, le ofrecemos
+      <p>Desde el Programa Municipal de Voluntariado del Ayuntamiento de Madrid &#8220;Voluntarios por Madrid&#8221;, te ofrecemos
         toda la informaci&#243;n sobre voluntariado de la ciudad de Madrid, as&#237; como sobre los proyectos de voluntariado
         en los que puede colaborar. Datos de contacto: 900 777 888 (tel&#233;fono gratuito) Horario de atenci&#243;n:
-        lunes a jueves de 9:00 a 19:00 horas viernes de 9:00 a 18:00 horas Correo electr&#243;nico: voluntariospormadrid@madrid.es
+        lunes a jueves de 9:00 a 19:00 h. y viernes de 9:00 a 18:00 h. Correo electr&#243;nico: voluntariospormadrid@madrid.es
       </p>
-      <p>Le informamos que anualmente la Direcci&#243;n General de Calidad y Atenci&#243;n al Ciudadano del Ayuntamiento de
-        Madrid realiza una encuesta de satisfacci&#243;n entre los diferentes usuarios de la Web municipal madrid.es
+      <p>Te informamos que anualmente la Direcci&#243;n General de Calidad y Atenci&#243;n al Ciudadano del Ayuntamiento de
+        Madrid realiza una encuesta de satisfacci&#243;n entre las diferentes personas usuarias de la Web municipal madrid.es
         con el objeto de mejorar la calidad de los servicios municipales que se prestan a trav&#233;s de este medio electr&#243;nico.
-        Para ello, se realiza una selecci&#243;n aleatoria entre todos los correos electr&#243;nicos que aportan los
-        usuarios. En el caso que usted no quiera que el dato de su correo electr&#243;nico sea utilizado en la selecci&#243;n
-        de la muestra de la encuesta, ind&#237;quelo marcando la casilla que figura a estos efectos en el formulario.
+        Para ello, se realiza una selecci&#243;n aleatoria entre todos los correos electr&#243;nicos que aportan las personas
+        usuarias. En el caso que no quieras que el dato de tu correo electr&#243;nico sea utilizado en la selecci&#243;n
+        de la muestra de la encuesta, ind&#237;calo marcando la casilla que figura a estos efectos en el formulario.
       </p>
       <div class="checkCustom">
         <%= f.check_box :annual_survey, label: false  %>
@@ -22,15 +22,17 @@
       </div>
       <span class="labelCheck textCheckbox">No quiero que el dato de mi correo electrónico sea utilizado con esta finalidad</span>
     </div>
-    <%= f.fields_for(:user_attributes) do |f_u| %>
-    <div class="checkCustom">
-      <%= f_u.check_box :terms_of_service, label: false %>
-      <label for="entity_user_attributes_terms_of_service"></label>
-    </div>
-    <span class="labelCheck textCheckbox">
-      <%= t("devise_views.users.registrations.new.terms",
-      terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/conditions", target: "_blank")).html_safe %>
-    </span>
+    <% if controller_name == 'entities' %>
+      <%= f.fields_for(:user_attributes) do |f_u| %>
+      <div class="checkCustom">
+        <%= f_u.check_box :terms_of_service, label: false %>
+        <label for="entity_user_attributes_terms_of_service"></label>
+      </div>
+      <span class="labelCheck textCheckbox">
+        <%= t("devise_views.users.registrations.new.terms",
+        terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/conditions", target: "_blank")).html_safe %>
+      </span>
+      <% end %>
     <% end %>
     <hr>
     <div class="aviso">

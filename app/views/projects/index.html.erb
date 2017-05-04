@@ -1,3 +1,4 @@
+
 <%= javascript_include_tag 'projects' %>
 <%= javascript_tag do %>
 var locations = <%= raw @locations.to_json %>;
@@ -24,15 +25,12 @@ var day_c =""
       <h2 class="titlePage"><%= Project.actives.count %> proyectos</h2>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-      <!--         <span class="labelUp">Ordenar </span>-->
-      <select class="selectOrdenar">
-        <option>Fecha</option>
-        <option>Mas demandados</option>
-        <option>Etc.</option>
+      <div class="dropdown">
+      <ul>
+        <li><%= sort_link @search, :created_at, "Fecha creación" %></li>
 
-
-      </select>
-      <%= sort_link @search, :created_at, "Fecha creación" %>
+     </ul>
+     </div>
     </div>
   </div>
   <!-- en modo cuadricula -->

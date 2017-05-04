@@ -3,4 +3,4 @@
   var url_map = "<%= Rails.application.secrets.url_map %>";
   var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
   load_coordenadas();
-  $('#timetables').html('<%= escape_javascript(render partial: 'timetables/timetables_by_date_activity', locals: {events: @timetables, day:@day}) %>');
+  $('#timetables_by_date').html('<%= escape_javascript(render partial: 'timetables/timetables_by_date_activity', locals: {events: @timetables, day:@day}) %>');

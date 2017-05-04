@@ -16,24 +16,31 @@ class ActivitiesController < ApplicationController
 
 
   def index
-     params[:day] ||= Activity.includes(:timetables).activities_present(Time.now).minimum(:execution_date).try :strftime, "%Y-%m-%d"
-     # version con eventos
-     @search_q = Event.includes(:address, :timetables, :activity).where(eventable_type: Activity.name).search({timetables_execution_date_gteq: params[:day] })
-     @events = @search_q.result.uniq.page(params[:page]).per(6)
+    if (params[:day])
+      # version con eventos
+      @search_q = Event.includes(:address, :timetables, :activity).where(eventable_type: Activity.name).search({timetables_execution_date_eq: params[:day] })
+      @day = params[:day]
 
-     # version con timetables
-     #@search_q = Timetable.joins(:activity, event: [:activity]).distinct(:execution_date).where("events.eventable_type='Activity'").order(:execution_date).search({execution_date_eq: params[:day] })
-     #@events = @search_q.result.page(params[:page]).per(6)
+    else
+      params[:day] = Time.now
+      # version con eventos
+      @search_q = Event.includes(:address, :timetables, :activity).where(eventable_type: Activity.name).search({timetables_execution_date_gteq: params[:day] })
+      @day = nil
+    end
+    @events = @search_q.result.uniq.page(params[:page]).per(6)
 
-     @list_days = Activity.includes(:timetables).distinct.activities_present(Time.now).order('timetables.execution_date').pluck('timetables.execution_date').to_json
-     @boroughs = ""
-     @areas = Area.all
-     @day = nil
-     @districts = Activity.includes(:addresses).actives.distinct.order("district").pluck('district','district')
-     respond_to do |format|
-       format.html
-       format.js {render :action => 'search.js.erb'}
-     end
+    # version con timetables
+    #@search_q = Timetable.joins(:activity, event: [:activity]).distinct(:execution_date).where("events.eventable_type='Activity'").order(:execution_date).search({execution_date_eq: params[:day] })
+    #@events = @search_q.result.page(params[:page]).per(6)
+
+    @list_days = Activity.includes(:timetables).distinct.activities_present(Time.now).order('timetables.execution_date').pluck('timetables.execution_date').to_json
+    @boroughs = ""
+    @areas = Area.all
+    @districts = Activity.includes(:addresses).actives.distinct.order("district").pluck('district','district')
+    respond_to do |format|
+      format.html
+      format.js {render :action => 'search.js.erb'}
+    end
   end
 
   def search

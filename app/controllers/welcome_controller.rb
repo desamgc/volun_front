@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   respond_to :html, :js, :json
   def index
-  	@projects_featured = Project.includes(:areas).featured
+  	@projects_featured = Project.includes(:areas,:entity).featured
   	@project_urgent = Project.urgent.limit(1)
   	@locations = Project.includes(:addresses).actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
 
