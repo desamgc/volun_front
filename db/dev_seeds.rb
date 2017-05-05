@@ -281,7 +281,7 @@ puts "Creando actividades"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         link_type_id: 4,
-        path: "http://vjs.zencdn.net/v/oceans.mp4",
+        path: "https://www.youtube.com/watch?v=az-KJMqh7ks",
         linkable: activity
     )
     end
@@ -379,7 +379,7 @@ puts "Creando Proyectos urgent"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         link_type_id: 4,
-        path: "http://vjs.zencdn.net/v/oceans.mp4",
+        path: "https://www.youtube.com/watch?v=az-KJMqh7ks",
         linkable: project
     )
     end
@@ -466,7 +466,7 @@ puts "Creando Proyectos featured"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         link_type_id: 4,
-        path: "http://vjs.zencdn.net/v/oceans.mp4",
+        path: "https://www.youtube.com/watch?v=az-KJMqh7ks",
         linkable: project
     )
     end
@@ -554,7 +554,7 @@ puts "Creando Proyectos"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         link_type_id: 4,
-        path: "http://vjs.zencdn.net/v/oceans.mp4",
+        path: "https://www.youtube.com/watch?v=az-KJMqh7ks",
         linkable: project
     )
     end
@@ -617,5 +617,7 @@ end
     else
       user.update_attributes!(attributes)
     end
-
+    # users of pre
+     #User.create(login: 'entidad@madrid.es', email: 'entidad@madrid.es', password: '12345678', password_confirmation: '12345678', loggable_id: 1, loggable_type: 'Entity', notice_type_id: 1)
+     #User.create(login: 'voluntario@madrid.es', email: 'voluntario@madrid.es', password: '12345678', password_confirmation: '12345678', loggable_id: 1, loggable_type: 'Volunteer', notice_type_id: 1)
 
