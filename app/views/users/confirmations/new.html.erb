@@ -1,16 +1,32 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %> 
+<div class="container-fluid pt60">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mc-acceso nofluid">
+        <%= render(partial: 'shared/errors', locals: {model_name: @user})%>
+        <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+        <h2 class="titlePage">Recibir instrucciones</h2>
+        <p class="notes mb20">
+          Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+        </p>
+        <div class="form form-electronic">
+          <div class="mc-acceso-item login">
+            <fieldset>
+              <div class="form-group">
+                <label class="labelUp">Correo electrónico<span class="asterisco">*</span></label>
+                <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "big" %>
+              </div>
+            </fieldset>
+            <hr>
+            <div class="button-group text-right">
+              <%= f.submit "Recibir instrucciones", class: "event-link big mb20" %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

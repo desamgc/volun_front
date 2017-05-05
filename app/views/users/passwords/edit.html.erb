@@ -1,70 +1,39 @@
-
-<div class="mc-acceso nofluid">
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put}) do |f| %>
-
-      <% if resource.errors.any? %>
-    <div id="errores" class="nofluid">
-       <div class="info-seccion">
-          <div class="modal-alert modal-error">
-            <h2 class="title-modal">Existen errores en el formulario</h2>
-<!--            <a href="#" onclick='closeErrores()' class="close" title="<%= t("application.close") %>">&times;</a>-->
-            <h2><%= pluralize(resource.errors.count, "error") %> </h2>
-
-            <ul>
-              <% resource.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-            </ul>
-       </div>
-      </div>      
-    </div>
-  <% end %>
-  <%= f.hidden_field :reset_password_token %>
-  <p class="notes">
-        Los campos marcados con <em class="asterisco">*</em> son obligatorios.
-    </p>
-
-        <div class="panel panel-type1">
-            <div class="panel-heading">
-                <h3 class="panel-title">Formulario de cambio de contraseña</h3>
-                
+<div class="container-fluid pt60">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mc-acceso nofluid">
+        <%= render(partial: 'shared/errors', locals: {model_name: @user})%>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put}) do |f| %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+        <h2 class="titlePage">Formulario de cambio de contraseña</h2>
+        <p class="notes mb20">
+          Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+        </p>
+        <%= f.hidden_field :reset_password_token %>
+        <div class="form form-electronic">
+          <div class="mc-acceso-item login">
+            <fieldset>
+              <div class="form-group">
+                <label class="labelUp">Contraseña nueva<span class="asterisco">*</span></label>
+                <%= f.password_field :password, autocomplete: "off", class: "big" %>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <label class="labelUp">Confirmación contraseña <span class="asterisco">*</span></label>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "big" %>
+              </div>
+            </fieldset>
+            <hr>
+            <div class="button-group text-right">
+              <%= f.submit "Enviar", class: "event-link big mb20" %>
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    
-                    <div class="col-sm-6 col-xs-6 col-md-12">
-                        <div class="mc-acceso-item login">
-                            <div class="content">
-                                <h4 class="legend legend-user">Datos a rellenar</h4>
-                                    
-
-                                    
-                                    <br/>
-
-                                    <div class="form-group">
-                                        <span class="labelUp">Contraseña <span class="asterisco">*</span></span>
-                                        <!-- <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Contraseña" /> -->
-                                        <%= f.password_field :password, autocomplete: "off" , class:  "form-control" ,placeholder:"Contraseña para entrar a este sitio web" %>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <span class="labelUp">Confirmación contraseña <span class="asterisco">*</span></span>
-                                        <!-- <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Contraseña" /> -->
-                                        <%= f.password_field :password_confirmation, autocomplete: "off",placeholder:"Confirmar contraseña", class:  "form-control" %>
-                                    </div>
-
-                                    <div class="buttons">
-                                        <button class="button button4 button-icon">Confirmar <i class="button-icon-arrowright"></i></button> 
-                                                                      
-                                        
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
