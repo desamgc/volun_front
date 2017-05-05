@@ -15,17 +15,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
-//= require datepicker
-//= require datepicker_es.min
 //= require bootstrap.min
 //= require jquery.dotdotdot.min
 // require turbolinks
 //= require js/locale/i18n_es
 //= require video.min
 //= require videojsYoutube.min
-
 // require_directory .
-// require vendor
 
 
 
