@@ -12,6 +12,7 @@ es:
     new: Registrarse
     title: Solicitud de participación como voluntario
     response: "Solicitud recibida de forma correcta, en breve nos pondremos en contacto para realizarle una entrevista."
+    responseKO: "No se ha podido dar de alta la solicitud. Compruebe que no haya realizado una solicitud previa"
     send: Enviar
     interest: Me interesa participar como voluntario
     participation: Para paticipar como voluntario necesita

@@ -7,12 +7,16 @@ es:
      address:
       one: Dirección
       other: Direcciones
+     project:
+      one: Proyecto
+      other: Proyectos
     errors:
       models:
         user:
           attributes:
             email:
               blank: es obligatorio
+              taken: ya existente
             password:
               blank: es obligatoria
               too_short: demasiado corta
@@ -46,13 +50,14 @@ es:
               blank: es obligatorio
               password_already_set: "Este usuario ya tiene una clave asociada"
               invalid: es invalido
-              taken: Ya existe una solicitud con esa dirección de correo electrónico
+              taken: ya existe en una solicitud
             contact_last_name:
               blank: es obligatorio
             contact_name:
               blank: es obligatorio
             name:
               blank: es obligatorio
+              taken: ya existente
             phone_number:
               invalid: es invalido
             phone_number_alt:
@@ -94,9 +99,9 @@ es:
         rt/volunteer_subscribe:
           attributes:
             email:
-              password_already_set: "Este usuario ya tiene una clave asociada"
+              password_already_set: Este usuario ya tiene una clave asociada
               invalid: es invalido
-              taken: Ya existe una solicitud con esa dirección de correo electrónico
+              taken: ya existe en una solicitud
             last_name:
               blank: es obligatorio
             name:
@@ -108,7 +113,7 @@ es:
         rt/entity_subscribe:
           attributes:
             email:
-              password_already_set: "Este usuario ya tiene una clave asociada"
+              password_already_set: Este usuario ya tiene una clave asociada
               invalid: es invalido
               taken: Ya existe una solicitud con esa dirección de correo electrónico
             contact_last_name:
@@ -275,7 +280,7 @@ es:
         town: Municipio
         province: Provincia
       entity:
-        name: Nombre
+        name: Nombre de entidad
         contact_name: Persona contacto
         contact_last_name: Primer apellido
         contact_last_name_alt: Segundo apellido
@@ -287,10 +292,10 @@ es:
         vat_number: CIF
         email: Correo electrónico
         road_type: Tipo de calle
-        road_number: número de calle
+        road_number: Número de calle
         road_name: Calle
         road_number_type: Tipo de número
-        postal_code: código postal
+        postal_code: Código postal
         town: Municipio
         province: Provincia
         other_subscribe_reason: Otro motivo
@@ -311,7 +316,7 @@ es:
         last_name_alt: Segundo apellido
         email: Correo electrónico
       rt/entity_subscribe:
-        name: Nombre
+        name: Nombre de entidad
         contact_name: Persona contacto
         contact_last_name: Primer apellido
         contact_last_name_alt: Segundo apellido
@@ -327,7 +332,7 @@ es:
         road_name: Calle
         number_type: Tipo de número
         road_number_type: Tipo de número
-        postal_code: código postal
+        postal_code: Código postal
         town: Municipio
         province: Provincia
         other_subscribe_reason: Otro motivo
@@ -337,10 +342,10 @@ es:
         phone_number_alt: Otro teléfono
         email: Correo electrónico
         road_type: Tipo de calle
-        road_number: número de calle
+        road_number: Número de calle
         road_name: Calle
         number_type: Tipo de número
-        postal_code: código postal
+        postal_code: Código postal
         town: Municipio
         province: Provincia
       rt/volunteer_unsubscribe:
@@ -367,10 +372,10 @@ es:
         description: Descripción
         notes: Nombre
         road_type: Tipo de calle
-        road_number: número de calle
+        road_number: Número de calle
         road_name: Calle
         number_type: Tipo de número
-        postal_code: código postal
+        postal_code: Código postal
         town: Municipio
         province: Provincia
       rt/activity_publishing:
@@ -381,10 +386,10 @@ es:
         description: Descripción
         organizer: Organizador
         road_type: Tipo de calle
-        road_number: número de calle
+        road_number: Número de calle
         road_name: Calle
         number_type: Tipo de número
-        postal_code: código postal
+        postal_code: Código postal
         town: Municipio
         province: Provincia
         project_id: Proyecto
