@@ -31,6 +31,9 @@ var id = <%= @activity.id %>
               </h3>
             </div>
             <div class="info-actividad">
+              <h4>
+                <%= @activity.transport %>
+              </h4>
               <div id="fecha">
               </div>
             </div>
@@ -45,6 +48,7 @@ var id = <%= @activity.id %>
             </div>
           </div>
         </div>
+        <% if @activity.entity.links.present? %>
         <div class="bloque">
           <div id="meta">
             <div class="brand">
@@ -55,8 +59,9 @@ var id = <%= @activity.id %>
             </div>
           </div>
         </div>
+        <% end %>
+        <% if @activity.links.document.present? %>
         <div class="bloque">
-          <% if @activity.links.document.present? %>
           <div id="documentacion">
             <h5> Documentación </h5>
             <% @activity.links.document.each do |link| %>
@@ -66,12 +71,12 @@ var id = <%= @activity.id %>
             </div>
             <% end %>
           </div>
-          <% end %>
-        </div>
-        <div class="bloque">
+         </div>
+        <% end %>
+        <% if @activity.project.present? %>
+         <div class="bloque">
           <div id="proyectosAsociados">
             <h5> Proyecto asociado </h5>
-            <% if @activity.project.present? %>
             <%= link_to project_path(@activity.project) do %>
             <div class="cardProyectoAsociado">
               <div class="row" style="margin:0">
@@ -89,10 +94,11 @@ var id = <%= @activity.id %>
                 </div>
               </div>
             </div>
-            <% end %>
-            <% end %>
-          </div>
+           </div>
         </div>
+        <% end %>
+        <% end %>
+
       </div>
     </div>
     <div class="col-md-8 col-md-pull-4">

@@ -15,12 +15,12 @@ load_geo: function ()
      {
 
              var sr = new SpatialReference({wkid:25830});
-             var centro =  (multiple == true) ?  new Point([446137,4475471],sr) : new Point([locations.addresses[1].latitude,locations.addresses[1].longitude],sr);
-             var zoom = (multiple == true) ? 1 : 7;
+             var centro =  new Point((locations[0].address.latitude/100).toFixed(0),(locations[0].address.longitude/100).toFixed(0),sr);
+             var zoom =  6;
              map = new Map("mapDiv", {
                      center: centro,
                      spatialReference: sr,
-                     zoom: 2
+                     zoom: zoom
 
              });
 
@@ -32,24 +32,18 @@ load_geo: function ()
              map.addLayer(mapabase);
              map.addLayer(rotulacion);
              //map.addLayer(ndps);
-             map.infoWindow.resize(500, 200);
+             map.infoWindow.resize(200, 200);
+             var graficos = new GraphicsLayer();
+             map.addLayer(graficos);
 
              var picBaseUrl = "/assets/";
              var pms = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 24, 24).setOffset(0, 15);
-
-             if (multiple == true)
+             $.each(locations, function(i, location)
              {
-                 $.each(locations, function(i, location)
-                 {
+
+
                  var pt = new Point((location.address.latitude/100).toFixed(0),(location.address.longitude/100).toFixed(0),map.spatialReference);
-
-
-                 var graficos = new GraphicsLayer();
-                 map.addLayer(graficos);
-
                  var infoTemplate = new InfoTemplate();
-
-
                  infoTemplate.setTitle(location.name);
                  infoTemplate.setContent("<img src='/assets/1.jpg' alt='2'>" +
                 "<h2>" + location.description + " </h2><br/>" +
@@ -59,23 +53,8 @@ load_geo: function ()
                  g.setInfoTemplate(infoTemplate);
                  graficos.add(g);
 
-                });
-              }
-              else
-              {
+              });
 
-                 var pt = new Point((locations.address.latitude/100).toFixed(0),(locations.address.longitude/100).toFixed(0),map.spatialReference);
-
-
-                 var graficos = new GraphicsLayer();
-                 map.addLayer(graficos);
-
-                 var infoTemplate = new InfoTemplate();
-
-                 var g = new Graphic(pt,pms);
-                 g.setInfoTemplate(infoTemplate);
-                 graficos.add(g);
-              }
 
 })
 }
@@ -147,20 +126,6 @@ function load_coordenadas ()
               }
 
       })
-}
-
-
-
-
-
-function showCoordinates(evt) {
-
-    require(["dojo/dom"], function(dom) {
-
-                                                 var mp = evt.mapPoint;
-                                                 //display mouse coordinates
-                                                 dom.byId("info").innerHTML = mp.x.toFixed(3) + ", " + mp.y.toFixed(3);
-   })
 }
 
 
