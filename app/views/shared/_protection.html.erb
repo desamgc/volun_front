@@ -18,7 +18,11 @@
       </p>
       <div class="checkCustom">
         <%= f.check_box :annual_survey, label: false  %>
-        <label for="entity_annual_survey"></label>
+        <% if controller_name == 'entities' %>
+          <label for="entity_annual_survey"></label>
+        <% else %>
+          <label for="rt_volunteer_subscribe_annual_survey"></label>
+        <% end %>
       </div>
       <span class="labelCheck textCheckbox">No quiero que el dato de mi correo electrónico sea utilizado con esta finalidad</span>
     </div>

@@ -276,7 +276,7 @@ es:
         road_number: número de calle
         road_name: Calle
         road_number_type: Tipo de número
-        postal_code: código postal
+        postal_code: Código postal
         town: Municipio
         province: Provincia
       entity:
@@ -287,7 +287,7 @@ es:
         representative_name: Nombre representante
         representative_last_name: Primer apellido
         representative_last_name_alt: Segundo apellido
-        phone_number: teléfono
+        phone_number: Teléfono
         phone_number_alt: Otro teléfono
         vat_number: CIF
         email: Correo electrónico
@@ -338,7 +338,7 @@ es:
         other_subscribe_reason: Otro motivo
         entity_type: Tipo de entidad
       rt/volunteer_amendment:
-        phone_number: teléfono
+        phone_number: Teléfono
         phone_number_alt: Otro teléfono
         email: Correo electrónico
         road_type: Tipo de calle
@@ -365,7 +365,7 @@ es:
         road_number: número de calle
         road_name: Calle
         number_type: Tipo de número
-        postal_code: código postal
+        postal_code: Código postal
         town: Municipio
         province: Provincia
       rt/project_publishing:

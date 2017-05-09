@@ -24,20 +24,20 @@ var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
                 <% if @project.volunteers_allowed %>
                     <div class="ctaVoluntarios">
                       <h3>Se necesitan voluntarios</h3>
-                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id), class: "event-link big" %>
+                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
                     </div>
                 <% end %>
               <% end %>
             <% else %>
                     <div class="ctaVoluntarios">
                       <h3>Se necesitan voluntarios</h3>
-                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id), class: "event-link big" %>
+                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
                     </div>
              <% end %>
           <% else %>
                     <div class="ctaVoluntarios">
                       <h3>Se necesitan voluntarios</h3>
-                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project: @project.id), class: "event-link big" %>
+                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
                     </div>
           <% end %>
           <hr>

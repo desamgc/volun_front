@@ -8,17 +8,13 @@ class Rt::VolunteerSubscribesController < ApplicationController
 
   def new
     if current_user && current_user.loggable_type == "Volunteer"
-      #if exists_request == true
-      #  redirect_to project_path(params[:project]), notice:"Ya existe una solicitud para participar en este proyecto"
-      #else
-        if @rt_volunteer_subscribe.save
-          redirect_to project_path(params[:project]), notice: t('volunteer_subscribe.response')
-        else
-          debugger
-          redirect_to project_path(params[:project]), notice: t('volunteer_subscribe.responseKO')
-        end
-      #end
+          if @rt_volunteer_subscribe.save
+            redirect_to project_path(session[:project]), notice: t('volunteer_subscribe.response')
+          else
+            redirect_to project_path(session[:project]), notice: t('volunteer_subscribe.responseKO')
+          end
     end
+
   end
 
   def create
@@ -33,12 +29,6 @@ class Rt::VolunteerSubscribesController < ApplicationController
 
   protected
 
-  def exists_request
-    #if Rt::VolunteerSubscribe.where(email: @rt_volunteer_subscribe.email, project_id: @rt_volunteer_subscribe.project_id).exists?
-    #  return true
-    #end
-  end
-
   def user_exists
     if User.where(email: rt_volunteer_subscribe_params[:email]).exists?
       redirect_to new_password_path("user"), alert:"Ya existe un usuario con ese email. Desea recordar constraseña?"
@@ -46,9 +36,10 @@ class Rt::VolunteerSubscribesController < ApplicationController
   end
 
   def set_fields
+    session[:project] ||= params[:project_id]
     if current_user && current_user.loggable_type == "Volunteer"
 
-      @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new(project_id: params[:project],
+      @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new(project_id: session[:project],
                                                            name: current_user.loggable.name,
                                                            last_name: current_user.loggable.last_name,
                                                            phone_number: current_user.loggable.phone_number,
@@ -63,6 +54,6 @@ class Rt::VolunteerSubscribesController < ApplicationController
   end
 
   def rt_volunteer_subscribe_params
-    params.require(:rt_volunteer_subscribe).permit(:name, :last_name, :last_name_alt, :phone_number, :phone_number_alt, :email, request_form: [:user_id])
+    params.require(:rt_volunteer_subscribe).permit(:name, :last_name, :last_name_alt, :phone_number, :phone_number_alt, :email, :project_id,request_form: [:user_id])
   end
 end

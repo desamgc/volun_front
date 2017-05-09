@@ -8,6 +8,8 @@ es:
     checky: Sí
     validate: validar
     modificacionOk: Se ha realizado satisfactoriamente la modificación.
+    register_entity: Hazte entidad colaboradora
+    register_volunteer: Haz voluntariado
    volunteer_subscribe:
     new: Registrarse
     title: Solicitud de participación como voluntario

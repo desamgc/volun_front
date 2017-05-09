@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   resources :links, concerns: :downloadable
 
   resources :volunteers do
-    resources :projects, only:[:index, :show], param: :q
+    resources :projects, only:[:index], param: :q
 
   end
 

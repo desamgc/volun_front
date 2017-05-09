@@ -8,7 +8,10 @@
         <h3 class="titlePage">¿Quieres publicar un proyecto?</h3>
         <h3 class="titlePage">¿Quieres difundir una actividad?</h3>
         <p>Si eres una entidad ponte en contacto con nosotros.</p>
-        <%= link_to 'Hazte entidad colaboradora', new_entity_path, class: "event-link big" %>
+        <% if !current_user || current_user.loggable_type == "Volunteer" %>
+            <%= link_to t('application.register_entity'), new_entity_path, class: "event-link big" %>
+
+        <% end %>
       </div>
     </div>
   </div>
