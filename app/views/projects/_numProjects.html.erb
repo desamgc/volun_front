@@ -1,0 +1,5 @@
+<% if total > 0 %>
+  <h2 class="titlePage"><%= total %> <%= Project.model_name.human(count: total) %></h2>
+<% else %>
+  <h2 class="titlePage">No se encontrado proyectos</h2>
+<% end %>

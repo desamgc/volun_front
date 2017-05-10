@@ -1,7 +1,8 @@
 <%= form_for(@rt_volunteer_subscribe) do |f| %>
   <div class="form form-electronic">
     <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_subscribe})%>
-
+      <h4> Si ya estas registrado <%= link_to 'Inicia sesión', new_user_session_path %> sino, rellena el siguiente formulario:</h4>
+      <br>
       <fieldset>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">

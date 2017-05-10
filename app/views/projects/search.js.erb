@@ -1,3 +1,4 @@
+$('#numProjects').html('<%= escape_javascript(render partial: 'numProjects', locals: { total: @projects_actives.total_count} ) %>');
 <% if @projects_actives.current_page > 1 %>
   $('#projects').append('<%= escape_javascript(render partial: 'project', locals: { records: @projects_actives} ) %>');
 <% else %>

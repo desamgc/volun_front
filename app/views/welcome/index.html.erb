@@ -1,13 +1,15 @@
-<%= javascript_include_tag 'activities_home' %>
-<%= javascript_include_tag 'projects' %>
 <%= javascript_tag do %>
 var locations = <%= raw @locations.to_json %>;
 var multiple = true;
 var url_map = "<%= Rails.application.secrets.url_map %>";
 var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
 var list_days = <%= raw @list_days.to_json %>;
+var lock = true;
 var day_c = ""
 <% end %>
+<%= javascript_include_tag 'calendar' %>
+<%= javascript_include_tag 'map' %>
+
 <div class="section-cont">
   <h2 class="section-name">
   <span class="section-name-title">
@@ -33,7 +35,7 @@ var day_c = ""
   </div>
   <div class="row">
     <div class="col-md-4">
-      <div id="fecha">
+      <div id="fecha_home">
       </div>
     </div>
     <div class="col-md-8">

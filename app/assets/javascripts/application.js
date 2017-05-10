@@ -120,6 +120,73 @@ $(document).ready(function(){
 
 
 
+        $('#q_addresses_district_eq').on('click', function() {
+                           jQuery.ajax({
+                                      type: "GET",
+                                      dataType: "json",
+                                      url: url,
+                                      success: function(data) {
+                                          $('#q_addresses_borough_eq').children().remove();
+                                          $.each(data, function(i, location)
+
+                                          {
+                                              $('#q_addresses_borough_eq').append('<option value=' + location + '>' + location + '</option>');
+
+                                          });
+
+
+
+
+
+                                      },
+                                      error: function(data){
+
+                                          $('#q_addresses_borough_eq').children().remove();
+                                      },
+                                      "data":{district:$('#q_addresses_district_eq').val() },
+                                      "async": true,
+
+                               });
+        });
+
+
+        $('#q_address_district_eq').on('click', function() {
+                           jQuery.ajax({
+                                      type: "GET",
+                                      dataType: "json",
+                                      url: url,
+                                      success: function(data) {
+                                          $('#q_address_borough_eq').children().remove();
+                                          $('#q_address_borough_eq').append("<option value=' ' selected = true></option>");
+                                          $.each(data, function(i, location)
+
+                                          {
+                                              $('#q_address_borough_eq').append('<option value=' + location + '>' + location + '</option>');
+
+                                          });
+
+
+
+
+
+                                      },
+                                      error: function(data){
+
+                                          $('#q_address_borough_eq').children().remove();
+                                      },
+                                      "data":{district:$('#q_address_district_eq').val() },
+                                      "async": true,
+
+                               });
+        });
+
+
+
+
+
+
+
+
 
 
 });

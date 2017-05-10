@@ -12,6 +12,7 @@
     <div class="col-xs-10">
       <p class="distrito"><%= events.map{ |event| event.address.district }.to_sentence(:last_word_connector => ' y ') %></p>
       <h3 class="titular"><%= activity.name %></h3>
+      <i><%= link_to  " " , activity_path(activity), class: "fa fa-chevron-right" %> </i>
     </div>
   </div>
 </div>

@@ -1,13 +1,17 @@
-<%= javascript_include_tag 'activities_show' %>
+
 <%= javascript_tag do %>
-var locations = <%= raw @locations_activity.to_json %>;
+var locations = <%= raw @locations.to_json %>;
 var multiple = true;
 var url_map = "<%= Rails.application.secrets.url_map %>";
 var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
 var list_days = <%= raw @list_days_activity.to_json %>;
+var lock = false;
 var day_c = <%= raw @day.to_json %>
 var id = <%= @activity.id %>
 <% end %>
+<%= javascript_include_tag 'calendar' %>
+<%= javascript_include_tag 'map' %>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 mt45" >
@@ -34,7 +38,7 @@ var id = <%= @activity.id %>
               <h4>
                 <%= @activity.transport %>
               </h4>
-              <div id="fecha">
+              <div id="fecha_show">
               </div>
             </div>
             <div id="mapaW">
@@ -67,7 +71,7 @@ var id = <%= @activity.id %>
             <% @activity.links.document.each do |link| %>
             <p> <%= link.description %></p>
             <div class="text-right">
-              <%= link_to 'Descargar', download_link_path(link.id), class: "event-link negative" %>
+              <%= link_to 'Descargar', link.path, download: '', class: "event-link negative" %>
             </div>
             <% end %>
           </div>

@@ -9,7 +9,7 @@
           <%= f.text_field :name, { class: 'all' } %>
         </div>
         <div class="form-group all">
-          <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:project_id) %> <span class="asterisco">*</span></label>
+          <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:project_id) %> </label>
           <%= f.select :project_id, entity_projects_select_options(current_user.loggable.id), {include_blank: "", selected: ""}, { class: 'all' } %>
         </div>
         <div class="form-group all">

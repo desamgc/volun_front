@@ -9,14 +9,18 @@
             <div class="col-md-8">
               <div class="cajaBusqueda">
                 <div class="row">
-                  <div class="col-sm-9">
+                  <div class="col-sm-8">
                     <div class="conjuntoBusqueda">
                       <%= f.text_field :name_or_description_cont, placeholder: "Buscar un proyecto", class: "buscarInput" %>
                       <%= f.button "", class: "lupa"  %>
                     </div>
                   </div>
-                  <div class="col-sm-3 text-right">
+                  <div class="col-sm-2 text-right">
                     <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed verFiltros">Ver filtros</a>
+
+                  </div>
+                  <div class="col-sm-2 text-right">
+                    <%= link_to 'Todos', projects_path, class: "panel-title collapsed verFiltros" %>
                   </div>
                 </div>
               </div>
@@ -61,5 +65,8 @@
       </div>
     </div>
   </form>
+  <div class="button-group text-right mt20">
+      <%= f.submit "Buscar", class: "event-link"  %>
+  </div>
 </div>
 <% end %>

@@ -58,6 +58,7 @@ class ProjectsController < ApplicationController
     params[:day] ||= @project.timetables.minimum(:execution_date).try :strftime, "%Y-%m-%d"
     @timetables = @project.timetables.where(timetables: {execution_date: params[:day]})
     @locations = @project.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+
      #@list_days_project = @project.timetables.pluck('timetables.execution_date').to_json
     #@date = params[:day]
     #@day = params[:day].to_json

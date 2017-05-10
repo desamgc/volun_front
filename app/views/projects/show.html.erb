@@ -1,10 +1,12 @@
-<%= javascript_include_tag 'project_show' %>
 <%= javascript_tag do %>
 var locations = <%= raw @locations.to_json %>;
-var multiple = true;
+var multiple = false;
 var url_map = "<%= Rails.application.secrets.url_map %>";
 var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
+var lock = true;
 <% end %>
+<%= javascript_include_tag 'map' %>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 mt45" >

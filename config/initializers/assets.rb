@@ -9,17 +9,13 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( projects.js )
+Rails.application.config.assets.precompile += %w( map.js )
 Rails.application.config.assets.precompile += %w( address.js )
-Rails.application.config.assets.precompile += %w( activities.js )
-Rails.application.config.assets.precompile += %w( activities_home.js )
-Rails.application.config.assets.precompile += %w( activities_show.js )
-Rails.application.config.assets.precompile += %w( project_show.js )
+Rails.application.config.assets.precompile += %w( calendar.js )
 Rails.application.config.assets.precompile += %w( jquery.dotdotdot.min.js )
 Rails.application.config.assets.precompile += %w( js/locale/i18n_es.js )
 Rails.application.config.assets.precompile += %w( js/vendor.js )
 Rails.application.config.assets.precompile += %w( js/ayuntamiento-madrid.js )
-Rails.application.config.assets.precompile += %w( inputCalendario.js )
 Rails.application.config.assets.precompile += %w( datepicker.js )
 Rails.application.config.assets.precompile += %w( datepicker_es.min.js )
 

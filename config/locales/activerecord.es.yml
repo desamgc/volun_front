@@ -243,6 +243,7 @@ es:
               blank: es obligatoria
             execution_hour:
               blank: es obligatoria
+              invalid: formato incorrecto hh:mm
             road_type:
               blank: es obligatorio
             number_type:

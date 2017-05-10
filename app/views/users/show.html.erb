@@ -49,6 +49,7 @@
 </div>
 <p class="centerMobile contacto"><span><%= current_user.loggable.phone_number %></span> / <span> <%= current_user.loggable.email %></span> </p>
 <div class="botones">
+  <%= link_to 'Cambiar contraseña', edit_user_registration_path, class: "event-link mr30" %>
   <%= link_to 'Modificar perfil', new_rt_volunteer_amendment_path, class: "event-link mr30" %>
   <%= link_to 'Solicitud de cita', new_rt_volunteer_appointment_path, class: "event-link negative" %>
 </div>
