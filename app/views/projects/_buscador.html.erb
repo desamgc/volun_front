@@ -4,6 +4,7 @@
     <form class="form">
       <div class="panel panel-type1 searcher-diary nofluid">
         <div class="panel-heading">
+        <div class="container-fluid">
           <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -15,20 +16,21 @@
                       <%= f.button "", class: "lupa"  %>
                     </div>
                   </div>
-                  <div class="col-sm-2 text-right">
+                  <div class="col-sm-4 text-right">
                     <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed verFiltros">Ver filtros</a>
 
                   </div>
-                  <div class="col-sm-2 text-right">
-                    <%= link_to 'Todos', projects_path, class: "panel-title collapsed verFiltros" %>
-                  </div>
+
                 </div>
               </div>
             </div>
             <div class="col-md-2"></div>
           </div>
         </div>
-        <div class="panel-body collapse in" id="searcher-diary">
+
+        </div>
+        <div class="panel-body collapse" id="searcher-diary">
+        <div class="container-fluid">
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
@@ -54,19 +56,24 @@
               <div class="form-group tagW">
                 <label>
                   <%= check_box_tag "q[areas_name_in][]", area.name %>
-                  <span class="tag"><i class="fa fa-bicycle" aria-hidden="true"></i>
+                  <span class="tag"><i class="fa fa-futbol-o" aria-hidden="true"></i>
                   <%= area.name %></span>
                 </label>
+
+
               </div>
               <% end %>
             </div>
           </div>
+          <div class="button-group text-right mt20">
+            <%= f.submit "Buscar", class: "event-link"  %>
+          </div>
+        </div>
+
         </div>
       </div>
     </div>
+
   </form>
-  <div class="button-group text-right mt20">
-      <%= f.submit "Buscar", class: "event-link"  %>
-  </div>
 </div>
 <% end %>

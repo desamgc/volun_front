@@ -10,17 +10,9 @@
         <h3><%= link_to project.name, project_path(project)  %></h3>
         <p><%= truncate(project.description, length: 145) %></p>
         <div class="row ctaGroupPreview">
-          <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-            <p style="margin:0">
-              <% project.areas.each do |area| %>
-              <span class="category"><%= area.name.downcase %></span>
-              <% end %>
-            </p>
-          </div>
-          <div class="col-lg-4 text-right">
-            <%= link_to  "Leer mas .." , project_path(project), class: "event-link" %>
-
-
+          <div class="col-lg-12 text-right">
+            <%= link_to  "Dar de baja ", new_rt_project_unpublishing_path(project: project.id), class: "link" %>
+            <%= link_to  "Solicitar voluntarios", new_rt_project_unpublishing_path(project: project.id), class: "event-link ml10" %>
           </div>
           <br/>
         </div>
