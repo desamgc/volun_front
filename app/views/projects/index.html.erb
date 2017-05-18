@@ -17,22 +17,28 @@ var url = "/projects/boroughs"
     </div>
   </div>
 </div>
-<div class="container-fluid" style="  background-color: rgba(0, 0, 0, 0.05);
-  ">
-  <%= render "buscador" %>
-</div>
+ <%= render "buscador" %>
 <div class="container-fluid">
+  <div class="row">
+     <div class="col-sm-12">
+        <div class="tags">
+            <%=link_to 'Ver todos', projects_path, class: "tag fa fa-building" %>
+
+        </div>
+      </div>
+  </div>
   <div class="row pt60">
     <div id="numProjects" class="col-md-6">
       <%= render partial: 'numProjects', locals: {total: @projects_actives.total_count}  %>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-      <div class="dropdown">
-      <ul>
-        <li><%= sort_link @search, :created_at, "Fecha creación" %></li>
+      <select id="selectOrdenar" class="selectOrdenar">
+           <option value="">Ordenar por</option>
+           <option value= "created_at asc">Primero los mas nuevos</option>
+           <option value="created_at desc">Primero los mas antiguos</option>
 
-     </ul>
-     </div>
+         </select>
+
     </div>
   </div>
   <!-- en modo cuadricula -->

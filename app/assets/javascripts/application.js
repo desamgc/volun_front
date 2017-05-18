@@ -181,6 +181,22 @@ $(document).ready(function(){
         });
 
 
+        $('#selectOrdenar').on('change', function() {
+                        if ($('#selectOrdenar').val()!= "")
+                        {
+                           jQuery.ajax({
+                                      type: "GET",
+                                      dataType: "script",
+                                      url: 'projects/search',
+                                      "data":{order:$('#selectOrdenar').val() },
+                                      "async": true,
+
+                               });
+                        }
+        });
+
+
+
 
 
 
