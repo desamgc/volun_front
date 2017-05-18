@@ -89,6 +89,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get '/whoami' => 'pages#whoami'
+  get '/mailchimp' => 'pages#mailchimp'
   #get '/conditions' => 'pages#conditions'
   get '/blog' => redirect("https://voluntariospormadridblog.madrid.es/")
   resources :pages, path: '/', only: [:show]

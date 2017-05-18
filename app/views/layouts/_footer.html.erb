@@ -1,15 +1,12 @@
 <!--<footer>
-        <div class="row-full">
-                <div class="row">
-
+    <div class="row-full">
+        <div class="row">
             <div class="subfooter row">
                 <div class="small-12 medium-9 column">
                     <p>
                         <%= t("layouts.footer.copyright", year: Time.now.year) %>&nbsp;|&nbsp;
-
                     </p>
                 </div>
-
             </div>
         </div>
     </footer>
@@ -23,13 +20,8 @@
                     <a class="email" href="">infovoluntarios@ejemplo.com</a>
                 </div>
                 <div class="col-md-4 col-sm-7 column">
-                    <h3>Suscríbete a nuestra newsletter</h3>
-                    <div class="form-group">
-                        <input type="text" placeholder="tuemail@ejemplo.com">
-                        <button type="submit" class="btn btn-success">
-                        <i class="fa fa-chevron-right"></i>
-                        </button>
-                    </div>
+                    <%= link_to 'Subscribete a nuestro blog', mailchimp_path, class: 'email' %>
+
                 </div>
                 <div class="col-md-4 col-sm-12 column">
                     <h3>Síguenos en:</h3>
@@ -63,8 +55,6 @@
 <div class="col-md-4 text-right links2">
     <nav>
         <ul class="redes">
-
-
             <li><a href="https://www.facebook.com/voluntariospormadrid/">Facebook</a>,</li>
             <li><a href="https://twitter.com/voluntmadrid">Twitter</a>,</li>
             <li><a href="https://www.instagram.com/voluntariosxmadrid/">Instagram</a>,</li>
