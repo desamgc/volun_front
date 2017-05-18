@@ -20,21 +20,25 @@
           <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:organizer) %> <span class="asterisco">*</span></label>
           <%= f.text_field :organizer, { class: 'all' } %>
         </div>
-        <div class="form-group date-field">
-            <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:execution_date) %> <span class="asterisco">*</span></label>
-            <%= f.text_field :execution_date, :class => "form-control small" %>
+        <div class="form-group all">
+            <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:dates_text_free) %> <span class="asterisco">*</span></label>
+            <%= f.text_area :dates_text_free, {class: "all"} %>
         </div>
-        <div class="form-group">
-            <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:execution_hour) %> <span class="asterisco">*</span></label>
-            <%= f.text_field :execution_hour, { class: 'small' } %>
+        <div class="form-group all">
+            <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:hours_text_free) %> <span class="asterisco">*</span></label>
+            <%= f.text_area :hours_text_free, { class: 'all' } %>
+        </div>
+        <div class="form-group all">
+            <label class="labelUp"><%= Rt::ActivityPublishing.human_attribute_name(:places_text_free) %> <span class="asterisco">*</span></label>
+            <%= f.text_area :places_text_free, { class: 'all' } %>
         </div>
 
       </div>
     </div>
   </fieldset>
-  <hr>
-  <%= render partial: 'shared/addressInternetNT', locals: {f: f} %>
-  <hr>
+
+  <%#= render partial: 'shared/addressInternetNT', locals: {f: f} %>
+
 </div>
 <div class="button-group text-right pb80">
   <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
