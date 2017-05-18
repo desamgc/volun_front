@@ -2,6 +2,7 @@ class ActivitiesController < ApplicationController
   before_filter :authenticate_user!, only: [:my_area]
   before_action :set_activity, only: [:show]
   respond_to :html, :js, :json
+  #after_filter :allow_iframe, only: [:show]
 
 
   def my_area
@@ -91,5 +92,9 @@ class ActivitiesController < ApplicationController
     end
     def activity_params
       params.require(:activity).permit(:name, :description, :active)
+    end
+
+    def allow_iframe
+      response.headers.delete "X-Frame-Options"
     end
 end

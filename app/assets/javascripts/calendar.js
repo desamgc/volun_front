@@ -103,13 +103,20 @@ function DisableDays(date){
 
 $('#fecha_home .prev').remove();
 $('#fecha_home .next').remove();
-$('#fecha_home thead tr:nth-child(1)').append('<th class="prev"><i class="fa fa-chevron-left"></i></th>')
-$('#fecha_home thead tr:nth-child(1)').append('<th class="next"><i class="fa fa-chevron-right"></i></th>')
+$('#fecha_home thead tr:nth-child(2)').prepend('<th class="next"><i class="fa fa-chevron-right"></i></th>')
+$('#fecha_home thead tr:nth-child(2)').prepend('<th class="prev"><i class="fa fa-chevron-left"></i></th>')
+
 
 $('#fecha .prev').remove();
 $('#fecha .next').remove();
-$('#fecha thead tr:nth-child(1)').append('<th class="prev"><i class="fa fa-chevron-left"></i></th>')
-$('#fecha thead tr:nth-child(1)').append('<th class="next"><i class="fa fa-chevron-right"></i></th>')
+$('#fecha thead tr:nth-child(2)').prepend('<th class="next"><i class="fa fa-chevron-right"></i></th>')
+$('#fecha thead tr:nth-child(2)').prepend('<th class="prev"><i class="fa fa-chevron-left"></i></th>')
+
+$('#fecha_show .prev').remove();
+$('#fecha_show .next').remove();
+$('#fecha_show thead tr:nth-child(2)').prepend('<th class="next"><i class="fa fa-chevron-right"></i></th>')
+$('#fecha_show thead tr:nth-child(2)').prepend('<th class="prev"><i class="fa fa-chevron-left"></i></th>')
+
 
 
 })

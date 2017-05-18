@@ -87,31 +87,23 @@ var lock = true;
       <h3 class="summary-title"><%= @project.name %></h3>
       <h4 class="numVolum"><%= @project.volunteers.count %> voluntarios</h4>
       <div class="tags">
-        <% @project.areas.each do |area| %>
-        <span class="tag"><i class="fa fa-futbol-o" aria-hidden="true"></i><%= area.name.downcase %></span>
-        <% end %>
+        <%= render partial: "shared/area", collection: @project.areas %>
       </div>
       <div role="tabpanel" class="tab-pane active carousel" id="tpi-tab2">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <% @project.links.image.each_with_index do |index| %>
+              <li data-target="#myCarousel" data-slide-to= index></li>
+            <% end %>
           </ol>
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
-            <% @project.links.logo.each do |link| %>
             <div class="item active">
-              <%= render partial: "links/link", locals: { link: link} %>
+              <%= render partial: "links/link", collection: @project.links.logo %>
             </div>
-            <% end %>
-            <% @project.links.image.each do |link| %>
-            <div class="item">
-              <%= render partial: "links/link", locals: { link: link} %>
-            </div>
-            <% end %>
+            <%= render partial: "links/link", collection: @project.links.image %>
           </div>
           <!-- Left and right controls -->
           <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -134,29 +126,15 @@ var lock = true;
           <div class="item noTitle">
             <h3 class="">Enlaces</h3>
             <dl class="dl-horz">
-              <% @project.links.url.each do |link| %>
-              <dd><a href="<%= link.path %>"><%= link.description %></a></dd>
-              <% end %>
+              <%= render partial: "links/link", collection: @project.links.url %>
             </dl>
           </div>
         </div>
       </div>
-      <% @project.links.video.each do |link| %>
-       <video
-        id="vid1"
-        class="video-js vjs-default-skin"
-        controls
-        width="640" height="264"
-        data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "<%= link.path %>"}], "youtube": { "customVars": { "wmode": "transparent" } } }'
-        >
-      </video>
-      <h3 class="videoTitle"><%= link.description %></h3>
-      <% end %>
-      <div class="row">
-        <div class="col-md-12">
-          <hr>
-        </div>
+      <div class="bg-fluid5 nofluid">
+         <%= render partial: "links/link", collection: @project.links.video %>
       </div>
+
       <div class="row">
         <div class="col-md-12">
           <nav class="redesWrapProject">

@@ -7,7 +7,7 @@ class Rt::EntitySubscribe < ActiveRecord::Base
   validates :phone_number, format: { with: VALID_PHONE_NUMBER_REGEX }
   validates :phone_number_alt, format: { with: VALID_PHONE_NUMBER_REGEX, if: -> { phone_number_alt.present? } }
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  validates :road_type, :road_name, :number_type, :road_number, :postal_code, :province,
+  validates :road_type, :road_name, :road_number_type, :road_number, :postal_code, :province,
             :town, :name, :contact_name,
             :contact_last_name, presence: true
   validates :other_subscribe_reason, presence: true, if: -> { request_form.req_reason_id == 4 }

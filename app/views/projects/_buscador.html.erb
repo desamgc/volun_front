@@ -56,7 +56,7 @@
               <div class="form-group tagW">
                 <label>
                   <%= check_box_tag "q[areas_name_in][]", area.name %>
-                  <span class="tag"><i class="fa fa-futbol-o" aria-hidden="true"></i>
+                  <span class="tag"><i class="fa <%= area.description %>" aria-hidden="true"></i>
                   <%= area.name %></span>
                 </label>
 

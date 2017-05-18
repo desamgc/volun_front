@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
   def index
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses, :entity).actives.search(params[:q])
+    session[:params] = ""
     @projects_actives = @search.result.page(params[:page]).per(6)
     @locations = Project.includes(:addresses).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     if (params[:page].blank?)
@@ -34,9 +35,10 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    params[:q] ||= Project.ransack_default
+    params[:q] ||= session[:params]
     @search = Project.includes(:areas, :addresses, :entity).actives.search(params[:q])
-    @projects_actives = @search.result.page(params[:page]).per(6)
+    session[:params] = params[:q]
+    @projects_actives = @search.result.order(params[:order]).page(params[:page]).per(6)
     @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     respond_to do |format|
       format.html

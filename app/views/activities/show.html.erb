@@ -68,12 +68,7 @@ var id = <%= @activity.id %>
         <div class="bloque">
           <div id="documentacion">
             <h5> Documentación </h5>
-            <% @activity.links.document.each do |link| %>
-            <p> <%= link.description %></p>
-            <div class="text-right">
-              <%= link_to 'Descargar', link.path, download: '', class: "event-link negative" %>
-            </div>
-            <% end %>
+              <%= render partial: "links/link", collection: @activity.links.document %>
           </div>
          </div>
         <% end %>
@@ -109,7 +104,7 @@ var id = <%= @activity.id %>
       <h3 class="summary-title"><%= @activity.name %></h3>
       <% if @activity.area.present? %>
       <div class="tags">
-        <span class="tag"><i></i><%= @activity.area.name.downcase %></span>
+        <%= render partial: "shared/area", locals:{ area:  @activity.area } %>
       </div>
       <% end %>
       <div role="tabpanel" class="tab-pane active carousel" id="tpi-tab2">
@@ -117,22 +112,16 @@ var id = <%= @activity.id %>
           <!-- Indicators -->
           <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <% @activity.links.image.each_with_index do |index| %>
+              <li data-target="#myCarousel" data-slide-to= index></li>
+            <% end %>
           </ol>
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
-            <% @activity.links.logo.each do |link| %>
             <div class="item active">
-              <%= render partial: "links/link", locals: { link: link} %>
+              <%= render partial: "links/link", collection: @activity.links.logo %>
             </div>
-            <% end %>
-            <% @activity.links.image.each do |link| %>
-            <div class="item">
-              <%= render partial: "links/link", locals: { link: link} %>
-            </div>
-            <% end %>
+            <%= render partial: "links/link", collection: @activity.links.image %>
           </div>
           <!-- Left and right controls -->
           <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -155,27 +144,13 @@ var id = <%= @activity.id %>
           <div class="item noTitle">
             <h3 class="">Enlaces</h3>
             <dl class="dl-horz">
-              <% @activity.links.url.each do |link| %>
-              <dd><a href="<%= link.path %>"><%= link.description %></a></dd>
-              <% end %>
+              <%= render partial: "links/link", collection: @activity.links.url %>
             </dl>
           </div>
         </div>
       </div>
       <div class="bg-fluid5 nofluid">
-        <!-- <div class="col-sm-4 cabecera">
-          <h4 class="title">Galería de videos</h4>
-        </div> -->
-        <% @activity.links.video.each do |link| %>
-        <!-- <div class="col-sm-12">
-          <div class="currentvideo" data-height="308" data-width="450" data-url="" data-expressInstallSwfurl="" data-file="" data-logo="" data-image="" data-urlhtml5= "<%= link.path %>" >
-          </div>
-        </div> -->
-
-        <video id="vid1" class="video-js vjs-default-skin" controls width="640" height="264" data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "<%= link.path %>"}], "youtube": { "customVars": { "wmode": "transparent" } } }'>
-        </video>
-        <h3 class="videoTitle"><%= link.description %></h3>
-        <% end %>
+         <%= render partial: "links/link", collection: @activity.links.video %>
       </div>
     </div>
   </div>

@@ -10,14 +10,13 @@
         <h3><%= link_to project.name, project_path(project)  %></h3>
         <p><%= truncate(project.description, length: 145) %></p>
         <div class="row ctaGroupPreview">
-          <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-            <p style="margin:0">
-              <% project.areas.each do |area| %>
-              <span class="category"><%= area.name.downcase %></span>
-              <% end %>
-            </p>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+             <div class="tags">
+              <%= render partial: "shared/area", collection: project.areas %>
+             </div>
+
           </div>
-          <div class="col-lg-4 text-right">
+          <div class="col-lg-12 text-right">
             <%= link_to  "Leer mas .." , project_path(project), class: "event-link" %>
 
 
