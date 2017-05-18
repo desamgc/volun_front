@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  
+
   factory :notice_type do
     kind 1
     description "MyText"
@@ -15,7 +15,7 @@ FactoryGirl.define do
   sequence(:document_number) { |n| "#{n.to_s.rjust(8, '0')}X" }
 
 
- 
+
   factory :request_type do
     kind 1
     description "MyText"
@@ -25,10 +25,9 @@ FactoryGirl.define do
       association :kind
     end
   end
-  
-  
+
+
   factory :req_reason do
-    kind 1
     description "MyText"
     active true
     name "MyText"
@@ -37,7 +36,7 @@ FactoryGirl.define do
       association :kind
     end
   end
-  
+
 
   factory :req_rejection_type do
     kind 1
@@ -49,7 +48,7 @@ FactoryGirl.define do
       association :kind
     end
   end
-    
+
  factory :request_form do
     #request_type 1 #RequestType.get_request_form_type(self.rt_extendable_type)
     #sent_at "2016-12-02 12:48:05"
@@ -70,14 +69,14 @@ FactoryGirl.define do
 
   end
 
-  
+
   factory :activity_publishing, class: 'Rt::ActivityPublishing' do
     name "MyString"
     organizer "MyString"
     description "MyText"
     execution_date "2017-01-27"
-    execution_hour "MyString"
-    road_type "ss" 
+    execution_hour "10:10"
+    road_type "ss"
     road_name "MyString"
     number_type "MyString"
     road_number "MyString"
@@ -85,7 +84,7 @@ FactoryGirl.define do
     borough "MyString"
     town "MyString"
     province "ss"
-    #association :project 
+    #association :project
 
     trait :invalid do
       name ""
@@ -121,7 +120,6 @@ FactoryGirl.define do
     contact_last_name_alt "MyString"
     phone_number "915133368"
     phone_number_alt "915133368"
-    dkd "ddd"
     publish_pictures false
     annual_survey false
     association :entity_type
@@ -129,7 +127,7 @@ FactoryGirl.define do
     other_subscribe_reason "MyText"
     road_type  "mystring"
     road_name "MyString"
-    number_type "MyString"
+    road_number_type "MyString"
     road_number "MyString"
     postal_code "28040"
     borough "MyString"
@@ -143,7 +141,7 @@ FactoryGirl.define do
   end
 
   factory :project_unsubscribe, class: 'Rt::ProjectUnsubscribe' do
-    association :project 
+    association :project
     notes "MyText"
 
     trait :invalid do
@@ -166,9 +164,10 @@ FactoryGirl.define do
     road_number "MyString"
     postal_code "28041"
     borough "MyString"
-    district "msms" 
+    district "msms"
     town "MyString"
-    province "sddfd" 
+    province "sddfd"
+    notes  "notas"
 
     trait :invalid do
       description ""
@@ -178,7 +177,7 @@ FactoryGirl.define do
     description "MyText"
     execution_start_date "2017-01-27"
     execution_end_date "2017-01-28"
-    road_type "Ddd" 
+    road_type "Ddd"
     road_name "MyString"
     number_type "MyString"
     road_number "MyString"
@@ -186,7 +185,7 @@ FactoryGirl.define do
     borough "MyString"
     district  "SSS"
     town "MyString"
-    province "ssd" 
+    province "ssd"
     requested_volunteers_num "MyString"
     volunteers_profile "MyText"
     volunteer_functions_1 "MyText"
@@ -197,7 +196,7 @@ FactoryGirl.define do
       description ""
     end
   end
-  
+
   factory :volunteer_appointment, class: 'Rt::VolunteerAppointment' do
     notes "MyText"
 
@@ -220,10 +219,10 @@ FactoryGirl.define do
     email "perezljl@madrid.es"
 
     trait :invalid do
-       phone_number "dd" 
+       phone_number "dd"
     end
   end
-  
+
   factory :volunteer_subscribe, class: 'Rt::VolunteerSubscribe' do
     name "MyString"
     last_name "MyString"
@@ -237,13 +236,12 @@ FactoryGirl.define do
 
   factory :volunteer_unsubscribe, class: 'Rt::VolunteerUnsubscribe' do
      notes "MyText"
-     descripcion "descripcion"
 
     trait :invalid do
       notes ""
     end
   end
- 
+
  factory :other, class: 'Rt::Other' do
     description "MyText"
 
@@ -265,8 +263,9 @@ FactoryGirl.define do
     province              1
     country               "España"
     town                  "Madrid"
-    latitude              Faker::Address.latitude 
-    longitude             Faker::Address.longitude 
+    latitude              Faker::Address.latitude
+    longitude             Faker::Address.longitude
+    normalize             false
   end
 
 
@@ -277,41 +276,44 @@ FactoryGirl.define do
     trait :invalid do
     end
   end
-  
+
   factory :district do
     name "MyText"
 
     trait :invalid do
     end
   end
-  
+
   factory :province do
     name "MyText"
 
     trait :invalid do
     end
   end
-   
 
-  
-  
 
-  
+
+
+
+
   factory :entity do
     name Faker::Lorem.name
-    email Faker::Internet.email 
-    representative_name Faker::Lorem.name 
-    representative_last_name Faker::Lorem.name 
-    contact_name Faker::Lorem.name 
+    email Faker::Internet.email
+    phone_number  "915133368"
+    vat_number       "04959973T"
+    representative_name Faker::Lorem.name
+    representative_last_name Faker::Lorem.name
+    contact_name Faker::Lorem.name
     contact_last_name Faker::Lorem.name
-    entity_type_id 1 
-    association :address, factory: :address 
+    entity_type_id 1
+    association :address, factory: :address
+    association :req_reason
   end
 
-  
+
 
   factory :project do
-      name                  Faker::App.name
+      sequence(:name)     { |n| "Project #{n} name" }
       description           Faker::Lorem.sentence
       functions             Faker::Lorem.sentence
       comments              Faker::Lorem.sentence
@@ -326,27 +328,51 @@ FactoryGirl.define do
       insured               true
       active                true
       publish               true
-      contact_name          Faker::Lorem.name  
+      contact_name          Faker::Lorem.name
       contact_last_name     Faker::Lorem.name
-                
+      association           :pt_extendable, factory: :pt_social
+      #pt_extendable_id      1
+      #pt_extendable_type    "Pt::Social"
+      outstanding           false
+  end
 
+  factory :project_social, class: 'Project' do
+      sequence(:name)     { |n| "Project #{n} name" }
+      description           Faker::Lorem.sentence
+      functions             Faker::Lorem.sentence
+      comments              Faker::Lorem.sentence
+      association :entity, factory: :entity
+      execution_start_date  Faker::Time.between(DateTime.now - 10, DateTime.now)
+      execution_end_date    Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow)
+      phone_number          Faker::PhoneNumber.phone_number
+      email                 Faker::Internet.email
+      beneficiaries_num     10
+      volunteers_num        20
+      project_type_id       1
+      insured               true
+      active                true
+      publish               true
+      contact_name          Faker::Lorem.name
+      contact_last_name     Faker::Lorem.name
+      outstanding           false
+      association           :pt_extendable
   end
 
   factory :volunteer do
     name "jose"
     last_name "MyString"
-    phone_number "MyString"
+    phone_number "915133368"
     email "perezljl@madrid.es"
-    association :address, factory: :address 
+    association :address, factory: :address
   end
 
   factory :user do
      email 'voluntario@madrid.es'
      password '12345678'
-     password_confirmation '12345678' 
+     password_confirmation '12345678'
      association  :loggable, factory: :volunteer
      notice_type_id 1
-  end  
+  end
 
 
   factory :activity do
@@ -356,12 +382,19 @@ FactoryGirl.define do
       end_date    Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow)
       active                true
       publish               true
-     
-  end  
+      transport     "transporte"
+
+  end
 
 
-  
-  
+  factory :pt_social, class: 'Pt::Social' do
+    notes "MyText"
+    association :pt_extendable, factory: :project_social
+    trait :invalid do
+      notes ""
+    end
+  end
 
-  
+
+
 end
