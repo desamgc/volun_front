@@ -51,15 +51,6 @@ namespace :deploy do
   # Run test aund continue only if passed
   # before :deploy, "deploy:run_tests"
   # Compile assets locally and then rsync
-  before :compile_assets, :force_cleanup_assets do
-    on release_roles(fetch(:assets_roles)) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          execute :rake, 'assets:clobber'
-        end
-      end
-    end
-  end
   after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
   # Restart unicorn
