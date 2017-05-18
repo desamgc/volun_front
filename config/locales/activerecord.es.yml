@@ -233,6 +233,14 @@ es:
               blank: es obligatorio
         rt/activity_publishing:
           attributes:
+            dates_text_free:
+              blank: son obligatorias
+            hours_text_free:
+              blank: son obligatorias
+            places_text_free:
+              blank: son obligatorios
+            observations_text_free:
+              blank: son obligatorias
             description:
               blank: es obligatoria
             name:
@@ -380,6 +388,10 @@ es:
         town: Municipio
         province: Provincia
       rt/activity_publishing:
+        dates_text_free: Fechas
+        hours_text_free: Horas
+        places_text_free: Lugares
+        observations_text_free: Observaciones
         description: Descripción
         execution_date: Fecha
         execution_hour: Hora

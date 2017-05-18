@@ -28,6 +28,8 @@ es:
    entity_subscribe:
     title: Solicitud de alta de entidad
     response: "Le hemos enviado un correo para que confirme el alta en la comunidad del voluntariado."
+   blog_subscribe:
+    title: Subscripción al blog
    volunteer_amendment:
     title: Solicitud de modificación del perfil
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."

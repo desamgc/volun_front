@@ -197,7 +197,9 @@ puts "Creando entidades"
     contact_last_name:        Faker::Name.last_name,
     entity_type:              EntityType.all.sample,
     address:                  Address.all.sample,
-    vat_number:               %w(Z8383769K 38741046F).sample)
+    vat_number:               %w(Z8383769K 38741046F).sample,
+    req_reason_id: 1,
+    phone_number: '915133368')
 
   puts "Creando links"
     (1..1).each do |n|
