@@ -19,21 +19,30 @@ class ActivitiesController < ApplicationController
   def index
     if (params[:day])
       # version con eventos
-      @search_q = Event.includes(:address, :timetables, :activity).where(eventable_type: Activity.name).search({timetables_execution_date_eq: params[:day] })
+      #@search_q = Event.includes(:address, :timetables, :activity).where(eventable_type: Activity.name).search({timetables_execution_date_eq: params[:day] })
+
+      # version con timetables
+      @search_q = Timetable.select("timetables.execution_date,activities.id, activities.name").joins(:activity).group("execution_date, activities.id").search({execution_date_eq: params[:day] })
       @day = params[:day]
 
     else
       params[:day] = Time.now
       # version con eventos
-      @search_q = Event.includes(:address, :timetables, :activity).where(eventable_type: Activity.name).search({timetables_execution_date_gteq: params[:day] })
+      #@search_q = Event.includes(:address, :timetables, :activity).where(eventable_type: Activity.name).search({timetables_execution_date_gteq: params[:day] })
+
+      #@search_q = ActiveRecord::Base.connection.execute("SELECT timetables.execution_date,activities.id, activities.name
+      #FROM timetables INNER JOIN events ON events.id = timetables.event_id AND events.publish = true INNER JOIN addresses ON addresses.id = events.address_id INNER JOIN events events_timetables_join ON events_timetables_join.id = timetables.event_id AND events_timetables_join.publish = true INNER JOIN activities ON activities.id = events_timetables_join.eventable_id AND events.eventable_type = 'Activity' AND activities.publish = true AND activities.active =true GROUP BY execution_date, activities.id, activities.name")
+
+      @search_q = Timetable.select("execution_date, activities.id").joins(:activity).order(:execution_date).group("execution_date, activities.id").search({execution_date_gteq: params[:day] })
       @day = nil
     end
-    @events = @search_q.result.uniq.page(params[:page]).per(6)
+    # version con eventos
+    #@events = @search_q.result.uniq.page(params[:page]).per(6)
 
     # version con timetables
-    #@search_q = Timetable.joins(:activity, event: [:activity]).distinct(:execution_date).where("events.eventable_type='Activity'").order(:execution_date).search({execution_date_eq: params[:day] })
-    #@events = @search_q.result.page(params[:page]).per(6)
-
+    @timetables = @search_q.result
+    @num_records = @timetables.length
+    @timetables = @timetables.page(params[:page]).per(3)
     @list_days = Activity.includes(:timetables).distinct.activities_present(Time.now).order('timetables.execution_date').pluck('timetables.execution_date').to_json
     @boroughs = ""
     @areas = Area.all
@@ -47,16 +56,18 @@ class ActivitiesController < ApplicationController
   def search
     if params[:day]
       @day = params[:day]
-      @search_q = Event.includes(:address, :timetables, activity: [:area]).where(eventable_type: Activity.name).search({timetables_execution_date_eq: params[:day] })
-      #@search_q = Timetable.joins(:activity, event: [:activity]).where("events.eventable_type='Activity'").order(:execution_date).search({execution_date_eq: @day })
+      #@search_q = Event.includes(:address, :timetables, activity: [:area]).where(eventable_type: Activity.name).search({timetables_execution_date_eq: params[:day] })
+      @search_q = Timetable.select("execution_date, activities.id").joins(:activity).order(:execution_date).group("execution_date, activities.id").search({execution_date_eq: @day })
 
     else
       @day = nil
-      @search_q = Event.includes(:address, :timetables, activity: [:area]).where(eventable_type: Activity.name).search(params[:q])
-      #@search_q = Timetable.joins(:activity, event: [:activity]).where("events.eventable_type='Activity'").order(:execution_date).search(params[:q])
+      #@search_q = Event.includes(:address, :timetables, activity: [:area]).where(eventable_type: Activity.name).search(params[:q])
+      @search_q = Timetable.select("execution_date, activities.id").joins(:activity).order(:execution_date).group("execution_date, activities.id").search(params[:q])
     end
-    @events = @search_q.result.uniq.page(params[:page]).per(6)
     #@events = @search_q.result.uniq.page(params[:page]).per(6)
+    @timetables = @search_q.result
+    @num_records = @timetables.length
+    @timetables = @timetables.page(params[:page]).per(6)
     respond_to do |format|
       format.js
     end

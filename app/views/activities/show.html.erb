@@ -29,7 +29,7 @@ var id = <%= @activity.id %>
             <div class="rangoFechas">
               <h3>
               <%= @activity.start_date.strftime('%d/%m/%Y') %>
-              <% if @activity.start_date.strftime('%d/%m/%Y') != @activity.end_date.strftime('%d/%m/%Y') %>
+              <% if @activity.end_date != nil  && (@activity.start_date.strftime('%d/%m/%Y') != @activity.end_date.strftime('%d/%m/%Y')) %>
               - <%= @activity.end_date.strftime('%d/%m/%Y') %>
               <% end %>
               </h3>

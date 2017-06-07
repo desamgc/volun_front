@@ -1,7 +1,7 @@
-<% if @events.current_page > 1 %>
-  $('#activities').append('<%= escape_javascript(render partial: 'events/search', locals: {events: @events})  %>');
+<% if @timetables.current_page > 1 %>
+  $('#activities').append('<%= escape_javascript(render partial: 'timetables/timetable', collection: @timetables)  %>');
 <% else %>
-  $('#numActividades').html ('<%= escape_javascript(render partial: 'numActivities', locals: {events: @events}) %>')
-  $('#activities').html('<%= escape_javascript(render partial: 'events/search', locals: {events: @events}) %>');
+  $('#numActividades').html ('<%= escape_javascript(render partial: 'numActivities', locals: {events: @num_records}) %>')
+  $('#activities').html('<%= escape_javascript(render partial: 'timetables/timetable', collection: @timetables) %>');
 <% end %>
-$('#scroll_activities').html('<%= escape_javascript(render partial: 'shared/scroll_infinite', locals: {records: @events}) %>');
+$('#scroll_activities').html('<%= escape_javascript(render partial: 'shared/scroll_infinite', locals: {records: @timetables}) %>');

@@ -1,6 +1,3 @@
-<% timetables = @events %>
-<% timetables.group_by{ |timetable| timetable.execution_date }.sort_by{|execution_date, _| execution_date }.each do |execution_date, timetables| %>
-<% timetables.map(&:event).group_by(&:activity).each do |activity, events| %>
 <div class="actividadWrapper">
   <div class="row">
     <div class="col-sm-2 col-xs-3  no-padding-left">
@@ -10,11 +7,15 @@
       </p>
     </div>
     <div class="col-sm-8 col-xs-7">
-      <p class="distrito"><%= events.map{ |event| event.address.district }.to_sentence(:last_word_connector => ' y ') %></p>
+
+      <p class="distrito">
+        <% activity = Activity.includes(:addresses).find(timetable.id) %>
+        <% activity.addresses.distinct.each do |address| %>
+           <%= address.district %>
+        <% end %>
+      </p>
       <h3 class="titular"><%= activity.name %></h3>
     </div>
-    <i><%= link_to  " " , activity_path(activity), class: "fa fa-chevron-right" %> </i>
+    <i><%= link_to  " " , activity_path(timetable.id), class: "fa fa-chevron-right" %> </i>
   </div>
 </div>
-<% end %>
-<% end %>
