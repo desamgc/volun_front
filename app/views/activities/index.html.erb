@@ -1,5 +1,5 @@
 <%= javascript_tag do %>
-  var url = "/activities/boroughs"
+var url = "/activities/boroughs"
 <% end %>
 <%= javascript_include_tag 'calendar' %>
 <div class="container-fluid">
@@ -24,7 +24,7 @@
         <%= render partial: 'timetables/timetable', collection: @timetables   %>
       </div>
       <div id ="scroll_activities">
-        <%= render partial: 'shared/scroll_infinite', locals: { records: @timetables} %>
+        <%= render partial: 'shared/scroll_infinite_activities', locals: { records: @timetables, num_records: @num_records } %>
       </div>
     </div>
   </div>

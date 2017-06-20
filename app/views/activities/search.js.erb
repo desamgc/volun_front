@@ -4,4 +4,4 @@
   $('#numActividades').html ('<%= escape_javascript(render partial: 'numActivities', locals: {events: @num_records}) %>')
   $('#activities').html('<%= escape_javascript(render partial: 'timetables/timetable', collection: @timetables) %>');
 <% end %>
-$('#scroll_activities').html('<%= escape_javascript(render partial: 'shared/scroll_infinite', locals: {records: @timetables}) %>');
+$('#scroll_activities').html('<%= escape_javascript(render partial: 'shared/scroll_infinite_activities', locals: {records: @timetables, num_records: @num_records}) %>');
