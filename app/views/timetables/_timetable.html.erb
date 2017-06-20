@@ -7,14 +7,14 @@
       </p>
     </div>
     <div class="col-sm-8 col-xs-7">
-
       <p class="distrito">
-        <% activity = Activity.includes(:addresses).find(timetable.id) %>
-        <% activity.addresses.distinct.each do |address| %>
-           <%= address.district %>
+        <%# activity = Activity.includes(:addresses).find(timetable.id) %>
+        <% events = Event.distinct.includes(:activity, :timetables, :address).joins(:timetables).where("eventable_type='Activity' and eventable_id=? and timetables.execution_date = ?", timetable.id, timetable.execution_date) %>
+        <% events.each do |event| %>
+        <%= event.address.district %>
         <% end %>
       </p>
-      <h3 class="titular"><%= activity.name %></h3>
+      <h3 class="titular"><%= events.first.activity.name %></h3>
     </div>
     <i><%= link_to  " " , activity_path(timetable.id), class: "fa fa-chevron-right" %> </i>
   </div>

@@ -2,9 +2,6 @@ class LinksController < ApplicationController
   include Downloadable
   before_action :set_link, only: [:show, :edit, :update, :destroy, :download ]
 
-
-
-
   def download
     send_to_user filepath: "https://" + request.host_with_port + @link.path
   end

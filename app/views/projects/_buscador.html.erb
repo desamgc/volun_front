@@ -4,76 +4,69 @@
     <form class="form">
       <div class="panel panel-type1 searcher-diary nofluid">
         <div class="panel-heading">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-              <div class="cajaBusqueda">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <div class="conjuntoBusqueda">
-                      <%= f.text_field :name_or_description_cont, placeholder: "Buscar un proyecto", class: "buscarInput" %>
-                      <%= f.button "", class: "lupa"  %>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <div class="cajaBusqueda">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <div class="conjuntoBusqueda">
+                        <%= f.text_field :name_or_description_cont, placeholder: "Buscar un proyecto", class: "buscarInput" %>
+                        <%= f.button "", class: "lupa"  %>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 text-right">
+                      <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed verFiltros">Ver filtros</a>
                     </div>
                   </div>
-                  <div class="col-sm-4 text-right">
-                    <a href="#searcher-diary" data-toggle="collapse" class="panel-title collapsed verFiltros">Ver filtros</a>
-
-                  </div>
-
                 </div>
               </div>
+              <div class="col-md-2"></div>
             </div>
-            <div class="col-md-2"></div>
           </div>
-        </div>
-
         </div>
         <div class="panel-body collapse" id="searcher-diary">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <div class="form-group date-field">
-                  <label class="labelUp">Fecha</label>
-                  <%= f.text_field :timetables_execution_date_eq, :class => "form-control small"  %>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-group date-field">
+                    <label class="labelUp">Fecha</label>
+                    <%= f.text_field :timetables_execution_date_eq, :class => "form-control small"  %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="labelUp">Distrito</label>
+                  <%= f.select :addresses_district_eq, @districts, {include_blank: "", selected: ""},  class: 'big'   %>
+                </div>
+                <div class="form-group">
+                  <label class="labelUp">Barrio </label>
+                  <%= f.select :addresses_borough_eq, @boroughs, {include_blank: "", selected: ""},  class: 'big' %>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="labelUp">Distrito</label>
-                <%= f.select :addresses_district_eq, @districts, {include_blank: "", selected: ""},  class: 'big'   %>
-              </div>
-              <div class="form-group">
-                <label class="labelUp">Barrio </label>
-                <%= f.select :addresses_borough_eq, @boroughs, {include_blank: "", selected: ""},  class: 'big' %>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <legend class="form-legend">Tematica <span>(Seleciona una o más categorías)</span></legend>
+                <% @areas.each do |area| %>
+                <div class="form-group tagW">
+                  <label>
+                    <%= check_box_tag "q[areas_name_in][]", area.name %>
+                    <span class="tag"><i class="fa <%= area.description %>" aria-hidden="true"></i>
+                    <%= area.name %></span>
+                  </label>
+                </div>
+                <% end %>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <legend class="form-legend">Tematica <span>(Seleciona una o más categorías)</span></legend>
-              <% @areas.each do |area| %>
-              <div class="form-group tagW">
-                <label>
-                  <%= check_box_tag "q[areas_name_in][]", area.name %>
-                  <span class="tag"><i class="fa <%= area.description %>" aria-hidden="true"></i>
-                  <%= area.name %></span>
-                </label>
-
-
-              </div>
-              <% end %>
+            <div class="button-group text-right mt20">
+              <%= f.submit "Buscar", class: "event-link"  %>
             </div>
           </div>
-          <div class="button-group text-right mt20">
-            <%= f.submit "Buscar", class: "event-link"  %>
-          </div>
-        </div>
-
         </div>
       </div>
     </div>
-
   </form>
 </div>
 <% end %>

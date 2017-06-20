@@ -1,62 +1,47 @@
 <div class="container-fluid pt60">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="mc-acceso nofluid">
-<%= render(partial: 'shared/errors', locals: {model_name: @user})%>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mc-acceso nofluid">
+        <%= render(partial: 'shared/errors', locals: {model_name: @user})%>
+        <%= form_for(resource, as: resource_name, url: user_registration_path(resource_name), html: { method: :put }) do |f| %>
 
-<%= form_for(resource, as: resource_name, url: user_registration_path(resource_name), html: { method: :put }) do |f| %>
-  
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-  <h2 class="titlePage">Formulario de cambio de contraseña</h2>
-  <p class="notes mb20">
-        Los campos marcados con <em class="asterisco">*</em> son obligatorios.
-</p>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+        <h2 class="titlePage">Formulario de cambio de contraseña</h2>
+        <p class="notes mb20">
+          Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+        </p>
+        <div class="form form-electronic">
 
-              <div class="form form-electronic">
-                
-                <div class="mc-acceso-item login">
-                     
+          <div class="mc-acceso-item login">
 
-                      <fieldset>
-                            <div class="form-group">
+            <fieldset>
+              <div class="form-group">
 
-              
-                                        <label class="labelUp">Contraseña nueva<span class="asterisco">*</span></label>
-                                    
-                          <%= f.password_field :password, autocomplete: "off", class: "big" %>
+                <label class="labelUp">Contraseña nueva<span class="asterisco">*</span></label>
 
-                      </div> 
-                      </fieldset>
+                <%= f.password_field :password, autocomplete: "off", class: "big" %>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
 
-                      <fieldset>
-                          <div class="form-group">
+                <label class="labelUp">Confirmación contraseña <span class="asterisco">*</span></label>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "big" %>
+              </div>
+            </fieldset>
+            <hr>
 
-              
-                                        <label class="labelUp">Confirmación contraseña <span class="asterisco">*</span></label>
-                                      <%= f.password_field :password_confirmation, autocomplete: "off", class: "big" %>
-
-                      </div>
-                      </fieldset>
-
-                          <hr>
-                        
-                        <div class="button-group text-right">
-                          <%= f.submit "Enviar", class: "event-link big mb20" %>
-          </div>
-          
+            <div class="button-group text-right">
+              <%= f.submit "Enviar", class: "event-link big mb20" %>
             </div>
+
           </div>
-
-
-     
-
-
-<% end %>
-</div>
-
-
         </div>
+
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>

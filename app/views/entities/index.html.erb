@@ -10,8 +10,7 @@
         <h3 class="titlePage">Otras</h3>
         <p>Si eres una entidad ponte en contacto con nosotros.</p>
         <% if !current_user || current_user.loggable_type == "Volunteer" %>
-            <%= link_to t('application.register_entity'), new_entity_path, class: "event-link big" %>
-
+        <%= link_to t('application.register_entity'), new_entity_path, class: "event-link big" %>
         <% end %>
       </div>
     </div>

@@ -1,34 +1,29 @@
 <% if link.present? %>
-  <% if link.logo? %>
-     <%= image_tag  link.path , height: 250, width: 250 %>
-  <% end %>
-  <% if link.image? %>
-     <div class="item">
-      <%= image_tag  link.path , height: 250, width: 250 %>
-     </div>
-  <% end %>
-
-  <% if link.document? %>
-
-    <div class="row">
-      <div class="col-md-6">
-        <p> <%= link.description %> </p>
-      </div>
-      <div class="col-md-6">
-         <div class="text-right">
-          <%= link_to 'Descargar', link.path, download: '', class: "event-link negative" %>
-        </div>
-      </div>
+<% if link.logo? %>
+<%= image_tag  link.path , height: 250, width: 250 %>
+<% end %>
+<% if link.image? %>
+<div class="item">
+  <%= image_tag  link.path , height: 250, width: 250 %>
+</div>
+<% end %>
+<% if link.document? %>
+<div class="row">
+  <div class="col-md-6">
+    <p> <%= link.description %> </p>
+  </div>
+  <div class="col-md-6">
+    <div class="text-right">
+      <%= link_to 'Descargar', link.path, download: '', class: "event-link negative" %>
     </div>
-    <br>
-
-  <% end %>
-
-  <% if link.video? %>
-    <iframe width="560" height="315" src="<%= link.path %>" frameborder="0" allowfullscreen></iframe>
-  <% end %>
-
-  <% if link.url? %>
-    <dd><a href="<%= link.path %>"><%= link.description %></a></dd>
-  <% end %>
+  </div>
+</div>
+<br>
+<% end %>
+<% if link.video? %>
+<iframe width="560" height="315" src="<%= link.path %>" frameborder="0" allowfullscreen></iframe>
+<% end %>
+<% if link.url? %>
+<dd><a href="<%= link.path %>"><%= link.description %></a></dd>
+<% end %>
 <% end %>

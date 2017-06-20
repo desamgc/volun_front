@@ -9,7 +9,7 @@
     <h3 class="titlePage">Hazte voluntario</h3>
     <p>Si te sientes una persona solidaria y te apetece hacer algo por los demás, puedes hacer mucho más de lo que crees por tu ciudad, por tus vecinos, por tu entorno. En Voluntarios por Madrid te indicamos cómo.</p>
     <% if !current_user || current_user.loggable_type == "Entity" %>
-        <%= link_to 'Quiero ser voluntario', new_rt_volunteer_subscribe_path, class: "event-link big" %>
+    <%= link_to 'Quiero ser voluntario', new_rt_volunteer_subscribe_path, class: "event-link big" %>
     <% end %>
   </div>
 </div>

@@ -11,14 +11,12 @@
             <h3 class="tributes-header"><span class="tributes-title">Proyectos</span></h3>
             <div class="tributes-body tributes-table">
               <form class="tributes-form">
-
                 <div class="col-md-6">
                   <%= content_tag(:div, link_to_new(model_class), class: 'col-md-6 pull-left') %>
                 </div>
                 <div class="col-md-6">
                   <%= content_tag(:div, search_collection(@search_q, :description_or_road_type_or_road_name_or_number_type_or_road_number_or_postal_code_or_town_or_province_or_requested_volunteers_num_or_volunteers_profile_or_volunteer_functions_1_or_volunteer_functions_2_or_volunteer_functions_3_cont), class: 'col-md-6 pull-right') %>
                 </div>
-
                 <table class="table">
                   <thead>
                     <tr class="table-row-transform">
@@ -30,7 +28,6 @@
                       </th>
                     </tr>
                   </thead>
-
                   <tbody>
                     <%= render(partial: 'rt_volunteers_demand', collection: @rt_volunteers_demands)%>
                   </tbody>

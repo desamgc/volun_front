@@ -8,7 +8,6 @@ var day_c =""
 var url = "/projects/boroughs"
 <% end %>
 <%= javascript_include_tag 'map' %>
-
 <div class="container-fluid no-padding-left no-padding-right">
   <div class="row">
     <div class="col-md-12">
@@ -17,15 +16,14 @@ var url = "/projects/boroughs"
     </div>
   </div>
 </div>
- <%= render "buscador" %>
+<%= render "buscador" %>
 <div class="container-fluid">
   <div class="row">
-     <div class="col-sm-12">
-        <div class="tags">
-            <%=link_to 'Ver todos', projects_path, class: "tag fa fa-building" %>
-
-        </div>
+    <div class="col-sm-12">
+      <div class="tags">
+        <%=link_to 'Ver todos', projects_path, class: "tag fa fa-building" %>
       </div>
+    </div>
   </div>
   <div class="row pt60">
     <div id="numProjects" class="col-md-6">
@@ -33,12 +31,10 @@ var url = "/projects/boroughs"
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
       <select id="selectOrdenar" class="selectOrdenar">
-           <option value="">Ordenar por</option>
-           <option value= "created_at asc">Primero los mas nuevos</option>
-           <option value="created_at desc">Primero los mas antiguos</option>
-
-         </select>
-
+        <option value="">Ordenar por</option>
+        <option value= "created_at asc">Primero los mas nuevos</option>
+        <option value="created_at desc">Primero los mas antiguos</option>
+      </select>
     </div>
   </div>
   <!-- en modo cuadricula -->

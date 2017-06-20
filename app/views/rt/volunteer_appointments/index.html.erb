@@ -11,14 +11,12 @@
             <h3 class="tributes-header"><span class="tributes-title">Proyectos</span></h3>
             <div class="tributes-body tributes-table">
               <form class="tributes-form">
-
                 <div class="col-md-6">
                   <%= content_tag(:div, link_to_new(model_class), class: 'col-md-6 pull-left') %>
                 </div>
                 <div class="col-md-6">
                   <%= content_tag(:div, search_collection(@search_q, :reason_cont), class: 'col-md-6 pull-right') %>
                 </div>
-
                 <table class="table">
                   <thead>
                     <tr class="table-row-transform">
@@ -30,7 +28,6 @@
                       </th>
                     </tr>
                   </thead>
-
                   <tbody>
                     <%= render(partial: 'rt_volunteer_appointment', collection: @rt_volunteer_appointments)%>
                   </tbody>

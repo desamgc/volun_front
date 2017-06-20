@@ -6,7 +6,6 @@ var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
 var lock = true;
 <% end %>
 <%= javascript_include_tag 'map' %>
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 mt45" >
@@ -21,26 +20,26 @@ var lock = true;
       <div class="sidebarProyecto">
         <div class="bloque first">
           <% if current_user %>
-            <% if current_user.loggable_type=="Volunteer" %>
-              <% if !@project.volunteers.where("projects_volunteers.volunteer_id = ? and projects_volunteers.project_id = ?", current_user.loggable_id, @project.id ).exists? %>
-                <% if @project.volunteers_allowed %>
-                    <div class="ctaVoluntarios">
-                      <h3>Se necesitan voluntarios</h3>
-                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
-                    </div>
-                <% end %>
-              <% end %>
-            <% else %>
-                    <div class="ctaVoluntarios">
-                      <h3>Se necesitan voluntarios</h3>
-                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
-                    </div>
-             <% end %>
+          <% if current_user.loggable_type=="Volunteer" %>
+          <% if !@project.volunteers.where("projects_volunteers.volunteer_id = ? and projects_volunteers.project_id = ?", current_user.loggable_id, @project.id ).exists? %>
+          <% if @project.volunteers_allowed %>
+          <div class="ctaVoluntarios">
+            <h3>Se necesitan voluntarios</h3>
+            <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
+          </div>
+          <% end %>
+          <% end %>
           <% else %>
-                    <div class="ctaVoluntarios">
-                      <h3>Se necesitan voluntarios</h3>
-                      <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
-                    </div>
+          <div class="ctaVoluntarios">
+            <h3>Se necesitan voluntarios</h3>
+            <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
+          </div>
+          <% end %>
+          <% else %>
+          <div class="ctaVoluntarios">
+            <h3>Se necesitan voluntarios</h3>
+            <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
+          </div>
           <% end %>
           <hr>
           <div id="mapaW">
@@ -63,10 +62,10 @@ var lock = true;
             </div>
           </div>
         </div>
+        <% if @project.activities.present? %>
         <div class="bloque">
           <div id="actividadesAsociadas">
             <h5> Actividades asociadas </h5>
-            <% if @project.activities.present? %>
             <% @project.activities.each do |activity| %>
             <%= link_to activity_path(activity) do %>
             <div class="cardActividadAsociada">
@@ -78,9 +77,9 @@ var lock = true;
             </div>
             <% end %>
             <% end %>
-            <% end %>
           </div>
         </div>
+        <% end %>
       </div>
     </div>
     <div class="col-md-8 col-md-pull-4">
@@ -95,7 +94,7 @@ var lock = true;
           <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <% @project.links.image.each_with_index do |index| %>
-              <li data-target="#myCarousel" data-slide-to= index></li>
+            <li data-target="#myCarousel" data-slide-to= index></li>
             <% end %>
           </ol>
           <!-- Wrapper for slides -->
@@ -132,9 +131,8 @@ var lock = true;
         </div>
       </div>
       <div class="bg-fluid5 nofluid">
-         <%= render partial: "links/link", collection: @project.links.video %>
+        <%= render partial: "links/link", collection: @project.links.video %>
       </div>
-
       <div class="row">
         <div class="col-md-12">
           <nav class="redesWrapProject">

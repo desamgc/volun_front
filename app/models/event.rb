@@ -7,4 +7,5 @@ class Event < ActiveRecord::Base
 
 
   default_scope  { where(publish: true ) }
+  #scope :activities, -> { includes(:events).where(events: { eventable_type: Activity.name }) }, foreign_key: 'eventable_id'
 end

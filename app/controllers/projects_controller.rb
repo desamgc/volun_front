@@ -4,26 +4,23 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show]
   respond_to :html, :js, :json
 
-
   def my_area
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses, :entity).search(params[:q])
-    @projects_actives = @search.result.page(params[:page]).per(6)
+    @projects_actives = @search.result.page(params[:page])
     respond_to do |format|
       format.html
       format.js
     end
   end
 
-
   def index
     params[:q] ||= Project.ransack_default
     @search = Project.includes(:areas, :addresses, :entity).actives.search(params[:q])
     session[:params] = ""
-    @projects_actives = @search.result.page(params[:page]).per(6)
+    @projects_actives = @search.result.page(params[:page])
     @locations = Project.includes(:addresses).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     if (params[:page].blank?)
-      #@projects_featured = Project.includes(:areas).featured
       @districts = Project.includes(:addresses).actives.distinct.order("district").pluck('district','district')
       @boroughs = ""
       @areas = Area.all
@@ -38,7 +35,7 @@ class ProjectsController < ApplicationController
     params[:q] ||= session[:params]
     @search = Project.includes(:areas, :addresses, :entity).actives.search(params[:q])
     session[:params] = params[:q]
-    @projects_actives = @search.result.order(params[:order]).page(params[:page]).per(6)
+    @projects_actives = @search.result.order(params[:order]).page(params[:page])
     @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
     respond_to do |format|
       format.html
@@ -47,28 +44,20 @@ class ProjectsController < ApplicationController
   end
 
   def boroughs
-   @boroughs = Project.includes(:addresses).actives.distinct.where("addresses.district=?", params[:district]).order("addresses.borough").pluck('addresses.borough', 'addresses.borough')
+    @boroughs = Project.includes(:addresses).actives.distinct.where('addresses.district=?', params[:district]).order('addresses.borough').pluck('addresses.borough', 'addresses.borough')
     respond_to do |format|
       format.json { render json: @boroughs }
     end
-
-  end if
-
+  end
 
   def show
-
     params[:day] ||= @project.timetables.minimum(:execution_date).try :strftime, "%Y-%m-%d"
     @timetables = @project.timetables.where(timetables: {execution_date: params[:day]})
     @locations = @project.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
-
-     #@list_days_project = @project.timetables.pluck('timetables.execution_date').to_json
-    #@date = params[:day]
-    #@day = params[:day].to_json
     respond_to do |format|
-       format.html
-       format.js
-     end
-
+      format.html
+      format.js
+    end
   end
 
   private
