@@ -24,9 +24,9 @@ class ActivitiesController < ApplicationController
       @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(execution_date_gteq: params[:day])
       @day = nil
     end
-    @timetables_without_group = @search_q.result
-    @num_records = @timetables_without_group.length
-    @timetables = @timetables_without_group.page(params[:page]).per(Kaminari.config.default_per_page_activity)
+    @timetables = @search_q.result
+    @num_records = @timetables.length
+    @timetables = @timetables.page(params[:page]).per(Kaminari.config.default_per_page_activity)
     @list_days = Activity.includes(:timetables).distinct.activities_present(Time.now).order('timetables.execution_date').pluck('timetables.execution_date').to_json
     @boroughs = ''
     @areas = Area.all
@@ -46,7 +46,7 @@ class ActivitiesController < ApplicationController
       @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(params[:q])
     end
     @timetables = @search_q.result
-    @num_records = @timetables.size
+    @num_records = @timetables.length
     @timetables = @timetables.page(params[:page]).per(Kaminari.config.default_per_page_activity)
     respond_to do |format|
       format.js
