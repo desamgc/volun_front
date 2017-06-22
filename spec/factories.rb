@@ -372,6 +372,7 @@ FactoryGirl.define do
      password_confirmation '12345678'
      association  :loggable, factory: :volunteer
      notice_type_id 1
+     terms_of_service true
   end
 
 
