@@ -182,6 +182,7 @@ es:
           attributes:
             notes:
               blank: es obligatorio
+              project: es obligatorio
         rt/volunteer_appointment:
           attributes:
             notes:
@@ -362,9 +363,11 @@ es:
         province: Provincia
       rt/volunteer_unsubscribe:
         notes: Motivo
+        project: Proyecto
       rt/volunteer_appointment:
         notes: Motivo
       rt/volunteers_demand:
+        notes: Nombre
         description: Descripción
         execution_start_date: Fecha desde
         execution_end_date: Fecha hasta
@@ -413,8 +416,9 @@ es:
         description: Motivo
       rt/project_unpublishing:
         notes: Motivo
-        project: Proyecto
+        project_id: Proyecto
       rt/entity_unsubscribe:
         notes: Motivo
       rt/activity_unpublishing:
         notes: Motivo
+        activity_id: Actividad

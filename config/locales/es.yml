@@ -12,7 +12,7 @@ es:
     register_volunteer: Haz voluntariado
    volunteer_subscribe:
     new: Registrarse
-    title: Solicitud de participación como voluntario
+    title: Solicitud de información sobre voluntariado
     response: "Solicitud recibida de forma correcta, en breve nos pondremos en contacto para realizarle una entrevista."
     responseKO: "No se ha podido dar de alta la solicitud. Compruebe que no haya realizado una solicitud previa"
     send: Enviar
@@ -26,12 +26,12 @@ es:
       last_name: Primer apellido
       last_name_alt: Segundo apellido
    entity_subscribe:
-    title: Solicitud de alta de entidad
+    title: Hazte entidad colaboradora
     response: "Le hemos enviado un correo para que confirme el alta en la comunidad del voluntariado."
    blog_subscribe:
     title: Subscripción al blog
    volunteer_amendment:
-    title: Solicitud de modificación del perfil
+    title: Solicitud de modificación de datos personales
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
    volunteer_unsubscribe:
     title: Solicitud de baja del proyecto
@@ -58,7 +58,7 @@ es:
     title: Solicitud de baja de proyecto
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
    entity_unsubscribe:
-    title: solicitud de baja de la plataforma
+    title: Solicitud de baja de la plataforma
     response: "Solicitud recibida de forma correcta, en breve tramitaremos tu solicitud."
    helpers:
       page_entries_info:
@@ -69,3 +69,35 @@ es:
    views:
     pagination:
       truncate: ...
+   layouts:
+    application:
+      chrome: Google Chrome
+      firefox: Firefox
+      ie: Hemos detectado que estás navegando desde Internet Explorer. Para una mejor experiencia te recomendamos utilizar %{chrome} o %{firefox}.
+      ie_title: Esta web no está optimizada para tu navegador
+   actions:   Acciones
+   action:
+    new:          'Nuevo %{model}'
+    new_fem:      'Nueva %{model}'
+    edit:         'Editar %{model}'
+    show:         'Ver %{model}'
+    destroy:      'Eliminar'
+    delete:       'Eliminar'
+    download:     'Descargar'
+    download_csv: 'Descargar tabla con filtro'
+    download_csv_all_volunteers: 'Descargar tabla completa'
+    upload:       'Subir'
+    archive:      'Archivar'
+    search:       'Buscar'
+    back:         'Volver'
+    close:        'Cerrar'
+    add:          'Añadir'
+    remove:       'Eliminar'
+    approve:      'Aprobar'
+    manage:       'Gestionar'
+    reject:       'Rechazar'
+    recover:      'Restablecer'
+    share:        'Abrir'
+    undo_rejection: 'Deshacer rechazo'
+    process:  'Procesar'
+    man_trackings: 'Gestionar seguimientos'

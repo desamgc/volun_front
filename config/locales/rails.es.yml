@@ -1,0 +1,15 @@
+---
+es:
+  helpers:
+    select:
+      prompt: Por favor seleccione
+  messages:
+    are_you_sure: Estas seguro?
+  locale: Idioma
+  layouts:
+    header:
+     locale: Idioma
+  type_text: Tipo de texto
+  shared:
+    print:
+      print_button: Imprimir
