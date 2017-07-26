@@ -19,27 +19,29 @@ var lock = true;
     <div class="col-md-4 col-md-push-8">
       <div class="sidebarProyecto">
         <div class="bloque first">
-          <% if current_user %>
-          <% if current_user.loggable_type=="Volunteer" %>
-          <% if !@project.volunteers.where("projects_volunteers.volunteer_id = ? and projects_volunteers.project_id = ?", current_user.loggable_id, @project.id ).exists? %>
           <% if @project.volunteers_allowed %>
-          <div class="ctaVoluntarios">
-            <h3>Se necesitan voluntarios</h3>
-            <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
-          </div>
-          <% end %>
-          <% end %>
-          <% else %>
-          <div class="ctaVoluntarios">
-            <h3>Se necesitan voluntarios</h3>
-            <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
-          </div>
-          <% end %>
-          <% else %>
-          <div class="ctaVoluntarios">
-            <h3>Se necesitan voluntarios</h3>
-            <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
-          </div>
+            <% if current_user && current_user.loggable_type=="Volunteer"  %>
+              <% if @project.volunteers.where("projects_volunteers.volunteer_id = ? and projects_volunteers.project_id = ?", current_user.loggable_id, @project.id ).exists? %>
+                <div class="ctaVoluntarios">
+                  <h3>Participando</h3>
+                </div>
+              <% elsif Rt::VolunteerSubscribe.includes(:request_form).where("project_id= ? and request_forms.user_id=?", @project.id, current_user.id ).references(:request_form).exists?  %>
+                <div class="ctaVoluntarios">
+                  <h3>Solicitado</h3>
+
+                </div>
+              <% else  %>
+                <div class="ctaVoluntarios">
+                  <h3>Se necesitan voluntarios</h3>
+                  <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="ctaVoluntarios">
+                <h3>Se necesitan voluntarios</h3>
+                <%= link_to 'Me interesa participar', new_rt_volunteer_subscribe_path(project_id: @project.id), class: "event-link big" %>
+              </div>
+            <% end %>
           <% end %>
           <hr>
           <div id="mapaW">
@@ -134,13 +136,23 @@ var lock = true;
         <%= render partial: "links/link", collection: @project.links.video %>
       </div>
       <div class="row">
+
         <div class="col-md-12">
           <nav class="redesWrapProject">
             <h4>Compartir en:</h4>
             <ul class="redes">
-              <li><a href="https://www.facebook.com/voluntariospormadrid/" target:="" "blank"=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-              <li><a href="https://twitter.com/voluntmadrid" ,="" target:="" "blank"=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.instagram.com/voluntariosxmadrid/" target:="" "_blank"=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+              <li>
+              <%= link_to "https://www.facebook.com/sharer/sharer.php?u=#{project_url(@project)}",  title: 'Comparteme!' do %>
+                <i class="fa fa-facebook" data-content="Comparteme!"></i>
+              <% end %>
+              </li>
+
+              <li>
+              <%#= link_to "http://twitter.com/home?status=#{project_url(@project)}",  title: 'Comparteme!' do %>
+              <%= link_to "https://twitter.com/intent/tweet?url=#{project_url(@project)}&text=#{@project.name}",  title: 'Comparteme!' do %>
+                <i class="fa fa-twitter" data-content="Comparteme!"></i>
+              <% end %>
+              </li>
             </ul>
           </nav>
         </div>
