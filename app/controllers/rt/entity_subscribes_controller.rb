@@ -4,17 +4,8 @@ class Rt::EntitySubscribesController < ApplicationController
   before_action :unique_email, only: [:create]
   respond_to :html, :js, :json
 
-  def index
-  end
-
-  def show
-  end
-
   def new
     @rt_entity_subscribe = Rt::EntitySubscribe.new
-  end
-
-  def edit
   end
 
   def create
@@ -24,12 +15,6 @@ class Rt::EntitySubscribesController < ApplicationController
     else
       respond_with(@rt_entity_subscribe)
     end
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   protected

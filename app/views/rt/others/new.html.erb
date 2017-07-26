@@ -1,7 +1,7 @@
 <div class="container-fluid mt45">
   <div class="row">
     <div class="col-md-6">
-      <h2 class="titlePage">Otro tipo de solicitud</h2>
+      <h2 class="titlePage"><%= main_title(t("other.title", model: Rt::Other.model_name.human)) %></h2>
     </div>
   </div>
   <%= render 'form' %>

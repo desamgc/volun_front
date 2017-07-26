@@ -3,21 +3,9 @@ class Rt::VolunteerAmendmentsController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :js, :json
 
-  def index
-  end
-
-  def show
-    respond_with(@rt_volunteer_amendment) do |format|
-      format.js { render 'shared/popup' }
-    end
-  end
-
   def new
     @rt_volunteer_amendment = Rt::VolunteerAmendment.new
     set_amendment_volunteer
-  end
-
-  def edit
   end
 
   def create
@@ -30,11 +18,6 @@ class Rt::VolunteerAmendmentsController < ApplicationController
     end
   end
 
-  def update
-  end
-
-  def destroy
-  end
 
   protected
 

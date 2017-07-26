@@ -1,32 +1,15 @@
 class Rt::ProjectUnpublishingsController < ApplicationController
-
+  before_filter :authenticate_user!
   respond_to :html, :js, :json
-  before_action :set_project, only: [:new]
-
-  def index
-    params[:q] ||= Rt::ProjectUnpublishing.ransack_default
-    @search_q = @rt_project_unpublishings.search(params[:q])
-    @rt_project_unpublishings = @search_q.result.paginate(page: params[:page], per_page: params[:per_page]||15)
-
-    respond_with(@rt_project_unpublishings)
-  end
-
-  def show
-    respond_with(@rt_project_unpublishing) do |format|
-      format.js { render 'shared/popup' }
-    end
-  end
 
   def new
     @rt_project_unpublishing = Rt::ProjectUnpublishing.new
-    @rt_project_unpublishing.project = @project
-  end
-
-  def edit
+    @rt_project_unpublishing.project_id = params[:project_id]
   end
 
   def create
     @rt_project_unpublishing = Rt::ProjectUnpublishing.new(rt_project_unpublishing_params)
+    @rt_project_unpublishing.request_form.user_id = current_user.id
     if @rt_project_unpublishing.save
       redirect_to user_path(current_user), notice: t('project_unpublishing.response')
     else
@@ -34,21 +17,7 @@ class Rt::ProjectUnpublishingsController < ApplicationController
     end
   end
 
-  def update
-    @rt_project_unpublishing.update_attributes(rt_project_unpublishing_params)
-    respond_with(@rt_project_unpublishing)
-  end
-
-  def destroy
-    @rt_project_unpublishing.destroy
-    respond_with(@rt_project_unpublishing)
-  end
-
   protected
-
-    def set_project
-      @project = Project.find_by_id (params[:project])
-    end
 
     def rt_project_unpublishing_params
       params.require(:rt_project_unpublishing).permit(:notes, :project_id)

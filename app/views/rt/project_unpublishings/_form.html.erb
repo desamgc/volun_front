@@ -1,13 +1,18 @@
 <%= form_for(@rt_project_unpublishing, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_project_unpublishing})%>
-  <p class="notes">
+  <p class="notes mb20">
     Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
-  <%= f.hidden_field :project_id %>
+
   <fieldset>
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="col-md-9">
+        <div class="form-group all">
+         <label class="labelUp"><%= Rt::ProjectUnpublishing.human_attribute_name(:project_id) %> <span class="asterisco">*</span></label>
+          <%= f.select :project_id, entity_projects_select_options(current_user.loggable_id), { class: 'all' } %>
+        </div>
+
         <div class="form-group all">
           <label class="labelUp"><%= Rt::ProjectUnpublishing.human_attribute_name(:notes) %> <span class="asterisco">*</span></label>
           <%= f.text_area :notes, class: 'big all'  %>
@@ -15,11 +20,12 @@
       </div>
     </div>
   </fieldset>
-</div>
-<hr/>
-<div class="button-group text-right">
+
+  <hr>
+<div class="button-group text-right pb80">
   <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
   <%= f.button t('application.submit'), class: 'event-link big' %>
 </div>
+</div>
+
 <% end %>
-<br>

@@ -7,20 +7,23 @@ class Rt::VolunteerSubscribesController < ApplicationController
   respond_to :html, :js, :json
 
   def new
-    if current_user && current_user.loggable_type == "Volunteer"
-          if @rt_volunteer_subscribe.save
-            redirect_to project_path(session[:project]), notice: t('volunteer_subscribe.response')
-          else
-            redirect_to project_path(session[:project]), notice: t('volunteer_subscribe.responseKO')
-          end
-    end
+    # eliminamos el mandar automaticamente la solicitud
+    #if current_user && current_user.loggable_type == "Volunteer"
+    #  if @rt_volunteer_subscribe.save
+    #    redirect_to project_path(session[:project]), notice: t('volunteer_subscribe.response')
+    #  else
+    #    redirect_to project_path(session[:project]), notice: t('volunteer_subscribe.responseKO')
+    #  end
+    #end
 
   end
 
   def create
     @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new(rt_volunteer_subscribe_params)
+    @rt_volunteer_subscribe.request_form.user_id = current_user.id if current_user
     if @rt_volunteer_subscribe.save
-      redirect_to projects_path(current_user), notice: t('volunteer_subscribe.response')
+      redirect_to projects_path, notice: t('volunteer_subscribe.response')
+      session.delete(:project)
     else
       respond_with(@rt_volunteer_subscribe)
     end

@@ -2,17 +2,8 @@ class Rt::OthersController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :js, :json
 
-  def index
-  end
-
-  def show
-  end
-
   def new
     @rt_other = Rt::Other.new
-  end
-
-  def edit
   end
 
   def create
@@ -23,12 +14,6 @@ class Rt::OthersController < ApplicationController
     else
       respond_with(@rt_other)
     end
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   protected

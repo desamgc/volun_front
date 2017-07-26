@@ -1,7 +1,11 @@
 <div class="container-fluid mt45">
   <div class="row">
     <div class="col-md-6">
-      <h2 class="titlePage">Solicitud de información sobre voluntariado</h2>
+      <% if session[:project] %>
+        <h2 class="titlePage">Solicitud de información sobre voluntariado en el proyecto <%= Project.where(id: session[:project]).first.name %></h2>
+      <% else %>
+        <h2 class="titlePage"><%= main_title(t("volunteer_subscribe.title", model: Rt::VolunteerSubscribe.model_name.human) ) %> </h2>
+      <% end %>
     </div>
   </div>
   <%= render 'form' %>

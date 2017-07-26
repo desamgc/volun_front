@@ -4,7 +4,18 @@
   <p class="notes mb20">
     Los campos marcados con <em class="asterisco">*</em> son obligatorios.
   </p>
+
+  <%= f.hidden_field :project_id %>
   <fieldset>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="form-group all">
+          <label class="labelUp"><%= Rt::VolunteersDemand.human_attribute_name(:notes) %> <span class="asterisco">*</span></label>
+          <%= f.text_field :notes, {class: 'all'} %>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-9">
         <div class="form-group all">

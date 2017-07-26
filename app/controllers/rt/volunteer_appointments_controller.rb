@@ -1,18 +1,10 @@
 # request volunteer appoinment
 class Rt::VolunteerAppointmentsController < ApplicationController
+  before_filter :authenticate_user!
   respond_to :html, :js, :json
-
-  def index
-  end
-
-  def show
-  end
 
   def new
     @rt_volunteer_appointment = Rt::VolunteerAppointment.new
-  end
-
-  def edit
   end
 
   def create
@@ -23,14 +15,6 @@ class Rt::VolunteerAppointmentsController < ApplicationController
     else
       respond_with(@rt_volunteer_appointment)
     end
-  end
-
-  def update
-    @rt_volunteer_appointment.update_attributes(rt_volunteer_appointment_params)
-    respond_with(@rt_volunteer_appointment)
-  end
-
-  def destroy
   end
 
   protected

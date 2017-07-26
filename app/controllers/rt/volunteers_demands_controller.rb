@@ -2,18 +2,10 @@
 class Rt::VolunteersDemandsController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :js, :json
-
-  def index
-  end
-
-  def show
-  end
-
+  before_action :set_project, only: [:new]
   def new
     @rt_volunteers_demand = Rt::VolunteersDemand.new
-  end
-
-  def edit
+    load_rt_project_publishing if @project
   end
 
   def create
@@ -26,15 +18,18 @@ class Rt::VolunteersDemandsController < ApplicationController
     end
   end
 
-  def update
-  end
-
-  def destroy
-  end
-
   protected
 
+  def load_rt_project_publishing
+    @rt_volunteers_demand.notes = @project.name
+    @rt_volunteers_demand.description = @project.description
+  end
+
+  def set_project
+   @project = Project.unscoped.find_by_id (params[:project_id]) if params[:project_id]
+  end
+
   def rt_volunteers_demand_params
-    params.require(:rt_volunteers_demand).permit(:description, :execution_start_date, :execution_end_date, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :requested_volunteers_num, :volunteers_profile, :volunteer_functions_1, :volunteer_functions_2, :volunteer_functions_3)
+    params.require(:rt_volunteers_demand).permit(:notes,:description, :execution_start_date, :execution_end_date, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :requested_volunteers_num, :volunteers_profile, :volunteer_functions_1, :volunteer_functions_2, :volunteer_functions_3)
   end
 end

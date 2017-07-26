@@ -1,6 +1,9 @@
 <%= form_for(@rt_entity_subscribe, default_form_options) do |f| %>
 <div class="form form-electronic">
   <%= render(partial: 'shared/errors', locals: {model_name: @rt_entity_subscribe})%>
+  <p class="notes mb20">
+    Los campos marcados con <em class="asterisco">*</em> son obligatorios.
+  </p>
   <fieldset>
     <div class="row">
       <div class="col-md-12">

@@ -2,25 +2,8 @@ class Rt::EntityUnsubscribesController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :js, :json
 
-  def index
-    params[:q] ||= Rt::EntityUnsubscribe.ransack_default
-    @search_q = @rt_entity_unsubscribes.search(params[:q])
-    @rt_entity_unsubscribes = @search_q.result.paginate(page: params[:page], per_page: params[:per_page]||15)
-
-    respond_with(@rt_entity_unsubscribes)
-  end
-
-  def show
-    respond_with(@rt_entity_unsubscribe) do |format|
-      format.js { render 'shared/popup' }
-    end
-  end
-
   def new
     @rt_entity_unsubscribe = Rt::EntityUnsubscribe.new
-  end
-
-  def edit
   end
 
   def create
@@ -31,16 +14,6 @@ class Rt::EntityUnsubscribesController < ApplicationController
     else
       respond_with(@rt_entity_unsubscribe)
     end
-  end
-
-  def update
-    @rt_entity_unsubscribe.update_attributes(rt_entity_unsubscribe_params)
-    respond_with(@rt_entity_unsubscribe)
-  end
-
-  def destroy
-    @rt_entity_unsubscribe.destroy
-    respond_with(@rt_entity_unsubscribe)
   end
 
   protected
