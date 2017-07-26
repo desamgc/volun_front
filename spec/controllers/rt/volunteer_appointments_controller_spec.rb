@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Rt::VolunteerAppointmentsController, type: :controller do
+  let(:user) { create(:user, :user_volunteer) }
   before(:each) do
-    sign_in create(:user)
+    sign_in user
   end
 
   let(:valid_attributes) {
@@ -13,7 +14,7 @@ RSpec.describe Rt::VolunteerAppointmentsController, type: :controller do
     attributes_for :volunteer_appointment, :invalid
   }
 
-  
+
   describe "GET #new" do
     it 'assigns a new rt_volunteer_appointment as @rt_volunteer_appointment' do
       get :new
@@ -37,7 +38,7 @@ RSpec.describe Rt::VolunteerAppointmentsController, type: :controller do
 
       it 'redirects to the created rt_volunteer_appointment' do
         post :create, rt_volunteer_appointment: valid_attributes
-        expect(response).to redirect_to index_i_projects_path
+        expect(response).to redirect_to user_path(user)
       end
     end
 

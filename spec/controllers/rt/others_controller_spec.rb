@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Rt::OthersController, type: :controller do
+  let(:user) { create(:user, :user_entity) }
   before(:each) do
-    sign_in create(:user)
+    sign_in user
   end
 
   let(:valid_attributes) {
@@ -13,7 +14,7 @@ RSpec.describe Rt::OthersController, type: :controller do
     attributes_for :other, :invalid
   }
 
- 
+
   describe "GET #new" do
     it 'assigns a new rt_other as @rt_other' do
       get :new
@@ -37,7 +38,7 @@ RSpec.describe Rt::OthersController, type: :controller do
 
       it 'redirects to the created rt_other' do
         post :create, rt_other: valid_attributes
-        expect(response).to redirect_to index_i_projects_path
+        expect(response).to redirect_to user_path(user)
       end
     end
 

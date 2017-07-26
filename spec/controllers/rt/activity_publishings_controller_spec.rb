@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Rt::ActivityPublishingsController, type: :controller do
-before(:each) do
-    sign_in create(:user)
+  let(:user) { create(:user, :user_entity) }
+  before(:each) do
+    sign_in user
   end
 
   let(:valid_attributes) {
@@ -30,7 +31,7 @@ before(:each) do
 
       it 'falla redirects to the created rt_activity_publishing' do
         post :create, rt_activity_publishing: valid_attributes
-        expect(response).to redirect_to index_i_projects_path
+        expect(response).to redirect_to user_path(user)
       end
     end
 

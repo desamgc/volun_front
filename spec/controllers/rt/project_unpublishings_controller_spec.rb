@@ -1,22 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Rt::ProjectUnpublishingsController, type: :controller do
-before(:each) do
-    sign_in create(:user)
+  let(:user) { create(:user, :user_entity) }
+  before(:each) do
+    sign_in user
   end
 
   let(:valid_attributes) {
-    attributes_for :project_unpublishing
+    @project = create(:project)
+    attributes_for :project_unpublishing, project_id: @project.id
+
   }
 
   let(:invalid_attributes) {
-    attributes_for :project_unpublishing, :invalid
+    attributes_for :project_unpublishing
   }
 
-  
+
   describe "POST #create" do
     context 'with valid params' do
       it 'falla creates a new Rt::ProjectUnPublishing' do
+
         expect {
           post :create, rt_project_unpublishing: valid_attributes
         }.to change(Rt::ProjectUnpublishing, :count).by(1)
@@ -30,7 +34,7 @@ before(:each) do
 
       it 'falla redirects to the created rt_project_unpublishing' do
         post :create, rt_project_unpublishing: valid_attributes
-        expect(response).to redirect_to index_i_projects_path 
+        expect(response).to redirect_to user_path(user)
       end
     end
 

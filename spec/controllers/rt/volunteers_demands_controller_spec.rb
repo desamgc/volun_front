@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Rt::VolunteersDemandsController, type: :controller do
+  let(:user) { create(:user, :user_volunteer) }
   before(:each) do
-    sign_in create(:user)
+    sign_in user
   end
 
   let(:valid_attributes) {
@@ -19,7 +20,7 @@ RSpec.describe Rt::VolunteersDemandsController, type: :controller do
       expect(assigns(:rt_volunteers_demand)).to be_a_new(Rt::VolunteersDemand)
     end
   end
- 
+
   describe "POST #create" do
     context 'with valid params' do
       it 'creates a new Rt::VolunteersDemand' do
@@ -36,7 +37,7 @@ RSpec.describe Rt::VolunteersDemandsController, type: :controller do
 
       it 'redirects to the created rt_volunteers_demand' do
         post :create, rt_volunteers_demand: valid_attributes
-        expect(response).to redirect_to index_i_projects_path
+        expect(response).to redirect_to user_path(user)
       end
     end
 

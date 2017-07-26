@@ -67,7 +67,7 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :poltergeist
   Capybara.exact = true
 
-  
+
 end
 
 

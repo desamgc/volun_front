@@ -84,6 +84,9 @@ FactoryGirl.define do
     borough "MyString"
     town "MyString"
     province "ss"
+    dates_text_free "MyString"
+    hours_text_free "MyString"
+    places_text_free "MyString"
     #association :project
 
     trait :invalid do
@@ -110,7 +113,7 @@ FactoryGirl.define do
   factory :entity_subscribe, class: 'Rt::EntitySubscribe' do
     name "MyString"
     description "MyText"
-    vat_number "MyString"
+    vat_number "52755658y"
     email "perezljl@madrid.es"
     representative_name "MyString"
     representative_last_name "MyString"
@@ -149,7 +152,7 @@ FactoryGirl.define do
     end
   end
   factory :project_unpublishing, class: 'Rt::ProjectUnpublishing' do
-    association :project
+    association :project, factory: :project, strategy: :create
     notes "MyText"
 
     trait :invalid do
@@ -227,7 +230,7 @@ FactoryGirl.define do
     name "MyString"
     last_name "MyString"
     phone_number "915133368"
-    email "perezljl@madrid.es"
+    email Faker::Internet.email
 
     trait :invalid do
       email ""
@@ -235,12 +238,16 @@ FactoryGirl.define do
   end
 
   factory :volunteer_unsubscribe, class: 'Rt::VolunteerUnsubscribe' do
-     notes "MyText"
+    notes "notes"
+    association :project, factory: :project, strategy: :build
+    association :unsubscribe_level, factory: :unsubscribe_level, strategy: :build
 
     trait :invalid do
       notes ""
     end
   end
+
+
 
  factory :other, class: 'Rt::Other' do
     description "MyText"
@@ -297,7 +304,7 @@ FactoryGirl.define do
 
 
   factory :entity do
-    name Faker::Lorem.name
+    sequence(:name)     { |n| "Entidad #{n} name" }
     email Faker::Internet.email
     phone_number  "915133368"
     vat_number       "04959973T"
@@ -313,11 +320,11 @@ FactoryGirl.define do
 
 
   factory :project do
-      sequence(:name)     { |n| "Project #{n} name" }
+      sequence(:name)       { |n| "Project #{n} name" }
       description           Faker::Lorem.sentence
       functions             Faker::Lorem.sentence
       comments              Faker::Lorem.sentence
-      association :entity, factory: :entity
+      association           :entity, factory: :entity
       execution_start_date  Faker::Time.between(DateTime.now - 10, DateTime.now)
       execution_end_date    Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow)
       phone_number          Faker::PhoneNumber.phone_number
@@ -330,14 +337,30 @@ FactoryGirl.define do
       publish               true
       contact_name          Faker::Lorem.name
       contact_last_name     Faker::Lorem.name
-      association           :pt_extendable, factory: :pt_social
-      #pt_extendable_id      1
-      #pt_extendable_type    "Pt::Social"
+      pt_extendable_id      1
+      pt_extendable_type    'Pt::Social'
+      #association           :pt_extendable, factory: :pt_social
       outstanding           false
+      trait :project_social do
+       association           :pt_extendable, factory: :pt_social
+      end
+      trait :user_entity do
+         association           :pt_extendable, factory: :pt_entity
+      end
+
+      trait :featured do
+         outstanding    true
+      end
+
+      trait :nopublic do
+          active false
+          publish false
+      end
+
   end
 
   factory :project_social, class: 'Project' do
-      sequence(:name)     { |n| "Project #{n} name" }
+      sequence(:name)       { |n| "Project social #{n} name" }
       description           Faker::Lorem.sentence
       functions             Faker::Lorem.sentence
       comments              Faker::Lorem.sentence
@@ -370,9 +393,17 @@ FactoryGirl.define do
      email 'voluntario@madrid.es'
      password '12345678'
      password_confirmation '12345678'
-     association  :loggable, factory: :volunteer
      notice_type_id 1
+     confirmation_token 'MXF8fAef98iVGd5gfpHg'
+     confirmed_at '2017-05-18 06:06:47.754827'
+     confirmation_sent_at '2017-05-18 06:06:47.754827'
      terms_of_service true
+     trait :user_volunteer do
+       association  :loggable, factory: :volunteer
+     end
+     trait :user_entity do
+       association  :loggable, factory: :entity
+     end
   end
 
 
@@ -389,13 +420,19 @@ FactoryGirl.define do
 
 
   factory :pt_social, class: 'Pt::Social' do
-    notes "MyText"
-    association :pt_extendable, factory: :project_social
+    notes "MyText2"
     trait :invalid do
       notes ""
     end
   end
 
+  factory :unsubscribe_level do
+    kind "project"
+    description "prueba"
+    trait :invalid do
+      notes ""
+    end
+  end
 
 
 end

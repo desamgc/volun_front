@@ -1,19 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Rt::ActivityUnpublishingsController, type: :controller do
-before(:each) do
-    sign_in create(:user)
+  let(:user) { create(:user, :user_entity) }
+  before(:each) do
+    sign_in user
   end
 
   let(:valid_attributes) {
-    attributes_for :activity_unpublishing
+    @activity = create(:activity)
+    attributes_for :activity_unpublishing, activity_id: @activity.id
   }
 
   let(:invalid_attributes) {
     attributes_for :activity_unpublishing, :invalid
   }
 
-  
+
   describe "POST #create" do
     context 'with valid params' do
       it 'falla creates a new Rt::ActivityPublishing' do
@@ -30,7 +32,7 @@ before(:each) do
 
       it 'falla redirects to the created rt_activity_unpublishing' do
         post :create, rt_activity_unpublishing: valid_attributes
-        expect(response).to redirect_to index_i_projects_path 
+        expect(response).to redirect_to user_path(user)
       end
     end
 

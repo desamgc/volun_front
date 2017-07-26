@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Rt::VolunteerSubscribesController, type: :controller do
-  before(:each) do
-    sign_in create(:user)
+  before :each do
+    sign_out :user
   end
 
   let(:valid_attributes) {
     attributes_for :volunteer_subscribe
+
   }
 
   let(:invalid_attributes) {
@@ -19,7 +20,7 @@ RSpec.describe Rt::VolunteerSubscribesController, type: :controller do
       expect(assigns(:rt_volunteer_subscribe)).to be_a_new(Rt::VolunteerSubscribe)
     end
   end
-  
+
   describe "POST #create" do
     context 'with valid params' do
       it 'creates a new Rt::VolunteerSubscribe' do
@@ -36,7 +37,7 @@ RSpec.describe Rt::VolunteerSubscribesController, type: :controller do
 
       it 'redirects to the created rt_volunteer_subscribe' do
         post :create, rt_volunteer_subscribe: valid_attributes
-        expect(response).to redirect_to index_i_projects_path
+        expect(response).to redirect_to projects_path
       end
     end
 
