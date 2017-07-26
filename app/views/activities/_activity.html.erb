@@ -6,5 +6,14 @@
       <% end %>
       <h3 class="titular"><%= activity.name %></h3>
     </div>
+    <i><%= link_to  " " , activity_path(activity.id), class: "fa fa-chevron-right" %> </i>
+  </div>
+  <div class="row">
+    <div class="col-md-11">
+
+    </div>
+    <div class="col-md-1">
+      <%= link_to  "Dar de baja", new_rt_activity_unpublishing_path(activity_id: activity.id), class: "link" %>
+    </div>
   </div>
 </div>

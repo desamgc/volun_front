@@ -38,7 +38,7 @@ REQUEST_TYPES = {
 }
 
 PROJECT_TYPES = {
-  1 => 'Servicios Sociales'
+  1 => 'pt_social'
 
 }
 
@@ -269,7 +269,7 @@ ENTITY_TYPES.each do |kind , name|
 end
 
 puts "Creando Tipos de proyectos"
-ProjectType.kinds.each do |kind_name , kind_num|
+PROJECT_TYPES.each do |kind_num , kind_name|
   ProjectType.create!(id: kind_num, kind: kind_num, description: kind_name)
 end
 

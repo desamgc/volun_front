@@ -6,9 +6,9 @@ module PtModel
     has_one :project, as: :pt_extendable, required: true
     accepts_nested_attributes_for :project
 
-    validate :check_project_type
-    after_initialize :build_new_project
-    before_destroy :check_project_references
+    #validate :check_project_type
+    #after_initialize :build_new_project
+    #before_destroy :check_project_references
 
     private
 

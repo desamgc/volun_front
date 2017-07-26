@@ -6,7 +6,7 @@ module ScaffoldHelper
 
   def main_title(title, opts = {})
     html_tag = opts.delete(:html_tag) || :h1
-    content_tag(html_tag, title, { class: 'page-header' }.merge(opts))
+    content_tag(html_tag, title, { class: 'titlePage' }.merge(opts))
   end
 
   def search_collection(search, search_condition, options = {})

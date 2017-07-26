@@ -5,19 +5,17 @@ Rails.application.routes.draw do
   end
 
   namespace :rt do
-    resources :others
-    resources :activity_unpublishings, param: :activity_id
-    resources :activity_publishings
-    resources :project_unsubscribes, param: :project_id
-    resources :project_unpublishings
-    resources :project_publishings
-    resources :volunteers_demands
-    resources :entity_unsubscribes
-    resources :entity_subscribes
-    resources :volunteer_appointments
-    resources :volunteer_amendments
-    resources :volunteer_unsubscribes
-    resources :volunteer_subscribes
+    resources :others, only:[:new,:create]
+    resources :activity_unpublishings, only:[:new,:create], param: :activity_id
+    resources :activity_publishings, only:[:new,:create]
+    resources :project_unpublishings, only:[:new,:create], param: :project_id
+    resources :project_publishings, only:[:new,:create], param: :project_id
+    resources :volunteers_demands, only:[:new,:create], param: :project_id
+    resources :entity_unsubscribes, only:[:new,:create]
+    resources :volunteer_appointments, only:[:new,:create]
+    resources :volunteer_amendments, only:[:new,:create]
+    resources :volunteer_unsubscribes, only:[:new,:create], param: :project_id
+    resources :volunteer_subscribes, only:[:new,:create]
   end
 
   resources :addresses do
@@ -90,7 +88,7 @@ Rails.application.routes.draw do
 
   get '/whoami' => 'pages#whoami'
   get '/mailchimp' => 'pages#mailchimp'
-  #get '/conditions' => 'pages#conditions'
+  get '/conditions' => 'pages#conditions'
   get '/blog' => redirect("https://voluntariospormadridblog.madrid.es/")
   resources :pages, path: '/', only: [:show]
 

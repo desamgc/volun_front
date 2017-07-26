@@ -60,6 +60,17 @@ module ApplicationHelper
   end
 
   def entity_projects_select_options(id)
-    Project.entity_projects(id).order(name: :asc).collect { |g| [g.name, g.id] }
+    Project.unscoped.entity_projects(id).order(name: :asc).collect { |g| [g.name, g.id] }
   end
+
+  def volunteer_projects_select_options(id)
+    Project.includes(:volunteers).where("volunteer_id = ?", id).references(:volunteers).order(name: :asc).collect { |g| [g.name, g.id] }
+  end
+
+  def entity_activities_select_options(id)
+    Activity.unscoped.where("entity_id = ?", id).order(name: :asc).collect { |g| [g.name, g.id] }
+  end
+
+
+
 end
