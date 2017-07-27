@@ -64,7 +64,7 @@ module ApplicationHelper
   end
 
   def volunteer_projects_select_options(id)
-    Project.includes(:volunteers).where("volunteer_id = ?", id).references(:volunteers).order(name: :asc).collect { |g| [g.name, g.id] }
+    Project.unscoped.includes(:volunteers).where("volunteer_id = ?", id).references(:volunteers).order(name: :asc).collect { |g| [g.name, g.id] }
   end
 
   def entity_activities_select_options(id)
