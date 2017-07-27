@@ -38,7 +38,13 @@ REQUEST_TYPES = {
 }
 
 PROJECT_TYPES = {
-  1 => 'pt_social'
+  1 => 'pt_social',
+  2 =>  'pt_centre',
+  3 =>  'pt_permanent',
+  4 =>  'pt_punctual',
+  5 =>  'pt_entity',
+  6 =>  'pt_subvention',
+  7 =>  'pt_other'
 
 }
 
