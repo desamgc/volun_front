@@ -122,3 +122,8 @@ en:
     undo_rejection: 'Deshacer rechazo'
     process:  'Procesar'
     man_trackings: 'Gestionar seguimientos'
+   project:
+    subscribed: Participando
+    interesting: Me interesa participar
+    requested: Solicitado
+    need_volunteers: Se necesitan voluntarios

@@ -144,25 +144,6 @@ ROAD_TYPES = {
 }
 
 
-
-puts "Creando Distritos"
-DISTRICTS.each do |code, name|
-  District.create!(code: code, name: name)
-end
-
-puts "Creando Provincias"
-PROVINCES.each do |code, name|
-  Province.create!(code: code, name: name)
-end
-
-
-puts "Creando Tipos de vías"
-ROAD_TYPES.each do |name, code|
-  RoadType.create!(name: name, code: code)
-end
-
-
-
 puts "Creando Direcciones"
 (1..ADDRESSES_NUM).each do |n|
   Address.create!(
@@ -283,7 +264,7 @@ puts "Creando actividades"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         link_type_id: 4,
-        path: "https://www.youtube.com/watch?v=az-KJMqh7ks",
+        path: "https://www.youtube.com/embed/videoseries?list=PLhnvwI6F9eqVUaJCrFft9L54vp9eCFxzh",
         linkable: activity
     )
     end
@@ -381,7 +362,7 @@ puts "Creando Proyectos urgent"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         link_type_id: 4,
-        path: "https://www.youtube.com/watch?v=az-KJMqh7ks",
+        path: "https://www.youtube.com/embed/videoseries?list=PLhnvwI6F9eqVUaJCrFft9L54vp9eCFxzh",
         linkable: project
     )
     end
@@ -468,7 +449,7 @@ puts "Creando Proyectos featured"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         link_type_id: 4,
-        path: "https://www.youtube.com/watch?v=az-KJMqh7ks",
+        path: "https://www.youtube.com/embed/videoseries?list=PLhnvwI6F9eqVUaJCrFft9L54vp9eCFxzh",
         linkable: project
     )
     end
@@ -556,7 +537,7 @@ puts "Creando Proyectos"
       link = Link.create!(
         description:   Faker::Lorem.sentence,
         link_type_id: 4,
-        path: "https://www.youtube.com/watch?v=az-KJMqh7ks",
+        path: "https://www.youtube.com/embed/videoseries?list=PLhnvwI6F9eqVUaJCrFft9L54vp9eCFxzh",
         linkable: project
     )
     end

@@ -3,24 +3,24 @@ require 'database_cleaner'
 DatabaseCleaner.clean_with :truncation
 Faker::Config.locale = I18n.locale
 
-ACTIVITIES_NUM    = 10
-ADDRESSES_NUM     = 20
-PROJECTS_NUM      = 10
-PROJECTS_NUM_FEATURED = 3
+ACTIVITIES_NUM           = 10
+ADDRESSES_NUM            = 20
+PROJECTS_NUM             = 10
+PROJECTS_NUM_FEATURED    = 3
 PROJECTS_NUM_OUTSTANDING = 1
-REQUEST_FORMS_NUM = 10
-DISTRICTS_NUM     = 10
-ENTITIES_NUM      = 10
-COORDINATIONS_NUM = 10
-PROPOSAL_NUM      = 10
-ENTITY_NUM        = 10
-RACKING_NUM       = 10
-ISSUE_NUM         = 10
-TIMETABLE_NUM     = 5
-EVENTS_NUM        = 5
-DOCUMENT_NUM      = 5
-SKILLS_NUM        = 5
-LINKS_NUM      = 4
+REQUEST_FORMS_NUM        = 10
+DISTRICTS_NUM            = 10
+ENTITIES_NUM             = 10
+COORDINATIONS_NUM        = 10
+PROPOSAL_NUM             = 10
+ENTITY_NUM               = 10
+RACKING_NUM              = 10
+ISSUE_NUM                = 10
+TIMETABLE_NUM            = 5
+EVENTS_NUM               = 5
+DOCUMENT_NUM             = 5
+SKILLS_NUM               = 5
+LINKS_NUM                = 4
 
 REQUEST_TYPES = {
   1  => 'rt_volunteer_subscribe',
@@ -237,11 +237,10 @@ NOTICE_TYPES = {
   2 => 'papel'
 }
 
+REJECTION_TYPES = {
+  1 => 'No procede'
 
-puts "Creando Medios de comunicación"
-NOTICE_TYPES.each do |kind , name|
-  NoticeType.create!(kind: kind, description: name)
-end
+}
 
 
 AREAS = {
@@ -251,6 +250,10 @@ AREAS = {
   4 => 'OTRA'
 }
 
+puts "Creando Medios de comunicación"
+NOTICE_TYPES.each do |kind , name|
+  NoticeType.create!(kind: kind, description: name)
+end
 
 puts "Creando Links"
 LINK_TYPES.each do |kind , name|
@@ -279,10 +282,6 @@ PROJECT_TYPES.each do |kind_num , kind_name|
   ProjectType.create!(id: kind_num, kind: kind_num, description: kind_name)
 end
 
-
-
-
-
 puts "Creando Tipos de razones"
 REQUEST_REASONS.each do |code, name|
   ReqReason.create!(name: name, description: name)
@@ -294,41 +293,24 @@ REQUEST_STATUS.each do |code, name|
   ReqStatus.create!(kind: code, description: name)
 end
 
-
-REJECTION_TYPES = {
-  1 => 'No procede',
-
-}
-
 puts "Creando Tipos de rechazos"
 REJECTION_TYPES.each do |code, name|
   ReqRejectionType.create!(description: name, name: name)
 end
 
+puts "Creando Distritos"
+DISTRICTS.each do |code, name|
+  District.create!(code: code, name: name)
+end
+
+puts "Creando Provincias"
+PROVINCES.each do |code, name|
+  Province.create!(code: code, name: name)
+end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+puts "Creando Tipos de vías"
+ROAD_TYPES.each do |name, code|
+  RoadType.create!(name: name, code: code)
+end
 
