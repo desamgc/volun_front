@@ -25,27 +25,51 @@ feature 'Projects' do
     visit projects_path
 
     expect(page).to have_selector('#projects', count: 1)
-
-    #within("ul") do
-    #  click_link "Next", exact: false
-    #end
     expect(page).to have_css("a[href='/projects?page=2']", text: "Ver Más")
-    #expect(page).to have_selector('#debates .debate', count: 2)
   end
 
   scenario 'Show' do
-    project = create(:project)
+    @volunteers = [create(:volunteer), create(:volunteer)]
+    project = create(:project, volunteers: @volunteers)
 
     visit project_path(project)
 
     expect(page).to have_content project.name
     expect(page).to have_content project.description
-
+    expect(page).to have_content "2 voluntarios"
     within('.redesWrapProject') do
-      expect(page.all('a').count).to be(3) # Twitter, Facebook, Google+
+      expect(page.all('a').count).to be(2) # Twitter, Facebook
     end
   end
 
+
+  scenario 'Show as login participando' do
+    @volunteer = create(:volunteer)
+    @user = create(:user, loggable: @volunteer)
+    login_as(@user)
+    @volunteers = [@volunteer]
+
+    project = create(:project, volunteers: @volunteers)
+
+    visit project_path(project)
+
+    expect(page).to have_content I18n.t('project.subscribed')
+
+  end
+
+  scenario 'Show as inscribirse' do
+    @volunteer = create(:volunteer)
+    @user = create(:user, loggable: @volunteer)
+    login_as(@user)
+    @volunteers = [@volunteer]
+
+    project = create(:project)
+
+    visit project_path(project)
+
+    expect(page).to have_content I18n.t('project.interesting')
+
+  end
 
   context "Search" do
 
@@ -70,6 +94,44 @@ feature 'Projects' do
           expect(page).to_not have_content(project3.name)
         end
       end
+
+      scenario 'Search by area' do
+        @areaCultura = [create(:area, :cultura)]
+        @areaDeportes = [create(:area, :deportes)]
+        project1 = create(:project, areas: @areaCultura)
+        project2 = create(:project, areas: @areaDeportes)
+        project3 = create(:project)
+
+        visit projects_path
+
+        check 'cultura'
+        click_button "buscar"
+
+        within("#projects") do
+          expect(page).to have_content(project1.name)
+          expect(page).to_not have_content(project2.name)
+          expect(page).to_not have_content(project3.name)
+        end
+      end
+
+      scenario 'Search all' do
+        @areaCultura = [create(:area, :cultura)]
+        @areaDeportes = [create(:area, :deportes)]
+        project1 = create(:project, areas: @areaCultura)
+        project2 = create(:project, areas: @areaDeportes)
+        project3 = create(:project)
+
+        visit projects_path
+
+        click_link "Ver todos"
+
+        within("#projects") do
+          expect(page).to have_content(project1.name)
+          expect(page).to have_content(project2.name)
+          expect(page).to have_content(project3.name)
+        end
+      end
+
     end
   end
 

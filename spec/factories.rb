@@ -1,5 +1,17 @@
 FactoryGirl.define do
 
+  factory :area do
+    name "cultura"
+    trait :cultura do
+      name "cultura"
+      description "cultura"
+    end
+    trait :deportes do
+      name "deportes"
+      description "deportes"
+    end
+  end
+
   factory :notice_type do
     kind 1
     description "MyText"
@@ -382,7 +394,7 @@ FactoryGirl.define do
   end
 
   factory :volunteer do
-    name "jose"
+    name Faker::Lorem.name
     last_name "MyString"
     phone_number "915133368"
     email "perezljl@madrid.es"
@@ -398,6 +410,7 @@ FactoryGirl.define do
      confirmed_at '2017-05-18 06:06:47.754827'
      confirmation_sent_at '2017-05-18 06:06:47.754827'
      terms_of_service true
+     association :loggable
      trait :user_volunteer do
        association  :loggable, factory: :volunteer
      end

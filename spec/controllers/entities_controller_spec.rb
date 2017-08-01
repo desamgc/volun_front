@@ -34,7 +34,7 @@ RSpec.describe EntitiesController, type: :controller do
     context 'with invalid params' do
       it 'falla assigns a newly created but unsaved rt_entity_subscribe as @rt_entity_subscribe' do
         post :create, entity: invalid_attributes
-        expect(assigns(:entity)).to be_a_new(EntitySubscribe)
+        expect(assigns(:entity)).to be_a_new(Entity)
       end
 
       it 're-renders the "new" template' do
