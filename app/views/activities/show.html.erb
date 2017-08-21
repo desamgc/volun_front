@@ -11,10 +11,12 @@ var id = <%= @activity.id %>
 <%= javascript_include_tag 'calendar' %>
 <%= javascript_include_tag 'map' %>
 <div class="container-fluid">
+
+
   <div class="row">
     <div class="col-md-12 mt45" >
       <i class="fa fa-chevron-left volverArrow" aria-hidden="true"></i>
-      <%= link_to <%= t('application.activities') %>, activities_path,class: "volver" %>
+      <%= link_to t('application.activities'), activities_path,class: "volver" %>
     </div>
   </div>
 </div>
@@ -39,14 +41,15 @@ var id = <%= @activity.id %>
               <div id="fecha_show">
               </div>
             </div>
-            <div id="mapaW">
-              <div id="mapDiv">
-              </div>
-            </div>
+
             <div id="timetables">
               <ul id="timetables_by_date" class="direcciones">
                 <%= render partial: "timetables/timetables_by_date_activity", locals: {timetable: @timetables, day: @day} %>
               </ul>
+            </div>
+          </div>
+          <div id="mapaW">
+            <div id="mapDiv">
             </div>
           </div>
         </div>
