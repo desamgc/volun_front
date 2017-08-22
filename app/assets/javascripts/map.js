@@ -15,9 +15,7 @@ function load_geo ()
 
 
              var sr = new SpatialReference({wkid:25830});
-             //var centro =  (multiple == true) ?  new Point([446137,4475471],sr) : new Point([locations.addresses[1].latitude,locations.addresses[1].longitude],sr);
              var centro =  new Point([446137,4475471],sr);
-             //var zoom = (multiple == true) ? 1 : 7;
              map = new Map("mapDiv", {
                      center: centro,
                      spatialReference: sr,
@@ -64,7 +62,7 @@ function load_geo ()
                        map.addLayer(graficos);
                        var infoTemplate = new InfoTemplate();
                        var g = new Graphic(pt,pms);
-                       g.setInfoTemplate(infoTemplate);
+                       //g.setInfoTemplate(infoTemplate);
                        graficos.add(g);
              });
 
@@ -110,9 +108,12 @@ function load_coordenadas ()
                        map.addLayer(graficos);
                        var infoTemplate = new InfoTemplate();
                        var g = new Graphic(pt,pms);
-                       g.setInfoTemplate(infoTemplate);
+                       //g.setInfoTemplate(infoTemplate);
                        graficos.add(g);
              });
+
+             var centro = new Point([(locations[0].address.latitude/100).toFixed(0),(locations[0].address.longitude/100).toFixed(0)],sr);
+             map.centerAt(centro);
 
 
       })
