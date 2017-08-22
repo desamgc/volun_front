@@ -63,7 +63,9 @@ class ActivitiesController < ApplicationController
   def show
     params[:day] ||= @activity.timetables.minimum(:execution_date).try :strftime, '%Y-%m-%d'
     @timetables = @activity.timetables.where(timetables: { execution_date: params[:day] })
-    @locations = Activity.includes(:addresses, :timetables).where(id: params[:id], timetables: { execution_date: params[:day] }).as_json(only: [:id, :description, :name], include: [:addresses, { addresses: { only:[:latitude, :longitude] } }])
+    #@locations = Activity.includes(:addresses, :timetables).where(id: params[:id], timetables: { execution_date: params[:day] }).as_json(only: [:id, :description, :name], include: [:addresses, { addresses: { only:[:latitude, :longitude] } }])
+    #@locations = Timetable.includes(:activity, :address).where(activities: {id: params[:id]}, execution_date: params[:day] ).as_json(only: [:id], include: { address: { only: [:latitude, :longitude]}})
+    @locations = Event.includes(:address,:activity, :timetables).where(activities: {id: params[:id]}, timetables: {execution_date: params[:day]} ).as_json(only:[:id],include: { address: { only: [:latitude, :longitude]}})
     @list_days_activity = @activity.timetables.pluck('timetables.execution_date').to_json
     @date = params[:day]
     @day = params[:day].to_json
@@ -76,7 +78,7 @@ class ActivitiesController < ApplicationController
   protected
 
   def set_activity
-    @activity = Activity.includes(:addresses, :timetables).find(params[:id])
+    @activity = Activity.find(params[:id])
   end
 
   def activity_params

@@ -16,10 +16,11 @@ class ProjectsController < ApplicationController
 
   def index
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:areas, :addresses, :entity).actives.search(params[:q])
+    @search = Project.includes(:areas).actives.search(params[:q])
     session[:params] = ""
     @projects_actives = @search.result.page(params[:page])
-    @locations = Project.includes(:addresses).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    #@locations = Project.includes(:addresses).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    @locations = Event.includes(:address).where(eventable_type: Project.name).as_json(only:[:id],include: { address: { only: [:latitude, :longitude]}})
     if (params[:page].blank?)
       @districts = Project.includes(:addresses).actives.distinct.order("district").pluck('district','district')
       @boroughs = ""
@@ -53,7 +54,8 @@ class ProjectsController < ApplicationController
   def show
     params[:day] ||= @project.timetables.minimum(:execution_date).try :strftime, "%Y-%m-%d"
     @timetables = @project.timetables.where(timetables: {execution_date: params[:day]})
-    @locations = @project.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    #@locations = Project.includes(:addresses).where(id: params[:id]).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    @locations = Event.includes(:project,:address).where(projects: {id: params[:id]}).as_json(only:[:id],include: { address: { only: [:latitude, :longitude]}})
     respond_to do |format|
       format.html
       format.js
@@ -63,7 +65,7 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
-    @project = Project.includes(:addresses).find(params[:id])
+    @project = Project.find(params[:id])
   end
 
   def project_params

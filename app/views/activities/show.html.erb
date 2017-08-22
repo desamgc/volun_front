@@ -1,6 +1,6 @@
 <%= javascript_tag do %>
 var locations = <%= raw @locations.to_json %>;
-var multiple = true;
+var project = false;
 var url_map = "<%= Rails.application.secrets.url_map %>";
 var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
 var list_days = <%= raw @list_days_activity.to_json %>;
