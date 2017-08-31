@@ -1,16 +1,14 @@
 <%= javascript_tag do %>
 var url = "/activities/boroughs"
+var list_days = <%= raw @list_days.to_json %>;
+var multiple = true;
+var day_c = <%= raw @day.to_json %>
 <% end %>
 <%= javascript_include_tag 'calendar' %>
 <div class="container-fluid">
   <h1 class="titlePage">Agenda de actividades solidarias</h1>
   <div class="row">
     <div class="col-md-4">
-      <%= javascript_tag do %>
-      var list_days = <%= raw @list_days.to_json %>;
-      var multiple = true;
-      var day_c = <%= raw @day.to_json %>
-      <% end %>
       <div id="fecha">
       </div>
       <%= render "buscador" %>

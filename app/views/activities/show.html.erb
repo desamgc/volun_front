@@ -11,8 +11,6 @@ var id = <%= @activity.id %>
 <%= javascript_include_tag 'calendar' %>
 <%= javascript_include_tag 'map' %>
 <div class="container-fluid">
-
-
   <div class="row">
     <div class="col-md-12 mt45" >
       <i class="fa fa-chevron-left volverArrow" aria-hidden="true"></i>
@@ -41,7 +39,6 @@ var id = <%= @activity.id %>
               <div id="fecha_show">
               </div>
             </div>
-
             <div id="timetables">
               <ul id="timetables_by_date" class="direcciones">
                 <%= render partial: "timetables/timetables_by_date_activity", locals: {timetable: @timetables, day: @day} %>
@@ -53,7 +50,7 @@ var id = <%= @activity.id %>
             </div>
           </div>
         </div>
-        <% if @activity.entity.links.present? %>
+        <% if @activity.entity.present? && @activity.entity.links.present? %>
         <div class="bloque">
           <div id="meta">
             <div class="brand">
@@ -65,13 +62,13 @@ var id = <%= @activity.id %>
           </div>
         </div>
         <% end %>
-        <% if @activity.links.document.present? %>
-        <div class="bloque">
-          <div id="documentacion">
-            <h5> <%= t('application.documentation') %> </h5>
-            <%= render partial: "links/link", collection: @activity.links.document %>
+        <% if @activity.links.present? && @activity.links.document.present? %>
+          <div class="bloque">
+            <div id="documentacion">
+              <h5> <%= t('application.documentation') %> </h5>
+              <%= render partial: "links/link", collection: @activity.links.document %>
+            </div>
           </div>
-        </div>
         <% end %>
         <% if @activity.project.present? %>
         <div class="bloque">
@@ -107,6 +104,7 @@ var id = <%= @activity.id %>
         <%= render partial: "shared/area", locals:{ area:  @activity.area } %>
       </div>
       <% end %>
+      <% if @activity.links.present? %>
       <div role="tabpanel" class="tab-pane active carousel" id="tpi-tab2">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
@@ -141,18 +139,39 @@ var id = <%= @activity.id %>
               <p> <%= @activity.description %> </p>
             </div>
           </div>
-          <% if @activity.links.present? %>
+
           <div class="item noTitle">
             <h3 class=""><%= t('application.links') %></h3>
             <dl class="dl-horz">
               <%= render partial: "links/link", collection: @activity.links.url %>
             </dl>
           </div>
-          <% end %>
+
         </div>
       </div>
       <div class="bg-fluid5 nofluid">
         <%= render partial: "links/link", collection: @activity.links.video %>
+      </div>
+     <% end %>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="redesWrapProject">
+          <h4><%= t('application.share') %></h4>
+          <ul class="redes">
+            <li>
+              <%= link_to "https://www.facebook.com/sharer/sharer.php?u=#{activity_url(@activity)}",  title: 'Comparteme!' do %>
+              <i class="fa fa-facebook" data-content="Comparteme!"></i>
+              <% end %>
+            </li>
+            <li>
+              <%#= link_to "http://twitter.com/home?status=#{project_url(@project)}",  title: 'Comparteme!' do %>
+              <%= link_to "https://twitter.com/intent/tweet?url=#{activity_url(@activity)}&text=#{@activity.name}",  title: 'Comparteme!' do %>
+              <i class="fa fa-twitter" data-content="Comparteme!"></i>
+              <% end %>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
