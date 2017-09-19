@@ -2,7 +2,6 @@ class Rt::VolunteerUnsubscribesController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :js, :json
 
-
   def new
     @rt_volunteer_unsubscribe = Rt::VolunteerUnsubscribe.new
     @rt_volunteer_unsubscribe.project_id = params[:project_id]
@@ -18,10 +17,9 @@ class Rt::VolunteerUnsubscribesController < ApplicationController
     end
   end
 
-
   protected
 
-    def rt_volunteer_unsubscribe_params
-      params.require(:rt_volunteer_unsubscribe).permit(:project_id, :unsubscribe_level_id, :notes)
-    end
+  def rt_volunteer_unsubscribe_params
+    params.require(:rt_volunteer_unsubscribe).permit(:project_id, :unsubscribe_level_id, :notes)
+  end
 end

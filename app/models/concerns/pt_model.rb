@@ -1,14 +1,12 @@
 module PtModel
   extend ActiveSupport::Concern
-
   included do
-
     has_one :project, as: :pt_extendable, required: true
     accepts_nested_attributes_for :project
 
-    #validate :check_project_type
-    #after_initialize :build_new_project
-    #before_destroy :check_project_references
+    # validate :check_project_type
+    # after_initialize :build_new_project
+    # before_destroy :check_project_references
 
     private
 
@@ -29,15 +27,14 @@ module PtModel
     end
 
     def check_project_references
-      if has_project_references?
+      if project_references?
         errors.add :base, :unable_to_delete_due_to_project_references
         false
       end
     end
 
-    def has_project_references?
+    def project_references?
       Project.where(pt_extendable_id: id, pt_extendable_type: self.class.name).exists?
     end
-
   end
 end

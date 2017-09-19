@@ -7,5 +7,4 @@ class Rt::VolunteersDemand < ActiveRecord::Base
             :town, :description, :execution_start_date, :requested_volunteers_num, :volunteers_profile,
             :volunteer_functions_1, presence: true
   validates :postal_code, format: { with: VALID_CODIGOPOSTAL_REGEX }
-
 end

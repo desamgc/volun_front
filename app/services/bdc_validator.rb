@@ -1,5 +1,4 @@
 class BdcValidator
-
   attr_accessor :bdc_fields, :response_data
 
   def initialize(bdc_fields = {})

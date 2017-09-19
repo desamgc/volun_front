@@ -124,5 +124,4 @@ module NavLinkHelper
       end
     end
   end
-
 end

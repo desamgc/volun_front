@@ -26,10 +26,10 @@ class Rt::ProjectPublishingsController < ApplicationController
   end
 
   def set_project
-   @project = Project.unscoped.find_by_id (params[:project_id]) if params[:project_id]
+    @project = Project.unscoped.find_by_id params[:project_id] if params[:project_id]
   end
 
   def rt_project_publishing_params
-    params.require(:rt_project_publishing).permit(:notes,:description, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :entity_id, :project_id)
+    params.require(:rt_project_publishing).permit(:notes, :description, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :entity_id, :project_id)
   end
 end

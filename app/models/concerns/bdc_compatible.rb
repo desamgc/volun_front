@@ -26,14 +26,10 @@
 # +longitude+
 # +normalize+
 #
-
 module BdcCompatible
   extend ActiveSupport::Concern
-
   included do
-
     attr_accessor :bdc_validator
-
     before_validation :check_normalization, if: 'normalize?'
     after_validation :unnormalize_fields, on: :update, unless: 'normalize?'
 
@@ -122,5 +118,4 @@ module BdcCompatible
       }
     end
   end
-
 end

@@ -8,14 +8,13 @@ class Rt::VolunteerSubscribesController < ApplicationController
 
   def new
     # eliminamos el mandar automaticamente la solicitud
-    #if current_user && current_user.loggable_type == "Volunteer"
+    # if current_user && current_user.loggable_type == "Volunteer"
     #  if @rt_volunteer_subscribe.save
     #    redirect_to project_path(session[:project]), notice: t('volunteer_subscribe.response')
     #  else
     #    redirect_to project_path(session[:project]), notice: t('volunteer_subscribe.responseKO')
     #  end
-    #end
-
+    # end
   end
 
   def create
@@ -29,19 +28,16 @@ class Rt::VolunteerSubscribesController < ApplicationController
     end
   end
 
-
   protected
 
   def user_exists
-    if User.where(email: rt_volunteer_subscribe_params[:email]).exists?
-      redirect_to new_password_path("user"), alert:"Ya existe un usuario con ese email. Desea recordar constraseña?"
-    end
+    return unless User.where(email: rt_volunteer_subscribe_params[:email]).exists?
+    redirect_to new_password_path("user"), alert: I18n.t('user.exist')
   end
 
   def set_fields
     session[:project] ||= params[:project_id]
-    if current_user && current_user.loggable_type == "Volunteer"
-
+    if current_user && current_user.loggable_type == Volunteer.name
       @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new(project_id: session[:project],
                                                            name: current_user.loggable.name,
                                                            last_name: current_user.loggable.last_name,
@@ -52,11 +48,12 @@ class Rt::VolunteerSubscribesController < ApplicationController
       @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new
     end
   end
+
   def set_rt_volunteer_subscribe
     @rt_volunteer_subscribe = Rt::VolunteerSubscribe.find(params[:id])
   end
 
   def rt_volunteer_subscribe_params
-    params.require(:rt_volunteer_subscribe).permit(:name, :last_name, :last_name_alt, :phone_number, :phone_number_alt, :email, :project_id,request_form: [:user_id])
+    params.require(:rt_volunteer_subscribe).permit(:name, :last_name, :last_name_alt, :phone_number, :phone_number_alt, :email, :project_id, request_form: [:user_id])
   end
 end

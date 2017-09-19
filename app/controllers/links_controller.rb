@@ -1,11 +1,10 @@
 class LinksController < ApplicationController
   include Downloadable
-  before_action :set_link, only: [:show, :edit, :update, :destroy, :download ]
+  before_action :set_link, only: [:show, :edit, :update, :destroy, :download]
 
   def download
-    send_to_user filepath: "https://" + request.host_with_port + @link.path
+    send_to_user filepath: 'https://' + request.host_with_port + @link.path
   end
-
 
   # GET /links
   # GET /links.json
@@ -13,18 +12,9 @@ class LinksController < ApplicationController
     @links = Link.all
   end
 
-  # GET /links/1
-  # GET /links/1.json
-  def show
-  end
-
   # GET /links/new
   def new
     @link = Link.new
-  end
-
-  # GET /links/1/edit
-  def edit
   end
 
   # POST /links
@@ -68,13 +58,14 @@ class LinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_link
-      @link = Link.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def link_params
-      params.require(:link).permit(:name, :path, :project_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_link
+    @link = Link.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def link_params
+    params.require(:link).permit(:name, :path, :project_id)
+  end
 end

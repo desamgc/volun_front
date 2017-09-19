@@ -1,5 +1,4 @@
 class EntitiesController < ApplicationController
-
   def new
     @entity = Entity.new
     @entity.build_address
@@ -15,7 +14,6 @@ class EntitiesController < ApplicationController
     else
       respond_with(@entity)
     end
-
   end
 
   def update
@@ -40,80 +38,74 @@ class EntitiesController < ApplicationController
   def bdc_search_roads
     @address = Address.new(address_params)
     respond_with(@address) do |format|
-      format.json {
-        render json: { roads: @address.bdc_validator.search_roads }
-      }
+      format.json { render json: { roads: @address.bdc_validator.search_roads } }
     end
   end
 
   def bdc_search_road_numbers
     @address = Address.new(address_params)
     respond_with(@address) do |format|
-      format.json {
-        render json: { numbers: @address.bdc_validator.search_road_numbers }
-      }
+      format.json { render json: { numbers: @address.bdc_validator.search_road_numbers } }
     end
   end
 
   protected
+
   def entity_params
     params
-    .require(:entity)
-    .permit(
-      :name,
-      :description,
-      :vat_number,
-      :email,
-      :representative_name,
-      :representative_last_name,
-      :representative_last_name_alt,
-      :contact_name,
-      :contact_last_name,
-      :contact_last_name_alt,
-      :phone_number,
-      :phone_number_alt,
-      :publish_pictures,
-      :annual_survey,
-      :req_reason_id,
-      :entity_type_id,
-      :comments,
-      :other_subscribe_reason,
-      :active,
-      :subscribed_at,
-      :unsubscribed_at,
-      {
-        address_attributes: [
-          :id,
-          :road_type,
-          :road_name,
-          :road_number_type,
-          :road_number,
-          :grader,
-          :stairs,
-          :floor,
-          :door,
-          :postal_code,
-          :borough,
-          :district,
-          :town,
-          :province,
-          :country,
-          :normalize,
-          :_destroy
-        ]
-      },
-      {
-        user_attributes: [
-          :id,
-          :password,
-          :password_confirmation,
-          :terms_of_service
-
-        ]
-
-      }
-
-    )
+      .require(:entity)
+      .permit(
+        :name,
+        :description,
+        :vat_number,
+        :email,
+        :representative_name,
+        :representative_last_name,
+        :representative_last_name_alt,
+        :contact_name,
+        :contact_last_name,
+        :contact_last_name_alt,
+        :phone_number,
+        :phone_number_alt,
+        :publish_pictures,
+        :annual_survey,
+        :req_reason_id,
+        :entity_type_id,
+        :comments,
+        :other_subscribe_reason,
+        :active,
+        :subscribed_at,
+        :unsubscribed_at,
+        {
+          address_attributes: [
+            :id,
+            :road_type,
+            :road_name,
+            :road_number_type,
+            :road_number,
+            :grader,
+            :stairs,
+            :floor,
+            :door,
+            :postal_code,
+            :borough,
+            :district,
+            :town,
+            :province,
+            :country,
+            :normalize,
+            :_destroy
+          ]
+        },
+        {
+          user_attributes: [
+            :id,
+            :password,
+            :password_confirmation,
+            :terms_of_service
+          ]
+        }
+      )
   end
 
   private

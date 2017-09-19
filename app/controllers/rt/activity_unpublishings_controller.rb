@@ -5,7 +5,6 @@ class Rt::ActivityUnpublishingsController < ApplicationController
   def new
     @rt_activity_unpublishing = Rt::ActivityUnpublishing.new
     @rt_activity_unpublishing.activity = params[:activity_id]
-
   end
 
   def create
@@ -20,7 +19,7 @@ class Rt::ActivityUnpublishingsController < ApplicationController
 
   protected
 
-    def rt_activity_unpublishing_params
-      params.require(:rt_activity_unpublishing).permit(:notes, :activity_id)
-    end
+  def rt_activity_unpublishing_params
+    params.require(:rt_activity_unpublishing).permit(:notes, :activity_id)
+  end
 end

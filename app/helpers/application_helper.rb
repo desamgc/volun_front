@@ -70,7 +70,4 @@ module ApplicationHelper
   def entity_activities_select_options(id)
     Activity.unscoped.where("entity_id = ?", id).order(name: :asc).collect { |g| [g.name, g.id] }
   end
-
-
-
 end

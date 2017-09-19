@@ -18,11 +18,10 @@ class Rt::VolunteerAmendmentsController < ApplicationController
     end
   end
 
-
   protected
 
   def rt_volunteer_amendment_params
-    params.require(:rt_volunteer_amendment).permit(:volunteer_id, :address_id, :phone_number, :phone_number_alt, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province,:email)
+    params.require(:rt_volunteer_amendment).permit(:volunteer_id, :address_id, :phone_number, :phone_number_alt, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :email)
   end
 
   def set_amendment_volunteer
