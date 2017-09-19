@@ -131,7 +131,7 @@ es:
               invalid: es invalido
             entity_type_id:
               blank: es obligatorio
-            vat_num:
+            vat_number:
               blank: es obligatorio
               invalid: formato incorrecto
             road_type:

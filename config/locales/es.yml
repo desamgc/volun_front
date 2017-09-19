@@ -114,3 +114,5 @@ es:
     need_volunteers: Se necesitan voluntarios
     activities: Actividades asociadas
     links: Enlaces
+   user:
+    exist: Ya existe un usuario con ese email. Desea recordar constraseña?
