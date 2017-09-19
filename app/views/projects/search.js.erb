@@ -5,3 +5,9 @@ $('#numProjects').html('<%= escape_javascript(render partial: 'numProjects', loc
   $('#projects').html('<%= escape_javascript(render partial: 'project', locals: { records: @projects_actives} ) %>');
 <% end %>
 $('#scroll_projects').html('<%= escape_javascript(render partial: 'shared/scroll_infinite', locals: {records: @projects_actives}) %>');
+
+var locations = <%= raw @locations.to_json %>;
+var lock = true;
+var url_map = "<%= Rails.application.secrets.url_map %>";
+var url_rotulacion = "<%= Rails.application.secrets.url_rotulacion %>";
+load_coordenadas();

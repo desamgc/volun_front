@@ -89,10 +89,27 @@ function load_coordenadas ()
              var sr = new SpatialReference({wkid:25830});
              var pms = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 30, 30).setOffset(0, 15);
              map.removeAllLayers();
-             map.enablePan();
-             map.showZoomSlider();
-             map.enableScrollWheelZoom() ;
-             map.enableMapNavigation();
+
+             if (lock == true)
+             {
+                  map.on("load", function() {
+                  map.disablePan();
+                  map.hideZoomSlider();
+                  map.disableScrollWheelZoom() ;
+                  map.disableMapNavigation();
+                  map.setZoom(1);
+                 });
+             }
+             else
+             {
+                   map.enablePan();
+                   map.showZoomSlider();
+                   map.enableScrollWheelZoom() ;
+                   map.enableMapNavigation();
+                   var centro = new Point([(locations[0].address.latitude/100).toFixed(0),(locations[0].address.longitude/100).toFixed(0)],sr);
+                   map.centerAt(centro);
+             }
+
              mapabase = new ArcGISTiledMapServiceLayer(url_map ,{
                                                               "spatialReference": sr});
              rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{
@@ -112,8 +129,7 @@ function load_coordenadas ()
                        graficos.add(g);
              });
 
-             var centro = new Point([(locations[0].address.latitude/100).toFixed(0),(locations[0].address.longitude/100).toFixed(0)],sr);
-             map.centerAt(centro);
+
 
 
       })
