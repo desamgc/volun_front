@@ -1,6 +1,14 @@
 class ActivitiesController < ApplicationController
-  before_filter :authenticate_user!, only: [:my_area]
-  before_action :set_activity, only: [:show]
+  before_filter :authenticate_user!, only: :my_area
+  before_action :load_query_search, only: :search
+  before_action :set_activity, only: :show
+  before_action :set_list_days_show, only: :show
+  before_action :set_locations, only: :show
+  before_action :set_areas, only: :index
+  before_action :set_districts, only: :index
+  before_action :set_boroughs, only: :index
+  before_action :set_list_days, only: :index
+  before_action :load_query, only: :index
   respond_to :html, :js, :json
   # after_filter :allow_iframe, only: [:show]
 
@@ -15,22 +23,8 @@ class ActivitiesController < ApplicationController
   end
 
   def index
-    if params[:day]
-      @search_q = Timetable.select('timetables.execution_date,activities.id, activities.name').joins(:activity).group('execution_date, activities.id').search(execution_date_eq: params[:day])
-      @day = params[:day]
-
-    else
-      params[:day] = Time.now
-      @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(execution_date_gteq: params[:day])
-      @day = nil
-    end
-    @timetables = @search_q.result
-    @num_records = @timetables.length
-    @timetables = @timetables.page(params[:page]).per(Kaminari.config.default_per_page_activity)
-    @list_days = Activity.includes(:timetables).distinct.activities_present(Time.now).order('timetables.execution_date').pluck('timetables.execution_date').to_json
-    @boroughs = ''
-    @areas = Area.all
-    @districts = Activity.includes(:addresses).actives.distinct.order('district').pluck('district', 'district')
+    @num_records = @search_q.result.length
+    @timetables = @search_q.result.page(params[:page]).per(Kaminari.config.default_per_page_activity)
     respond_to do |format|
       format.html
       format.js { render action: 'search.js.erb' }
@@ -38,36 +32,23 @@ class ActivitiesController < ApplicationController
   end
 
   def search
-    if params[:day]
-      @day = params[:day]
-      @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(execution_date_eq: @day)
-    else
-      @day = nil
-      @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(params[:q])
-    end
-    @timetables = @search_q.result
-    @num_records = @timetables.length
-    @timetables = @timetables.page(params[:page]).per(Kaminari.config.default_per_page_activity)
+    @num_records = @search_q.result.length
+    @timetables = @search_q.result.page(params[:page]).per(Kaminari.config.default_per_page_activity)
     respond_to do |format|
       format.js
     end
   end
 
   def boroughs
-    @boroughs = Activity.includes(:addresses).actives.distinct.where('addresses.district=?', params[:district]).order('addresses.borough').pluck('addresses.borough', 'addresses.borough')
+    @boroughs = Activity.includes(:addresses).distinct.where('addresses.district=?', params[:district]).order('addresses.borough').pluck('addresses.borough', 'addresses.borough')
     respond_to do |format|
       format.json { render json: @boroughs }
     end
-  end if
+  end
 
   def show
     params[:day] ||= @activity.timetables.minimum(:execution_date).try :strftime, '%Y-%m-%d'
     @timetables = @activity.timetables.where(timetables: { execution_date: params[:day] })
-    #@locations = Activity.includes(:addresses, :timetables).where(id: params[:id], timetables: { execution_date: params[:day] }).as_json(only: [:id, :description, :name], include: [:addresses, { addresses: { only:[:latitude, :longitude] } }])
-    #@locations = Timetable.includes(:activity, :address).where(activities: {id: params[:id]}, execution_date: params[:day] ).as_json(only: [:id], include: { address: { only: [:latitude, :longitude]}})
-    @locations = Event.includes(:address,:activity, :timetables).where(activities: {id: params[:id]}, timetables: {execution_date: params[:day]} ).as_json(only:[:id],include: { address: { only: [:latitude, :longitude]}})
-    @list_days_activity = @activity.timetables.pluck('timetables.execution_date').to_json
-    @date = params[:day]
     @day = params[:day].to_json
     respond_to do |format|
       format.html
@@ -76,6 +57,50 @@ class ActivitiesController < ApplicationController
   end
 
   protected
+
+  def load_query
+    if params[:day]
+      @search_q = Timetable.select('execution_date,activities.id, activities.name').joins(:activity).group('execution_date, activities.id').search(execution_date_eq: params[:day])
+      @day = params[:day]
+    else
+      @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(execution_date_gteq: Time.now)
+      @day = nil
+    end
+  end
+
+  def load_query_search
+    if params[:day]
+      @day = params[:day]
+      @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(execution_date_eq: @day)
+    else
+      @day = nil
+      @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(params[:q])
+    end
+  end
+
+  def set_list_days_show
+    @list_days_activity = @activity.timetables.pluck('timetables.execution_date').to_json
+  end
+
+  def set_list_days
+    @list_days = Activity.includes(:timetables).distinct.activities_present(Time.now).order('timetables.execution_date').pluck('timetables.execution_date').to_json
+  end
+
+  def set_locations
+    @locations = Event.includes(:address, :activity, :timetables).where(activities: { id: params[:id] }, timetables: { execution_date: params[:day] }).as_json(only: [:id], include: { address: { only: [:latitude, :longitude] } })
+  end
+
+  def set_boroughs
+    @boroughs = ''
+  end
+
+  def set_areas
+    @areas = Area.all.order(:name)
+  end
+
+  def set_districts
+    @districts = Activity.includes(:addresses).distinct.order('district').pluck('district', 'district')
+  end
 
   def set_activity
     @activity = Activity.find(params[:id])

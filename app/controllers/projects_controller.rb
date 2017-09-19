@@ -1,12 +1,15 @@
 # controller de projects
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!, only: [:my_area]
-  before_action :set_project, only: [:show]
+  before_filter :authenticate_user!, only: :my_area
+  before_action :set_project, only: :show
+  before_action :set_areas, only: :index
+  before_action :set_boroughs, only: :index
+  before_action :set_districts, only: :index
   respond_to :html, :js, :json
 
   def my_area
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:areas, :addresses, :entity).search(params[:q])
+    @search = Project.includes(:areas).search(params[:q])
     @projects_actives = @search.result.page(params[:page])
     respond_to do |format|
       format.html
@@ -16,28 +19,21 @@ class ProjectsController < ApplicationController
 
   def index
     params[:q] ||= Project.ransack_default
-    @search = Project.includes(:areas).actives.search(params[:q])
-    session[:params] = ""
+    session[:params] = ''
+    @search = Project.includes(:areas).no_urgent.search(params[:q])
     @projects_actives = @search.result.page(params[:page])
-    #@locations = Project.includes(:addresses).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
-    @locations = Event.includes(:address).where(eventable_type: Project.name).as_json(only:[:id],include: { address: { only: [:latitude, :longitude]}})
-    if (params[:page].blank?)
-      @districts = Project.includes(:addresses).actives.distinct.order("district").pluck('district','district')
-      @boroughs = ""
-      @areas = Area.all
-    end
+    @locations = Event.includes(:address).where(eventable_type: Project.name).as_json(only: [:id], include: { address: { only: [:latitude, :longitude] } })
     respond_to do |format|
       format.html
-      format.js {render :action => 'search.js.erb'}
+      format.js { render action: 'search.js.erb' }
     end
   end
 
   def search
     params[:q] ||= session[:params]
-    @search = Project.includes(:areas, :addresses, :entity).actives.search(params[:q])
     session[:params] = params[:q]
-    @projects_actives = @search.result.order(params[:order]).page(params[:page])
-    @locations = @projects_actives.as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
+    @projects_actives = Project.includes(:areas).no_urgent.search(params[:q]).result.order(params[:order]).page(params[:page])
+    @locations = @projects_actives.map(&:events).as_json(only: [:id], include: { address: { only: [:latitude, :longitude] } }).flatten
     respond_to do |format|
       format.html
       format.js
@@ -45,17 +41,16 @@ class ProjectsController < ApplicationController
   end
 
   def boroughs
-    @boroughs = Project.includes(:addresses).actives.distinct.where('addresses.district=?', params[:district]).order('addresses.borough').pluck('addresses.borough', 'addresses.borough')
+    @boroughs = Project.includes(:addresses).no_urgent.distinct.where('addresses.district=?', params[:district]).order('addresses.borough').pluck('addresses.borough', 'addresses.borough')
     respond_to do |format|
       format.json { render json: @boroughs }
     end
   end
 
   def show
-    params[:day] ||= @project.timetables.minimum(:execution_date).try :strftime, "%Y-%m-%d"
-    @timetables = @project.timetables.where(timetables: {execution_date: params[:day]})
-    #@locations = Project.includes(:addresses).where(id: params[:id]).as_json(only: [:id, :description], include: [:addresses, {addresses: {only:[:latitude, :longitude]}}] )
-    @locations = Event.includes(:project,:address).where(projects: {id: params[:id]}).as_json(only:[:id],include: { address: { only: [:latitude, :longitude]}})
+    params[:day] ||= @project.timetables.minimum(:execution_date).try :strftime, '%Y-%m-%d'
+    @timetables = @project.timetables.where(timetables: { execution_date: params[:day] })
+    @locations = Event.includes(:project, :address).where(projects: { id: params[:id] }).as_json(only: [:id], include: { address: { only: [:latitude, :longitude] } })
     respond_to do |format|
       format.html
       format.js
@@ -64,8 +59,20 @@ class ProjectsController < ApplicationController
 
   private
 
+  def set_boroughs
+    @boroughs = '' if params[:page].blank?
+  end
+
+  def set_areas
+    @areas = Area.all.order(:name) if params[:page].blank?
+  end
+
+  def set_districts
+    @districts = Project.includes(:addresses).no_urgent.distinct.order("district").pluck('district','district') if params[:page].blank?
+  end
+
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.includes(:addresses).find(params[:id])
   end
 
   def project_params
