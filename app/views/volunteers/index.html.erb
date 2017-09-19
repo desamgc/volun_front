@@ -2,14 +2,15 @@
   <div class="row">
     <div class="col-md-12">
       <h2 class="titlePage">¿Qué puedes hacer tú?</h2>
-      <p>Voluntarios por Madrid es el instrumento de participación ciudadana activa de los madrileños y madrileñas en la ciudad.</p><p>
-    Ser voluntario por Madrid es pertenecer a un equipo de personas solidarias y positivas donde crear vínculos de amistad y compartir emociones.</p><p>
-  Ser voluntario por Madrid es participar en lo que más te gusta: programas sociales, culturales, medioambientales, deportivos, con animales… Como quieras y cuando quieras.</p>
+      <p>Voluntarios por Madrid es el instrumento de participación ciudadana activa de los madrileños y madrileñas en la ciudad.</p>
+      <p>Ser voluntario por Madrid es participar en lo que más te gusta: programas sociales, culturales, medioambientales, deportivos, con animales… Como quieras y cuando quieras.</p>
+      <p>Ser voluntario por Madrid es pertenecer a un equipo de personas solidarias y positivas donde crear vínculos de amistad y compartir emociones.</p>
+
   <div class="wrapperColaborar">
-    <h3 class="titlePage">Hazte voluntario</h3>
+    <h3 class="titlePage">Hazte voluntario/a</h3>
     <p>Si te sientes una persona solidaria y te apetece hacer algo por los demás, puedes hacer mucho más de lo que crees por tu ciudad, por tus vecinos, por tu entorno. En Voluntarios por Madrid te indicamos cómo.</p>
     <% if !current_user || current_user.loggable_type == "Entity" %>
-    <%= link_to 'Quiero ser voluntario', new_rt_volunteer_subscribe_path, class: "event-link big" %>
+    <%= link_to 'Quiero ser voluntario/a', new_rt_volunteer_subscribe_path, class: "event-link big" %>
     <% end %>
   </div>
 </div>
