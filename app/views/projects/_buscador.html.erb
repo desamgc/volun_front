@@ -54,7 +54,7 @@
                   <label>
                     <%= check_box_tag "q[areas_name_in][]", area.name %>
                     <span class="tag"><i class="fa <%= area.description %>" aria-hidden="true"></i>
-                    <%= area.name %></span>
+                    <%= area.name.capitalize %></span>
                   </label>
                 </div>
                 <% end %>
