@@ -1,6 +1,8 @@
 class Rt::EntitySubscribesController < ApplicationController
   include ActionView::Helpers::UrlHelper
   before_action :set_rt_entity_subscribe, only: [:show, :edit, :update, :destroy]
+  # en el modelo se controla que no exista una solicitud con ese email
+  # pero puede haberse dado de alta al usuario sin haber solicitud
   before_action :user_exists, only: [:create]
   respond_to :html, :js, :json
 
@@ -20,8 +22,8 @@ class Rt::EntitySubscribesController < ApplicationController
   protected
 
   def user_exists
-    return unless User.where(email: rt_entity_subscribe_params[:email]).exists?
-    redirect_to new_password_path("user"), alert: I18n.t('user.exist')
+    return unless User.where(email: rt_volunteer_subscribe_params[:email]).exists?
+    redirect_to new_user_session_path, alert: I18n.t('user.exist')
   end
 
   def rt_entity_subscribe_params
