@@ -127,10 +127,11 @@ $(document).ready(function(){
                                       url: url,
                                       success: function(data) {
                                           $('#q_addresses_borough_eq').children().remove();
+                                          $('#q_addresses_borough_eq').append("<option value=' ' selected = true></option>");
                                           $.each(data, function(i, location)
 
                                           {
-                                              $('#q_addresses_borough_eq').append('<option value=' + location + '>' + location + '</option>');
+                                              $('#q_addresses_borough_eq').append('<option value=' + '"' + location + '"' + '>' + location + '</option>');
 
                                           });
 
@@ -161,7 +162,7 @@ $(document).ready(function(){
                                           $.each(data, function(i, location)
 
                                           {
-                                              $('#q_address_borough_eq').append('<option value=' + location + '>' + location + '</option>');
+                                              $('#q_address_borough_eq').append('<option value=' + '"' + location + '"' + '>' + location + '</option>');
 
                                           });
 
