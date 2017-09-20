@@ -9,6 +9,7 @@
       <div class="main">
         <h3><%= link_to project.name, project_path(project)  %></h3>
         <p><%= truncate(project.description, length: 145) %></p>
+        <p><%= project.entity.name %></p>
         <div class="row ctaGroupPreview">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="tags">
