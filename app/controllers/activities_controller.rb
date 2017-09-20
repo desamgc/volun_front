@@ -47,7 +47,6 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    params[:day] ||= @activity.timetables.minimum(:execution_date).try :strftime, '%Y-%m-%d'
     @timetables = @activity.timetables.where(timetables: { execution_date: params[:day] })
     @day = params[:day].to_json
     respond_to do |format|
@@ -87,6 +86,7 @@ class ActivitiesController < ApplicationController
   end
 
   def set_locations
+    params[:day] ||= @activity.timetables.minimum(:execution_date).try :strftime, '%Y-%m-%d'
     @locations = Event.includes(:address, :activity, :timetables).where(activities: { id: params[:id] }, timetables: { execution_date: params[:day] }).as_json(only: [:id], include: { address: { only: [:latitude, :longitude] } })
   end
 

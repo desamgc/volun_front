@@ -16,39 +16,43 @@ function load_geo ()
 
              var sr = new SpatialReference({wkid:25830});
              var centro =  new Point([446137,4475471],sr);
-             map = new Map("mapDiv", {
-                     center: centro,
-                     spatialReference: sr,
-                     //smartNavigation: false
-             });
+             if (typeof (map) != "undefined") map.destroy();
              if (lock == true)
              {
-                  map.on("load", function() {
-                  map.disablePan();
-                  map.hideZoomSlider();
-                  map.disableScrollWheelZoom() ;
-                  map.disableMapNavigation();
-                  map.setZoom(1);
-                 });
+               map = new Map("mapDiv", {
+                     center: centro,
+                     spatialReference: sr,
+                     logo: false,
+                     maxZoom: 5
+
+               });
+               map.enablePan();
+               map.showZoomSlider();
+               map.enableScrollWheelZoom() ;
+               map.enableMapNavigation();
+               map.setZoom(1);
              }
              else
              {
-              map.enablePan();
-              map.showZoomSlider();
-              map.enableScrollWheelZoom() ;
-              map.enableMapNavigation();
-              map.setZoom(7);
-              centro = new Point([(locations[0].address.latitude/100).toFixed(0),(locations[0].address.longitude/100).toFixed(0)],sr);
-              map.centerAt(centro);
+               centro = new Point([(locations[0].address.latitude/100).toFixed(0),(locations[0].address.longitude/100).toFixed(0)],sr);
+               map = new Map("mapDiv", {
+                     center: centro,
+                     spatialReference: sr,
+                     logo: false
+
+               });
+               map.enablePan();
+               map.showZoomSlider();
+               map.enableScrollWheelZoom() ;
+               map.enableMapNavigation();
+
+               map.setZoom(7);
+               map.centerAt(centro);
 
              }
 
-             map.removeAllLayers();
-             mapabase = new ArcGISTiledMapServiceLayer(url_map ,{
-                                                               "spatialReference": sr});
-             rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{
-                                                               "spatialReference" : sr});
-
+             mapabase = new ArcGISTiledMapServiceLayer(url_map ,{"spatialReference": sr});
+             rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{"spatialReference" : sr});
              map.addLayer(mapabase);
              map.addLayer(rotulacion);
              //map.addLayer(ndps);
@@ -87,34 +91,45 @@ function load_coordenadas ()
      {
              var picBaseUrl = "/assets/";
              var sr = new SpatialReference({wkid:25830});
+             var centro =  new Point([446137,4475471],sr);
              var pms = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 30, 30).setOffset(0, 15);
-             map.removeAllLayers();
+             map.destroy();
 
              if (lock == true)
              {
-                  map.on("load", function() {
-                  map.disablePan();
-                  map.hideZoomSlider();
-                  map.disableScrollWheelZoom() ;
-                  map.disableMapNavigation();
+                  map = new Map("mapDiv", {
+                     center: centro,
+                     spatialReference: sr,
+                     logo: false,
+                     maxZoom: 5
+                     //smartNavigation: false
+                  });
+                  map.enablePan();
+                  map.showZoomSlider();
+                  map.enableScrollWheelZoom() ;
+                  map.enableMapNavigation();
                   map.setZoom(1);
-                 });
+
              }
              else
              {
-                   map.enablePan();
-                   map.showZoomSlider();
-                   map.enableScrollWheelZoom() ;
-                   map.enableMapNavigation();
-                   var centro = new Point([(locations[0].address.latitude/100).toFixed(0),(locations[0].address.longitude/100).toFixed(0)],sr);
-                   map.centerAt(centro);
+                  centro = new Point([(locations[0].address.latitude/100).toFixed(0),(locations[0].address.longitude/100).toFixed(0)],sr);
+                  map = new Map("mapDiv", {
+                     center: centro,
+                     spatialReference: sr,
+                     logo: false
+                     //smartNavigation: false
+                  });
+                  map.enablePan();
+                  map.showZoomSlider();
+                  map.enableScrollWheelZoom() ;
+                  map.enableMapNavigation();
+                  map.setZoom(7);
+                  map.centerAt(centro);
              }
 
-             mapabase = new ArcGISTiledMapServiceLayer(url_map ,{
-                                                              "spatialReference": sr});
-             rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{
-                                                               "spatialReference" : sr});
-
+             mapabase = new ArcGISTiledMapServiceLayer(url_map ,{"spatialReference": sr});
+             rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{"spatialReference" : sr});
              map.addLayer(mapabase);
              map.addLayer(rotulacion);
              map.infoWindow.resize(500, 200);
