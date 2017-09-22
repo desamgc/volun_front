@@ -34,6 +34,7 @@
             <hr>
 
             <div class="button-group text-right">
+              <%= link_to 'Cancelar', user_path(current_user.id), class: "event-link negative big"  %>
               <%= f.submit "Enviar", class: "event-link big mb20" %>
             </div>
 
