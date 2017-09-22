@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :volunteer_appointments, only:[:new,:create]
     resources :volunteer_amendments, only:[:new,:create]
     resources :volunteer_unsubscribes, only:[:new,:create], param: :project_id
-    resources :volunteer_subscribes, only:[:new,:create]
+    resources :volunteer_subscribes, only:[:new,:create,:index]
   end
 
   resources :addresses do

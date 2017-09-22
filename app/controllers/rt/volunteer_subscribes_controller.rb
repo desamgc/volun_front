@@ -12,6 +12,11 @@ class Rt::VolunteerSubscribesController < ApplicationController
 
   end
 
+  def index
+    session.delete(:project)
+    redirect_to projects_path
+  end
+
   def create
     @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new(rt_volunteer_subscribe_params)
     @rt_volunteer_subscribe.request_form.user_id = current_user.id if current_user
