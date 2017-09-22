@@ -31,6 +31,7 @@ class Rt::VolunteerSubscribesController < ApplicationController
   protected
 
   def user_exists
+    return unless rt_volunteer_subscribe_params[:project_id] == ""
     return unless User.where(email: rt_volunteer_subscribe_params[:email]).exists?
     redirect_to new_user_session_path, alert: I18n.t('user.exist')
   end
