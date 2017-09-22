@@ -123,7 +123,7 @@ var lock = true;
               <p> <%= @project.description %> </p>
             </div>
           </div>
-          <% if @project.links.present? %>
+          <% if @project.links.present? && @project.links.url.present? %>
           <div class="item noTitle">
             <h3 class=""><%= t('project.links') %></h3>
             <dl class="dl-horz">
