@@ -1,6 +1,6 @@
 <% if link.present? %>
 <% if link.logo? %>
-<%= image_tag  link.path , class: "projectLogo" %>
+<%= image_tag  link.path , class: "projectLogo", alt: link.description %>
 <% end %>
 <% if link.image? %>
 <div class="item">
