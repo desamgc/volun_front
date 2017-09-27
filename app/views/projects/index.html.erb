@@ -7,23 +7,9 @@ var day_c =""
 var url = "/projects/boroughs"
 <% end %>
 <%= javascript_include_tag 'map' %>
-<div class="container-fluid no-padding-left no-padding-right">
-  <div class="row">
-    <div class="col-md-12">
-      <div id="mapDiv">
-      </div>
-    </div>
-  </div>
-</div>
-<%= render "buscador" %>
+
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="tags">
-        <%=link_to 'Ver todos', projects_path, class: "tag fa fa-building" %>
-      </div>
-    </div>
-  </div>
+  
   <div class="row pt60">
     <div id="numProjects" class="col-md-6">
       <%= render partial: 'numProjects', locals: {total: @projects_actives.total_count}  %>
@@ -45,4 +31,21 @@ var url = "/projects/boroughs"
       <%= render partial: 'shared/scroll_infinite', locals: { records: @projects_actives} %>
     </div>
   </div>
+
+<div class="container-fluid no-padding-left no-padding-right">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="mapDiv">
+      </div>
+    </div>
+  </div>
+</div>
+<%= render "buscador" %>
+<div class="row">
+    <div class="col-sm-12">
+      <div class="tags">
+        <%=link_to 'Ver todos', projects_path, class: "tag fa fa-building" %>
+      </div>
+    </div>
+</div>
 </div>
