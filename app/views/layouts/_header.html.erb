@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-6 text-left">
-          <span>Voluntarios X Madrid</span>
+          <span>Voluntari@s X Madrid</span>
         </div>
         <div class="col-xs-6 text-right">
           <%= image_tag("logo_black_min.svg") %>
@@ -24,7 +24,7 @@
             <ul class="nav navbar-nav navbar-right">
               <% if current_user %>
               <!--                     <li> <%= nav_link 'Inicio', root_path %></li> -->
-              <li> <%= nav_link 'Quiénes somos', whoami_path %></li>
+              <li> <%= nav_link '¿Quiénes somos?', whoami_path %></li>
               <li><%= nav_link '¿Qué puedes hacer?', volunteers_path %></li>
               <li> <%= nav_link 'Proyectos', projects_path %></li>
               <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>
@@ -33,7 +33,7 @@
               <li>  <%= render 'shared/personal_area' %></li>
               <% else %>
               <!--                     <li> <%= nav_link 'Inicio', root_path %></li>  -->
-              <li> <%= nav_link 'Quiénes somos', whoami_path %></li>
+              <li> <%= nav_link '¿Quiénes somos?', whoami_path, :html_options => {:accesskey => "1"} %></li>
               <li><%= nav_link '¿Qué puedes hacer?', volunteers_path %></li>
               <li> <%= nav_link 'Proyectos', projects_path %></li>
               <li><%= nav_link 'Entidades colaboradoras', entities_path %></li>

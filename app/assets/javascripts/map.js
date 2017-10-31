@@ -23,14 +23,14 @@ function load_geo ()
                      center: centro,
                      spatialReference: sr,
                      logo: false,
-                     maxZoom: 5
+                     //maxZoom: 5
 
                });
                map.enablePan();
                map.showZoomSlider();
                map.enableScrollWheelZoom() ;
                map.enableMapNavigation();
-               map.setZoom(1);
+               map.setZoom(5);
              }
              else
              {
@@ -46,15 +46,15 @@ function load_geo ()
                map.enableScrollWheelZoom() ;
                map.enableMapNavigation();
 
-               map.setZoom(7);
+               map.setZoom(5);
                map.centerAt(centro);
 
              }
 
              mapabase = new ArcGISTiledMapServiceLayer(url_map ,{"spatialReference": sr});
-             rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{"spatialReference" : sr});
+             //rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{"spatialReference" : sr});
              map.addLayer(mapabase);
-             map.addLayer(rotulacion);
+             //map.addLayer(rotulacion);
              //map.addLayer(ndps);
              map.infoWindow.resize(500, 200);
              var picBaseUrl = "/assets/";
@@ -101,14 +101,14 @@ function load_coordenadas ()
                      center: centro,
                      spatialReference: sr,
                      logo: false,
-                     maxZoom: 5
+                     //maxZoom: 5
                      //smartNavigation: false
                   });
                   map.enablePan();
                   map.showZoomSlider();
                   map.enableScrollWheelZoom() ;
                   map.enableMapNavigation();
-                  map.setZoom(1);
+                  map.setZoom(5);
 
              }
              else
@@ -124,14 +124,14 @@ function load_coordenadas ()
                   map.showZoomSlider();
                   map.enableScrollWheelZoom() ;
                   map.enableMapNavigation();
-                  map.setZoom(7);
+                  map.setZoom(5);
                   map.centerAt(centro);
              }
 
              mapabase = new ArcGISTiledMapServiceLayer(url_map ,{"spatialReference": sr});
-             rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{"spatialReference" : sr});
+             //rotulacion= new ArcGISDynamicMapServiceLayer(url_rotulacion,{"spatialReference" : sr});
              map.addLayer(mapabase);
-             map.addLayer(rotulacion);
+             //map.addLayer(rotulacion);
              map.infoWindow.resize(500, 200);
              $.each(locations, function(i, location)
              {
