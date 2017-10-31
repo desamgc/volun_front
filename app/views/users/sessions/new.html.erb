@@ -1,45 +1,37 @@
-
 <div id="loginContainer" class="container-fluid" style="padding: 0px; background-color: rgba(0, 0, 0, 0.05)">
-     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="col-sm-6">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="col-sm-6">
+    <div class="row" style="background-color: #fff">
+      <div class="col-lg-9 col-md-12 col-sm-12 pull-right form-container">
+        <h2>Iniciar sesión</h2>
 
-           <div class="row" style="background-color: #fff">
-               <div class="col-lg-9 col-md-12 col-sm-12 pull-right form-container">
-
-
-               <h2>Iniciar sesión</h2>
-                <div class="form-group first">
-                                        <label for="correoelectronico">Correo electrónico</label>
-                                       <!-- <input type="text" class="form-control" id="correoelectronico" name="correoelectronico" placeholder="Correo electrónico" /> -->
-                                        <%= f.email_field :email, autofocus: true %>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contrasenia">Contraseña</label>
-                                        <!-- <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Contraseña" /> -->
-                                        <%= f.password_field :password, autocomplete: "off" %>
-                                    </div>
-                                     <div class="buttons">
-                                        <%= render "users/shared/links" %>
-                                        <button class="event-link big pull-right">Iniciar sesión</button>
-
-
-                                    </div>
-               </div>
-           </div>
-
+        <div class="form-group first">
+          <label for="correoelectronico">Correo electronico</label>
+          <!-- <input type="text" class="form-control" id="correoelectronico" name="correoelectronico" placeholder="Correo electrónico" /> -->
+          <%= f.text_field :username, autofocus: false %>
         </div>
-        <div class="col-sm-6" style="">
 
-             <div class="row">
-               <div class="col-lg-9 col-md-12 col-sm-12 pull-left form-container">
-                 <h2>¿Aun no te has registrado?</h2>
-                   <%= link_to t('application.register_volunteer'), new_rt_volunteer_subscribe_path, class: "event-link negative dark" %>
-                 <br>
-                 <%= link_to t('application.register_entity'), new_entity_path, class: "event-link negative dark" %>
-
-                 </div>
-           </div>
-
+        <div class="form-group">
+          <label for="contrasenia">Contraseña</label>
+          <!-- <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Contraseña" /> -->
+          <%= f.password_field :password, autocomplete: "off" %>
         </div>
-     <% end %>
+        <div class="buttons">
+          <%= render "users/shared/links" %>
+          <button class="event-link big pull-right">Iniciar sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6" style="">
+    <div class="row">
+      <div class="col-lg-9 col-md-12 col-sm-12 pull-left form-container">
+        <h2>¿Aun no te has registrado?</h2>
+        <%= link_to t('application.register_volunteer'), new_rt_volunteer_subscribe_path, class: "event-link negative dark" %>
+        <br>
+        <%= link_to t('application.register_entity'), new_entity_path, class: "event-link negative dark" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
