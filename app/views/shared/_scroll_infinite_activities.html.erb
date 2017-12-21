@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
 
-    <% if records.current_page * Kaminari.config.default_per_page_activity < num_records %>
+    <% if records.current_page * Kaminari.config.default_per_page < num_records %>
     <p id="view-more">
       <%= link_to('Ver Más', url_for(page: records.current_page + 1), {:remote => true}) %>
     </p>

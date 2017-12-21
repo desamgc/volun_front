@@ -24,7 +24,7 @@ class ActivitiesController < ApplicationController
 
   def index
     @num_records = @search_q.result.length
-    @timetables = @search_q.result.page(params[:page]).per(Kaminari.config.default_per_page_activity)
+    @timetables = @search_q.result.page(params[:page]).per(Kaminari.config.default_per_page)
     respond_to do |format|
       format.html
       format.js { render action: 'search.js.erb' }
@@ -33,7 +33,7 @@ class ActivitiesController < ApplicationController
 
   def search
     @num_records = @search_q.result.length
-    @timetables = @search_q.result.page(params[:page]).per(Kaminari.config.default_per_page_activity)
+    @timetables = @search_q.result.page(params[:page]).per(Kaminari.config.default_per_page)
     respond_to do |format|
       format.js
     end
