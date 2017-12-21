@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: 5
+  username: IAM
+  password: IAM
+
+development: &development
+  <<: *default
+  database: volun_dev
+
+# The staging, preproduction and production dbs are only needed
+# for running rake assets:precompile locally before deploying
+staging:
+  <<: *development
+
+preproduction:
+  <<: *development
+
+production:
+  <<: *development
+
+test:
+  <<: *default
+  database: volun_test

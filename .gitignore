@@ -13,5 +13,27 @@
 /tmp/*
 /app/assets/javascripts/js/projects.js.erb
 /app/assets/javascripts/welcome.js.coffee
-/public/*
-/coverage/*
+
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+
+/spec/examples.txt
+/config/database.yml
+/config/secrets.yml
+/config/deploy-secrets.yml
+
+/coverage
+
+/config/beta-testers.txt
+.byebug_history
+
+# Mac finder artifacts
+.DS_Store
+.ruby-gemset
+
+public/sitemap.xml
+public/system/

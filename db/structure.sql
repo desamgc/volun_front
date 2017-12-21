@@ -1474,6 +1474,18 @@ CREATE TABLE projects (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     urgent boolean DEFAULT false,
+    contact_name1 character varying,
+    contact_last_name1 character varying,
+    contact_last_name_alt1 character varying,
+    phone_number1 character varying,
+    phone_number_alt1 character varying,
+    contact_name2 character varying,
+    contact_last_name2 character varying,
+    contact_last_name_alt2 character varying,
+    phone_number2 character varying,
+    phone_number_alt2 character varying,
+    email1 character varying,
+    email2 character varying,
     CONSTRAINT pt_extendable_must_be_consistent CHECK (((((((((project_type_id = 1) AND ((pt_extendable_type)::text = 'Pt::Social'::text)) OR ((project_type_id = 2) AND ((pt_extendable_type)::text = 'Pt::Centre'::text))) OR ((project_type_id = 3) AND ((pt_extendable_type)::text = 'Pt::Permanent'::text))) OR ((project_type_id = 4) AND ((pt_extendable_type)::text = 'Pt::Punctual'::text))) OR ((project_type_id = 5) AND ((pt_extendable_type)::text = 'Pt::Entity'::text))) OR ((project_type_id = 6) AND ((pt_extendable_type)::text = 'Pt::Subvention'::text))) OR ((project_type_id = 7) AND ((pt_extendable_type)::text = 'Pt::Other'::text))))
 );
 
@@ -3246,7 +3258,10 @@ CREATE TABLE volunteers (
     profession_id integer,
     active boolean DEFAULT true,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    initial_pass character varying,
+    notes character varying,
+    accompany_volunteer boolean DEFAULT false
 );
 
 
@@ -6666,3 +6681,15 @@ INSERT INTO schema_migrations (version) VALUES ('20170428073441');
 INSERT INTO schema_migrations (version) VALUES ('20170428074708');
 
 INSERT INTO schema_migrations (version) VALUES ('20170511083434');
+
+INSERT INTO schema_migrations (version) VALUES ('20171003125116');
+
+INSERT INTO schema_migrations (version) VALUES ('20171003140614');
+
+INSERT INTO schema_migrations (version) VALUES ('20171009095533');
+
+INSERT INTO schema_migrations (version) VALUES ('20171011132508');
+
+INSERT INTO schema_migrations (version) VALUES ('20171013091357');
+
+

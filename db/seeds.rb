@@ -3,25 +3,6 @@ require 'database_cleaner'
 DatabaseCleaner.clean_with :truncation
 Faker::Config.locale = I18n.locale
 
-ACTIVITIES_NUM           = 10
-ADDRESSES_NUM            = 20
-PROJECTS_NUM             = 10
-PROJECTS_NUM_FEATURED    = 3
-PROJECTS_NUM_OUTSTANDING = 1
-REQUEST_FORMS_NUM        = 10
-DISTRICTS_NUM            = 10
-ENTITIES_NUM             = 10
-COORDINATIONS_NUM        = 10
-PROPOSAL_NUM             = 10
-ENTITY_NUM               = 10
-RACKING_NUM              = 10
-ISSUE_NUM                = 10
-TIMETABLE_NUM            = 5
-EVENTS_NUM               = 5
-DOCUMENT_NUM             = 5
-SKILLS_NUM               = 5
-LINKS_NUM                = 4
-
 REQUEST_TYPES = {
   1  => 'rt_volunteer_subscribe',
   2  => 'rt_volunteer_unsubscribe',
