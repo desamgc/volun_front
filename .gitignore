@@ -21,10 +21,10 @@
 /db/*.sqlite3-journal
 
 
-/spec/examples.txt
-/config/database.yml
-/config/secrets.yml
-/config/deploy-secrets.yml
+spec/examples.txt
+config/database.yml
+config/secrets.yml
+config/deploy-secrets.yml
 
 /coverage
 
@@ -35,5 +35,6 @@
 .DS_Store
 .ruby-gemset
 
+public/*
 public/sitemap.xml
 public/system/
