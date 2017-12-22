@@ -284,6 +284,7 @@ FactoryGirl.define do
     town                  "Madrid"
     latitude              Faker::Address.latitude
     longitude             Faker::Address.longitude
+    district              Faker::Address.state
     normalize             false
   end
 
@@ -421,16 +422,37 @@ FactoryGirl.define do
 
 
   factory :activity do
-      name                  Faker::App.name
-      description           Faker::Lorem.sentence
-      start_date  Faker::Time.between(DateTime.now - 10, DateTime.now)
-      end_date    Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow)
-      active                true
-      publish               true
+      sequence(:name)       { |n| "Actividad #{n} " }
+      description   Faker::Lorem.sentence
+      start_date    Faker::Time.between(DateTime.now - 10, DateTime.now)
+      end_date      Faker::Time.between(DateTime.tomorrow - 10, DateTime.tomorrow)
+      active        true
+      publish       true
       transport     "transporte"
-
+      #association   :project
   end
 
+
+  factory :event , class: 'Event' do
+      publish       true
+      notes "evento 1"
+      association   :address, factory: :address
+      association   :eventable, factory: :activity
+      #after :create do |event|
+      #  event.timetables = create_list(:timetable, 2)
+      #  event.publish = false
+      #end
+      trait :no_publish do
+        publish  true
+      end
+  end
+
+  factory :timetable do
+      execution_date Faker::Time.between(DateTime.now, DateTime.tomorrow + 1)
+      start_hour  "10:00"
+      end_hour  "12:00"
+      association   :event
+  end
 
   factory :pt_social, class: 'Pt::Social' do
     notes "MyText2"
