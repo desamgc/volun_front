@@ -7,6 +7,11 @@
 # Ignore bundler config.
 /.bundle
 
+config/deploy/shared/*
+config/database.yml
+config/secrets.yml
+config/deploy-secrets.yml
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
@@ -22,9 +27,6 @@
 
 
 spec/examples.txt
-config/database.yml
-config/secrets.yml
-config/deploy-secrets.yml
 
 /coverage
 
