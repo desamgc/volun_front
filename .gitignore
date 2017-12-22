@@ -10,7 +10,7 @@
 config/deploy/shared/*
 config/database.yml
 config/secrets.yml
-config/deploy-secrets.yml
+config/deploy_secrets.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*
