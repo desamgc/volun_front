@@ -96,7 +96,7 @@ feature 'Projects' do
       end
 
       scenario 'Search by area' do
-        @areaCultura = [create(:area, :cultura)]
+        @areaCultura = Area.where("name='CULTURA'")
         @areaDeportes = [create(:area, :deportes)]
         project1 = create(:project, areas: @areaCultura)
         project2 = create(:project, areas: @areaDeportes)
@@ -104,7 +104,7 @@ feature 'Projects' do
 
         visit projects_path
 
-        check 'cultura'
+        check 'Cultura'
         click_button "buscar"
 
         within("#projects") do

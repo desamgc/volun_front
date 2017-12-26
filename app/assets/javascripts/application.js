@@ -23,11 +23,6 @@
 //= require videojsYoutube.min
 // require_directory .
 
-
-
-
-
-
 var initialize_modules = function() {
   //App.Projects.load_geo();
   //App.ayuntamiento;
@@ -195,15 +190,4 @@ $(document).ready(function(){
                                });
                         }
         });
-
-
-
-
-
-
-
-
-
-
-
 });

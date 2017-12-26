@@ -40,10 +40,10 @@ feature 'Welcome' do
     visit 'welcome/index'
 
     click_link 'Iniciar sesión'
-    fill_in 'user_email', with: 'pereekdkdk@madrid.es'
+    fill_in 'user_username', with: 'pereekdkdk@madrid.es'
     fill_in 'user_password', with: 'Testing'
     click_button 'Iniciar sesión'
-    expect(page).to have_content 'Invalid email or password.'
+    expect(page).to have_content 'Invalid username or password.'
 
   end
 

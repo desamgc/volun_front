@@ -317,6 +317,7 @@ es:
       user:
         terms_of_service: Terminos del servicio
         email: Correo electrónico
+        username: Usuario
         password: Contraseña
         password_confirmation: Confirmación contraseña
       request_form:

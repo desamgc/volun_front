@@ -31,6 +31,11 @@ en:
     modificacionOk: Se ha realizado satisfactoriamente la modificación.
     register_entity: Hazte entidad colaboradora
     register_volunteer: Haz voluntariado
+    share: Compartir en
+    links: Enlaces
+    projects: Proyectos
+    activities: Actividades
+    documentation: Documentación
    volunteer_subscribe:
     new: Registrarse
     title: Solicitud de participación como voluntario
@@ -123,7 +128,12 @@ en:
     process:  'Procesar'
     man_trackings: 'Gestionar seguimientos'
    project:
+    asociated: Proyecto asociado
     subscribed: Participando
     interesting: Me interesa participar
     requested: Solicitado
     need_volunteers: Se necesitan voluntarios
+    activities: Actividades asociadas
+    links: Enlaces
+   user:
+    exist: Ya existe un usuario con ese email. Desea recordar constraseña?

@@ -5,10 +5,12 @@ FactoryGirl.define do
     trait :cultura do
       name "cultura"
       description "cultura"
+      active true
     end
     trait :deportes do
       name "deportes"
       description "deportes"
+      active true
     end
   end
 
@@ -206,7 +208,7 @@ FactoryGirl.define do
     volunteer_functions_1 "MyText"
     volunteer_functions_2 "MyText"
     volunteer_functions_3 "MyText"
-
+    notes "notas"
     trait :invalid do
       description ""
     end
@@ -327,7 +329,10 @@ FactoryGirl.define do
     contact_last_name Faker::Lorem.name
     entity_type_id 1
     association :address, factory: :address
-    association :req_reason
+    association :req_reason, factory: :req_reason
+    trait :invalid do
+      email ""
+    end
   end
 
 

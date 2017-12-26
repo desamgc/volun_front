@@ -60,7 +60,7 @@ feature 'Activities' do
 
 
   scenario 'Paginated Index', js: false do
-    per_page = Kaminari.config.default_per_page_activity
+    per_page = Kaminari.config.default_per_page
     (per_page + 2).times { create(:activity, events: create_list(:event, 2, timetables: create_list(:timetable,2))) }
       visit activities_path
       save_and_open_page
