@@ -3,8 +3,8 @@ default: &default
   encoding: unicode
   host: localhost
   pool: 5
-  username: IAM
-  password: IAM
+  username:
+  password:
 
 development: &development
   <<: *default

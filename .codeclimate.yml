@@ -25,6 +25,7 @@ ratings:
   - app/**/*
   - lib/**/*
 exclude_paths:
+- app/assets/javascripts/js/*
 - app/assets/fonts/
 - app/assets/images/
 - bin/rails
