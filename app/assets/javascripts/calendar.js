@@ -1,29 +1,17 @@
-
-
-
-
-
-
 $(document).ready(function(){
-
-
-
-
 
 $("#fecha").datepicker({
               language:'es',
               todayHighlight: false,
               format: 'yyyy-mm-dd',
               beforeShowDay: DisableDays
-
-        });
+});
 
 $("#fecha_home").datepicker({
               language:'es',
               todayHighlight: false,
               format: 'yyyy-mm-dd',
               beforeShowDay: DisableDays
-
 });
 
 $("#fecha_show").datepicker({
@@ -31,32 +19,13 @@ $("#fecha_show").datepicker({
               todayHighlight: false,
               format: 'yyyy-mm-dd',
               beforeShowDay: DisableDays
-
 });
 
 
-        $('#fecha_show').datepicker('setDates', day_c);
-        $('#fecha_show').datepicker().on('changeDate', function() {
-                           param_day = '{"timetables_execution_date_eq"' + "=>" + "'" + $('#fecha_show').datepicker('getFormattedDate') + '"}'
-                           jQuery.ajax({
-                                      type: "GET",
-                                      dataType: "script",
-                                      url: "/activities/" + id,
-                                      success: function(data) {
-
-
-                                      },
-                                      error: function(data){
-
-                                          // mostramos mensaje de error
-                                      },
-                                      "data":{day:$('#fecha_show').datepicker('getFormattedDate') },
-                                      "async": true,
-
-                               });
-        });
-
-
+$('#fecha_show').datepicker('setDates', day_c);
+$('#fecha_show').datepicker().on('changeDate', function() {
+    actualizarActividades("/activities/" + id,$('#fecha_show').datepicker('getFormattedDate'));
+});
 
 
 $('#fecha_home').datepicker('setDates', day_c);
@@ -65,17 +34,17 @@ $('#fecha_home').datepicker().on('changeDate', function() {
     window.location.href = "/activities/?day=" + $('#fecha_home').datepicker('getFormattedDate');
 });
 
+$('#fecha').datepicker('setDates', day_c);
+$('#fecha').datepicker().on('changeDate', function() {
+      actualizarActividades("/activities/search",$('#fecha').datepicker('getFormattedDate'));
 
+});
 
-
-
-        $('#fecha').datepicker('setDates', day_c);
-        $('#fecha').datepicker().on('changeDate', function() {
-                           param_day = '{"timetables_execution_date_eq"' + "=>" + "'" + $('#fecha').datepicker('getFormattedDate') + '"}'
-                           jQuery.ajax({
+function actualizarActividades(url, parametro) {
+                          jQuery.ajax({
                                       type: "GET",
                                       dataType: "script",
-                                      url: "/activities/search",
+                                      url: url,
                                       success: function(data) {
 
 
@@ -84,13 +53,12 @@ $('#fecha_home').datepicker().on('changeDate', function() {
 
                                           // mostramos mensaje de error
                                       },
-                                      "data":{day:$('#fecha').datepicker('getFormattedDate') },
+                                      "data":{day:parametro },
                                       "async": true,
 
                                });
-        });
 
-
+}
 
 function DisableDays(date){
            var formatted = date.getFullYear() + "-" + ("0" + (date.getMonth()+1)).slice(-2) + "-" + ("0"+date.getDate()).slice(-2);
@@ -116,7 +84,5 @@ $('#fecha_show .prev').remove();
 $('#fecha_show .next').remove();
 $('#fecha_show thead tr:nth-child(2)').prepend('<th class="next"><i class="fa fa-chevron-right"></i></th>')
 $('#fecha_show thead tr:nth-child(2)').prepend('<th class="prev"><i class="fa fa-chevron-left"></i></th>')
-
-
 
 })

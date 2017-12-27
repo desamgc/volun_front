@@ -57,12 +57,12 @@
       <% end %>
       <%= render 'layouts/avisos' %>
       <main>
-      <%= yield %>
+        <%= yield %>
       </main>
       <%= render 'layouts/footer' %>
       <%= javascript_include_tag "datepicker" %>
       <%= javascript_include_tag "datepicker_es.min" %>
-      <script src="<%= Rails.application.secrets.url_init %>"></script>
+
     </div>
   </body>
 </html>

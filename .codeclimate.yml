@@ -25,7 +25,8 @@ ratings:
   - app/**/*
   - lib/**/*
 exclude_paths:
-- app/assets/javascripts/js/*
+- app/assets/javascripts/init.js
+- app/assets/javascripts/datepicker.js
 - app/assets/fonts/
 - app/assets/images/
 - bin/rails

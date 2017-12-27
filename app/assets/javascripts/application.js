@@ -16,27 +16,15 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require bootstrap.min
-//= require jquery.dotdotdot.min
-// require turbolinks
-//= require js/locale/i18n_es
-//= require video.min
-//= require videojsYoutube.min
-// require_directory .
-
-var initialize_modules = function() {
-  //App.Projects.load_geo();
-  //App.ayuntamiento;
-  //App.vendor;
-
-};
+//= require turbolinks
+//= require datepicker
+//= require datepicker_es.min
+//= require init
 
 $(function(){
-  //Turbolinks.enableProgressBar()
+  Turbolinks.enableProgressBar()
 
-  $(document).ready(initialize_modules);
-  $(document).on('page:load', initialize_modules);
-  $(document).on('ajax:complete', initialize_modules);
-  $(document).on('turbolinks:load', initialize_modules);
+
 });
 
 
@@ -44,15 +32,45 @@ $(function(){
 function closeErrores()
 {
 
-	$('#errores').hide();
+  $('#errores').hide();
 }
 
 
 function closeAvisos()
 {
 
-	$('#avisos').hide();
+  $('#avisos').hide();
 }
+
+
+function actualizarCombos(origen,destino,url ) {
+                            jQuery.ajax({
+                                      type: "GET",
+                                      dataType: "json",
+                                      url: url,
+                                      success: function(data) {
+                                          $("#" + destino).children().remove();
+                                          $("#" + destino).append("<option value=' ' selected = true></option>");
+                                          $.each(data, function(i, location)
+
+                                          {
+                                              $("#" + destino).append('<option value=' + '"' + location + '"' + '>' + location + '</option>');
+
+                                          });
+
+                                      },
+                                      error: function(data){
+
+                                          $("#" + destino).children().remove();
+                                      },
+                                      "data":{district: $("#" + origen).val() },
+                                      "async": true,
+
+                               });
+
+}
+
+
 
 
 $(document).ready(function(){
@@ -61,36 +79,6 @@ $(document).ready(function(){
           todayHighlight: false,
           format: 'dd/mm/yyyy',
         });
-
-        if ($("#rt_entity_subscribe_request_form_attributes_req_reason_id").val()==4)
-            $('#other_motive').show();
-        else
-            $('#other_motive').hide();
-
-        $("#btnGrid").click(function(){
-            $('#row').hide();
-            $('#grid').show();
-         });
-        $("#btnRow").click(function(){
-            $('#grid').hide();
-            $('#row').show();
-        });
-
-        $("#rt_entity_subscribe_request_form_attributes_req_reason_id").change(function(){
-            if ($("#rt_entity_subscribe_request_form_attributes_req_reason_id").val() == 4)
-            {
-              $('#other_motive').show();
-              $('#rt_entity_subscribe_other_subscribe_reason').val("");
-            }
-            else
-            {
-              $('#other_motive').hide();
-              $('#rt_entity_subscribe_other_subscribe_reason').val("");
-            }
-        });
-
-
-
 
 
         if ($("#entity_req_reason_id").val()==4)
@@ -116,64 +104,12 @@ $(document).ready(function(){
 
 
         $('#q_addresses_district_eq').on('click', function() {
-                           jQuery.ajax({
-                                      type: "GET",
-                                      dataType: "json",
-                                      url: url,
-                                      success: function(data) {
-                                          $('#q_addresses_borough_eq').children().remove();
-                                          $('#q_addresses_borough_eq').append("<option value=' ' selected = true></option>");
-                                          $.each(data, function(i, location)
-
-                                          {
-                                              $('#q_addresses_borough_eq').append('<option value=' + '"' + location + '"' + '>' + location + '</option>');
-
-                                          });
-
-
-
-
-
-                                      },
-                                      error: function(data){
-
-                                          $('#q_addresses_borough_eq').children().remove();
-                                      },
-                                      "data":{district:$('#q_addresses_district_eq').val() },
-                                      "async": true,
-
-                               });
+            actualizarCombos("q_addresses_district_eq","q_addresses_borough_eq",url);
         });
 
 
         $('#q_address_district_eq').on('click', function() {
-                           jQuery.ajax({
-                                      type: "GET",
-                                      dataType: "json",
-                                      url: url,
-                                      success: function(data) {
-                                          $('#q_address_borough_eq').children().remove();
-                                          $('#q_address_borough_eq').append("<option value=' ' selected = true></option>");
-                                          $.each(data, function(i, location)
-
-                                          {
-                                              $('#q_address_borough_eq').append('<option value=' + '"' + location + '"' + '>' + location + '</option>');
-
-                                          });
-
-
-
-
-
-                                      },
-                                      error: function(data){
-
-                                          $('#q_address_borough_eq').children().remove();
-                                      },
-                                      "data":{district:$('#q_address_district_eq').val() },
-                                      "async": true,
-
-                               });
+            actualizarCombos("q_address_district_eq", "q_address_borough_eq",url)
         });
 
 
@@ -191,3 +127,4 @@ $(document).ready(function(){
                         }
         });
 });
+
