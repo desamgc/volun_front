@@ -49,6 +49,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.2', require: false
   gem 'capistrano-rails', '~> 1.2.3', require: false
   gem 'capistrano3-delayed-job', '~> 1.7.3'
+  gem 'capistrano-rvm', '~> 0.1.2'
   gem 'mdl', '~> 0.4.0', require: false
   gem 'rubocop', '~> 0.49.1', require: false
   gem 'rvm1-capistrano3', '~> 1.4.0', require: false
