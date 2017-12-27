@@ -13,7 +13,7 @@ function load_map ()
              var sr = new SpatialReference({wkid:25830});
              var centro =  new Point([446137,4475471],sr);
              var pms = new PictureMarkerSymbol(picBaseUrl + "GreenPin1LargeB.png", 30, 30).setOffset(0, 15);
-             map.destroy();
+             if (typeof (map) != "undefined") map.destroy();
 
              if (lock == true)
              {
