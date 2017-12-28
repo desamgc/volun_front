@@ -56,8 +56,10 @@ namespace :deploy do
 end
 
 task :mapeo_nas do
+ on roles(:app) do
   execute "rm -f  /aytomad/app/VOLUN/volun_frontend/shared/public/system"
   execute "ln -ds /aytomad/app/VOLUN/volun_frontend/shared/private/system /aytomad/app/VOLUN/volun_frontend/shared/public/system"
+ end
 end
 
 task :refresh_sitemap do
