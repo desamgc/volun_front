@@ -1276,6 +1276,37 @@ ALTER SEQUENCE permissions_id_seq OWNED BY permissions.id;
 
 
 --
+-- Name: posts; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE posts (
+    id integer NOT NULL,
+    title character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE posts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE posts_id_seq OWNED BY posts.id;
+
+
+--
 -- Name: pro_issues; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
@@ -1486,6 +1517,9 @@ CREATE TABLE projects (
     phone_number_alt2 character varying,
     email1 character varying,
     email2 character varying,
+    area_departament character varying,
+    number_of_activities integer,
+    number_of_actions integer,
     CONSTRAINT pt_extendable_must_be_consistent CHECK (((((((((project_type_id = 1) AND ((pt_extendable_type)::text = 'Pt::Social'::text)) OR ((project_type_id = 2) AND ((pt_extendable_type)::text = 'Pt::Centre'::text))) OR ((project_type_id = 3) AND ((pt_extendable_type)::text = 'Pt::Permanent'::text))) OR ((project_type_id = 4) AND ((pt_extendable_type)::text = 'Pt::Punctual'::text))) OR ((project_type_id = 5) AND ((pt_extendable_type)::text = 'Pt::Entity'::text))) OR ((project_type_id = 6) AND ((pt_extendable_type)::text = 'Pt::Subvention'::text))) OR ((project_type_id = 7) AND ((pt_extendable_type)::text = 'Pt::Other'::text))))
 );
 
@@ -1758,7 +1792,8 @@ CREATE TABLE pt_socials (
     id integer NOT NULL,
     notes text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    is_project_social boolean DEFAULT false
 );
 
 
@@ -2786,6 +2821,37 @@ ALTER SEQUENCE statuses_id_seq OWNED BY statuses.id;
 
 
 --
+-- Name: tabla1s; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE tabla1s (
+    id integer NOT NULL,
+    title character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: tabla1s_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tabla1s_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tabla1s_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tabla1s_id_seq OWNED BY tabla1s.id;
+
+
+--
 -- Name: timetables; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
@@ -2976,7 +3042,8 @@ CREATE TABLE users (
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
     unconfirmed_email character varying,
-    terms_of_service boolean DEFAULT false
+    terms_of_service boolean DEFAULT false,
+    mobile_phone character varying
 );
 
 
@@ -3259,7 +3326,6 @@ CREATE TABLE volunteers (
     active boolean DEFAULT true,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    initial_pass character varying,
     notes character varying,
     accompany_volunteer boolean DEFAULT false
 );
@@ -3506,6 +3572,13 @@ ALTER TABLE ONLY notice_types ALTER COLUMN id SET DEFAULT nextval('notice_types_
 --
 
 ALTER TABLE ONLY permissions ALTER COLUMN id SET DEFAULT nextval('permissions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
 
 
 --
@@ -3793,6 +3866,13 @@ ALTER TABLE ONLY skills ALTER COLUMN id SET DEFAULT nextval('skills_id_seq'::reg
 --
 
 ALTER TABLE ONLY statuses ALTER COLUMN id SET DEFAULT nextval('statuses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tabla1s ALTER COLUMN id SET DEFAULT nextval('tabla1s_id_seq'::regclass);
 
 
 --
@@ -4143,6 +4223,14 @@ ALTER TABLE ONLY permissions
 
 
 --
+-- Name: posts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY posts
+    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pro_issues_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
@@ -4468,6 +4556,14 @@ ALTER TABLE ONLY skills
 
 ALTER TABLE ONLY statuses
     ADD CONSTRAINT statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tabla1s_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY tabla1s
+    ADD CONSTRAINT tabla1s_pkey PRIMARY KEY (id);
 
 
 --
@@ -6686,10 +6782,37 @@ INSERT INTO schema_migrations (version) VALUES ('20171003125116');
 
 INSERT INTO schema_migrations (version) VALUES ('20171003140614');
 
+INSERT INTO schema_migrations (version) VALUES ('20171009090214');
+
 INSERT INTO schema_migrations (version) VALUES ('20171009095533');
 
 INSERT INTO schema_migrations (version) VALUES ('20171011132508');
 
+INSERT INTO schema_migrations (version) VALUES ('20171013090247');
+
 INSERT INTO schema_migrations (version) VALUES ('20171013091357');
 
+INSERT INTO schema_migrations (version) VALUES ('20171103180351');
+
+INSERT INTO schema_migrations (version) VALUES ('20171103184837');
+
+INSERT INTO schema_migrations (version) VALUES ('20171129115622');
+
+INSERT INTO schema_migrations (version) VALUES ('20171129120606');
+
+INSERT INTO schema_migrations (version) VALUES ('20171201114732');
+
+INSERT INTO schema_migrations (version) VALUES ('20171204092124');
+
+INSERT INTO schema_migrations (version) VALUES ('20171204092327');
+
+INSERT INTO schema_migrations (version) VALUES ('20171205100345');
+
+INSERT INTO schema_migrations (version) VALUES ('20171219151528');
+
+INSERT INTO schema_migrations (version) VALUES ('20171219151645');
+
+INSERT INTO schema_migrations (version) VALUES ('20171220110937');
+
+INSERT INTO schema_migrations (version) VALUES ('20171220110957');
 
