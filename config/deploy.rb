@@ -46,15 +46,27 @@ set(:config_files, %w(
 
 
 namespace :deploy do
-  # Check right version of deploy branch
   before :deploy, "deploy:check_revision"
-  # Run test aund continue only if passed
-  # before :deploy, "deploy:run_tests"
-  # Compile assets locally and then rsync
   after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
-  # Restart unicorn
+  #after :published, 'refresh_sitemap'
+  after :published, 'mapeo_nas'
   after 'deploy:publishing', 'deploy:restart'
-  # after 'deploy:restart', 'sidekiq:restart'
+
+end
+
+task :mapeo_nas do
+  execute "rm -f  /aytomad/app/VOLUN/volun_frontend/shared/public/system"
+  execute "ln -ds /aytomad/app/VOLUN/volun_frontend/shared/private/system /aytomad/app/VOLUN/volun_frontend/shared/public/system"
+end
+
+task :refresh_sitemap do
+  on roles(:app) do
+    within release_path do
+      with rails_env: fetch(:rails_env) do
+        execute :rake, 'sitemap:refresh:no_ping'
+      end
+    end
+  end
 end
 

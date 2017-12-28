@@ -12,8 +12,6 @@ namespace :deploy do
     end
     run_locally do
       execute "rm -rf ./public/assets"
-      execute "rm /aytomad/app/VOLUN/volun_frontend/current/public/system"
-      execute "ln -ds /aytomad/app/VOLUN/volun_frontend/shared/private/system /aytomad/app/VOLUN/volun_frontend/current/public/system"
     end
   end
 end
