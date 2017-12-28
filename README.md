@@ -1,10 +1,14 @@
 ![Logotipo de Volun]
-(https://bytebucket.org/volun_front/volun_frontend/raw/4b38be32152e0e428850e0a9be938ea67a3ffc1d/app/assets/images/FotoPresVolun.jpg)
+(https://raw.githubusercontent.com/IAMDesarrollo/volun_front/master/app/assets/images/FotoPresVolun.jpg)
 
 # Volun
 
 Aplicación de voluntariado
 
+[![Build Status](https://api.travis-ci.org/IAMDesarrollo/volun_front.svg?branch=master)](https://travis-ci.org/IAMDesarrollo/volun_front)
+[![Code Climate](https://codeclimate.com/github/IAMDesarrollo/volun_front/badges/gpa.svg)](https://codeclimate.com/github/IAMDesarrollo/volun_front)
+[![Coverage Status](https://coveralls.io/github/IAMDesarrollo/volun_front/volun_front?branch=master&service=github)](https://coveralls.io/github/IAMDesarrollo/volun_front/volun_front?branch=master)
+[![Dependency Status](https://beta.gemnasium.com/badges/github.com/IAMDesarrollo/volun_front.svg)](https://beta.gemnasium.com/projects/github.com/IAMDesarrollo/volun_front)
 
 Este es el repositorio de código abierto de la Aplicación de Voluntariado, creada originariamente por el Ayuntamiento de Madrid.
 
