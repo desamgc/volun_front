@@ -1,5 +1,5 @@
 class Address < ActiveRecord::Base
-  include BdcCompatible
+  #include BdcCompatible
 
   ROAD_NUMBER_TYPES = %w(num km.)
   GRADERS = [*'A'..'Z']
