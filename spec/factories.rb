@@ -1,4 +1,23 @@
 FactoryGirl.define do
+  factory :areas_project do
+
+  end
+  factory :pt_other, class: 'Pt::Other' do
+
+  end
+  factory :pt do
+
+  end
+  factory :projects_volunteer do
+
+  end
+  factory :image do
+
+  end
+  factory :road_type do
+    name 'calle'
+    code 1
+  end
 
   factory :area do
     name "cultura"
@@ -292,13 +311,6 @@ FactoryGirl.define do
 
 
 
-  factory :road_type do
-    name "MyText"
-
-    trait :invalid do
-    end
-  end
-
   factory :district do
     name "MyText"
 
@@ -327,7 +339,9 @@ FactoryGirl.define do
     representative_last_name Faker::Lorem.name
     contact_name Faker::Lorem.name
     contact_last_name Faker::Lorem.name
+    address_id   1
     entity_type_id 1
+    #association :entity_type, factory: :entity_type
     association :address, factory: :address
     association :req_reason, factory: :req_reason
     trait :invalid do
