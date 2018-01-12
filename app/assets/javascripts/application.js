@@ -16,13 +16,13 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require bootstrap.min
-//= require turbolinks
+// require turbolinks
 //= require datepicker
 //= require datepicker_es.min
 //= require init
 
 $(function(){
-  Turbolinks.enableProgressBar()
+  //Turbolinks.enableProgressBar()
 
 
 });
