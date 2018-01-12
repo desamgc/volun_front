@@ -40,9 +40,9 @@ FactoryGirl.define do
   end
 
   factory :entity_type do
-    description "MyText"
-    name "MyText"
-    active false
+    description Faker::Lorem.name
+    name        Faker::Lorem.name
+    active true
   end
 
   sequence(:document_number) { |n| "#{n.to_s.rjust(8, '0')}X" }
@@ -339,11 +339,11 @@ FactoryGirl.define do
     representative_last_name Faker::Lorem.name
     contact_name Faker::Lorem.name
     contact_last_name Faker::Lorem.name
-    address_id   1
     entity_type_id 1
+    req_reason_id 1
     #association :entity_type, factory: :entity_type
     association :address, factory: :address
-    association :req_reason, factory: :req_reason
+    #association :req_reason, factory: :req_reason
     trait :invalid do
       email ""
     end
@@ -417,12 +417,12 @@ FactoryGirl.define do
     name Faker::Lorem.name
     last_name "MyString"
     phone_number "915133368"
-    email "perezljl@madrid.es"
+    email Faker::Internet.email
     association :address, factory: :address
   end
 
   factory :user do
-     email 'voluntario@madrid.es'
+     email Faker::Internet.email
      password '12345678'
      password_confirmation '12345678'
      notice_type_id 1
@@ -430,7 +430,6 @@ FactoryGirl.define do
      confirmed_at '2017-05-18 06:06:47.754827'
      confirmation_sent_at '2017-05-18 06:06:47.754827'
      terms_of_service true
-     association :loggable
      trait :user_volunteer do
        association  :loggable, factory: :volunteer
      end
