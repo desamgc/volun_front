@@ -5,6 +5,7 @@
     </div>
   </div>
   <%= form_for(@entity) do |f| %>
+  <%= f.invisible_captcha :subtitle %>
   <div class="form form-electronic">
     <%= render(partial: 'shared/errors', locals: {model_name: @entity})%>
     <fieldset>

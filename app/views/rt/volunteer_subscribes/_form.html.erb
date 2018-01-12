@@ -1,4 +1,5 @@
 <%= form_for(@rt_volunteer_subscribe) do |f| %>
+  <%= f.invisible_captcha :subtitle %>
   <div class="form form-electronic">
     <%= render(partial: 'shared/errors', locals: {model_name: @rt_volunteer_subscribe})%>
       <% if !current_user ||  !current_user.loggable_type=="Entity"  %>

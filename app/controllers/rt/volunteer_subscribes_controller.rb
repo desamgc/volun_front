@@ -1,6 +1,7 @@
 # class of volunteer subscribe
 class Rt::VolunteerSubscribesController < ApplicationController
   include ActionView::Helpers::UrlHelper
+  invisible_captcha only: [:create], honeypot: :subtitle
   before_action :set_rt_volunteer_subscribe, only: [:show, :edit, :update, :destroy]
   # en el modelo se controla que no exista una solicitud con ese email
   # pero puede haberse dado de alta al usuario sin haber solicitud

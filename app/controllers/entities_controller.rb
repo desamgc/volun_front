@@ -1,4 +1,5 @@
 class EntitiesController < ApplicationController
+  invisible_captcha only: [:create], honeypot: :subtitle
   def new
     @entity = Entity.new
     @entity.build_address
