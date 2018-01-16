@@ -63,7 +63,6 @@ feature 'Activities' do
     per_page = Kaminari.config.default_per_page
     (per_page + 2).times { create(:activity, events: create_list(:event, 2, timetables: create_list(:timetable,2))) }
       visit activities_path
-      save_and_open_page
       expect(page).to have_selector('#activities', count: 1)
       expect(page).to have_css("a[href='/activities?page=2']", text: "Ver Más")
   end

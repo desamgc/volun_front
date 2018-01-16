@@ -23,7 +23,6 @@ feature 'Welcome' do
     projects = [create(:project),create(:project),create(:project)]
 
     visit 'welcome/index'
-    save_and_open_page
     expect(page).to have_selector('#projects', count: 1)
     projects.each do |project|
       within('#projects') do
