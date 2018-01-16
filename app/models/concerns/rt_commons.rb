@@ -9,23 +9,23 @@ module RtCommons
 
     private
 
-    def request_type_valid?
-      self.class.model_name.singular == request_form.request_type.kind
-    end
+      def request_type_valid?
+        self.class.model_name.singular == request_form.request_type.kind
+      end
 
-    def check_request_type
-      errors.add(:base, :invalid_request_type) unless request_type_valid?
-    end
+      def check_request_type
+        errors.add(:base, :invalid_request_type) unless request_type_valid?
+      end
 
-    def build_new_request_form(attributes = {})
-      return if persisted?
-      attributes.reverse_merge!(
-        request_type: RequestType.where(kind: RequestType.kinds[self.class.model_name.singular]).take,
-        req_status_id: 1,
-        status_date: Time.now,
-        req_reason_id:  self.request_form != nil ? self.request_form.req_reason_id : nil
-      )
-      build_request_form(attributes)
-    end
+      def build_new_request_form(attributes = {})
+        return if persisted?
+        attributes.reverse_merge!(
+          request_type: RequestType.where(kind: RequestType.kinds[self.class.model_name.singular]).take,
+          req_status_id: 1,
+          status_date: Time.now,
+          req_reason_id:  self.request_form != nil ? self.request_form.req_reason_id : nil
+        )
+        build_request_form(attributes)
+      end
   end
 end

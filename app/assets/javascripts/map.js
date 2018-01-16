@@ -1,6 +1,5 @@
 function load_map ()
 {
-
  require([
      "esri/geometry/Point", "esri/Color", "esri/InfoTemplate","esri/map",
      "esri/symbols/SimpleMarkerSymbol",  "esri/layers/ArcGISDynamicMapServiceLayer",
@@ -70,22 +69,11 @@ function load_map ()
       })
 }
 
-
-
-
-
-
-
-
-
 $(document).ready(function(){
-
-
 var map = "";
 var mapabase;
 var rotulacion;
 load_map();
-
 })
 
 

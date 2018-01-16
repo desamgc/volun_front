@@ -19,7 +19,7 @@ class Rt::VolunteerUnsubscribesController < ApplicationController
 
   protected
 
-  def rt_volunteer_unsubscribe_params
-    params.require(:rt_volunteer_unsubscribe).permit(:project_id, :unsubscribe_level_id, :notes)
-  end
+    def rt_volunteer_unsubscribe_params
+      params.require(:rt_volunteer_unsubscribe).permit(:project_id, :unsubscribe_level_id, :notes)
+    end
 end

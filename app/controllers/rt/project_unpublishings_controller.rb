@@ -19,7 +19,7 @@ class Rt::ProjectUnpublishingsController < ApplicationController
 
   protected
 
-  def rt_project_unpublishing_params
-    params.require(:rt_project_unpublishing).permit(:notes, :project_id)
-  end
+    def rt_project_unpublishing_params
+      params.require(:rt_project_unpublishing).permit(:notes, :project_id)
+    end
 end

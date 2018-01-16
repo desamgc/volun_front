@@ -19,7 +19,7 @@ class Rt::VolunteerAppointmentsController < ApplicationController
 
   protected
 
-  def rt_volunteer_appointment_params
-    params.require(:rt_volunteer_appointment).permit(:volunteer_id, :notes)
-  end
+    def rt_volunteer_appointment_params
+      params.require(:rt_volunteer_appointment).permit(:volunteer_id, :notes)
+    end
 end

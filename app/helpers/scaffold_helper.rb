@@ -85,7 +85,7 @@ module ScaffoldHelper
     path = options.delete(:path)
     text = options.delete(:text)
 
-    link_to(text, public_send(path, record, options[:path_params]||{}), options)
+    link_to(text, public_send(path, record, options[:path_params] || {}), options)
   end
 
   def link_to_recover(record, opts = {})
@@ -104,7 +104,7 @@ module ScaffoldHelper
     link_to(text, public_send(path, record, options[:path_params] || {}), options)
   end
 
-  def button_to_back(path=:back)
+  def button_to_back(path = :back)
     link_to(t('action.back'), path, class: "btn btn-default")
   end
 

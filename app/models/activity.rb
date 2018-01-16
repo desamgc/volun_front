@@ -13,8 +13,6 @@ class Activity < ActiveRecord::Base
 
   default_scope { where(publish: true, active: true) }
   scope :activities_present, (->(day) { where("timetables.execution_date >= ? and events.eventable_type='Activity'", day) })
-  #scope :actives, (-> { where(active: true, publish: true) })
-  #scope :total, (-> { where('active=true') })
 
   def to_s
     name

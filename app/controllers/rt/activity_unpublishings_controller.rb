@@ -19,7 +19,7 @@ class Rt::ActivityUnpublishingsController < ApplicationController
 
   protected
 
-  def rt_activity_unpublishing_params
-    params.require(:rt_activity_unpublishing).permit(:notes, :activity_id)
-  end
+    def rt_activity_unpublishing_params
+      params.require(:rt_activity_unpublishing).permit(:notes, :activity_id)
+    end
 end

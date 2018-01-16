@@ -18,7 +18,7 @@ class Rt::OthersController < ApplicationController
 
   protected
 
-  def rt_other_params
-    params.require(:rt_other).permit(:description, :user_id)
-  end
+    def rt_other_params
+      params.require(:rt_other).permit(:description, :user_id)
+    end
 end

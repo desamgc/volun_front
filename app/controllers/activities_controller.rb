@@ -10,7 +10,6 @@ class ActivitiesController < ApplicationController
   before_action :set_list_days, only: :index
   before_action :load_query, only: :index
   respond_to :html, :js, :json
-  # after_filter :allow_iframe, only: [:show]
 
   def my_area
     params[:q] ||= Ransack.default
@@ -57,60 +56,60 @@ class ActivitiesController < ApplicationController
 
   protected
 
-  def load_query
-    if params[:day]
-      @search_q = Timetable.select('execution_date,activities.id, activities.name').joins(:activity).group('execution_date, activities.id').search(execution_date_eq: params[:day])
-      @day = params[:day]
-    else
-      @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(execution_date_gteq: Time.now)
-      @day = nil
+    def load_query
+      if params[:day]
+        @search_q = Timetable.select('execution_date,activities.id, activities.name').joins(:activity).group('execution_date, activities.id').search(execution_date_eq: params[:day])
+        @day = params[:day]
+      else
+        @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(execution_date_gteq: Time.now)
+        @day = nil
+      end
     end
-  end
 
-  def load_query_search
-    if params[:day]
-      @day = params[:day]
-      @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(execution_date_eq: @day)
-    else
-      @day = nil
-      @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(params[:q])
+    def load_query_search
+      if params[:day]
+        @day = params[:day]
+        @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(execution_date_eq: @day)
+      else
+        @day = nil
+        @search_q = Timetable.select('execution_date, activities.id').joins(:activity).order(:execution_date).group('execution_date, activities.id').search(params[:q])
+      end
     end
-  end
 
-  def set_list_days_show
-    @list_days_activity = @activity.timetables.pluck('timetables.execution_date').to_json
-  end
+    def set_list_days_show
+      @list_days_activity = @activity.timetables.pluck('timetables.execution_date').to_json
+    end
 
-  def set_list_days
-    @list_days = Activity.includes(:timetables).distinct.activities_present(Time.now).order('timetables.execution_date').pluck('timetables.execution_date').to_json
-  end
+    def set_list_days
+      @list_days = Activity.includes(:timetables).distinct.activities_present(Time.now).order('timetables.execution_date').pluck('timetables.execution_date').to_json
+    end
 
-  def set_locations
-    params[:day] ||= @activity.timetables.minimum(:execution_date).try :strftime, '%Y-%m-%d'
-    @locations = Event.includes(:address, :activity, :timetables).where(activities: { id: params[:id] }, timetables: { execution_date: params[:day] }).as_json(only: [:id], include: { address: { only: [:latitude, :longitude] } })
-  end
+    def set_locations
+      params[:day] ||= @activity.timetables.minimum(:execution_date).try :strftime, '%Y-%m-%d'
+      @locations = Event.includes(:address, :activity, :timetables).where(activities: { id: params[:id] }, timetables: { execution_date: params[:day] }).as_json(only: [:id], include: { address: { only: [:latitude, :longitude] } })
+    end
 
-  def set_boroughs
-    @boroughs = ''
-  end
+    def set_boroughs
+      @boroughs = ''
+    end
 
-  def set_areas
-    @areas = Area.all.order(:name)
-  end
+    def set_areas
+      @areas = Area.all.order(:name)
+    end
 
-  def set_districts
-    @districts = Activity.includes(:addresses).distinct.order('district').pluck('district', 'district')
-  end
+    def set_districts
+      @districts = Activity.includes(:addresses).distinct.order('district').pluck('district', 'district')
+    end
 
-  def set_activity
-    @activity = Activity.find(params[:id])
-  end
+    def set_activity
+      @activity = Activity.find(params[:id])
+    end
 
-  def activity_params
-    params.require(:activity).permit(:name, :description, :active)
-  end
+    def activity_params
+      params.require(:activity).permit(:name, :description, :active)
+    end
 
-  def allow_iframe
-    response.headers.delete 'X-Frame-Options'
-  end
+    def allow_iframe
+      response.headers.delete 'X-Frame-Options'
+    end
 end

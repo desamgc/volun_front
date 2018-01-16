@@ -31,31 +31,31 @@ class Rt::VolunteerSubscribesController < ApplicationController
 
   protected
 
-  def user_exists
-    return unless rt_volunteer_subscribe_params[:project_id] == ""
-    return unless User.where(email: rt_volunteer_subscribe_params[:email]).exists?
-    redirect_to new_user_session_path, alert: I18n.t('user.exist')
-  end
-
-  def set_fields
-    session[:project] ||= params[:project_id]
-    if current_user && current_user.loggable_type == Volunteer.name
-      @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new(project_id: session[:project],
-                                                           name: current_user.loggable.name,
-                                                           last_name: current_user.loggable.last_name,
-                                                           phone_number: current_user.loggable.phone_number,
-                                                           email: current_user.loggable.email)
-      @rt_volunteer_subscribe.request_form.user_id = current_user.id
-    else
-      @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new
+    def user_exists
+      return unless rt_volunteer_subscribe_params[:project_id] == ""
+      return unless User.where(email: rt_volunteer_subscribe_params[:email]).exists?
+      redirect_to new_user_session_path, alert: I18n.t('user.exist')
     end
-  end
 
-  def set_rt_volunteer_subscribe
-    @rt_volunteer_subscribe = Rt::VolunteerSubscribe.find(params[:id])
-  end
+    def set_fields
+      session[:project] ||= params[:project_id]
+      if current_user && current_user.loggable_type == Volunteer.name
+        @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new(project_id: session[:project],
+                                                             name: current_user.loggable.name,
+                                                             last_name: current_user.loggable.last_name,
+                                                             phone_number: current_user.loggable.phone_number,
+                                                             email: current_user.loggable.email)
+        @rt_volunteer_subscribe.request_form.user_id = current_user.id
+      else
+        @rt_volunteer_subscribe = Rt::VolunteerSubscribe.new
+      end
+    end
 
-  def rt_volunteer_subscribe_params
-    params.require(:rt_volunteer_subscribe).permit(:name, :last_name, :last_name_alt, :phone_number, :phone_number_alt, :email, :project_id, request_form: [:user_id])
-  end
+    def set_rt_volunteer_subscribe
+      @rt_volunteer_subscribe = Rt::VolunteerSubscribe.find(params[:id])
+    end
+
+    def rt_volunteer_subscribe_params
+      params.require(:rt_volunteer_subscribe).permit(:name, :last_name, :last_name_alt, :phone_number, :phone_number_alt, :email, :project_id, request_form: [:user_id])
+    end
 end

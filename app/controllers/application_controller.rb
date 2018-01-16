@@ -11,44 +11,41 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def authenticate_http_basic
-    authenticate_or_request_with_http_basic do |username, password|
-      username == Rails.application.secrets.http_basic_username && password == Rails.application.secrets.http_basic_password
+    def authenticate_http_basic
+      authenticate_or_request_with_http_basic do |username, password|
+        username == Rails.application.secrets.http_basic_username && password == Rails.application.secrets.http_basic_password
+      end
     end
-  end
 
-  def http_basic_auth_site?
-    Rails.application.secrets.http_basic_auth
-  end
-
-  def set_locale
-    if params[:locale] && I18n.available_locales.include?(params[:locale].to_sym)
-      session[:locale] = params[:locale]
+    def http_basic_auth_site?
+      Rails.application.secrets.http_basic_auth
     end
-    session[:locale] ||= I18n.default_locale
-    locale = session[:locale]
-    # if current_user && current_user.locale != locale.to_s
-    #  current_user.update(locale: locale)
-    # end
-    I18n.locale = locale
-  end
 
-  def set_layout
-    if devise_controller?
-      'devise'
-    else
-      'application'
+    def set_locale
+      if params[:locale] && I18n.available_locales.include?(params[:locale].to_sym)
+        session[:locale] = params[:locale]
+      end
+      session[:locale] ||= I18n.default_locale
+      locale = session[:locale]
+      I18n.locale = locale
     end
-  end
 
-  def set_return_url
-    if !devise_controller? && controller_name != 'welcome' && is_navigational_format?
-      store_location_for(:user, request.path)
+    def set_layout
+      if devise_controller?
+        'devise'
+      else
+        'application'
+      end
     end
-  end
 
-  def set_page_params
-    params[:per_page_list] ||= [10, 20, 30, 40, 50]
-    params[:per_page] ||= 6
-  end
+    def set_return_url
+      if !devise_controller? && controller_name != 'welcome' && is_navigational_format?
+        store_location_for(:user, request.path)
+      end
+    end
+
+    def set_page_params
+      params[:per_page_list] ||= [10, 20, 30, 40, 50]
+      params[:per_page] ||= 6
+    end
 end

@@ -21,12 +21,12 @@ class Rt::EntitySubscribesController < ApplicationController
 
   protected
 
-  def user_exists
-    return unless User.where(email: rt_volunteer_subscribe_params[:email]).exists?
-    redirect_to new_user_session_path, alert: I18n.t('user.exist')
-  end
+    def user_exists
+      return unless User.where(email: rt_volunteer_subscribe_params[:email]).exists?
+      redirect_to new_user_session_path, alert: I18n.t('user.exist')
+    end
 
-  def rt_entity_subscribe_params
-    params.require(:rt_entity_subscribe).permit(:name, :vat_number, :email, :contact_name, :contact_last_name, :contact_last_name_alt, :representative_name, :representative_last_name, :representative_last_name_alt, :phone_number, :phone_number_alt, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :entity_type_id, :other_subscribe_reason, request_form_attributes: [:req_reason_id])
-  end
+    def rt_entity_subscribe_params
+      params.require(:rt_entity_subscribe).permit(:name, :vat_number, :email, :contact_name, :contact_last_name, :contact_last_name_alt, :representative_name, :representative_last_name, :representative_last_name_alt, :phone_number, :phone_number_alt, :road_type, :road_name, :number_type, :road_number, :postal_code, :town, :province, :entity_type_id, :other_subscribe_reason, request_form_attributes: [:req_reason_id])
+    end
 end
