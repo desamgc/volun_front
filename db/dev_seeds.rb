@@ -446,8 +446,9 @@ end
       password: pwd,
       password_confirmation: pwd,
       loggable: Entity.first,
-      notice_type: NoticeType.all.sample,
-      terms_of_service: true
+      notice_type_id: 1,
+      terms_of_service: true,
+      confirmed_at:          '2017-12-28 15:16:14.568274'
     }
     user = User.find_or_initialize_by(login: attributes[:login])
 
@@ -466,7 +467,8 @@ end
       password_confirmation: pwd,
       loggable:              Volunteer.first,
       notice_type:           NoticeType.all.sample,
-      terms_of_service: true
+      terms_of_service: true,
+      confirmed_at:          '2017-12-28 15:16:14.568274'
     }
     user = User.find_or_initialize_by(login: attributes[:login])
 
