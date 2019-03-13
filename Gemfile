@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.11.1'
 
 
 gem 'bootstrap-datetimepicker-rails', '~> 0.0.11'
