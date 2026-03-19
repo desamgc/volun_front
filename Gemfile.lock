@@ -45,7 +45,7 @@ GEM
       nokogiri
     arel (6.0.4)
     ast (2.3.0)
-    bcrypt (3.1.11)
+    bcrypt (3.1.22)
     bootstrap-datetimepicker-rails (0.0.11)
     browser (2.3.0)
     builder (3.2.3)
