@@ -45,6 +45,7 @@ GEM
       nokogiri
     arel (6.0.4)
     ast (2.3.0)
+    base64 (0.3.0)
     bcrypt (3.1.11)
     bootstrap-datetimepicker-rails (0.0.11)
     browser (2.3.0)
@@ -363,9 +364,10 @@ GEM
       activemodel (>= 4.2)
       debug_inspector
       railties (>= 4.2)
-    websocket-driver (0.7.0)
+    websocket-driver (0.8.2)
+      base64
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.3)
+    websocket-extensions (0.1.5)
     xpath (2.1.0)
       nokogiri (~> 1.3)
 
